@@ -114,7 +114,8 @@ public class TreeUtils
 	 * @return {@code true} if {@code node} is an ancestor of {@code target}.
 	 */
 
-	public static <T extends ITreeNode<T>> boolean isAncestor(T node, T target)
+	public static <T extends ITreeNode<T>> boolean isAncestor(T node,
+															  T target)
 	{
 		return isAncestor(node, target, false);
 	}
@@ -141,7 +142,9 @@ public class TreeUtils
 	 * 		   </ul>
 	 */
 
-	public static <T extends ITreeNode<T>> boolean isAncestor(T node, T target, boolean testForIdentity)
+	public static <T extends ITreeNode<T>> boolean isAncestor(T       node,
+															  T       target,
+															  boolean testForIdentity)
 	{
 		T target0 = testForIdentity ? target : target.getParent();
 		while (target0 != null)
