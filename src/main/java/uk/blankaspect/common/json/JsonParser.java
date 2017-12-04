@@ -29,11 +29,18 @@ import uk.blankaspect.common.indexedsub.IndexedSub;
 
 /**
  * This class implements a parser that transforms JSON text into a tree of {@linkplain JsonValue JSON values}.  The
- * input text of the parser must conform to the JSON specification as described in the following documents:
+ * input text of the parser must conform to the JSON grammar as specified in the following documents:
  * <ul>
  *   <li><a href="https://tools.ietf.org/html/rfc7159">IETF RFC7159</a></li>
  *   <li><a href="https://www.ecma-international.org/publications/standards/Ecma-404.htm">ECMA-404</a></li>
  * </ul>
+ * <p>
+ * The parser is implemented in the {@link #parse(CharSequence)} method as a <a
+ * href="https://en.wikipedia.org/wiki/Finite-state_machine">finite-state machine</a> (FSM) that terminates with an
+ * exception at the first error in the input text.  The FSM combines the lexical analysis, syntax analysis and semantic
+ * analysis of the input text into a single phase along with the generation of the output (a tree of {@linkplain
+ * JsonValue JSON values}).
+ * </p>
  */
 
 public class JsonParser
@@ -227,9 +234,12 @@ public class JsonParser
 		/**
 		 * Creates a new instance of a property-name object.
 		 *
-		 * @param name       the name of a property of a JSON object.
-		 * @param index      the index of the property name in the input text.
-		 * @param lineIndex  the index of the line containing the property name in the input text.
+		 * @param name
+		 *          the name of a property of a JSON object.
+		 * @param index
+		 *          the index of the property name in the input text.
+		 * @param lineIndex
+		 *          the index of the line containing the property name in the input text.
 		 */
 
 		private PropertyName(String name,
@@ -284,7 +294,8 @@ public class JsonParser
 	/**
 	 * Returns {@code true} if the specified character is whitespace.
 	 *
-	 * @param  ch  the character of interest.
+	 * @param  ch
+	 *           the character of interest.
 	 * @return {@code true} if <i>ch</i> is whitespace.
 	 */
 
@@ -299,7 +310,8 @@ public class JsonParser
 	 * Returns {@code true} if the specified character is a value terminator (ie, either whitespace or a structural
 	 * character).
 	 *
-	 * @param  ch  the character of interest.
+	 * @param  ch
+	 *           the character of interest.
 	 * @return {@code true} if <i>ch</i> is whitespace or a structural character.
 	 */
 
@@ -319,8 +331,9 @@ public class JsonParser
 	 * be stored as a {@linkplain Long signed 64-bit integer} will be stored as a {@linkplain Double double-precision
 	 * floating-point number}.
 	 *
-	 * @param storeExcessiveIntegerAsFP  if {@code true} a JSON number that is deemed to be an integer but is too large
-	 *                                   for a {@code long} will be stored as a {@code double}.
+	 * @param storeExcessiveIntegerAsFP
+	 *          if {@code true} a JSON number that is deemed to be an integer but is too large for a {@code long} will
+	 *          be stored as a {@code double}.
 	 */
 
 	public void setStoreExcessiveIntegerAsFP(boolean storeExcessiveIntegerAsFP)
@@ -334,7 +347,8 @@ public class JsonParser
 	 * Parses the specified text and, if it conforms to the JSON grammar, transforms it into a tree of {@linkplain
 	 * JsonValue JSON values} and returns the root of the tree.
 	 *
-	 * @param  text  the text that will be parsed as JSON text.
+	 * @param  text
+	 *           the text that will be parsed as JSON text.
 	 * @return the tree of JSON values that was created from parsing <i>text</i>.
 	 * @throws ParseException
 	 *           if an error occurred when parsing the input text.
@@ -878,7 +892,8 @@ public class JsonParser
 	 * Increments the index of the current line in the input text and resets the index of the start of the current line
 	 * in the input text if the specified character (from the input text) is a line feed (U+000A).
 	 *
-	 * @param ch  the next character from the input text.
+	 * @param ch
+	 *          the next character from the input text.
 	 */
 
 	private void newLine(char ch)
@@ -897,7 +912,8 @@ public class JsonParser
 	 * fails at the specified character.  The detail message of the exception contains a reference to the index of the
 	 * character at which validation failed.
 	 *
-	 * @param  ch  the character that caused the validation of a number to fail.
+	 * @param  ch
+	 *           the character that caused the validation of a number to fail.
 	 * @throws ParseException
 	 */
 
@@ -937,7 +953,8 @@ public class JsonParser
 	 * faster.
 	 * </p>
 	 *
-	 * @param  text  the text that contains a JSON representation of a number at the current index.
+	 * @param  text
+	 *           the text that contains a JSON representation of a number at the current index.
 	 * @throws ParseException
 	 *           if the text at the current index is not a valid JSON representation of a number.
 	 */
@@ -1156,9 +1173,11 @@ public class JsonParser
 	 * string in the {@linkplain #tokenBuffer token buffer}.  This method is not called on the quotation mark
 	 * (U+0022) at the start of the string.
 	 *
-	 * @param  text  the input text that contains a JSON representation of a string at the current index.
-	 * @param  ch    the current character of the JSON string representation.
-	 * @return {@code true} if the string has been parsed successfully, {@code false} if the end of the string has not#
+	 * @param  text
+	 *           the input text that contains a JSON representation of a string at the current index.
+	 * @param  ch
+	 *           the current character of the JSON string representation.
+	 * @return {@code true} if the string has been parsed successfully, {@code false} if the end of the string has not
 	 *         been reached.
 	 * @throws ParseException
 	 *           if an error occurred when parsing the JSON string.
