@@ -341,6 +341,102 @@ public class JsonObject
 	//------------------------------------------------------------------
 
 	/**
+	 * Returns {@code true} if this JSON object contains a JSON-null property with the specified name.
+	 *
+	 * @param  name
+	 *           the name of the property of interest.
+	 * @return {@code true} if this JSON object contains a JSON-null property whose name is <i>name</i>; {@code false}
+	 *         otherwise.
+	 */
+
+	public boolean hasNullProperty(String name)
+	{
+		return properties.get(name) instanceof JsonNull;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns {@code true} if this JSON object contains a JSON-Boolean property with the specified name.
+	 *
+	 * @param  name
+	 *           the name of the property of interest.
+	 * @return {@code true} if this JSON object contains a JSON-Boolean property whose name is <i>name</i>; {@code
+	 *         false} otherwise.
+	 */
+
+	public boolean hasBooleanProperty(String name)
+	{
+		return properties.get(name) instanceof JsonBoolean;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns {@code true} if this JSON object contains a JSON-number property with the specified name.
+	 *
+	 * @param  name
+	 *           the name of the property of interest.
+	 * @return {@code true} if this JSON object contains a JSON-number property whose name is <i>name</i>; {@code false}
+	 *         otherwise.
+	 */
+
+	public boolean hasNumberProperty(String name)
+	{
+		return properties.get(name) instanceof JsonNumber;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns {@code true} if this JSON object contains a JSON-string property with the specified name.
+	 *
+	 * @param  name
+	 *           the name of the property of interest.
+	 * @return {@code true} if this JSON object contains a JSON-string property whose name is <i>name</i>; {@code false}
+	 *         otherwise.
+	 */
+
+	public boolean hasStringProperty(String name)
+	{
+		return properties.get(name) instanceof JsonString;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns {@code true} if this JSON object contains a JSON-object property with the specified name.
+	 *
+	 * @param  name
+	 *           the name of the property of interest.
+	 * @return {@code true} if this JSON object contains a JSON-object property whose name is <i>name</i>; {@code false}
+	 *         otherwise.
+	 */
+
+	public boolean hasObjectProperty(String name)
+	{
+		return properties.get(name) instanceof JsonObject;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns {@code true} if this JSON object contains a JSON-array property with the specified name.
+	 *
+	 * @param  name
+	 *           the name of the property of interest.
+	 * @return {@code true} if this JSON object contains a JSON-array property whose name is <i>name</i>; {@code false}
+	 *         otherwise.
+	 */
+
+	public boolean hasArrayProperty(String name)
+	{
+		return properties.get(name) instanceof JsonArray;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
 	 * Returns a list of the names of the properties of this JSON object.  The names are in the order in which their
 	 * associated properties were added to this JSON object.
 	 *
