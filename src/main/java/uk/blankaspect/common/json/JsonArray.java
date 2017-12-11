@@ -220,7 +220,9 @@ public class JsonArray
 	//------------------------------------------------------------------
 
 	/**
-	 * {@inheritDoc}
+	 * Returns the hash code of this JSON array, which is the hash code of the list of its elements.
+	 *
+	 * @return the hash code of this JSON array.
 	 */
 
 	@Override
@@ -232,7 +234,9 @@ public class JsonArray
 	//------------------------------------------------------------------
 
 	/**
-	 * {@inheritDoc}
+	 * Returns a string representation of this JSON array.
+	 *
+	 * @return a string representation of this JSON array.
 	 */
 
 	@Override
@@ -413,6 +417,29 @@ public class JsonArray
 	public List<JsonValue> getElements()
 	{
 		return Collections.unmodifiableList(elements);
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns the index of the specified JSON value in the list of the elements of this array.  The value is compared
+	 * for identity, not equality, with each element of the array until a match is found or all elements have been
+	 * compared.
+	 *
+	 * @param  value
+	 *           the value whose index is required.
+	 * @return the index of <i>value</i> in the list of elements of this array, or -1 if <i>value</i> is not an element
+	 *         of this array.
+	 */
+
+	public int indexOf(JsonValue value)
+	{
+		for (int i = 0; i < elements.size(); i++)
+		{
+			if (elements.get(i) == value)
+				return i;
+		}
+		return -1;
 	}
 
 	//------------------------------------------------------------------
