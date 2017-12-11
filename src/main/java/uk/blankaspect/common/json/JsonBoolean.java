@@ -126,7 +126,9 @@ public class JsonBoolean
 	//------------------------------------------------------------------
 
 	/**
-	 * {@inheritDoc}
+	 * Returns the hash code of this JSON Boolean.
+	 *
+	 * @return the hash code of this JSON Boolean.
 	 */
 
 	@Override
@@ -138,7 +140,9 @@ public class JsonBoolean
 	//------------------------------------------------------------------
 
 	/**
-	 * {@inheritDoc}
+	 * Returns a string representation of this JSON Boolean.
+	 *
+	 * @return a string representation of this JSON Boolean.
 	 */
 
 	@Override

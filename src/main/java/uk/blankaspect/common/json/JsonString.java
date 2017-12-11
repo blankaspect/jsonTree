@@ -369,7 +369,9 @@ public class JsonString
 	//------------------------------------------------------------------
 
 	/**
-	 * {@inheritDoc}
+	 * Returns the hash code of this JSON string.
+	 *
+	 * @return the hash code of this JSON string.
 	 */
 
 	@Override
@@ -381,7 +383,9 @@ public class JsonString
 	//------------------------------------------------------------------
 
 	/**
-	 * {@inheritDoc}
+	 * Returns a string representation of this JSON string.
+	 *
+	 * @return a string representation of this JSON string.
 	 */
 
 	@Override

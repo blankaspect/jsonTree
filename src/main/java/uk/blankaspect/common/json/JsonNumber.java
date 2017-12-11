@@ -221,7 +221,9 @@ public class JsonNumber
 	//------------------------------------------------------------------
 
 	/**
-	 * {@inheritDoc}
+	 * Returns the hash code of this JSON number.
+	 *
+	 * @return the hash code of this JSON number.
 	 */
 
 	@Override
@@ -233,7 +235,9 @@ public class JsonNumber
 	//------------------------------------------------------------------
 
 	/**
-	 * {@inheritDoc}
+	 * Returns a string representation of this JSON number.
+	 *
+	 * @return a string representation of this JSON number.
 	 */
 
 	@Override

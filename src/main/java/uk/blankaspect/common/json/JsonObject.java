@@ -272,7 +272,9 @@ public class JsonObject
 	//------------------------------------------------------------------
 
 	/**
-	 * {@inheritDoc}
+	 * Returns the hash code of this JSON object, which is the hash code of its map of properties.
+	 *
+	 * @return the hash code of this JSON object.
 	 */
 
 	@Override
@@ -284,7 +286,9 @@ public class JsonObject
 	//------------------------------------------------------------------
 
 	/**
-	 * {@inheritDoc}
+	 * Returns a string representation of this JSON object.
+	 *
+	 * @return a string representation of this JSON object.
 	 */
 
 	@Override

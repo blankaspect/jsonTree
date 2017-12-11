@@ -112,7 +112,9 @@ public class JsonNull
 	//------------------------------------------------------------------
 
 	/**
-	 * {@inheritDoc}
+	 * Returns the hash code of this JSON null.
+	 *
+	 * @return the hash code of this JSON null.
 	 */
 
 	@Override
@@ -124,7 +126,9 @@ public class JsonNull
 	//------------------------------------------------------------------
 
 	/**
-	 * {@inheritDoc}
+	 * Returns a string representation of this JSON null.
+	 *
+	 * @return a string representation of this JSON null.
 	 */
 
 	@Override
