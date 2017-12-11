@@ -19,6 +19,7 @@ package uk.blankaspect.common.json;
 
 
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 import uk.blankaspect.common.tree.ITreeNode;
@@ -200,14 +201,55 @@ public abstract class JsonValue
 	{
 		if (parent instanceof JsonObject)
 		{
-			JsonObject jsonObject = (JsonObject)parent;
-			for (String name : jsonObject.getNames())
+			JsonObject jsonObj = (JsonObject)parent;
+			for (String name : jsonObj.getNames())
 			{
-				if (jsonObject.getValue(name) == this)
+				if (jsonObj.getValue(name) == this)
 					return name;
 			}
 		}
 		return null;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * If this JSON value is an element of a {@linkplain JsonArray JSON array}, returns the index of the element in the
+	 * array's list of elements.
+	 *
+	 * @return if this JSON value is an element of a JSON array, the index of the element; otherwise, -1.
+	 */
+
+	public int getElementIndex()
+	{
+		return (parent instanceof JsonArray) ? ((JsonArray)parent).indexOf(this) : -1;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns the path of this JSON value from the root of the tree to which it belongs.  The path is a list of
+	 * <i>n</i> JSON values, where <i>n</i> &gt; 0.  The first <i>n</i>-1 elements of the list are the ancestors of
+	 * this value, starting with the root and ending with the parent of this value; the last element is this value.
+	 *
+	 * @return a list that is the concatenation of
+	 *         <ul>
+	 *           <li>a sequence of the ancestors of this JSON value, starting with the root of the tree to which it
+	 *               belongs and ending with its parent, and</li>
+	 *           <li>this value.</li>
+	 *         </ul>
+	 */
+
+	public List<JsonValue> getPath()
+	{
+		LinkedList<JsonValue> path = new LinkedList<>();
+		JsonValue value = this;
+		while (value != null)
+		{
+			path.addFirst(value);
+			value = value.parent;
+		}
+		return path;
 	}
 
 	//------------------------------------------------------------------
