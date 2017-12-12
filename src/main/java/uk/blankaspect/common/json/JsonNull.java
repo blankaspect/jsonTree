@@ -126,6 +126,20 @@ public class JsonNull
 	//------------------------------------------------------------------
 
 	/**
+	 * Creates a copy of this JSON null that has no parent, and returns the copy.
+	 *
+	 * @return a copy of this JSON null that has no parent.
+	 */
+
+	@Override
+	public JsonNull clone()
+	{
+		return (JsonNull)super.clone();
+	}
+
+	//------------------------------------------------------------------
+
+	/**
 	 * Returns a string representation of this JSON null.
 	 *
 	 * @return a string representation of this JSON null.

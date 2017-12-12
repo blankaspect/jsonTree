@@ -37,7 +37,7 @@ import uk.blankaspect.common.tree.TreeUtils;
  */
 
 public abstract class JsonValue
-	implements ITreeNode<JsonValue>
+	implements ITreeNode<JsonValue>, Cloneable
 {
 
 ////////////////////////////////////////////////////////////////////////
@@ -152,6 +152,33 @@ public abstract class JsonValue
 	public List<JsonValue> getChildren()
 	{
 		return Collections.emptyList();
+	}
+
+	//------------------------------------------------------------------
+
+////////////////////////////////////////////////////////////////////////
+//  Instance methods : overriding methods
+////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * Creates a copy of this JSON value that has no parent, and returns the copy.
+	 *
+	 * @return a copy of this JSON value that has no parent.
+	 */
+
+	@Override
+	public JsonValue clone()
+	{
+		try
+		{
+			JsonValue copy = (JsonValue)super.clone();
+			copy.parent = null;
+			return copy;
+		}
+		catch (CloneNotSupportedException e)
+		{
+			throw new RuntimeException("Unexpected exception", e);
+		}
 	}
 
 	//------------------------------------------------------------------

@@ -234,6 +234,33 @@ public class JsonArray
 	//------------------------------------------------------------------
 
 	/**
+	 * Creates a deep copy of this JSON array that has no parent, and returns the copy.
+	 *
+	 * @return a deep copy of this JSON array that has no parent.
+	 */
+
+	@Override
+	public JsonArray clone()
+	{
+		// Create copy of this JSON array
+		JsonArray copy = (JsonArray)super.clone();
+
+		// Copy elements
+		copy.elements = new ArrayList<>();
+		for (JsonValue element : elements)
+		{
+			JsonValue value = element.clone();
+			copy.elements.add(value);
+			value.setParent(copy);
+		}
+
+		// Return copy
+		return copy;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
 	 * Returns a string representation of this JSON array.
 	 *
 	 * @return a string representation of this JSON array.

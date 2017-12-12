@@ -383,6 +383,20 @@ public class JsonString
 	//------------------------------------------------------------------
 
 	/**
+	 * Creates a copy of this JSON string that has no parent, and returns the copy.
+	 *
+	 * @return a copy of this JSON string that has no parent.
+	 */
+
+	@Override
+	public JsonString clone()
+	{
+		return (JsonString)super.clone();
+	}
+
+	//------------------------------------------------------------------
+
+	/**
 	 * Returns a string representation of this JSON string.
 	 *
 	 * @return a string representation of this JSON string.

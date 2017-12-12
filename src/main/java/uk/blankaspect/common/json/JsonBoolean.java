@@ -140,6 +140,20 @@ public class JsonBoolean
 	//------------------------------------------------------------------
 
 	/**
+	 * Creates a copy of this JSON Boolean that has no parent, and returns the copy.
+	 *
+	 * @return a copy of this JSON Boolean that has no parent.
+	 */
+
+	@Override
+	public JsonBoolean clone()
+	{
+		return (JsonBoolean)super.clone();
+	}
+
+	//------------------------------------------------------------------
+
+	/**
 	 * Returns a string representation of this JSON Boolean.
 	 *
 	 * @return a string representation of this JSON Boolean.

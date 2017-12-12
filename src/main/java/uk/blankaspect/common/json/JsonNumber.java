@@ -235,6 +235,40 @@ public class JsonNumber
 	//------------------------------------------------------------------
 
 	/**
+	 * Creates a copy of this JSON number that has no parent, and returns the copy.
+	 *
+	 * @return a copy of this JSON number that has no parent.
+	 */
+
+	@Override
+	public JsonNumber clone()
+	{
+		// Create copy of this JSON number
+		JsonNumber copy = (JsonNumber)super.clone();
+
+		// Copy number value
+		switch (numberType)
+		{
+			case INTEGER:
+				copy.value = value.intValue();
+				break;
+
+			case LONG:
+				copy.value = value.longValue();
+				break;
+
+			case DOUBLE:
+				copy.value = value.doubleValue();
+				break;
+		}
+
+		// Return copy
+		return copy;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
 	 * Returns a string representation of this JSON number.
 	 *
 	 * @return a string representation of this JSON number.

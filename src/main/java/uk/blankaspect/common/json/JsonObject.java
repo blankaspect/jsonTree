@@ -286,6 +286,33 @@ public class JsonObject
 	//------------------------------------------------------------------
 
 	/**
+	 * Creates a deep copy of this JSON object that has no parent, and returns the copy.
+	 *
+	 * @return a deep copy of this JSON object that has no parent.
+	 */
+
+	@Override
+	public JsonObject clone()
+	{
+		// Create copy of this JSON object
+		JsonObject copy = (JsonObject)super.clone();
+
+		// Copy properties
+		copy.properties = new LinkedHashMap<>();
+		for (Map.Entry<String, JsonValue> property : properties.entrySet())
+		{
+			JsonValue value = property.getValue().clone();
+			copy.properties.put(property.getKey(), value);
+			value.setParent(copy);
+		}
+
+		// Return copy
+		return copy;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
 	 * Returns a string representation of this JSON object.
 	 *
 	 * @return a string representation of this JSON object.
