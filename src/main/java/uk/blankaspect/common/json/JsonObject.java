@@ -380,7 +380,7 @@ public class JsonObject
 	 *         otherwise.
 	 */
 
-	public boolean hasNullProperty(String name)
+	public boolean hasNull(String name)
 	{
 		return properties.get(name) instanceof JsonNull;
 	}
@@ -396,7 +396,7 @@ public class JsonObject
 	 *         false} otherwise.
 	 */
 
-	public boolean hasBooleanProperty(String name)
+	public boolean hasBoolean(String name)
 	{
 		return properties.get(name) instanceof JsonBoolean;
 	}
@@ -412,7 +412,7 @@ public class JsonObject
 	 *         otherwise.
 	 */
 
-	public boolean hasNumberProperty(String name)
+	public boolean hasNumber(String name)
 	{
 		return properties.get(name) instanceof JsonNumber;
 	}
@@ -428,7 +428,7 @@ public class JsonObject
 	 *         otherwise.
 	 */
 
-	public boolean hasStringProperty(String name)
+	public boolean hasString(String name)
 	{
 		return properties.get(name) instanceof JsonString;
 	}
@@ -444,7 +444,7 @@ public class JsonObject
 	 *         otherwise.
 	 */
 
-	public boolean hasObjectProperty(String name)
+	public boolean hasObject(String name)
 	{
 		return properties.get(name) instanceof JsonObject;
 	}
@@ -460,7 +460,7 @@ public class JsonObject
 	 *         otherwise.
 	 */
 
-	public boolean hasArrayProperty(String name)
+	public boolean hasArray(String name)
 	{
 		return properties.get(name) instanceof JsonArray;
 	}
@@ -504,7 +504,7 @@ public class JsonObject
 	 *           the name of the property whose value is required.
 	 * @return the value of the property of this JSON object whose name is <i>name</i>, cast to a {@link JsonNull}.
 	 * @throws ClassCastException
-	 *           if the named property is not an instance of {@link JsonNull}.
+	 *           if the named property exists and is not an instance of {@link JsonNull}.
 	 */
 
 	public JsonNull getNull(String name)
@@ -517,7 +517,7 @@ public class JsonObject
 	/**
 	 * Returns the property of this JSON object with the specified name as a {@linkplain JsonNull JSON null value}.  If
 	 * there is no such property, this method either returns {@code null} or throws a {@link NoSuchPropertyException}
-	 * according to the value of its <i>mustExist</i> argument.
+	 * according to the value of the <i>mustExist</i> argument.
 	 *
 	 * @param  name
 	 *           the name of the property whose value is required.
@@ -531,7 +531,7 @@ public class JsonObject
 	 *           if <i>mustExist</i> is {@code true} and this object does not contain a property whose name is
 	 *           <i>name</i>.
 	 * @throws ClassCastException
-	 *           if the named property is not an instance of {@link JsonNull}.
+	 *           if the named property exists and is not an instance of {@link JsonNull}.
 	 */
 
 	public JsonNull getNull(String  name,
@@ -552,7 +552,7 @@ public class JsonObject
 	 *           the name of the property whose value is required.
 	 * @return the value of the property of this JSON object whose name is <i>name</i>, cast to a {@link JsonBoolean}.
 	 * @throws ClassCastException
-	 *           if the named property is not an instance of {@link JsonBoolean}.
+	 *           if the named property exists and is not an instance of {@link JsonBoolean}.
 	 */
 
 	public JsonBoolean getBoolean(String name)
@@ -565,7 +565,7 @@ public class JsonObject
 	/**
 	 * Returns the property of this JSON object with the specified name as a {@linkplain JsonBoolean JSON Boolean}.  If
 	 * there is no such property, this method either returns {@code null} or throws a {@link NoSuchPropertyException}
-	 * according to the value of its <i>mustExist</i> argument.
+	 * according to the value of the <i>mustExist</i> argument.
 	 *
 	 * @param  name
 	 *           the name of the property whose value is required.
@@ -579,7 +579,7 @@ public class JsonObject
 	 *           if <i>mustExist</i> is {@code true} and this object does not contain a property whose name is
 	 *           <i>name</i>.
 	 * @throws ClassCastException
-	 *           if the named property is not an instance of {@link JsonBoolean}.
+	 *           if the named property exists and is not an instance of {@link JsonBoolean}.
 	 */
 
 	public JsonBoolean getBoolean(String  name,
@@ -594,13 +594,51 @@ public class JsonObject
 	//------------------------------------------------------------------
 
 	/**
+	 * Returns the underlying Boolean value of the Boolean property of this JSON object with the specified name.
+	 *
+	 * @param  name
+	 *           the name of the property whose value is required.
+	 * @return the underlying Boolean value of the Boolean property of this JSON object whose name is <i>name</i>.
+	 * @throws ClassCastException
+	 *           if the named property exists and is not an instance of {@link JsonBoolean}.
+	 */
+
+	public boolean getBooleanValue(String name)
+	{
+		return getBoolean(name, false).getValue();
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns the underlying Boolean value of the Boolean property of this JSON object with the specified name.  If
+	 * this JSON object does not have a property with the specified name, or if the property is not a JSON Boolean, the
+	 * specified default value is returned instead.
+	 * @param  name
+	 *           the name of the property whose value is required.
+	 * @param  defaultValue
+	 *           the value that will be returned if this JSON object does not have a Boolean property whose name is
+	 *           <i>name</i>
+	 * @return the underlying Boolean value of the Boolean property of this JSON object whose name is <i>name</i>, or
+	 *         <i>defaultValue</i> if there is no such property.
+	 */
+
+	public boolean getBooleanValue(String  name,
+								   boolean defaultValue)
+	{
+		return hasBoolean(name) ? getBoolean(name, false).getValue() : defaultValue;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
 	 * Returns the property of this JSON object with the specified name as a {@linkplain JsonNumber JSON number}.
 	 *
 	 * @param  name
 	 *           the name of the property whose value is required.
 	 * @return the value of the property of this JSON object whose name is <i>name</i>, cast to a {@link JsonNumber}.
 	 * @throws ClassCastException
-	 *           if the named property is not an instance of {@link JsonNumber}.
+	 *           if the named property exists and is not an instance of {@link JsonNumber}.
 	 */
 
 	public JsonNumber getNumber(String name)
@@ -613,7 +651,7 @@ public class JsonObject
 	/**
 	 * Returns the property of this JSON object with the specified name as a {@linkplain JsonNumber JSON number}.  If
 	 * there is no such property, this method either returns {@code null} or throws a {@link NoSuchPropertyException}
-	 * according to the value of its <i>mustExist</i> argument.
+	 * according to the value of the <i>mustExist</i> argument.
 	 *
 	 * @param  name
 	 *           the name of the property whose value is required.
@@ -627,7 +665,7 @@ public class JsonObject
 	 *           if <i>mustExist</i> is {@code true} and this object does not contain a property whose name is
 	 *           <i>name</i>.
 	 * @throws ClassCastException
-	 *           if the named property is not an instance of {@link JsonNumber}.
+	 *           if the named property exists and is not an instance of {@link JsonNumber}.
 	 */
 
 	public JsonNumber getNumber(String  name,
@@ -642,13 +680,138 @@ public class JsonObject
 	//------------------------------------------------------------------
 
 	/**
+	 * Returns the underlying value, as an {@code int}, of the number property of this JSON object with the specified
+	 * name, which may involve type conversion that results in rounding or truncation.
+	 *
+	 * @param  name
+	 *           the name of the property whose value is required.
+	 * @return the underlying value, as an {@code int}, of the number property of this JSON object whose name is
+	 *         <i>name</i>.
+	 * @throws ClassCastException
+	 *           if the named property exists and is not an instance of {@link JsonNumber}.
+	 */
+
+	public int getInt(String name)
+	{
+		return getNumber(name, false).getInt();
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns the underlying value, as an {@code int}, of the number property of this JSON object with the specified
+	 * name, which may involve type conversion that results in rounding or truncation.  If this JSON object does not
+	 * have a property with the specified name, or if the property is not a JSON number, the specified default value is
+	 * returned instead.
+	 *
+	 * @param  name
+	 *           the name of the property whose value is required.
+	 * @param  defaultValue
+	 *           the value that will be returned if this JSON object does not have a number property whose name is
+	 *           <i>name</i>
+	 * @return the underlying value, as an {@code int}, of the number property of this JSON object whose name is
+	 *         <i>name</i>, or <i>defaultValue</i> if there is no such property.
+	 */
+
+	public int getInt(String name,
+					  int    defaultValue)
+	{
+		return hasNumber(name) ? getNumber(name, false).getInt() : defaultValue;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns the underlying value, as a {@code long}, of the number property of this JSON object with the specified
+	 * name, which may involve type conversion that results in rounding or truncation.
+	 *
+	 * @param  name
+	 *           the name of the property whose value is required.
+	 * @return the underlying value, as a {@code long}, of the number property of this JSON object whose name is
+	 *         <i>name</i>.
+	 * @throws ClassCastException
+	 *           if the named property exists and is not an instance of {@link JsonNumber}.
+	 */
+
+	public long getLong(String name)
+	{
+		return getNumber(name, false).getLong();
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns the underlying value, as a {@code long}, of the number property of this JSON object with the specified
+	 * name, which may involve type conversion that results in rounding or truncation.  If this JSON object does not
+	 * have a property with the specified name, or if the property is not a JSON number, the specified default value is
+	 * returned instead.
+	 *
+	 * @param  name
+	 *           the name of the property whose value is required.
+	 * @param  defaultValue
+	 *           the value that will be returned if this JSON object does not have a number property whose name is
+	 *           <i>name</i>
+	 * @return the underlying value, as a {@code long}, of the number property of this JSON object whose name is
+	 *         <i>name</i>, or <i>defaultValue</i> if there is no such property.
+	 */
+
+	public long getLong(String name,
+						long   defaultValue)
+	{
+		return hasNumber(name) ? getNumber(name, false).getLong() : defaultValue;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns the underlying value, as a {@code double}, of the number property of this JSON object with the specified
+	 * name, which may involve type conversion that results in rounding.
+	 *
+	 * @param  name
+	 *           the name of the property whose value is required.
+	 * @return the underlying value, as a {@code double}, of the number property of this JSON object whose name is
+	 *         <i>name</i>.
+	 * @throws ClassCastException
+	 *           if the named property exists and is not an instance of {@link JsonNumber}.
+	 */
+
+	public double getDouble(String name)
+	{
+		return getNumber(name, false).getDouble();
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns the underlying value, as a {@code double}, of the number property of this JSON object with the specified
+	 * name, which may involve type conversion that results in rounding.  If this JSON object does not have a property
+	 * with the specified name, or if the property is not a JSON number, the specified default value is returned instead.
+	 *
+	 * @param  name
+	 *           the name of the property whose value is required.
+	 * @param  defaultValue
+	 *           the value that will be returned if this JSON object does not have a number property whose name is
+	 *           <i>name</i>
+	 * @return the underlying value, as a {@code double}, of the number property of this JSON object whose name is
+	 *         <i>name</i>, or <i>defaultValue</i> if there is no such property.
+	 */
+
+	public double getDouble(String name,
+							double defaultValue)
+	{
+		return hasNumber(name) ? getNumber(name, false).getDouble() : defaultValue;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
 	 * Returns the property of this JSON object with the specified name as a {@linkplain JsonString JSON string}.
 	 *
 	 * @param  name
 	 *           the name of the property whose value is required.
 	 * @return the value of the property of this JSON object whose name is <i>name</i>, cast to a {@link JsonString}.
 	 * @throws ClassCastException
-	 *           if the named property is not an instance of {@link JsonString}.
+	 *           if the named property exists and is not an instance of {@link JsonString}.
 	 */
 
 	public JsonString getString(String name)
@@ -661,7 +824,7 @@ public class JsonObject
 	/**
 	 * Returns the property of this JSON object with the specified name as a {@linkplain JsonString JSON string}.  If
 	 * there is no such property, this method either returns {@code null} or throws a {@link NoSuchPropertyException}
-	 * according to the value of its <i>mustExist</i> argument.
+	 * according to the value of the <i>mustExist</i> argument.
 	 *
 	 * @param  name
 	 *           the name of the property whose value is required.
@@ -675,7 +838,7 @@ public class JsonObject
 	 *           if <i>mustExist</i> is {@code true} and this object does not contain a property whose name is
 	 *           <i>name</i>.
 	 * @throws ClassCastException
-	 *           if the named property is not an instance of {@link JsonString}.
+	 *           if the named property exists and is not an instance of {@link JsonString}.
 	 */
 
 	public JsonString getString(String  name,
@@ -690,13 +853,51 @@ public class JsonObject
 	//------------------------------------------------------------------
 
 	/**
+	 * Returns the underlying string value of the string property of this JSON object with the specified name.
+	 *
+	 * @param  name
+	 *           the name of the property whose value is required.
+	 * @return the underlying string value of the string property of this JSON object whose name is <i>name</i>.
+	 * @throws ClassCastException
+	 *           if the named property exists and is not an instance of {@link JsonString}.
+	 */
+
+	public String getStringValue(String name)
+	{
+		return getString(name, false).getValue();
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns the underlying string value of the string property of this JSON object with the specified name.  If this
+	 * JSON object does not have a property with the specified name, or if the property is not a JSON string, the
+	 * specified default value is returned instead.
+	 * @param  name
+	 *           the name of the property whose value is required.
+	 * @param  defaultValue
+	 *           the value that will be returned if this JSON object does not have a string property whose name is
+	 *           <i>name</i>
+	 * @return the underlying string value of the string property of this JSON object whose name is <i>name</i>, or
+	 *         <i>defaultValue</i> if there is no such property.
+	 */
+
+	public String getStringValue(String name,
+								 String defaultValue)
+	{
+		return hasString(name) ? getString(name, false).getValue() : defaultValue;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
 	 * Returns the property of this JSON object with the specified name as a {@linkplain JsonArray JSON array}.
 	 *
 	 * @param  name
 	 *           the name of the property whose value is required.
 	 * @return the value of the property of this JSON object whose name is <i>name</i>, cast to a {@link JsonArray}.
 	 * @throws ClassCastException
-	 *           if the named property is not an instance of {@link JsonArray}.
+	 *           if the named property exists and is not an instance of {@link JsonArray}.
 	 */
 
 	public JsonArray getArray(String name)
@@ -709,7 +910,7 @@ public class JsonObject
 	/**
 	 * Returns the property of this JSON object with the specified name as a {@linkplain JsonArray JSON array}.  If
 	 * there is no such property, this method either returns {@code null} or throws a {@link NoSuchPropertyException}
-	 * according to the value of its <i>mustExist</i> argument.
+	 * according to the value of the <i>mustExist</i> argument.
 	 *
 	 * @param  name
 	 *           the name of the property whose value is required.
@@ -723,7 +924,7 @@ public class JsonObject
 	 *           if <i>mustExist</i> is {@code true} and this object does not contain a property whose name is
 	 *           <i>name</i>.
 	 * @throws ClassCastException
-	 *           if the named property is not an instance of {@link JsonArray}.
+	 *           if the named property exists and is not an instance of {@link JsonArray}.
 	 */
 
 	public JsonArray getArray(String  name,
@@ -744,7 +945,7 @@ public class JsonObject
 	 *           the name of the property whose value is required.
 	 * @return the value of the property of this JSON object whose name is <i>name</i>, cast to a {@link JsonObject}.
 	 * @throws ClassCastException
-	 *           if the named property is not an instance of {@link JsonObject}.
+	 *           if the named property exists and is not an instance of {@link JsonObject}.
 	 */
 
 	public JsonObject getObject(String name)
@@ -757,7 +958,7 @@ public class JsonObject
 	/**
 	 * Returns the property of this JSON object with the specified name as a {@linkplain JsonObject JSON object}.  If
 	 * there is no such property, this method either returns {@code null} or throws a {@link NoSuchPropertyException}
-	 * according to the value of its <i>mustExist</i> argument.
+	 * according to the value of the <i>mustExist</i> argument.
 	 *
 	 * @param  name
 	 *           the name of the property whose value is required.
@@ -771,7 +972,7 @@ public class JsonObject
 	 *           if <i>mustExist</i> is {@code true} and this object does not contain a property whose name is
 	 *           <i>name</i>.
 	 * @throws ClassCastException
-	 *           if the named property is not an instance of {@link JsonObject}.
+	 *           if the named property exists and is not an instance of {@link JsonObject}.
 	 */
 
 	public JsonObject getObject(String  name,
@@ -786,8 +987,9 @@ public class JsonObject
 	//------------------------------------------------------------------
 
 	/**
-	 * Returns an unmodifiable map of the properties of this JSON object.  The iterator over the entries of the map
-	 * ({@link Map#entrySet()}) returns the properties in the order in which they were added to this JSON object.
+	 * Returns an unmodifiable map of the properties of this JSON object.  The iterator over the {@linkplain
+	 * Map#entrySet() entries of the map} returns the properties in the order in which they were added to this JSON
+	 * object.
 	 *
 	 * @return an unmodifiable map of the properties of this JSON object.
 	 */
@@ -899,6 +1101,58 @@ public class JsonObject
 	//------------------------------------------------------------------
 
 	/**
+	 * Creates a new instance of a {@linkplain JsonArray JSON array} whose elements are {@linkplain JsonBoolean JSON
+	 * Booleans} with the specified values, adds it to this JSON object as a property with the specified name and
+	 * returns it.  If this object already contains a property with the specified name, the new JSON array will replace
+	 * the value of the existing property without affecting the order of properties; otherwise, a new entry will be
+	 * added to end of the map of properties.
+	 *
+	 * @param  name
+	 *           the name of the JSON-array property.
+	 * @param  values
+	 *           the values for which a JSON array of JSON Booleans will be created.
+	 * @return the JSON array of JSON Booleans that were created from <i>values</i> and added to this JSON object as a
+	 *         property whose name is <i>name</i>.
+	 */
+
+	public JsonArray addBooleans(String     name,
+								 boolean... values)
+	{
+		JsonArray jsonArray = new JsonArray();
+		jsonArray.addBooleans(values);
+		addProperty(name, jsonArray);
+		return jsonArray;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Creates a new instance of a {@linkplain JsonArray JSON array} whose elements are {@linkplain JsonBoolean JSON
+	 * Booleans} with the specified values, adds it to this JSON object as a property with the specified name and
+	 * returns it.  If this object already contains a property with the specified name, the new JSON array will replace
+	 * the value of the existing property without affecting the order of properties; otherwise, a new entry will be
+	 * added to end of the map of properties.
+	 *
+	 * @param  name
+	 *           the name of the JSON-array property.
+	 * @param  values
+	 *           the values for which a JSON array of JSON Booleans will be created.
+	 * @return the JSON array of JSON Booleans that were created from <i>values</i> and added to this JSON object as a
+	 *         property whose name is <i>name</i>.
+	 */
+
+	public JsonArray addBooleans(String            name,
+								 Iterable<Boolean> values)
+	{
+		JsonArray jsonArray = new JsonArray();
+		jsonArray.addBooleans(values);
+		addProperty(name, jsonArray);
+		return jsonArray;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
 	 * Creates a new instance of a {@linkplain JsonNumber JSON number} with the specified {@code int} value, adds it to
 	 * this JSON object as a property with the specified name and returns it.  If this object already contains a
 	 * property with the specified name, the new JSON number will replace the value of the existing property without
@@ -906,17 +1160,70 @@ public class JsonObject
 	 *
 	 * @param  name
 	 *           the name of the JSON-number property.
-	 * @param  value  the value of the JSON-number property.
+	 * @param  value
+	 *           the value of the JSON-number property.
 	 * @return the JSON number that was created from <i>value</i> and added to this JSON object as a property whose
 	 *         name is <i>name</i>.
 	 */
 
-	public JsonNumber addNumber(String name,
-								int    value)
+	public JsonNumber addInt(String name,
+							 int    value)
 	{
 		JsonNumber jsonNumber = new JsonNumber(value);
 		addProperty(name, jsonNumber);
 		return jsonNumber;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Creates a new instance of a {@linkplain JsonArray JSON array} whose elements are {@linkplain JsonNumber JSON
+	 * numbers} with the specified values, adds it to this JSON object as a property with the specified name and returns
+	 * it.  If this object already contains a property with the specified name, the new JSON array will replace the
+	 * value of the existing property without affecting the order of properties; otherwise, a new entry will be added to
+	 * end of the map of properties.
+	 *
+	 * @param  name
+	 *           the name of the JSON-array property.
+	 * @param  values
+	 *           the values for which a JSON array of JSON numbers will be created.
+	 * @return the JSON array of JSON numbers that were created from <i>values</i> and added to this JSON object as a
+	 *         property whose name is <i>name</i>.
+	 */
+
+	public JsonArray addInts(String name,
+							 int... values)
+	{
+		JsonArray jsonArray = new JsonArray();
+		jsonArray.addInts(values);
+		addProperty(name, jsonArray);
+		return jsonArray;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Creates a new instance of a {@linkplain JsonArray JSON array} whose elements are {@linkplain JsonNumber JSON
+	 * numbers} with the specified values, adds it to this JSON object as a property with the specified name and returns
+	 * it.  If this object already contains a property with the specified name, the new JSON array will replace the
+	 * value of the existing property without affecting the order of properties; otherwise, a new entry will be added to
+	 * end of the map of properties.
+	 *
+	 * @param  name
+	 *           the name of the JSON-array property.
+	 * @param  values
+	 *           the values for which a JSON array of JSON numbers will be created.
+	 * @return the JSON array of JSON numbers that were created from <i>values</i> and added to this JSON object as a
+	 *         property whose name is <i>name</i>.
+	 */
+
+	public JsonArray addInts(String            name,
+							 Iterable<Integer> values)
+	{
+		JsonArray jsonArray = new JsonArray();
+		jsonArray.addInts(values);
+		addProperty(name, jsonArray);
+		return jsonArray;
 	}
 
 	//------------------------------------------------------------------
@@ -935,12 +1242,64 @@ public class JsonObject
 	 *         name is <i>name</i>.
 	 */
 
-	public JsonNumber addNumber(String name,
-								long   value)
+	public JsonNumber addLong(String name,
+							  long   value)
 	{
 		JsonNumber jsonNumber = new JsonNumber(value);
 		addProperty(name, jsonNumber);
 		return jsonNumber;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Creates a new instance of a {@linkplain JsonArray JSON array} whose elements are {@linkplain JsonNumber JSON
+	 * numbers} with the specified values, adds it to this JSON object as a property with the specified name and returns
+	 * it.  If this object already contains a property with the specified name, the new JSON array will replace the
+	 * value of the existing property without affecting the order of properties; otherwise, a new entry will be added to
+	 * end of the map of properties.
+	 *
+	 * @param  name
+	 *           the name of the JSON-array property.
+	 * @param  values
+	 *           the values for which a JSON array of JSON numbers will be created.
+	 * @return the JSON array of JSON numbers that were created from <i>values</i> and added to this JSON object as a
+	 *         property whose name is <i>name</i>.
+	 */
+
+	public JsonArray addLongs(String  name,
+							  long... values)
+	{
+		JsonArray jsonArray = new JsonArray();
+		jsonArray.addLongs(values);
+		addProperty(name, jsonArray);
+		return jsonArray;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Creates a new instance of a {@linkplain JsonArray JSON array} whose elements are {@linkplain JsonNumber JSON
+	 * numbers} with the specified values, adds it to this JSON object as a property with the specified name and returns
+	 * it.  If this object already contains a property with the specified name, the new JSON array will replace the
+	 * value of the existing property without affecting the order of properties; otherwise, a new entry will be added to
+	 * end of the map of properties.
+	 *
+	 * @param  name
+	 *           the name of the JSON-array property.
+	 * @param  values
+	 *           the values for which a JSON array of JSON numbers will be created.
+	 * @return the JSON array of JSON numbers that were created from <i>values</i> and added to this JSON object as a
+	 *         property whose name is <i>name</i>.
+	 */
+
+	public JsonArray addLongs(String         name,
+							  Iterable<Long> values)
+	{
+		JsonArray jsonArray = new JsonArray();
+		jsonArray.addLongs(values);
+		addProperty(name, jsonArray);
+		return jsonArray;
 	}
 
 	//------------------------------------------------------------------
@@ -959,12 +1318,64 @@ public class JsonObject
 	 *         name is <i>name</i>.
 	 */
 
-	public JsonNumber addNumber(String name,
+	public JsonNumber addDouble(String name,
 								double value)
 	{
 		JsonNumber jsonNumber = new JsonNumber(value);
 		addProperty(name, jsonNumber);
 		return jsonNumber;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Creates a new instance of a {@linkplain JsonArray JSON array} whose elements are {@linkplain JsonNumber JSON
+	 * numbers} with the specified values, adds it to this JSON object as a property with the specified name and returns
+	 * it.  If this object already contains a property with the specified name, the new JSON array will replace the
+	 * value of the existing property without affecting the order of properties; otherwise, a new entry will be added to
+	 * end of the map of properties.
+	 *
+	 * @param  name
+	 *           the name of the JSON-array property.
+	 * @param  values
+	 *           the values for which a JSON array of JSON numbers will be created.
+	 * @return the JSON array of JSON numbers that were created from <i>values</i> and added to this JSON object as a
+	 *         property whose name is <i>name</i>.
+	 */
+
+	public JsonArray addDoubles(String    name,
+								double... values)
+	{
+		JsonArray jsonArray = new JsonArray();
+		jsonArray.addDoubles(values);
+		addProperty(name, jsonArray);
+		return jsonArray;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Creates a new instance of a {@linkplain JsonArray JSON array} whose elements are {@linkplain JsonNumber JSON
+	 * numbers} with the specified values, adds it to this JSON object as a property with the specified name and returns
+	 * it.  If this object already contains a property with the specified name, the new JSON array will replace the
+	 * value of the existing property without affecting the order of properties; otherwise, a new entry will be added to
+	 * end of the map of properties.
+	 *
+	 * @param  name
+	 *           the name of the JSON-array property.
+	 * @param  values
+	 *           the values for which a JSON array of JSON numbers will be created.
+	 * @return the JSON array of JSON numbers that were created from <i>values</i> and added to this JSON object as a
+	 *         property whose name is <i>name</i>.
+	 */
+
+	public JsonArray addDoubles(String           name,
+								Iterable<Double> values)
+	{
+		JsonArray jsonArray = new JsonArray();
+		jsonArray.addDoubles(values);
+		addProperty(name, jsonArray);
+		return jsonArray;
 	}
 
 	//------------------------------------------------------------------
@@ -989,6 +1400,58 @@ public class JsonObject
 		JsonString jsonString = new JsonString(value);
 		addProperty(name, jsonString);
 		return jsonString;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Creates a new instance of a {@linkplain JsonArray JSON array} whose elements are {@linkplain JsonString JSON
+	 * strings} with the specified values, adds it to this JSON object as a property with the specified name and returns
+	 * it.  If this object already contains a property with the specified name, the new JSON array will replace the
+	 * value of the existing property without affecting the order of properties; otherwise, a new entry will be added to
+	 * end of the map of properties.
+	 *
+	 * @param  name
+	 *           the name of the JSON-array property.
+	 * @param  values
+	 *           the values for which a JSON array of JSON strings will be created.
+	 * @return the JSON array of JSON strings that were created from <i>values</i> and added to this JSON object as a
+	 *         property whose name is <i>name</i>.
+	 */
+
+	public JsonArray addStrings(String    name,
+								String... values)
+	{
+		JsonArray jsonArray = new JsonArray();
+		jsonArray.addStrings(values);
+		addProperty(name, jsonArray);
+		return jsonArray;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Creates a new instance of a {@linkplain JsonArray JSON array} whose elements are {@linkplain JsonString JSON
+	 * strings} with the specified values, adds it to this JSON object as a property with the specified name and returns
+	 * it.  If this object already contains a property with the specified name, the new JSON array will replace the
+	 * value of the existing property without affecting the order of properties; otherwise, a new entry will be added to
+	 * end of the map of properties.
+	 *
+	 * @param  name
+	 *           the name of the JSON-array property.
+	 * @param  values
+	 *           the values for which a JSON array of JSON strings will be created.
+	 * @return the JSON array of JSON strings that were created from <i>values</i> and added to this JSON object as a
+	 *         property whose name is <i>name</i>.
+	 */
+
+	public JsonArray addStrings(String           name,
+								Iterable<String> values)
+	{
+		JsonArray jsonArray = new JsonArray();
+		jsonArray.addStrings(values);
+		addProperty(name, jsonArray);
+		return jsonArray;
 	}
 
 	//------------------------------------------------------------------
@@ -1033,12 +1496,32 @@ public class JsonObject
 	 *         name is <i>name</i>.
 	 */
 
-	public JsonArray addArray(String              name,
-							  Iterable<JsonValue> elements)
+	public JsonArray addArray(String                        name,
+							  Iterable<? extends JsonValue> elements)
 	{
 		JsonArray jsonArray = new JsonArray(elements);
 		addProperty(name, jsonArray);
 		return jsonArray;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Creates a new instance of a {@linkplain JsonObject JSON object}, adds it to this JSON object as a property with
+	 * the specified name and returns it.  If this object already contains a property with the specified name, the new
+	 * JSON object will replace the value of the existing property without affecting the order of properties; otherwise,
+	 * a new entry will be added to end of the map of properties.
+	 *
+	 * @param  name
+	 *           the name of the JSON object property.
+	 * @return the JSON object that was created and added to this JSON object as a property whose name is <i>name</i>.
+	 */
+
+	public JsonObject addObject(String name)
+	{
+		JsonObject jsonObject = new JsonObject();
+		addProperty(name, jsonObject);
+		return jsonObject;
 	}
 
 	//------------------------------------------------------------------
