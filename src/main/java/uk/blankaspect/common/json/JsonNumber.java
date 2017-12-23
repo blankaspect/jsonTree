@@ -15,6 +15,15 @@ package uk.blankaspect.common.json;
 //----------------------------------------------------------------------
 
 
+// IMPORTS
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+//----------------------------------------------------------------------
+
+
 // CLASS: JSON NUMBER VALUE
 
 
@@ -167,6 +176,124 @@ public class JsonNumber
 		// Initialise instance fields
 		numberType = NumberType.DOUBLE;
 		this.value = value;
+	}
+
+	//------------------------------------------------------------------
+
+////////////////////////////////////////////////////////////////////////
+//  Class methods
+////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * Creates a list of JSON numbers from the specified {@code int} values, preserving the order of the elements, and
+	 * returns the list, which may be used to construct a {@linkplain JsonArray JSON array}.
+	 *
+	 * @param  values
+	 *           the {@code int} values that will be wrapped in JSON numbers.
+	 * @return a list of JSON numbers whose underlying values are <i>values</i>.
+	 */
+
+	public static List<JsonNumber> intsToNumbers(int... values)
+	{
+		List<JsonNumber> outValues = new ArrayList<>();
+		for (int value : values)
+			outValues.add(new JsonNumber(value));
+		return outValues;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Creates a list of JSON numbers from the specified {@code int} values, preserving the order of the elements, and
+	 * returns the list, which may be used to construct a {@linkplain JsonArray JSON array}.
+	 *
+	 * @param  values
+	 *           the {@code int} values that will be wrapped in JSON numbers.
+	 * @return a list of JSON numbers whose underlying values are <i>values</i>.
+	 */
+
+	public static List<JsonNumber> intsToNumbers(Iterable<Integer> values)
+	{
+		List<JsonNumber> outValues = new ArrayList<>();
+		for (Integer value : values)
+			outValues.add(new JsonNumber(value));
+		return outValues;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Creates a list of JSON numbers from the specified {@code long} values, preserving the order of the elements, and
+	 * returns the list, which may be used to construct a {@linkplain JsonArray JSON array}.
+	 *
+	 * @param  values
+	 *           the {@code long} values that will be wrapped in JSON numbers.
+	 * @return a list of JSON numbers whose underlying values are <i>values</i>.
+	 */
+
+	public static List<JsonNumber> longsToNumbers(long... values)
+	{
+		List<JsonNumber> outValues = new ArrayList<>();
+		for (long value : values)
+			outValues.add(new JsonNumber(value));
+		return outValues;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Creates a list of JSON numbers from the specified {@code long} values, preserving the order of the elements, and
+	 * returns the list, which may be used to construct a {@linkplain JsonArray JSON array}.
+	 *
+	 * @param  values
+	 *           the {@code long} values that will be wrapped in JSON numbers.
+	 * @return a list of JSON numbers whose underlying values are <i>values</i>.
+	 */
+
+	public static List<JsonNumber> longsToNumbers(Iterable<Long> values)
+	{
+		List<JsonNumber> outValues = new ArrayList<>();
+		for (Long value : values)
+			outValues.add(new JsonNumber(value));
+		return outValues;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Creates a list of JSON numbers from the specified {@code double} values, preserving the order of the elements,
+	 * and returns the list, which may be used to construct a {@linkplain JsonArray JSON array}.
+	 *
+	 * @param  values
+	 *           the {@code double} values that will be wrapped in JSON numbers.
+	 * @return a list of JSON numbers whose underlying values are <i>values</i>.
+	 */
+
+	public static List<JsonNumber> doublesToNumbers(double... values)
+	{
+		List<JsonNumber> outValues = new ArrayList<>();
+		for (double value : values)
+			outValues.add(new JsonNumber(value));
+		return outValues;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Creates a list of JSON numbers from the specified {@code double} values, preserving the order of the elements,
+	 * and returns the list, which may be used to construct a {@linkplain JsonArray JSON array}.
+	 *
+	 * @param  values
+	 *           the {@code double} values that will be wrapped in JSON numbers.
+	 * @return a list of JSON numbers whose underlying values are <i>values</i>.
+	 */
+
+	public static List<JsonNumber> doublesToNumbers(Iterable<Double> values)
+	{
+		List<JsonNumber> outValues = new ArrayList<>();
+		for (Double value : values)
+			outValues.add(new JsonNumber(value));
+		return outValues;
 	}
 
 	//------------------------------------------------------------------
