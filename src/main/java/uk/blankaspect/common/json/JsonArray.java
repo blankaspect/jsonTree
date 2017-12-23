@@ -57,6 +57,46 @@ public class JsonArray
 	public static final	char	ELEMENT_SEPARATOR_CHAR	= ',';
 
 ////////////////////////////////////////////////////////////////////////
+//  Member classes : non-inner classes
+////////////////////////////////////////////////////////////////////////
+
+
+	// CLASS: 'ELEMENT KIND' EXCEPTION
+
+
+	/**
+	 * This class implements an unchecked exception that is thrown by a method that unwraps the elements of a
+	 * {@linkplain JsonArray JSON array} if it finds that an element is not of the expected kind.
+	 */
+
+	public static class ElementKindException
+		extends RuntimeException
+	{
+
+	////////////////////////////////////////////////////////////////////
+	//  Constructors
+	////////////////////////////////////////////////////////////////////
+
+		/**
+		 * Creates a new instance of an <i>element kind</i> exception.
+		 *
+		 * @param message
+		 *          the detail message of the exception.
+		 */
+
+		public ElementKindException(String message)
+		{
+			// Call superclass constructor
+			super(message);
+		}
+
+		//--------------------------------------------------------------
+
+	}
+
+	//==================================================================
+
+////////////////////////////////////////////////////////////////////////
 //  Constructors
 ////////////////////////////////////////////////////////////////////////
 
@@ -97,7 +137,7 @@ public class JsonArray
 	 *          the initial elements of the JSON array.
 	 */
 
-	public JsonArray(Iterable<JsonValue> elements)
+	public JsonArray(Iterable<? extends JsonValue> elements)
 	{
 		// Call alternative constructor
 		this(null, elements);
@@ -134,8 +174,8 @@ public class JsonArray
 	 *          the initial elements of the JSON array.
 	 */
 
-	public JsonArray(JsonValue           parent,
-					 Iterable<JsonValue> elements)
+	public JsonArray(JsonValue                     parent,
+					 Iterable<? extends JsonValue> elements)
 	{
 		// Call alternative constructor
 		this(parent);
@@ -449,6 +489,281 @@ public class JsonArray
 	//------------------------------------------------------------------
 
 	/**
+	 * Returns the underlying values of the elements of this JSON array as an array of {@code boolean}s.
+	 *
+	 * @return an array of the underlying {@code boolean} values of the elements of this JSON array.
+	 * @throws ElementKindException
+	 *           if any of the elements of this JSON array is not a {@linkplain JsonBoolean JSON Boolean}.
+	 */
+
+	public boolean[] getBooleanArray()
+		throws ElementKindException
+	{
+		boolean[] outValues = new boolean[elements.size()];
+		for (int i = 0; i < outValues.length; i++)
+		{
+			JsonValue element = elements.get(i);
+			if (element.getKind() != Kind.BOOLEAN)
+				throw new ElementKindException(element.getKind().toString());
+
+			outValues[i] = ((JsonBoolean)element).getValue();
+		}
+		return outValues;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns the underlying values of the elements of this JSON array as a list of {@code Boolean}s.
+	 *
+	 * @return a list of the underlying {@code Boolean} values of the elements of this JSON array.
+	 * @throws ElementKindException
+	 *           if any of the elements of this JSON array is not a {@linkplain JsonBoolean JSON Boolean}.
+	 */
+
+	public List<Boolean> getBooleanList()
+		throws ElementKindException
+	{
+		List<Boolean> outValues = new ArrayList<>();
+		for (JsonValue element : elements)
+		{
+			if (element.getKind() != Kind.BOOLEAN)
+				throw new ElementKindException(element.getKind().toString());
+
+			outValues.add(((JsonBoolean)element).getValue());
+		}
+		return outValues;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns the underlying values of the elements of this JSON array as an array of {@code int}s.
+	 *
+	 * @return an array of the underlying {@code int} values of the elements of this JSON array.
+	 * @throws ElementKindException
+	 *           if any of the elements of this JSON array is not a {@linkplain JsonNumber JSON number} or the type of
+	 *           the JSON number is not an {@linkplain JsonNumber.NumberType#INTEGER integer}.
+	 */
+
+	public int[] getIntArray()
+		throws ElementKindException
+	{
+		int[] outValues = new int[elements.size()];
+		for (int i = 0; i < outValues.length; i++)
+		{
+			JsonValue element = elements.get(i);
+			if (element.getKind() != Kind.NUMBER)
+				throw new ElementKindException(element.getKind().toString());
+
+			JsonNumber number = (JsonNumber)element;
+			if (number.getNumberType() != JsonNumber.NumberType.INTEGER)
+				throw new ElementKindException(number.getNumberType().toString());
+
+			outValues[i] = number.getInt();
+		}
+		return outValues;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns the underlying values of the elements of this JSON array as a list of {@code Integer}s.
+	 *
+	 * @return a list of the underlying {@code Integer} values of the elements of this JSON array.
+	 * @throws ElementKindException
+	 *           if any of the elements of this JSON array is not a {@linkplain JsonNumber JSON number} or the type of
+	 *           the JSON number is not an {@linkplain JsonNumber.NumberType#INTEGER integer}.
+	 */
+
+	public List<Integer> getIntList()
+		throws ElementKindException
+	{
+		List<Integer> outValues = new ArrayList<>();
+		for (JsonValue element : elements)
+		{
+			if (element.getKind() != Kind.NUMBER)
+				throw new ElementKindException(element.getKind().toString());
+
+			JsonNumber number = (JsonNumber)element;
+			if (number.getNumberType() != JsonNumber.NumberType.INTEGER)
+				throw new ElementKindException(number.getNumberType().toString());
+
+			outValues.add(number.getInt());
+		}
+		return outValues;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns the underlying values of the elements of this JSON array as an array of {@code long}s.
+	 *
+	 * @return an array of the underlying {@code long} values of the elements of this JSON array.
+	 * @throws ElementKindException
+	 *           if any of the elements of this JSON array is not a {@linkplain JsonNumber JSON number} or the type of
+	 *           the JSON number is not a {@linkplain JsonNumber.NumberType#LONG long}.
+	 */
+
+	public long[] getLongArray()
+		throws ElementKindException
+	{
+		long[] outValues = new long[elements.size()];
+		for (int i = 0; i < outValues.length; i++)
+		{
+			JsonValue element = elements.get(i);
+			if (element.getKind() != Kind.NUMBER)
+				throw new ElementKindException(element.getKind().toString());
+
+			JsonNumber number = (JsonNumber)element;
+			if (number.getNumberType() != JsonNumber.NumberType.LONG)
+				throw new ElementKindException(number.getNumberType().toString());
+
+			outValues[i] = number.getLong();
+		}
+		return outValues;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns the underlying values of the elements of this JSON array as a list of {@code Long}s.
+	 *
+	 * @return a list of the underlying {@code Long} values of the elements of this JSON array.
+	 * @throws ElementKindException
+	 *           if any of the elements of this JSON array is not a {@linkplain JsonNumber JSON number} or the type of
+	 *           the JSON number is not a {@linkplain JsonNumber.NumberType#LONG long}.
+	 */
+
+	public List<Long> getLongList()
+		throws ElementKindException
+	{
+		List<Long> outValues = new ArrayList<>();
+		for (JsonValue element : elements)
+		{
+			if (element.getKind() != Kind.NUMBER)
+				throw new ElementKindException(element.getKind().toString());
+
+			JsonNumber number = (JsonNumber)element;
+			if (number.getNumberType() != JsonNumber.NumberType.LONG)
+				throw new ElementKindException(number.getNumberType().toString());
+
+			outValues.add(number.getLong());
+		}
+		return outValues;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns the underlying values of the elements of this JSON array as an array of {@code double}s.
+	 *
+	 * @return an array of the underlying {@code double} values of the elements of this JSON array.
+	 * @throws ElementKindException
+	 *           if any of the elements of this JSON array is not a {@linkplain JsonNumber JSON number} or the type of
+	 *           the JSON number is not a {@linkplain JsonNumber.NumberType#DOUBLE double}.
+	 */
+
+	public double[] getDoubleArray()
+		throws ElementKindException
+	{
+		double[] outValues = new double[elements.size()];
+		for (int i = 0; i < outValues.length; i++)
+		{
+			JsonValue element = elements.get(i);
+			if (element.getKind() != Kind.NUMBER)
+				throw new ElementKindException(element.getKind().toString());
+
+			JsonNumber number = (JsonNumber)element;
+			if (number.getNumberType() != JsonNumber.NumberType.DOUBLE)
+				throw new ElementKindException(number.getNumberType().toString());
+
+			outValues[i] = number.getDouble();
+		}
+		return outValues;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns the underlying values of the elements of this JSON array as a list of {@code Double}s.
+	 *
+	 * @return a list of the underlying {@code Double} values of the elements of this JSON array.
+	 * @throws ElementKindException
+	 *           if any of the elements of this JSON array is not a {@linkplain JsonNumber JSON number} or the type of
+	 *           the JSON number is not a {@linkplain JsonNumber.NumberType#DOUBLE double}.
+	 */
+
+	public List<Double> getDoubleList()
+		throws ElementKindException
+	{
+		List<Double> outValues = new ArrayList<>();
+		for (JsonValue element : elements)
+		{
+			if (element.getKind() != Kind.NUMBER)
+				throw new ElementKindException(element.getKind().toString());
+
+			JsonNumber number = (JsonNumber)element;
+			if (number.getNumberType() != JsonNumber.NumberType.DOUBLE)
+				throw new ElementKindException(number.getNumberType().toString());
+
+			outValues.add(number.getDouble());
+		}
+		return outValues;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns the underlying values of the elements of this JSON array as an array of strings.
+	 *
+	 * @return an array of the underlying string values of the elements of this JSON array.
+	 * @throws ElementKindException
+	 *           if any of the elements of this JSON array is not a {@linkplain JsonString JSON string}.
+	 */
+
+	public String[] getStringArray()
+		throws ElementKindException
+	{
+		String[] outValues = new String[elements.size()];
+		for (int i = 0; i < outValues.length; i++)
+		{
+			JsonValue element = elements.get(i);
+			if (element.getKind() != Kind.STRING)
+				throw new ElementKindException(element.getKind().toString());
+
+			outValues[i] = ((JsonString)element).getValue();
+		}
+		return outValues;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns the underlying values of the elements of this JSON array as a list of strings.
+	 *
+	 * @return a list of the underlying string values of the elements of this JSON array.
+	 * @throws ElementKindException
+	 *           if any of the elements of this JSON array is not a {@linkplain JsonString JSON string}.
+	 */
+
+	public List<String> getStringList()
+		throws ElementKindException
+	{
+		List<String> outValues = new ArrayList<>();
+		for (JsonValue element : elements)
+		{
+			if (element.getKind() != Kind.STRING)
+				throw new ElementKindException(element.getKind().toString());
+
+			outValues.add(((JsonString)element).getValue());
+		}
+		return outValues;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
 	 * Returns the index of the specified JSON value in the list of the elements of this array.  The value is compared
 	 * for identity, not equality, with each element of the array until a match is found or all elements have been
 	 * compared.
@@ -493,7 +808,7 @@ public class JsonArray
 	 *          the values to which the elements of this JSON array will be set.
 	 */
 
-	public void setElements(Iterable<JsonValue> values)
+	public void setElements(Iterable<? extends JsonValue> values)
 	{
 		elements.clear();
 		addElements(values);
@@ -540,7 +855,7 @@ public class JsonArray
 	 *          the values that will be added to the list of elements of this JSON array.
 	 */
 
-	public void addElements(Iterable<JsonValue> values)
+	public void addElements(Iterable<? extends JsonValue> values)
 	{
 		for (JsonValue value : values)
 			addElement(value);
@@ -587,7 +902,7 @@ public class JsonArray
 	 * end of the list of elements of this JSON array.  The values are added in the order of the arguments.
 	 *
 	 * @param values
-	 *          the values of the JSON Booleans that will be created and added to the elements of this JSON array.
+	 *          the values for which JSON Booleans will be created and added to the elements of this JSON array.
 	 */
 
 	public void addBooleans(boolean... values)
@@ -599,15 +914,31 @@ public class JsonArray
 	//------------------------------------------------------------------
 
 	/**
-	 * Creates a new instance of a {@linkplain JsonNumber JSON number} with the specified {@code int} value and adds it
-	 * to the end of the list of elements of this JSON array.
+	 * Creates new instances of {@linkplain JsonBoolean JSON Booleans} with the specified values and adds them to the
+	 * end of the list of elements of this JSON array.  The values are added in the order of the arguments.
+	 *
+	 * @param values
+	 *          the values for which JSON Booleans will be created and added to the elements of this JSON array.
+	 */
+
+	public void addBooleans(Iterable<Boolean> values)
+	{
+		for (Boolean value : values)
+			addElement(new JsonBoolean(value));
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Creates a new instance of a {@linkplain JsonNumber JSON number} with the specified value and adds it to the end
+	 * of the list of elements of this JSON array.
 	 *
 	 * @param  value
 	 *           the value of the JSON number that will be created and added to the elements of this JSON array.
 	 * @return the JSON number that was created from <i>value</i> and added to the elements of this JSON array.
 	 */
 
-	public JsonNumber addNumber(int value)
+	public JsonNumber addInt(int value)
 	{
 		JsonNumber jsonNumber = new JsonNumber(value);
 		addElement(jsonNumber);
@@ -617,14 +948,14 @@ public class JsonArray
 	//------------------------------------------------------------------
 
 	/**
-	 * Creates new instances of {@linkplain JsonNumber JSON numbers} with the specified {@code int} values and adds them
-	 * to the end of the list of elements of this JSON array.  The values are added in the order of the arguments.
+	 * Creates new instances of {@linkplain JsonNumber JSON numbers} with the specified values and adds them to the end
+	 * of the list of elements of this JSON array.  The values are added in the order of the arguments.
 	 *
 	 * @param values
-	 *          the values of the JSON numbers that will be created and added to the elements of this JSON array.
+	 *          the values for which JSON numbers will be created and added to the elements of this JSON array.
 	 */
 
-	public void addNumbers(int... values)
+	public void addInts(int... values)
 	{
 		for (int value : values)
 			addElement(new JsonNumber(value));
@@ -633,15 +964,31 @@ public class JsonArray
 	//------------------------------------------------------------------
 
 	/**
-	 * Creates a new instance of a {@linkplain JsonNumber JSON number} with the specified {@code long} value and adds it
-	 * to the end of the list of elements of this JSON array.
+	 * Creates new instances of {@linkplain JsonNumber JSON numbers} with the specified values and adds them to the end
+	 * of the list of elements of this JSON array.  The values are added in the order of the arguments.
+	 *
+	 * @param values
+	 *          the values for which JSON numbers will be created and added to the elements of this JSON array.
+	 */
+
+	public void addInts(Iterable<Integer> values)
+	{
+		for (Integer value : values)
+			addElement(new JsonNumber(value));
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Creates a new instance of a {@linkplain JsonNumber JSON number} with the specified value and adds it to the end
+	 * of the list of elements of this JSON array.
 	 *
 	 * @param  value
 	 *           the value of the JSON number that will be created and added to the elements of this JSON array.
 	 * @return the JSON number that was created from <i>value</i> and added to the elements of this JSON array.
 	 */
 
-	public JsonNumber addNumber(long value)
+	public JsonNumber addLong(long value)
 	{
 		JsonNumber jsonNumber = new JsonNumber(value);
 		addElement(jsonNumber);
@@ -651,14 +998,14 @@ public class JsonArray
 	//------------------------------------------------------------------
 
 	/**
-	 * Creates new instances of {@linkplain JsonNumber JSON numbers} with the specified {@code long} values and adds
-	 * them to the end of the list of elements of this JSON array.  The values are added in the order of the arguments.
+	 * Creates new instances of {@linkplain JsonNumber JSON numbers} with the specified values and adds them to the end
+	 * of the list of elements of this JSON array.  The values are added in the order of the arguments.
 	 *
 	 * @param values
-	 *          the values of the JSON numbers that will be created and added to the elements of this JSON array.
+	 *          the values for which JSON numbers will be created and added to the elements of this JSON array.
 	 */
 
-	public void addNumbers(long... values)
+	public void addLongs(long... values)
 	{
 		for (long value : values)
 			addElement(new JsonNumber(value));
@@ -667,82 +1014,66 @@ public class JsonArray
 	//------------------------------------------------------------------
 
 	/**
-	 * Creates a new instance of a {@linkplain JsonNumber JSON number} with the specified {@code double} value and adds
-	 * it to the end of the list of elements of this JSON array.
-	 *
-	 * @param  value
-	 *           the value of the JSON number that will be created and added to the elements of this JSON array.
-	 * @return the JSON number that was created from <i>value</i> and added to the elements of this JSON array.
-	 */
-
-	public JsonNumber addNumber(double value)
-	{
-		JsonNumber jsonNumber = new JsonNumber(value);
-		addElement(jsonNumber);
-		return jsonNumber;
-	}
-
-	//------------------------------------------------------------------
-
-	/**
-	 * Creates new instances of {@linkplain JsonNumber JSON numbers} with the specified {@code double} values and adds
-	 * them to the end of the list of elements of this JSON array.  The values are added in the order of the arguments.
+	 * Creates new instances of {@linkplain JsonNumber JSON numbers} with the specified values and adds them to the end
+	 * of the list of elements of this JSON array.  The values are added in the order of the arguments.
 	 *
 	 * @param values
-	 *          the values of the JSON numbers that will be created and added to the elements of this JSON array.
-	 */
-
-	public void addNumbers(double... values)
-	{
-		for (double value : values)
-			addElement(new JsonNumber(value));
-	}
-
-	//------------------------------------------------------------------
-
-	/**
-	 * Creates new instances of {@linkplain JsonNumber JSON numbers} with the specified {@code Integer} values and adds
-	 * them to the end of the list of elements of this JSON array.  The values are added in the order of the arguments.
-	 *
-	 * @param values
-	 *          the values of the JSON numbers that will be created and added to the elements of this JSON array.
-	 */
-
-	public void addIntegers(Iterable<Integer> values)
-	{
-		for (int value : values)
-			addElement(new JsonNumber(value));
-	}
-
-	//------------------------------------------------------------------
-
-	/**
-	 * Creates new instances of {@linkplain JsonNumber JSON numbers} with the specified {@code Long} values and adds
-	 * them to the end of the list of elements of this JSON array.  The values are added in the order of the arguments.
-	 *
-	 * @param values
-	 *          the values of the JSON numbers that will be created and added to the elements of this JSON array.
+	 *          the values for which JSON numbers will be created and added to the elements of this JSON array.
 	 */
 
 	public void addLongs(Iterable<Long> values)
 	{
-		for (long value : values)
+		for (Long value : values)
 			addElement(new JsonNumber(value));
 	}
 
 	//------------------------------------------------------------------
 
 	/**
-	 * Creates new instances of {@linkplain JsonNumber JSON numbers} with the specified {@code Double} values and adds
-	 * them to the end of the list of elements of this JSON array.  The values are added in the order of the arguments.
+	 * Creates a new instance of a {@linkplain JsonNumber JSON number} with the specified value and adds it to the end
+	 * of the list of elements of this JSON array.
+	 *
+	 * @param  value
+	 *           the value of the JSON number that will be created and added to the elements of this JSON array.
+	 * @return the JSON number that was created from <i>value</i> and added to the elements of this JSON array.
+	 */
+
+	public JsonNumber addDouble(double value)
+	{
+		JsonNumber jsonNumber = new JsonNumber(value);
+		addElement(jsonNumber);
+		return jsonNumber;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Creates new instances of {@linkplain JsonNumber JSON numbers} with the specified values and adds them to the end
+	 * of the list of elements of this JSON array.  The values are added in the order of the arguments.
 	 *
 	 * @param values
-	 *          the values of the JSON numbers that will be created and added to the elements of this JSON array.
+	 *          the values for which JSON numbers will be created and added to the elements of this JSON array.
+	 */
+
+	public void addDoubles(double... values)
+	{
+		for (double value : values)
+			addElement(new JsonNumber(value));
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Creates new instances of {@linkplain JsonNumber JSON numbers} with the specified values and adds them to the end
+	 * of the list of elements of this JSON array.  The values are added in the order of the arguments.
+	 *
+	 * @param values
+	 *          the values for which JSON numbers will be created and added to the elements of this JSON array.
 	 */
 
 	public void addDoubles(Iterable<Double> values)
 	{
-		for (double value : values)
+		for (Double value : values)
 			addElement(new JsonNumber(value));
 	}
 
@@ -771,7 +1102,7 @@ public class JsonArray
 	 * of the list of elements of this JSON array.  The values are added in the order of the arguments.
 	 *
 	 * @param values
-	 *          the values of the JSON strings that will be created and added to the elements of this JSON array.
+	 *          the values for which JSON strings will be created and added to the elements of this JSON array.
 	 */
 
 	public void addStrings(String... values)
@@ -787,7 +1118,7 @@ public class JsonArray
 	 * of the list of elements of this JSON array.  The values are added in the order of the arguments.
 	 *
 	 * @param values
-	 *          the values of the JSON strings that will be created and added to the elements of this JSON array.
+	 *          the values for which JSON strings will be created and added to the elements of this JSON array.
 	 */
 
 	public void addStrings(Iterable<String> values)
