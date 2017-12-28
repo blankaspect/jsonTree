@@ -21,6 +21,10 @@ package uk.blankaspect.common.json;
 import java.util.Arrays;
 import java.util.List;
 
+import uk.blankaspect.common.basictree.AbstractNode;
+import uk.blankaspect.common.basictree.ListNode;
+import uk.blankaspect.common.basictree.MapNode;
+
 //----------------------------------------------------------------------
 
 
@@ -28,9 +32,9 @@ import java.util.List;
 
 
 /**
- * This class implements a generator of JSON text for a {@linkplain JsonValue JSON value}.  The generator operates in
- * one of several {@linkplain Mode <i>modes</i>}, which control the way in which whitespace is written between the
- * tokens of the JSON text.
+ * This class implements a generator that transforms a tree of values that are represented by {@linkplain AbstractNode
+ * nodes} into JSON text.  The generator operates in one of several {@linkplain Mode <i>modes</i>}, which control the
+ * way in which whitespace is written between the tokens of the JSON text.
  */
 
 public class JsonGenerator
@@ -100,8 +104,9 @@ public class JsonGenerator
 ////////////////////////////////////////////////////////////////////////
 
 	/**
-	 * Creates a new instance of a JSON generator with default values for mode ({@link Mode#NORMAL NORMAL}), <i>opening
-	 * bracket on the same line</i> flag (false), indent increment (2) and maximum line length (80).
+	 * Creates a new instance of a JSON generator with default values for the mode ({@link Mode#NORMAL NORMAL}), the
+	 * <i>opening bracket on the same line</i> flag ({@code false}), the indent increment (2) and the maximum line
+	 * length (80).
 	 */
 
 	public JsonGenerator()
@@ -114,8 +119,9 @@ public class JsonGenerator
 
 	/**
 	 * Creates a new instance of a JSON generator with the specified mode.  Default values will be used for the
-	 * <i>opening bracket on the same line</i> flag (false), indent increment (2) and maximum line length (80), which
-	 * are relevant only in a multi-line mode ({@link Mode#NORMAL NORMAL} or {@link Mode#EXPANDED EXPANDED}).
+	 * <i>opening bracket on the same line</i> flag ({@code false}), the indent increment (2) and the maximum line
+	 * length (80), which are applicable only in a multi-line mode ({@link Mode#NORMAL NORMAL} or {@link Mode#EXPANDED
+	 * EXPANDED}).
 	 *
 	 * @param mode
 	 *          the mode of the generator, which controls the way in which whitespace is written between the tokens of
@@ -132,8 +138,8 @@ public class JsonGenerator
 
 	/**
 	 * Creates a new instance of a JSON generator with the specified mode and <i>opening bracket on the same line</i>
-	 * flag.  Default values will be used for indent increment (2) and maximum line length (80), which are relevant only
-	 * in a multi-line mode ({@link Mode#NORMAL NORMAL} or {@link Mode#EXPANDED EXPANDED}).
+	 * flag.  Default values will be used for the indent increment (2) and the maximum line length (80), which are
+	 * applicable only in a multi-line mode ({@link Mode#NORMAL NORMAL} or {@link Mode#EXPANDED EXPANDED}).
 	 *
 	 * @param mode
 	 *          the mode of the generator, which controls the way in which whitespace is written between the tokens of
@@ -190,15 +196,21 @@ public class JsonGenerator
 ////////////////////////////////////////////////////////////////////////
 
 	/**
-	 * Generates and returns JSON text for the specified {@linkplain JsonValue JSON value} in accordance with the
-	 * properties of this generator (mode, indent increment and maximum line length).
+	 * Generates and returns JSON text for the specified {@linkplain AbstractNode JSON value} in accordance with the
+	 * properties of this generator:
+	 * <ul>
+	 *   <li>mode,</li>
+	 *   <li><i>opening bracket on the same line</i> flag,</li>
+	 *   <li>indent increment,</li>
+	 *   <li>maximum line length.</li>
+	 * </ul>
 	 *
 	 * @param  value
-	 *           the value for which JSON text will be generated.
+	 *           the JSON value for which JSON text will be generated.
 	 * @return JSON text for <i>value</i>.
 	 */
 
-	public String generate(JsonValue value)
+	public String generate(AbstractNode value)
 	{
 		StringBuilder buffer = new StringBuilder(256);
 		appendValue(value, 0, buffer);
@@ -222,8 +234,8 @@ public class JsonGenerator
 	 * @return {@code true} if this generator should write the JSON text for {@ode value} on a single line.
 	 */
 
-	private boolean isValueOnSingleLine(JsonValue value,
-										int       indent)
+	private boolean isValueOnSingleLine(AbstractNode value,
+										int          indent)
 	{
 		boolean singleLine = true;
 		if (isMultilineMode())
@@ -232,34 +244,25 @@ public class JsonGenerator
 			{
 				case NULL:
 				case BOOLEAN:
-				case NUMBER:
+				case INT:
+				case LONG:
+				case DOUBLE:
 				case STRING:
 					break;
 
-				case OBJECT:
+				case LIST:
 				{
-					JsonObject object = (JsonObject)value;
-					int numProperties = object.getNumProperties();
-					singleLine = (numProperties == 0)
-									|| ((mode != Mode.EXPANDED) && (numProperties == 1)
-										&& isValueOnSingleLine(object.getProperties().values().iterator().next(),
-															   indent + 2));
-					break;
-				}
-
-				case ARRAY:
-				{
-					JsonArray array = (JsonArray)value;
-					int numElements = array.getNumElements();
+					ListNode list = (ListNode)value;
+					int numElements = list.getNumElements();
 					if (((mode == Mode.EXPANDED) && (numElements > 0))
-						|| array.getElements().stream().anyMatch(element -> !isValueOnSingleLine(element, indent + 2)))
+						|| list.getElements().stream().anyMatch(element -> !isValueOnSingleLine(element, indent + 2)))
 						singleLine = false;
 					else if (numElements > 1)
 					{
 						int lineLength = indent + 2 + 2 * numElements;
 						for (int i = 0; i < numElements; i++)
 						{
-							lineLength += array.getElement(i).toString().length();
+							lineLength += list.getElement(i).toString().length();
 							if (lineLength > maxLineLength)
 							{
 								singleLine = false;
@@ -267,6 +270,16 @@ public class JsonGenerator
 							}
 						}
 					}
+					break;
+				}
+
+				case MAP:
+				{
+					MapNode map = (MapNode)value;
+					int numProperties = map.getNumPairs();
+					singleLine = (numProperties == 0)
+									|| ((mode != Mode.EXPANDED) && (numProperties == 1)
+										&& isValueOnSingleLine(map.getPairs().values().iterator().next(), indent + 2));
 					break;
 				}
 			}
@@ -277,27 +290,27 @@ public class JsonGenerator
 	//------------------------------------------------------------------
 
 	/**
-	 * Generates the JSON text for the specified {@linkplain JsonValue JSON value} and appends it to the specified
+	 * Generates the JSON text for the specified {@linkplain AbstractNode JSON value} and appends it to the specified
 	 * buffer.
 	 *
 	 * @param value
-	 *          the JSON value for which JSON text will be generated and appended to <i>buffer</i>.
+	 *          the JSON value for which JSON text will be generated.
 	 * @param indent
-	 *          the number of spaces by which the JSON text is indented.
+	 *          the number of spaces by which a line of the JSON text is indented.
 	 * @param buffer
 	 *          the buffer to which the JSON text will be appended.
 	 */
 
-	private void appendValue(JsonValue     value,
+	private void appendValue(AbstractNode  value,
 							 int           indent,
 							 StringBuilder buffer)
 	{
-		// Get indent of children of target value
-		int childIndent = indent + indentIncrement;
-
 		// Update array of spaces for indent; append indent
 		if (isMultilineMode())
 		{
+			// Get indent of children of target value
+			int childIndent = indent + indentIncrement;
+
 			// Update array of spaces
 			if (spaces.length < childIndent)
 			{
@@ -314,270 +327,314 @@ public class JsonGenerator
 		{
 			case NULL:
 			case BOOLEAN:
-			case NUMBER:
+			case INT:
+			case LONG:
+			case DOUBLE:
 			case STRING:
 				buffer.append(value);
 				break;
 
-			case OBJECT:
-			{
-				// Get number of properties and names of properties
-				JsonObject object = (JsonObject)value;
-				int numProperties = object.getNumProperties();
-				List<String> names = object.getNames();
-
-				// If required, remove LF and indent before opening brace
-				if (openingBracketOnSameLine)
-					removeLineFeedAndIndent(buffer);
-
-				// Append opening brace
-				buffer.append(JsonObject.START_CHAR);
-
-				// Properties of object are on a single line ...
-				if (isValueOnSingleLine(object, indent))
-				{
-					// Append properties
-					for (int i = 0; i < numProperties; i++)
-					{
-						// Append separator between properties
-						if (i > 0)
-							buffer.append(JsonObject.PROPERTY_SEPARATOR_CHAR);
-
-						// Append space after separator
-						if (mode != Mode.DENSE)
-							buffer.append(' ');
-
-						// Append name of property
-						String name = names.get(i);
-						buffer.append(JsonString.toJsonString(name));
-
-						// Append separator between name and value
-						buffer.append(JsonObject.NAME_SEPARATOR_CHAR);
-
-						// Append space after separator
-						if (mode != Mode.DENSE)
-							buffer.append(' ');
-
-						// Append value of property
-						appendValue(object.getValue(name), 0, buffer);
-					}
-
-					// Append space before closing brace
-					if (mode != Mode.DENSE)
-						buffer.append(' ');
-				}
-
-				// Properties of object are not on a single line ...
-				else
-				{
-					// Append LF after opening brace
-					buffer.append('\n');
-
-					// Append properties
-					for (int i = 0; i < numProperties; i++)
-					{
-						// Get index of start of property
-						int index = buffer.length();
-
-						// Append indent before name of property
-						buffer.append(spaces, 0, childIndent);
-
-						// Append name of property
-						String name = names.get(i);
-						buffer.append(JsonString.toJsonString(name));
-
-						// Append separator between name and value
-						buffer.append(JsonObject.NAME_SEPARATOR_CHAR);
-
-						// Get value of property
-						JsonValue value0 = object.getValue(name);
-
-						// If value of property is on single line, append it with a single space before it ...
-						if (isValueOnSingleLine(value0, buffer.length() - index + 1))
-							appendValue(value0, 1, buffer);
-
-						// ... otherwise, append LF, indent and value of property
-						else
-						{
-							buffer.append('\n');
-							appendValue(value0, childIndent, buffer);
-						}
-
-						// Append separator between properties
-						if (i < numProperties - 1)
-							buffer.append(JsonObject.PROPERTY_SEPARATOR_CHAR);
-
-						// Append LF after property
-						buffer.append('\n');
-					}
-
-					// Append indent before closing brace
-					buffer.append(spaces, 0, indent);
-				}
-
-				// Append closing brace
-				buffer.append(JsonObject.END_CHAR);
+			case LIST:
+				appendArray((ListNode)value, indent, buffer);
 				break;
-			}
 
-			case ARRAY:
-			{
-				// Get number of elements
-				JsonArray array = (JsonArray)value;
-				int numElements = array.getNumElements();
-
-				// If required, remove LF and indent before opening bracket
-				if (openingBracketOnSameLine)
-					removeLineFeedAndIndent(buffer);
-
-				// Append opening bracket
-				buffer.append(JsonArray.START_CHAR);
-
-				// Elements of array are on a single line ...
-				if (isValueOnSingleLine(array, indent))
-				{
-					// Append elements
-					for (int i = 0; i < numElements; i++)
-					{
-						// Append separator between elements
-						if (i > 0)
-							buffer.append(JsonArray.ELEMENT_SEPARATOR_CHAR);
-
-						// Append space after separator
-						if (mode != Mode.DENSE)
-							buffer.append(' ');
-
-						// Append element
-						appendValue(array.getElement(i), 0, buffer);
-					}
-
-					// Append space before closing bracket
-					if (mode != Mode.DENSE)
-						buffer.append(' ');
-				}
-
-				// Elements of array are not on a single line ...
-				else
-				{
-					// Append LF after opening brace
-					buffer.append('\n');
-
-					// Initialise line length
-					int lineLength = 0;
-
-					// Append elements
-					for (int i = 0; i < numElements; i++)
-					{
-						// Get element
-						JsonValue element = array.getElement(i);
-
-						// Set 'more elements' flag
-						boolean moreElements = (i < numElements - 1);
-
-						// Element is a container ...
-						if (element.isContainer())
-						{
-							// Append LF after previous element
-							if (lineLength > 0)
-								buffer.append('\n');
-
-							// Append indent and element
-							appendValue(element, childIndent, buffer);
-
-							// Append separator between elements
-							if (moreElements)
-								buffer.append(JsonArray.ELEMENT_SEPARATOR_CHAR);
-
-							// Append LF after element
-							buffer.append('\n');
-
-							// Reset line length
-							lineLength = 0;
-						}
-
-						// Element is not a container ...
-						else
-						{
-							// Convert element to string
-							String elementStr = element.toString();
-
-							// If not start of line, wrap line if necessary
-							if (lineLength > 0)
-							{
-								// Increment line length past end of element
-								lineLength += elementStr.length() + 1;
-								if (moreElements)
-									++lineLength;
-
-								// If line would be too long, wrap it
-								if (lineLength > maxLineLength)
-								{
-									buffer.append('\n');
-									lineLength = 0;
-								}
-							}
-
-							// If start of line ...
-							if (lineLength == 0)
-							{
-								// Get index of start of element
-								int index = buffer.length();
-
-								// Append indent
-								buffer.append(spaces, 0, childIndent);
-
-								// Append element
-								buffer.append(elementStr);
-
-								// Append separator between elements
-								if (moreElements)
-									buffer.append(JsonArray.ELEMENT_SEPARATOR_CHAR);
-
-								// If expanded mode, append LF after separator ...
-								if (mode == Mode.EXPANDED)
-									buffer.append('\n');
-
-								// ... otherwise, increment line length
-								else
-									lineLength = buffer.length() - index;
-							}
-
-							// If not start of line ...
-							else
-							{
-								// Append space before element
-								buffer.append(' ');
-
-								// Append element
-								buffer.append(elementStr);
-
-								// Append separator between elements
-								if (moreElements)
-									buffer.append(JsonArray.ELEMENT_SEPARATOR_CHAR);
-							}
-						}
-					}
-
-					// If not start of line, append LF
-					if (lineLength > 0)
-						buffer.append('\n');
-
-					// Append indent before closing bracket
-					buffer.append(spaces, 0, indent);
-				}
-
-				// Append closing bracket
-				buffer.append(JsonArray.END_CHAR);
+			case MAP:
+				appendObject((MapNode)value, indent, buffer);
 				break;
-			}
 		}
 	}
 
 	//------------------------------------------------------------------
 
 	/**
-	 * Removes a line feed and indent from the end of the specified buffer.
+	 * Generates the JSON text for the specified {@linkplain ListNode JSON array} and appends it to the specified
+	 * buffer.
+	 *
+	 * @param array
+	 *          the JSON array for which JSON text will be generated.
+	 * @param indent
+	 *          the number of spaces by which a line of the JSON text is indented.
+	 * @param buffer
+	 *          the buffer to which the JSON text will be appended.
+	 */
 
+	private void appendArray(ListNode      array,
+							 int           indent,
+							 StringBuilder buffer)
+	{
+		// Get number of elements
+		int numElements = array.getNumElements();
+
+		// If required, remove LF and indent before opening bracket
+		if (openingBracketOnSameLine)
+			removeLineFeedAndIndent(buffer);
+
+		// Append opening bracket
+		buffer.append(JsonArray.START_CHAR);
+
+		// Elements of array are on a single line ...
+		if (isValueOnSingleLine(array, indent))
+		{
+			// Append elements
+			for (int i = 0; i < numElements; i++)
+			{
+				// Append separator between elements
+				if (i > 0)
+					buffer.append(JsonArray.ELEMENT_SEPARATOR_CHAR);
+
+				// Append space after separator
+				if (mode != Mode.DENSE)
+					buffer.append(' ');
+
+				// Append element
+				appendValue(array.getElement(i), 0, buffer);
+			}
+
+			// Append space before closing bracket
+			if (mode != Mode.DENSE)
+				buffer.append(' ');
+		}
+
+		// Elements of array are not on a single line ...
+		else
+		{
+			// Append LF after opening brace
+			buffer.append('\n');
+
+			// Get indent of children of target value
+			int childIndent = indent + indentIncrement;
+
+			// Initialise line length
+			int lineLength = 0;
+
+			// Append elements
+			for (int i = 0; i < numElements; i++)
+			{
+				// Get element
+				AbstractNode element = array.getElement(i);
+
+				// Set 'more elements' flag
+				boolean moreElements = (i < numElements - 1);
+
+				// Element is a container ...
+				if (element.isContainer())
+				{
+					// Append LF after previous element
+					if (lineLength > 0)
+						buffer.append('\n');
+
+					// Append indent and element
+					appendValue(element, childIndent, buffer);
+
+					// Append separator between elements
+					if (moreElements)
+						buffer.append(JsonArray.ELEMENT_SEPARATOR_CHAR);
+
+					// Append LF after element
+					buffer.append('\n');
+
+					// Reset line length
+					lineLength = 0;
+				}
+
+				// Element is not a container ...
+				else
+				{
+					// Convert element to string
+					String elementStr = element.toString();
+
+					// If not start of line, wrap line if necessary
+					if (lineLength > 0)
+					{
+						// Increment line length past end of element
+						lineLength += elementStr.length() + 1;
+						if (moreElements)
+							++lineLength;
+
+						// If line would be too long, wrap it
+						if (lineLength > maxLineLength)
+						{
+							buffer.append('\n');
+							lineLength = 0;
+						}
+					}
+
+					// If start of line ...
+					if (lineLength == 0)
+					{
+						// Get index of start of element
+						int index = buffer.length();
+
+						// Append indent
+						buffer.append(spaces, 0, childIndent);
+
+						// Append element
+						buffer.append(elementStr);
+
+						// Append separator between elements
+						if (moreElements)
+							buffer.append(JsonArray.ELEMENT_SEPARATOR_CHAR);
+
+						// If expanded mode, append LF after separator ...
+						if (mode == Mode.EXPANDED)
+							buffer.append('\n');
+
+						// ... otherwise, increment line length
+						else
+							lineLength = buffer.length() - index;
+					}
+
+					// If not start of line ...
+					else
+					{
+						// Append space before element
+						buffer.append(' ');
+
+						// Append element
+						buffer.append(elementStr);
+
+						// Append separator between elements
+						if (moreElements)
+							buffer.append(JsonArray.ELEMENT_SEPARATOR_CHAR);
+					}
+				}
+			}
+
+			// If not start of line, append LF
+			if (lineLength > 0)
+				buffer.append('\n');
+
+			// Append indent before closing bracket
+			buffer.append(spaces, 0, indent);
+		}
+
+		// Append closing bracket
+		buffer.append(JsonArray.END_CHAR);
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Generates the JSON text for the specified {@linkplain MapNode JSON object} and appends it to the specified
+	 * buffer.
+	 *
+	 * @param object
+	 *          the JSON object for which JSON text will be generated.
+	 * @param indent
+	 *          the number of spaces by which a line of the JSON text is indented.
+	 * @param buffer
+	 *          the buffer to which the JSON text will be appended.
+	 */
+
+	private void appendObject(MapNode       object,
+							  int           indent,
+							  StringBuilder buffer)
+	{
+		// Get number of properties and names of properties
+		int numProperties = object.getNumPairs();
+		List<String> names = object.getKeys();
+
+		// If required, remove LF and indent before opening brace
+		if (openingBracketOnSameLine)
+			removeLineFeedAndIndent(buffer);
+
+		// Append opening brace
+		buffer.append(JsonObject.START_CHAR);
+
+		// Properties of object are on a single line ...
+		if (isValueOnSingleLine(object, indent))
+		{
+			// Append properties
+			for (int i = 0; i < numProperties; i++)
+			{
+				// Append separator between properties
+				if (i > 0)
+					buffer.append(JsonObject.PROPERTY_SEPARATOR_CHAR);
+
+				// Append space after separator
+				if (mode != Mode.DENSE)
+					buffer.append(' ');
+
+				// Append name of property
+				String name = names.get(i);
+				buffer.append(object.keyToString(name));
+
+				// Append separator between name and value
+				buffer.append(JsonObject.NAME_VALUE_SEPARATOR_CHAR);
+
+				// Append space after separator
+				if (mode != Mode.DENSE)
+					buffer.append(' ');
+
+				// Append value of property
+				appendValue(object.getValue(name), 0, buffer);
+			}
+
+			// Append space before closing brace
+			if (mode != Mode.DENSE)
+				buffer.append(' ');
+		}
+
+		// Properties of object are not on a single line ...
+		else
+		{
+			// Get indent of children of target value
+			int childIndent = indent + indentIncrement;
+
+			// Append LF after opening brace
+			buffer.append('\n');
+
+			// Append properties
+			for (int i = 0; i < numProperties; i++)
+			{
+				// Get index of start of property
+				int index = buffer.length();
+
+				// Append indent before name of property
+				buffer.append(spaces, 0, childIndent);
+
+				// Append name of property
+				String name = names.get(i);
+				buffer.append(object.keyToString(name));
+
+				// Append separator between name and value
+				buffer.append(JsonObject.NAME_VALUE_SEPARATOR_CHAR);
+
+				// Get value of property
+				AbstractNode value = object.getValue(name);
+
+				// If value of property is on single line, append it with a single space before it ...
+				if (isValueOnSingleLine(value, buffer.length() - index + 1))
+					appendValue(value, 1, buffer);
+
+				// ... otherwise, append LF, indent and value of property
+				else
+				{
+					buffer.append('\n');
+					appendValue(value, childIndent, buffer);
+				}
+
+				// Append separator between properties
+				if (i < numProperties - 1)
+					buffer.append(JsonObject.PROPERTY_SEPARATOR_CHAR);
+
+				// Append LF after property
+				buffer.append('\n');
+			}
+
+			// Append indent before closing brace
+			buffer.append(spaces, 0, indent);
+		}
+
+		// Append closing brace
+		buffer.append(JsonObject.END_CHAR);
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Removes a line feed and indent from the end of the specified buffer.
+	 *
 	 * @param buffer
 	 *          the buffer from which a line feed and indent will be removed.
 	 */

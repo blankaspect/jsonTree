@@ -1,8 +1,8 @@
 /*====================================================================*\
 
-JsonBoolean.java
+BooleanNode.java
 
-Class: JSON Boolean value.
+Class: Boolean node.
 
 \*====================================================================*/
 
@@ -10,30 +10,30 @@ Class: JSON Boolean value.
 // PACKAGE
 
 
-package uk.blankaspect.common.json;
+package uk.blankaspect.common.basictree;
 
 //----------------------------------------------------------------------
 
 
-// CLASS: JSON BOOLEAN VALUE
+// CLASS: BOOLEAN NODE
 
 
 /**
- * This class implements an immutable JSON Boolean value.
+ * This class implements a {@linkplain AbstractNode node} that contains a Boolean value.
  */
 
-public class JsonBoolean
-	extends JsonValue
+public class BooleanNode
+	extends AbstractNode
 {
 
 ////////////////////////////////////////////////////////////////////////
 //  Constants
 ////////////////////////////////////////////////////////////////////////
 
-	/** The literal name of a JSON Boolean whose value is <i>false</i>. */
+	/** The string representation of a Boolean node whose value is <i>false</i>. */
 	public static final	String	VALUE_FALSE	= "false";
 
-	/** The literal name of a JSON Boolean whose value is <i>true</i>. */
+	/** The string representation of a Boolean node whose value is <i>true</i>. */
 	public static final	String	VALUE_TRUE	= "true";
 
 ////////////////////////////////////////////////////////////////////////
@@ -41,13 +41,13 @@ public class JsonBoolean
 ////////////////////////////////////////////////////////////////////////
 
 	/**
-	 * Creates a new instance of a JSON Boolean that has no parent and has the specified value.
+	 * Creates a new instance of a Boolean node that has no parent and has the specified value.
 	 *
 	 * @param value
-	 *          the value of the JSON Boolean.
+	 *          the value of the Boolean node.
 	 */
 
-	public JsonBoolean(boolean value)
+	public BooleanNode(boolean value)
 	{
 		// Call alternative constructor
 		this(null, value);
@@ -56,16 +56,16 @@ public class JsonBoolean
 	//------------------------------------------------------------------
 
 	/**
-	 * Creates a new instance of a JSON Boolean that has the specified parent and value.
+	 * Creates a new instance of a Boolean node that has the specified parent and value.
 	 *
 	 * @param parent
-	 *          the parent of the JSON Boolean.
+	 *          the parent of the Boolean node.
 	 * @param value
-	 *          the value of the JSON Boolean.
+	 *          the value of the Boolean node.
 	 */
 
-	public JsonBoolean(JsonValue parent,
-					   boolean   value)
+	public BooleanNode(AbstractNode parent,
+					   boolean      value)
 	{
 		// Call superclass constructor
 		super(parent);
@@ -81,20 +81,20 @@ public class JsonBoolean
 ////////////////////////////////////////////////////////////////////////
 
 	/**
-	 * @return {@link JsonValue.Kind#BOOLEAN}.
+	 * @return {@link NodeKind#BOOLEAN}.
 	 */
 
 	@Override
-	public Kind getKind()
+	public NodeKind getKind()
 	{
-		return Kind.BOOLEAN;
+		return NodeKind.BOOLEAN;
 	}
 
 	//------------------------------------------------------------------
 
 	/**
 	 * {@inheritDoc}
-	 * For a JSON Boolean, this method always returns {@code false}.
+	 * For a Boolean node, this method always returns {@code false}.
 	 *
 	 * @return {@code false}.
 	 */
@@ -108,27 +108,27 @@ public class JsonBoolean
 	//------------------------------------------------------------------
 
 	/**
-	 * Returns {@code true} if the specified object is an instance of {@code JsonBoolean} <i>and</i> it has the same
-	 * value as this JSON Boolean.
+	 * Returns {@code true} if the specified object is an instance of {@code BooleanNode} <i>and</i> it has the same
+	 * value as this Boolean node.
 	 *
 	 * @param  obj
-	 *           the object with which this JSON Boolean will be compared.
-	 * @return {@code true} if <i>obj</i> is an instance of {@code JsonBoolean} <i>and</i> it has the same value as
-	 *         this JSON Boolean; {@code false} otherwise.
+	 *           the object with which this Boolean node will be compared.
+	 * @return {@code true} if <i>obj</i> is an instance of {@code BooleanNode} <i>and</i> it has the same value as this
+	 *         Boolean node ; {@code false} otherwise.
 	 */
 
 	@Override
 	public boolean equals(Object obj)
 	{
-		return (obj == this) || ((obj instanceof JsonBoolean) && (value == ((JsonBoolean)obj).value));
+		return (obj == this) || ((obj instanceof BooleanNode) && (value == ((BooleanNode)obj).value));
 	}
 
 	//------------------------------------------------------------------
 
 	/**
-	 * Returns the hash code of this JSON Boolean.
+	 * Returns the hash code of this Boolean node.
 	 *
-	 * @return the hash code of this JSON Boolean.
+	 * @return the hash code of this Boolean node.
 	 */
 
 	@Override
@@ -140,23 +140,23 @@ public class JsonBoolean
 	//------------------------------------------------------------------
 
 	/**
-	 * Creates a copy of this JSON Boolean that has no parent, and returns the copy.
+	 * Creates and returns a copy of this Boolean node that has no parent.
 	 *
-	 * @return a copy of this JSON Boolean that has no parent.
+	 * @return a copy of this Boolean node that has no parent.
 	 */
 
 	@Override
-	public JsonBoolean clone()
+	public BooleanNode clone()
 	{
-		return (JsonBoolean)super.clone();
+		return (BooleanNode)super.clone();
 	}
 
 	//------------------------------------------------------------------
 
 	/**
-	 * Returns a string representation of this JSON Boolean.
+	 * Returns a string representation of this Boolean node.
 	 *
-	 * @return a string representation of this JSON Boolean.
+	 * @return a string representation of this Boolean node.
 	 */
 
 	@Override
@@ -172,9 +172,9 @@ public class JsonBoolean
 ////////////////////////////////////////////////////////////////////////
 
 	/**
-	 * Returns the value of this JSON Boolean.
+	 * Returns the value of this Boolean node.
 	 *
-	 * @return the value of this JSON Boolean.
+	 * @return the value of this Boolean node.
 	 */
 
 	public boolean getValue()
@@ -188,7 +188,7 @@ public class JsonBoolean
 //  Instance fields
 ////////////////////////////////////////////////////////////////////////
 
-	/** The value of this JSON Boolean. */
+	/** The value of this Boolean node. */
 	private	boolean	value;
 
 }

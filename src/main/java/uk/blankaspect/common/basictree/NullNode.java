@@ -1,8 +1,8 @@
 /*====================================================================*\
 
-JsonNull.java
+NullNode.java
 
-Class: JSON null value.
+Class: null node.
 
 \*====================================================================*/
 
@@ -10,27 +10,27 @@ Class: JSON null value.
 // PACKAGE
 
 
-package uk.blankaspect.common.json;
+package uk.blankaspect.common.basictree;
 
 //----------------------------------------------------------------------
 
 
-// CLASS: JSON NULL VALUE
+// CLASS: NULL NODE
 
 
 /**
- * This class implements a JSON null value.
+ * This class implements a {@linkplain AbstractNode node} that represents a null value.
  */
 
-public class JsonNull
-	extends JsonValue
+public class NullNode
+	extends AbstractNode
 {
 
 ////////////////////////////////////////////////////////////////////////
 //  Constants
 ////////////////////////////////////////////////////////////////////////
 
-	/** The literal name of a JSON null value. */
+	/** The string representation of a null node. */
 	public static final	String	VALUE	= "null";
 
 ////////////////////////////////////////////////////////////////////////
@@ -38,10 +38,10 @@ public class JsonNull
 ////////////////////////////////////////////////////////////////////////
 
 	/**
-	 * Creates a new instance of a JSON null value that has no parent.
+	 * Creates a new instance of a null node that has no parent.
 	 */
 
-	public JsonNull()
+	public NullNode()
 	{
 		// Call alternative constructor
 		this(null);
@@ -50,13 +50,13 @@ public class JsonNull
 	//------------------------------------------------------------------
 
 	/**
-	 * Creates a new instance of a JSON null value that has the specified parent.
+	 * Creates a new instance of a null node that has the specified parent.
 	 *
 	 * @param parent
-	 *          the parent of the JSON null value.
+	 *          the parent of the null node.
 	 */
 
-	public JsonNull(JsonValue parent)
+	public NullNode(AbstractNode parent)
 	{
 		// Call superclass constructor
 		super(parent);
@@ -69,20 +69,20 @@ public class JsonNull
 ////////////////////////////////////////////////////////////////////////
 
 	/**
-	 * @return {@link JsonValue.Kind#NULL}.
+	 * @return {@link NodeKind#NULL}.
 	 */
 
 	@Override
-	public Kind getKind()
+	public NodeKind getKind()
 	{
-		return Kind.NULL;
+		return NodeKind.NULL;
 	}
 
 	//------------------------------------------------------------------
 
 	/**
 	 * {@inheritDoc}
-	 * For a JSON null value, this method always returns {@code false}.
+	 * For a null node, this method always returns {@code false}.
 	 *
 	 * @return {@code false}.
 	 */
@@ -96,25 +96,25 @@ public class JsonNull
 	//------------------------------------------------------------------
 
 	/**
-	 * Returns {@code true} if the specified object is an instance of {@code JsonNull}.
+	 * Returns {@code true} if the specified object is an instance of {@code NullNode}.
 	 *
 	 * @param  obj
-	 *           the object with which this JSON null will be compared.
-	 * @return {@code true} if <i>obj</i> is an instance of {@code JsonNull}; {@code false} otherwise.
+	 *           the object with which this null node will be compared.
+	 * @return {@code true} if <i>obj</i> is an instance of {@code NullNode}; {@code false} otherwise.
 	 */
 
 	@Override
 	public boolean equals(Object obj)
 	{
-		return (obj instanceof JsonNull);
+		return (obj instanceof NullNode);
 	}
 
 	//------------------------------------------------------------------
 
 	/**
-	 * Returns the hash code of this JSON null.
+	 * Returns the hash code of this null node.
 	 *
-	 * @return the hash code of this JSON null.
+	 * @return the hash code of this null node.
 	 */
 
 	@Override
@@ -126,23 +126,23 @@ public class JsonNull
 	//------------------------------------------------------------------
 
 	/**
-	 * Creates a copy of this JSON null that has no parent, and returns the copy.
+	 * Creates and returns a copy of this null node that has no parent.
 	 *
-	 * @return a copy of this JSON null that has no parent.
+	 * @return a copy of this null node that has no parent.
 	 */
 
 	@Override
-	public JsonNull clone()
+	public NullNode clone()
 	{
-		return (JsonNull)super.clone();
+		return (NullNode)super.clone();
 	}
 
 	//------------------------------------------------------------------
 
 	/**
-	 * Returns a string representation of this JSON null.
+	 * Returns a string representation of this null node.
 	 *
-	 * @return a string representation of this JSON null.
+	 * @return a string representation of this null node.
 	 */
 
 	@Override
