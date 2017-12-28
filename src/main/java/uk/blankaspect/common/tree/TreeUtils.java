@@ -66,6 +66,8 @@ public class TreeUtils
 	/**
 	 * Returns the root node of the tree to which the specified {@linkplain ITreeNode node} belongs.
 	 *
+	 * @param  <T>
+	 *           the type of the nodes of the tree.
 	 * @param  node
 	 *           the node whose root ancestor is required.
 	 * @return the root node of the tree to which {@code node} belongs.
@@ -87,6 +89,8 @@ public class TreeUtils
 	/**
 	 * Returns a list of the siblings of the specified {@linkplain ITreeNode node}.
 	 *
+	 * @param  <T>
+	 *           the type of the nodes of the tree.
 	 * @param  node
 	 *           the node whose siblings are required.
 	 * @return a list of the siblings of {@code node}.
@@ -107,6 +111,8 @@ public class TreeUtils
 	/**
 	 * Returns {@code true} if the specified node is an ancestor of the specified target node.
 	 *
+	 * @param  <T>
+	 *           the type of the nodes of the tree.
 	 * @param  node
 	 *           the node that is a potential ancestor of {@code target}.
 	 * @param  target
@@ -126,6 +132,8 @@ public class TreeUtils
 	 * Returns {@code true} if the specified node is an ancestor of the specified target node or, optionally, if the
 	 * node is identical to the target.
 	 *
+	 * @param  <T>
+	 *           the type of the nodes of the tree.
 	 * @param  node
 	 *           the node that is a potential ancestor of {@code target} or (if {@code testForIdentity} is {@code true})
 	 *           is potentially identical to {@code target}.
@@ -162,6 +170,8 @@ public class TreeUtils
 	 * Returns the depth of the specified {@linkplain ITreeNode node} (ie, the number of levels below the root node of
 	 * the tree to which the specified node belongs).
 	 *
+	 * @param  <T>
+	 *           the type of the nodes of the tree.
 	 * @param  node
 	 *           the node whose depth is required.
 	 * @return the depth of {@code node}.
@@ -187,6 +197,8 @@ public class TreeUtils
 	/**
 	 * Returns the number of levels of the specified {@linkplain ITreeNode node} below the specified root node.
 	 *
+	 * @param  <T>
+	 *           the type of the nodes of the tree.
 	 * @param  root
 	 *           the root of the tree node whose depth is required.
 	 * @param  node
@@ -228,6 +240,8 @@ public class TreeUtils
 	 * Returns the path to the specified {@linkplain ITreeNode node} from the root of the tree to which it belongs.  The
 	 * path is a list of nodes that includes the root and the target node.
 	 *
+	 * @param  <T>
+	 *           the type of the nodes of the tree.
 	 * @param  node
 	 *           the node whose path is required.
 	 * @return a list of nodes that denotes the path to {@code node} from the root of the tree to which it belongs.
@@ -256,6 +270,8 @@ public class TreeUtils
 	 * of the tree to which the target node belongs, which will be the first element of the list.
 	 * </p>
 	 *
+	 * @param  <T>
+	 *           the type of the nodes of the tree.
 	 * @param  root
 	 *           the node at which the path will start, unless it is not an ancestor of {@code node}.
 	 * @param  node
@@ -287,6 +303,8 @@ public class TreeUtils
 	 * -1 if the node is not a child of its parent.  The first element of the list is a child of the root node.  The
 	 * list is empty if the target node is a root node.
 	 *
+	 * @param  <T>
+	 *           the type of the nodes of the tree.
 	 * @param  node
 	 *           the node whose indices are required.
 	 * @param  baseIndex
@@ -333,6 +351,8 @@ public class TreeUtils
 	 *       if {@code includeRoot} is {@code false}.</li>
 	 * </ul>
 	 *
+	 * @param  <T>
+	 *           the type of the nodes of the tree.
 	 * @param  root
 	 *           the node at which the indices will start, unless it is not an ancestor of {@code node}.
 	 * @param  node
@@ -375,6 +395,10 @@ public class TreeUtils
 	 * children of the current node until either no children match or the last element of the path descriptor is
 	 * matched.
 	 *
+	 * @param  <T>
+	 *           the type of the nodes of the tree.
+	 * @param  <U>
+	 *           the type of the elements of the path.
 	 * @param  root
 	 *           the node at the root of a tree of {@code ITreeNode}s at which the search will start.
 	 * @param  path
@@ -414,6 +438,8 @@ public class TreeUtils
 	 * Performs a depth-first traversal of a tree of {@link ITreeNode}s, starting from the specified root node and
 	 * applying the specified action to each node that is visited.  The root node may optionally be visited.
 	 *
+	 * @param  <T>
+	 *           the type of the nodes of the tree.
 	 * @param root
 	 *          the node at the root of a tree of {@code ITreeNode}s, each of which will have {@code action} applied to
 	 *          it.
@@ -440,6 +466,8 @@ public class TreeUtils
 	 * Performs a breadth-first traversal of a tree of {@link ITreeNode}s, starting from the specified root node and
 	 * applying the specified action to each node that is visited.  The root node may optionally be visited.
 	 *
+	 * @param  <T>
+	 *           the type of the nodes of the tree.
 	 * @param root
 	 *          the node at the root of a tree of {@code ITreeNode}s, each of which will have {@code action} applied to
 	 *          it.
@@ -462,6 +490,8 @@ public class TreeUtils
 	 * Ascends a tree of {@link ITreeNode}s from the specified node to the root node, applying the specified action to
 	 * each node that is visited, including the root.
 	 *
+	 * @param  <T>
+	 *           the type of the nodes of the tree.
 	 * @param startNode
 	 *          the node from which the ascent will start.
 	 * @param action
@@ -480,6 +510,8 @@ public class TreeUtils
 	 * Ascends a tree of {@link ITreeNode}s from the specified node to the specified end node, applying the specified
 	 * action to each node that is visited.  The end node may optionally be visited.
 	 *
+	 * @param  <T>
+	 *           the type of the nodes of the tree.
 	 * @param startNode
 	 *          the node from which the ascent will start.
 	 * @param endNode
@@ -505,6 +537,8 @@ public class TreeUtils
 	 * Returns {@code true} if and only if the specified {@link ITreeNode} or one of its ancestors satisfies the
 	 * specified test.
 	 *
+	 * @param  <T>
+	 *           the type of the nodes of the tree.
 	 * @param  startNode
 	 *           the node from which the ascent will start.
 	 * @param  test
@@ -526,6 +560,8 @@ public class TreeUtils
 	 * found, the search terminates immediately and the matching node is returned.  The root node may optionally be
 	 * included in the search.
 	 *
+	 * @param  <T>
+	 *           the type of the nodes of the tree.
 	 * @param  root
 	 *           the node at which the search will start.
 	 * @param  preorder
@@ -578,6 +614,8 @@ public class TreeUtils
 	 * a node is found, the search terminates immediately and the matching node is returned.  The root node may
 	 * optionally be included in the search.
 	 *
+	 * @param  <T>
+	 *           the type of the nodes of the tree.
 	 * @param  root
 	 *           the node at which the search will start.
 	 * @param  includeRoot
@@ -649,6 +687,8 @@ public class TreeUtils
 	 * to each node that is visited until a node is found that satisfies the test.  If such a node is found, the search
 	 * terminates immediately and the matching node is returned.  The root is included in the search.
 	 *
+	 * @param  <T>
+	 *           the type of the nodes of the tree.
 	 * @param  startNode
 	 *           the node from which the search will start.
 	 * @param  test
@@ -671,6 +711,8 @@ public class TreeUtils
 	 * found, the search terminates immediately and the matching node is returned.  The end node may optionally be
 	 * included in the search.
 	 *
+	 * @param  <T>
+	 *           the type of the nodes of the tree.
 	 * @param  startNode
 	 *           the node from which the search will start.
 	 * @param  endNode
@@ -721,6 +763,8 @@ public class TreeUtils
 	/**
 	 * Returns a string representation of the tree of {@link ITreeNode}s whose root is the specified node.
 	 *
+	 * @param  <T>
+	 *           the type of the nodes of the tree.
 	 * @param  root
 	 *           the node at the root of the tree.
 	 * @param  indentIncrement
