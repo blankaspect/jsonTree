@@ -19,9 +19,9 @@ package uk.blankaspect.common.indexedsub;
 
 
 /**
- * This class provides methods that substitute specified replacement sequences for occurrences of placeholders in a
- * specified string.  A placeholder has the form "%<i>n</i>", where <i>n</i> is a decimal string representation of an
- * integer greater than or equal to 1.
+ * This class provides methods that substitute replacement sequences for occurrences of placeholders in a string.  A
+ * placeholder has the form "%<i>n</i>", where <i>n</i> is a decimal string representation of an integer greater than or
+ * equal to 1.
  */
 
 public class IndexedSub
@@ -69,9 +69,9 @@ public class IndexedSub
 	 * @param  str
 	 *           the string on which substitutions will be performed.
 	 * @param  replacements
-	 *           the sequences that will replace placeholders in {@code str}.
-	 * @return a transformation of the input string in which each placeholder is replaced by the element of {@code
-	 *         replacements} at the corresponding index.
+	 *           the sequences that will replace placeholders in <i>str</i>.
+	 * @return a transformation of the input string in which each placeholder is replaced by the element of
+	 *         <i>replacements</i> at the corresponding index.
 	 */
 
 	public static String sub(String          str,
@@ -154,21 +154,35 @@ public class IndexedSub
 	//------------------------------------------------------------------
 
 	/**
-	 * Substitutes the decimal string representation of the specified integer value for each occurrence of the
-	 * placeholder "%1" in the specified string.
+	 * Substitutes the decimal string representations of the specified integer values for occurrences of placeholders in
+	 * the specified string, and returns the resulting string.  A placeholder has the form "%<i>n</i>", where <i>n</i>
+	 * is a decimal string representation of an integer greater than or equal to 1.  Each placeholder is replaced by the
+	 * string representation of the specified value whose zero-based index is <i>n</i>-1; for example, the placeholder
+	 * "%3" will be replaced by the string representation of the value at index 2.  A placeholder that does not have a
+	 * corresponding replacement value is replaced by an empty string.
+	 * <p>
+	 * If a literal "%" is required in the output string, it must be escaped by prefixing another "%" to it (ie, "%%").
+	 * An unescaped "%" will be replaced by an empty string.
+	 * </p>
 	 *
 	 * @param  str
 	 *           the string on which substitutions will be performed.
-	 * @param  value
-	 *           the value whose decimal string representation will replace occurrences of "%1" in {@code str}.
-	 * @return a transformation of the input string in which each occurrence of "%1" is replaced by the decimal string
-	 *         representation of {@code value}.
+	 * @param  replacementValues
+	 *           the values whose decimal string representations will replace placeholders in <i>str</i>.
+	 * @return a transformation of the input string in which each placeholder is replaced by the the decimal string
+	 *         representation of the element of <i>replacementValues</i> at the corresponding index.
 	 */
 
 	public static String sub(String str,
-							 int    value)
+							 int... replacementValues)
 	{
-		return sub(str, Integer.toString(value));
+		// Convert replacement values to strings
+		String[] replacements = new String[replacementValues.length];
+		for (int i = 0; i < replacementValues.length; i++)
+			replacements[i] = Integer.toString(replacementValues[i]);
+
+		// Perform substitutions
+		return sub(str, replacements);
 	}
 
 	//------------------------------------------------------------------
