@@ -85,7 +85,7 @@ public abstract class AbstractNode
 	/**
 	 * Returns {@code true} if this node can contain other nodes.
 	 *
-	 * @return {@code true} if this node can contain other nodes, {@code false} otherwise.
+	 * @return {@code true} if this node can contain other nodes; {@code false} otherwise.
 	 */
 
 	public abstract boolean isContainer();
@@ -129,7 +129,7 @@ public abstract class AbstractNode
 ////////////////////////////////////////////////////////////////////////
 
 	/**
-	 * Creates a copy of this node that has no parent, and returns the copy.
+	 * Creates and returns a copy of this node that has no parent.
 	 *
 	 * @return a copy of this node that has no parent.
 	 */

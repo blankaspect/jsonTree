@@ -267,14 +267,15 @@ public class ListNode
 	//------------------------------------------------------------------
 
 	/**
-	 * Returns {@code true} if the specified object is an instance of {@code ListNode} <i>and</i> the two lists contain
-	 * the same number of elements <i>and</i> the elements at the same index in the two arrays are equal to each other.
+	 * Returns {@code true} if the specified object is an instance of {@code ListNode} <i>and</i> this list node
+	 * contains the same number of elements as the other list node <i>and</i> each element in this list node is equal
+	 * to the element at the same index in the other list node.
 	 *
 	 * @param  obj
 	 *           the object with which this list node will be compared.
-	 * @return {@code true} if <i>obj</i> is an instance of {@code ListNode} <i>and</i> the two arrays contain the
-	 *         same number of elements <i>and</i> the elements at the same index in the two arrays are equal to each
-	 *         other; {@code false} otherwise.
+	 * @return {@code true} if <i>obj</i> is an instance of {@code ListNode} <i>and</i> this list node contains the same
+	 *         number of elements as the other list node <i>and</i> each element in this list node is equal to the
+	 *         element at the same index in the other list node; {@code false} otherwise.
 	 */
 
 	@Override
