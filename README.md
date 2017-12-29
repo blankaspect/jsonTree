@@ -1,7 +1,7 @@
-### GitHub repository : blankaspect/jsonTree
+### blankaspect/jsonTree
 
 This repository contains the source code of a Java package that provides a parser and a generator for JavaScript Object
-Notation (JSON).
+Notation \(JSON\).
 
 The parser transforms text that conforms to the JSON grammar into a tree whose nodes are subclasses of the abstract
 class `uk.blankaspect.common.basictree.AbstractNode` .
@@ -11,7 +11,7 @@ over the formatting of the output.
 
 The tree of `AbstractNode`s can be traversed with the methods of the `uk.blankaspect.common.tree.TreeUtils` class.
 
-The Java version of the source code is 1.8 (Java SE 8).
+The Java version of the source code is 1.8 \(Java SE 8\).
 
 All the source files in this repo have a tab width of 4.  You can set this when viewing individual files on GitHub by
 appending `?ts=4` to the file's URL.  It's almost effortless. 
