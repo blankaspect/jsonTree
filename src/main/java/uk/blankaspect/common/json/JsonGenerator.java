@@ -19,7 +19,8 @@ package uk.blankaspect.common.json;
 
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.Iterator;
+import java.util.Map;
 
 import uk.blankaspect.common.basictree.AbstractNode;
 import uk.blankaspect.common.basictree.ListNode;
@@ -279,7 +280,7 @@ public class JsonGenerator
 					int numProperties = map.getNumPairs();
 					singleLine = (numProperties == 0)
 									|| ((mode != Mode.EXPANDED) && (numProperties == 1)
-										&& isValueOnSingleLine(map.getPairs().values().iterator().next(), indent + 2));
+										&& isValueOnSingleLine(map.getPairIterator().next().getValue(), indent + 2));
 					break;
 				}
 			}
@@ -530,10 +531,6 @@ public class JsonGenerator
 							  int           indent,
 							  StringBuilder buffer)
 	{
-		// Get number of properties and names of properties
-		int numProperties = object.getNumPairs();
-		List<String> names = object.getKeys();
-
 		// If required, remove LF and indent before opening brace
 		if (openingBracketOnSameLine)
 			removeLineFeedAndIndent(buffer);
@@ -545,19 +542,18 @@ public class JsonGenerator
 		if (isValueOnSingleLine(object, indent))
 		{
 			// Append properties
-			for (int i = 0; i < numProperties; i++)
+			Iterator<Map.Entry<String, AbstractNode>> it = object.getPairIterator();
+			while (it.hasNext())
 			{
-				// Append separator between properties
-				if (i > 0)
-					buffer.append(JsonObject.PROPERTY_SEPARATOR_CHAR);
-
 				// Append space after separator
 				if (mode != Mode.DENSE)
 					buffer.append(' ');
 
+				// Get property
+				Map.Entry<String, AbstractNode> property = it.next();
+
 				// Append name of property
-				String name = names.get(i);
-				buffer.append(object.keyToString(name));
+				buffer.append(object.keyToString(property.getKey()));
 
 				// Append separator between name and value
 				buffer.append(JsonObject.NAME_VALUE_SEPARATOR_CHAR);
@@ -567,7 +563,11 @@ public class JsonGenerator
 					buffer.append(' ');
 
 				// Append value of property
-				appendValue(object.getValue(name), 0, buffer);
+				appendValue(property.getValue(), 0, buffer);
+
+				// Append separator between properties
+				if (it.hasNext())
+					buffer.append(JsonObject.PROPERTY_SEPARATOR_CHAR);
 			}
 
 			// Append space before closing brace
@@ -585,7 +585,8 @@ public class JsonGenerator
 			buffer.append('\n');
 
 			// Append properties
-			for (int i = 0; i < numProperties; i++)
+			Iterator<Map.Entry<String, AbstractNode>> it = object.getPairIterator();
+			while (it.hasNext())
 			{
 				// Get index of start of property
 				int index = buffer.length();
@@ -593,15 +594,17 @@ public class JsonGenerator
 				// Append indent before name of property
 				buffer.append(spaces, 0, childIndent);
 
+				// Get property
+				Map.Entry<String, AbstractNode> property = it.next();
+
 				// Append name of property
-				String name = names.get(i);
-				buffer.append(object.keyToString(name));
+				buffer.append(object.keyToString(property.getKey()));
 
 				// Append separator between name and value
 				buffer.append(JsonObject.NAME_VALUE_SEPARATOR_CHAR);
 
 				// Get value of property
-				AbstractNode value = object.getValue(name);
+				AbstractNode value = property.getValue();
 
 				// If value of property is on single line, append it with a single space before it ...
 				if (isValueOnSingleLine(value, buffer.length() - index + 1))
@@ -615,7 +618,7 @@ public class JsonGenerator
 				}
 
 				// Append separator between properties
-				if (i < numProperties - 1)
+				if (it.hasNext())
 					buffer.append(JsonObject.PROPERTY_SEPARATOR_CHAR);
 
 				// Append LF after property
