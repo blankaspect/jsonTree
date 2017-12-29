@@ -26,6 +26,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import java.util.function.Function;
+
 //----------------------------------------------------------------------
 
 
@@ -76,6 +78,208 @@ public class MapNode
 	public static final	char	PAIR_SEPARATOR_CHAR			= ',';
 
 ////////////////////////////////////////////////////////////////////////
+//  Member classes : non-inner classes
+////////////////////////////////////////////////////////////////////////
+
+
+	// CLASS: KEY-VALUE PAIR
+
+
+	/**
+	 * This class encapsulates a key&ndash;value pair of a {@linkplain MapNode map node}.  The key is a string and the
+	 * value is a {@linkplain AbstractNode node}.
+	 */
+
+	public static class Pair
+		implements Cloneable
+	{
+
+	////////////////////////////////////////////////////////////////////
+	//  Constructors
+	////////////////////////////////////////////////////////////////////
+
+		/**
+		 * Creates a new instance of a key&ndash;value pair of a {@linkplain MapNode map node}.
+		 *
+		 * @param key
+		 *          the key of the key&ndash;value pair.
+		 * @param value
+		 *          the value of the key&ndash;value pair.
+		 */
+
+		public Pair(String       key,
+					AbstractNode value)
+		{
+			// Validate arguments
+			if (key == null)
+				throw new IllegalArgumentException("Null key");
+			if (value == null)
+				throw new IllegalArgumentException("Null value");
+
+			// Initialise instance fields
+			this.key = key;
+			this.value = value;
+		}
+
+		//--------------------------------------------------------------
+
+	////////////////////////////////////////////////////////////////////
+	//  Class methods
+	////////////////////////////////////////////////////////////////////
+
+		/**
+		 * Sets the function that converts the key of a key&ndash;value pair to its string representation for the {@link
+		 * #toString()} method.  The default converter is the method {@link StringNode#escapeAndQuote(CharSequence)}.
+		 *
+		 * @param converter  the function that converts the key of a key&ndash;value pair to a string representation.
+		 */
+
+		public static void setKeyConverter(Function<CharSequence, String> converter)
+		{
+			keyConverter = converter;
+		}
+
+		//--------------------------------------------------------------
+
+	////////////////////////////////////////////////////////////////////
+	//  Instance methods : overriding methods
+	////////////////////////////////////////////////////////////////////
+
+		/**
+		 * Returns {@code true} if the specified object is an instance of {@code Pair} <i>and</i> the keys and values of
+		 * the two pairs are equal to each other.
+		 *
+		 * @param  obj
+		 *           the object with which this KV pair will be compared.
+		 * @return {@code true} if <i>obj</i> is an instance of {@code Pair} <i>and</i> the keys and values of the two
+		 *         pairs are equal to each other; {@code false} otherwise.
+		 */
+
+		@Override
+		public boolean equals(Object obj)
+		{
+			if (this == obj)
+				return true;
+
+			if (obj instanceof Pair)
+			{
+				Pair other = (Pair)obj;
+				return key.equals(other.key) && value.equals(other.value);
+			}
+			return false;
+		}
+
+		//--------------------------------------------------------------
+
+		/**
+		 * Returns the hash code of this key&ndash;value pair.
+		 *
+		 * @return the hash code of this key&ndash;value pair.
+		 */
+
+		@Override
+		public int hashCode()
+		{
+			return key.hashCode() * 31 + value.hashCode();
+		}
+
+		//--------------------------------------------------------------
+
+		/**
+		 * Creates and returns a copy of this key&ndash;value pair.
+		 *
+		 * @return a copy of this key&ndash;value pair.
+		 */
+
+		@Override
+		public Pair clone()
+		{
+			try
+			{
+				// Create copy of this pair
+				Pair copy = (Pair)super.clone();
+
+				// Create copy of value
+				copy.value = value.clone();
+
+				// Return copy
+				return copy;
+			}
+			catch (CloneNotSupportedException e)
+			{
+				throw new RuntimeException("Unexpected exception", e);
+			}
+		}
+
+		//--------------------------------------------------------------
+
+		/**
+		 * Returns a string representation of this pair.
+		 *
+		 * @return a string representation of this pair.
+		 */
+
+		@Override
+		public String toString()
+		{
+			return keyConverter.apply(key) + KEY_VALUE_SEPARATOR_CHAR + ' ' + value;
+		}
+
+		//--------------------------------------------------------------
+
+	////////////////////////////////////////////////////////////////////
+	//  Instance methods
+	////////////////////////////////////////////////////////////////////
+
+		/**
+		 * Returns the key of this key&ndash;value pair.
+		 *
+		 * @return the key of this key&ndash;value pair.
+		 */
+
+		public String getKey()
+		{
+			return key;
+		}
+
+		//--------------------------------------------------------------
+
+		/**
+		 * Returns the value of this key&ndash;value pair.
+		 *
+		 * @return the value of this key&ndash;value pair.
+		 */
+
+		public AbstractNode getValue()
+		{
+			return value;
+		}
+
+		//--------------------------------------------------------------
+
+	////////////////////////////////////////////////////////////////////
+	//  Class fields
+	////////////////////////////////////////////////////////////////////
+
+		/** The function that converts the key of a key&ndash;value pair to its string representation for {@link
+			#toString()}. */
+		private static	Function<CharSequence, String>	keyConverter	= StringNode::escapeAndQuote;
+
+	////////////////////////////////////////////////////////////////////
+	//  Instance fields
+	////////////////////////////////////////////////////////////////////
+
+		/** The key of this key&ndash;value pair. */
+		private	String			key;
+
+		/** The value of this key&ndash;value pair. */
+		private	AbstractNode	value;
+
+	}
+
+	//==================================================================
+
+////////////////////////////////////////////////////////////////////////
 //  Constructors
 ////////////////////////////////////////////////////////////////////////
 
@@ -118,10 +322,83 @@ public class MapNode
 	 *          the initial key&ndash;value pairs of the map node.
 	 */
 
+	public MapNode(Pair... pairs)
+	{
+		// Call alternative constructor
+		this(null, Arrays.asList(pairs));
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Creates a new instance of a map node that has no parent and initially contains the specified key&ndash;value
+	 * pairs.
+	 *
+	 * @param pairs
+	 *          the initial key&ndash;value pairs of the map node.
+	 */
+
+	public MapNode(Iterable<? extends Pair> pairs)
+	{
+		// Call alternative constructor
+		this(null, pairs);
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Creates a new instance of a map node that has no parent and initially contains the specified key&ndash;value
+	 * pairs.
+	 *
+	 * @param pairs
+	 *          the initial key&ndash;value pairs of the map node.
+	 */
+
 	public MapNode(Map<String, AbstractNode> pairs)
 	{
 		// Call alternative constructor
 		this(null, pairs);
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Creates a new instance of a map node that has the specified parent and initially contains the specified
+	 * key&ndash;value pairs.
+	 *
+	 * @param parent
+	 *          the parent of the map node.
+	 * @param pairs
+	 *          the initial key&ndash;value pairs of the map node.
+	 */
+
+	public MapNode(AbstractNode parent,
+				   Pair...      pairs)
+	{
+		// Call alternative constructor
+		this(parent, Arrays.asList(pairs));
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Creates a new instance of a map node that has the specified parent and initially contains the specified
+	 * key&ndash;value pairs.
+	 *
+	 * @param parent
+	 *          the parent of the map node.
+	 * @param pairs
+	 *          the initial key&ndash;value pairs of the map node.
+	 */
+
+	public MapNode(AbstractNode             parent,
+				   Iterable<? extends Pair> pairs)
+	{
+		// Call alternative constructor
+		this(parent);
+
+		// Initialise instance fields
+		addPairs(pairs);
 	}
 
 	//------------------------------------------------------------------
@@ -144,6 +421,112 @@ public class MapNode
 
 		// Initialise instance fields
 		addPairs(pairs);
+	}
+
+	//------------------------------------------------------------------
+
+////////////////////////////////////////////////////////////////////////
+//  Class methods
+////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * Creates a {@linkplain BooleanNode Boolean node} for the specified value, creates a {@linkplain Pair
+	 * key&ndash;value pair} whose key is the specified key and whose value is the Boolean node, and returns the KV
+	 * pair.
+	 *
+	 * @param  key
+	 *           the key of the key&ndash;value pair.
+	 * @param  value
+	 *           the value of the Boolean node.
+	 * @return a key&ndash;value pair whose key is <i>key</i> and whose value is a new Boolean node whose value is
+	 *         <i>value</i>.
+	 */
+
+	public static Pair pair(String  key,
+							boolean value)
+	{
+		return new Pair(key, new BooleanNode(value));
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Creates an {@linkplain IntNode 'int' node} for the specified value, creates a {@linkplain Pair key&ndash;value
+	 * pair} whose key is the specified key and whose value is the 'int' node, and returns the KV pair.
+	 *
+	 * @param  key
+	 *           the key of the key&ndash;value pair.
+	 * @param  value
+	 *           the value of the 'int' node.
+	 * @return a key&ndash;value pair whose key is <i>key</i> and whose value is a new 'int' node whose value is
+	 *         <i>value</i>.
+	 */
+
+	public static Pair pair(String key,
+							int    value)
+	{
+		return new Pair(key, new IntNode(value));
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Creates a {@linkplain LongNode 'long' node} for the specified value, creates a {@linkplain Pair key&ndash;value
+	 * pair} whose key is the specified key and whose value is the 'long' node, and returns the KV pair.
+	 *
+	 * @param  key
+	 *           the key of the key&ndash;value pair.
+	 * @param  value
+	 *           the value of the 'long' node.
+	 * @return a key&ndash;value pair whose key is <i>key</i> and whose value is a new 'long' node whose value is
+	 *         <i>value</i>.
+	 */
+
+	public static Pair pair(String key,
+							long   value)
+	{
+		return new Pair(key, new LongNode(value));
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Creates a {@linkplain DoubleNode 'double' node} for the specified value, creates a {@linkplain Pair
+	 * key&ndash;value pair} whose key is the specified key and whose value is the 'double' node, and returns the KV
+	 * pair.
+	 *
+	 * @param  key
+	 *           the key of the key&ndash;value pair.
+	 * @param  value
+	 *           the value of the 'double' node.
+	 * @return a key&ndash;value pair whose key is <i>key</i> and whose value is a new 'double' node whose value is
+	 *         <i>value</i>.
+	 */
+
+	public static Pair pair(String key,
+							double value)
+	{
+		return new Pair(key, new DoubleNode(value));
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Creates a {@linkplain StringNode string node} for the specified value, creates a {@linkplain Pair key&ndash;value
+	 * pair} whose key is the specified key and whose value is the string node, and returns the KV pair.
+	 *
+	 * @param  key
+	 *           the key of the key&ndash;value pair.
+	 * @param  value
+	 *           the value of the string node.
+	 * @return a key&ndash;value pair whose key is <i>key</i> and whose value is a new string node whose value is
+	 *         <i>value</i>.
+	 */
+
+	public static Pair pair(String key,
+							String value)
+	{
+		return new Pair(key, new StringNode(value));
 	}
 
 	//------------------------------------------------------------------
@@ -186,7 +569,8 @@ public class MapNode
 	 *
 	 * @return a list of the values of the key&ndash;value pairs of this map node.
 	 * @see    #getKeys()
-	 * @see    #getPairs()
+	 * @see    #getPairList()
+	 * @see    #getPairMap()
 	 */
 
 	@Override
@@ -198,14 +582,17 @@ public class MapNode
 	//------------------------------------------------------------------
 
 	/**
-	 * Returns {@code true} if the specified object is an instance of {@code MapNode} <i>and</i> the two objects contain
-	 * the same number of key&ndash;value pairs <i>and</i> the pairs of the two objects are equal to each other.
+	 * Returns {@code true} if the specified object is an instance of {@code MapNode} <i>and</i> this map node contains
+	 * the same number of key&ndash;value pairs as the other map node <i>and</i> for each KV pair in this map node,
+	 * <i>kv1</i>, there is a KV pair in the other map node, <i>kv2</i>, for which the keys of <i>kv1</i> and
+	 * <i>kv2</i> are equal and the values of <i>kv1</i> and <i>kv2</i> are equal.
 	 *
 	 * @param  obj
 	 *           the object with which this map node will be compared.
-	 * @return {@code true} if <i>obj</i> is an instance of {@code MapNode} <i>and</i> the two objects contain the same
-	 *         number of key&ndash;value pairs <i>and</i> the pairs of the two objects are equal to each other; {@code
-	 *         false} otherwise.
+	 * @return {@code true} if <i>obj</i> is an instance of {@code MapNode} <i>and</i> this map node contains the same
+	 *         number of key&ndash;value pairs as the other map node <i>and</i> for each KV pair in this map node,
+	 *         <i>kv1</i>, there is a KV pair in the other map node, <i>kv2</i>, for which the keys of <i>kv1</i> and
+	 *         <i>kv2</i> are equal and the values of <i>kv1</i> and <i>kv2</i> are equal; {@code false} otherwise.
 	 */
 
 	@Override
@@ -483,7 +870,8 @@ public class MapNode
 	 *
 	 * @return a list of the keys of the key&ndash;value pairs of this map node.
 	 * @see    #getChildren()
-	 * @see    #getPairs()
+	 * @see    #getPairList()
+	 * @see    #getPairMap()
 	 */
 
 	public List<String> getKeys()
@@ -877,19 +1265,54 @@ public class MapNode
 	//------------------------------------------------------------------
 
 	/**
-	 * Returns an unmodifiable map of the key&ndash;value pairs of this map node.  The iterator over the {@linkplain
-	 * Map#entrySet() entries of the map} returns the KV pairs in the order in which they were added to this map node.
-	 * Although the returned map cannot be modified, the values of its KV pairs <i>can</i> be modified, and doing so
-	 * (for example, changing the parent of a node) will affect this map node.
+	 * Returns a list of the key&ndash;value pairs of this map node.  Iterating over the list will traverse the KV pairs
+	 * in the order in which they were added to this map node.  Modifying the value of a KV pair (for example, changing
+	 * the parent of a node) will affect this map node.
 	 *
-	 * @return an unmodifiable map of the key&ndash;value pairs of this map node.
+	 * @return a list of the key&ndash;value pairs of this map node.
+	 * @see    #getPairMap()
 	 * @see    #getChildren()
 	 * @see    #getKeys()
 	 */
 
-	public Map<String, AbstractNode> getPairs()
+	public List<Pair> getPairList()
+	{
+		List<Pair> pairs = new ArrayList<>();
+		for (Map.Entry<String, AbstractNode> entry : this.pairs.entrySet())
+			pairs.add(new Pair(entry.getKey(), entry.getValue()));
+		return pairs;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns an unmodifiable map of the key&ndash;value pairs of this map node.  Iterating over the {@linkplain
+	 * Map#entrySet() entries} of the map will traverse the KV pairs in the order in which they were added to this map
+	 * node.  Although the returned map cannot be modified, the values of its KV pairs <i>can</i> be modified, and doing
+	 * so (for example, changing the parent of a node) will affect this map node.
+	 *
+	 * @return an unmodifiable map of the key&ndash;value pairs of this map node.
+	 * @see    #getPairList()
+	 * @see    #getChildren()
+	 * @see    #getKeys()
+	 */
+
+	public Map<String, AbstractNode> getPairMap()
 	{
 		return Collections.unmodifiableMap(pairs);
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns an iterator over the key&ndash;value pairs of this map node.
+	 *
+	 * @return an iterator over the key&ndash;value pairs of this map node.
+	 */
+
+	public Iterator<Map.Entry<String, AbstractNode>> getPairIterator()
+	{
+		return pairs.entrySet().iterator();
 	}
 
 	//------------------------------------------------------------------
@@ -906,6 +1329,24 @@ public class MapNode
 	{
 		this.pairs.clear();
 		addPairs(pairs);
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Adds the specified key&ndash;value pair to this map node.  If this map node already contains a KV pair with the
+	 * key of the new pair, the new pair will replace the existing pair without affecting the order of the pairs;
+	 * otherwise, the specified pair will be added to end of the collection of pairs.
+	 *
+	 * @param pair
+	 *          the key&ndash;value pair that will be added to this map node.
+	 * @throws IllegalArgumentException
+	 *          if <i>pair</i> is {@code null}.
+	 */
+
+	public void addPair(Pair pair)
+	{
+		addPair(pair.key, pair.value);
 	}
 
 	//------------------------------------------------------------------
@@ -931,11 +1372,47 @@ public class MapNode
 	//------------------------------------------------------------------
 
 	/**
+	 * Adds the specified key&ndash;value pairs to the key&ndash;value pairs of this map node.  If this map node already
+	 * contains a KV pair with the key of one of the new pairs, the value of the new pair will replace the value of the
+	 * existing pair without affecting the order of the pairs; otherwise, the new KV pair will be added to end of the
+	 * collection of pairs.  The KV pairs are added in the order in which they are traversed by their iterator.
+	 *
+	 * @param pairs
+	 *          the key&ndash;value pairs that will be added to the key&ndash;value pairs of this map node.
+	 */
+
+	public void addPairs(Pair... pairs)
+	{
+		for (Pair pair : pairs)
+			addPair(pair);
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Adds the specified key&ndash;value pairs to the key&ndash;value pairs of this map node.  If this map node already
+	 * contains a KV pair with the key of one of the new pairs, the value of the new pair will replace the value of the
+	 * existing pair without affecting the order of the pairs; otherwise, the new KV pair will be added to end of the
+	 * collection of pairs.  The KV pairs are added in the order in which they are traversed by their iterator.
+	 *
+	 * @param pairs
+	 *          the key&ndash;value pairs that will be added to the key&ndash;value pairs of this map node.
+	 */
+
+	public void addPairs(Iterable<? extends Pair> pairs)
+	{
+		for (Pair pair : pairs)
+			addPair(pair);
+	}
+
+	//------------------------------------------------------------------
+
+	/**
 	 * Adds the specified pairs of keys and {@linkplain AbstractNode values} to the key&ndash;value pairs of this map
-	 * node.  If this map node already contains a KV pair with a specified key, the corresponding specified value will
-	 * replace the value of the existing pair without affecting the order of the pairs; otherwise, a new KV pair will be
-	 * added to end of the collection of pairs.  The KV pairs are added in the order in which they are returned by the
-	 * iterator of the entries of the input map.
+	 * node.  If this map node already contains a KV pair with the key of one of the new pairs, the value of the new
+	 * pair will replace the value of the existing pair without affecting the order of the pairs; otherwise, the new KV
+	 * pair will be added to end of the collection of pairs.  The KV pairs are added in the order in which they are
+	 * traversed by the iterator over the entries of the input map.
 	 *
 	 * @param pairs
 	 *          the pairs of keys and values that will be added to the key&ndash;value pairs of this map node.
@@ -1399,19 +1876,49 @@ public class MapNode
 	//------------------------------------------------------------------
 
 	/**
-	 * Creates a new instance of a {@linkplain MapNode map node}, adds it to this map node as a key&ndash;value pair
-	 * with the specified key and returns it.  If this map node already contains a KV pair with the specified key, the
-	 * new node will replace the value of the existing pair without affecting the order of the pairs; otherwise, a new
-	 * KV pair will be added to end of the collection of pairs.
+	 * Creates a new instance of a {@linkplain MapNode map node} that contains the specified pairs of keys and values,
+	 * adds the new map node to this map node as a key&ndash;value pair with the specified key and returns it.  If this
+	 * map node already contains a KV pair with the specified key, the new node will replace the value of the existing
+	 * pair without affecting the order of the pairs; otherwise, a new KV pair will be added to end of the collection of
+	 * pairs.
 	 *
 	 * @param  key
 	 *           the key with which the new map node will be associated.
-	 * @return the new map node that was added to this map node as a key&ndash;value pair whose key is <i>key</i>.
+	 * @param  pairs
+	 *           the key&ndash;value pairs of the new map node.
+	 * @return the new map node that contains <i>pairs</i> and that was added to this map node as a key&ndash;value pair
+	 *         whose key is <i>key</i>.
 	 */
 
-	public MapNode addMap(String key)
+	public MapNode addMap(String  key,
+						  Pair... pairs)
 	{
-		MapNode node = new MapNode();
+		MapNode node = new MapNode(pairs);
+		addPair(key, node);
+		return node;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Creates a new instance of a {@linkplain MapNode map node} that contains the specified pairs of keys and values,
+	 * adds the new map node to this map node as a key&ndash;value pair with the specified key and returns it.  If this
+	 * map node already contains a KV pair with the specified key, the new node will replace the value of the existing
+	 * pair without affecting the order of the pairs; otherwise, a new KV pair will be added to end of the collection of
+	 * pairs.
+	 *
+	 * @param  key
+	 *           the key with which the new map node will be associated.
+	 * @param  pairs
+	 *           the key&ndash;value pairs of the new map node.
+	 * @return the new map node that contains <i>pairs</i> and that was added to this map node as a key&ndash;value pair
+	 *         whose key is <i>key</i>.
+	 */
+
+	public MapNode addMap(String                   key,
+						  Iterable<? extends Pair> pairs)
+	{
+		MapNode node = new MapNode(pairs);
 		addPair(key, node);
 		return node;
 	}
