@@ -28,7 +28,9 @@ import uk.blankaspect.common.basictree.AbstractNode;
 import uk.blankaspect.common.basictree.BooleanNode;
 import uk.blankaspect.common.basictree.DoubleNode;
 import uk.blankaspect.common.basictree.IntNode;
+import uk.blankaspect.common.basictree.ListNode;
 import uk.blankaspect.common.basictree.LongNode;
+import uk.blankaspect.common.basictree.MapNode;
 import uk.blankaspect.common.basictree.NullNode;
 import uk.blankaspect.common.basictree.StringNode;
 
@@ -448,18 +450,18 @@ public class JsonParser
 								state = State.STRING_VALUE;
 								break;
 
-							case JsonObject.START_CHAR:
-								value = new JsonObject(value);
-								state = State.PROPERTY_START;
-								break;
-
 							case JsonArray.START_CHAR:
-								value = new JsonArray(value);
+								value = new ListNode(value);
 								state = State.ARRAY_ELEMENT_START;
 								break;
 
-							case JsonObject.END_CHAR:
+							case JsonObject.START_CHAR:
+								value = new MapNode(value);
+								state = State.PROPERTY_START;
+								break;
+
 							case JsonArray.END_CHAR:
+							case JsonObject.END_CHAR:
 							case JsonObject.NAME_VALUE_SEPARATOR_CHAR:
 							case JsonObject.PROPERTY_SEPARATOR_CHAR:
 								throw new ParseException(ErrorMsg.VALUE_EXPECTED, lineIndex,
@@ -496,7 +498,7 @@ public class JsonParser
 						{
 							case LIST:
 								// Add element to its parent array
-								((JsonArray)parent).addElement(value);
+								((ListNode)parent).addElement(value);
 
 								// Set next state
 								state = State.ARRAY_ELEMENT_END;
@@ -504,8 +506,8 @@ public class JsonParser
 
 							case MAP:
 							{
-								// Cast parent to JSON object value
-								JsonObject object = (JsonObject)parent;
+								// Cast parent to map node
+								MapNode object = (MapNode)parent;
 
 								// Get name of current property from stack
 								PropertyName propertyName = propertyNameStack.removeFirst();
@@ -838,7 +840,7 @@ public class JsonParser
 						if (ch == JsonArray.END_CHAR)
 						{
 							// Test for empty array
-							if (!((JsonArray)value).isEmpty())
+							if (!((ListNode)value).isEmpty())
 								throw new ParseException(ErrorMsg.ARRAY_ELEMENT_EXPECTED, lineIndex,
 														 index - 1 - lineStartIndex);
 
