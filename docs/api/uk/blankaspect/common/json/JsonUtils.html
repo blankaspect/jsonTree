@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9};
+var methods = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -129,25 +129,45 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>static boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/json/JsonUtils.html#isJsonContainer-uk.blankaspect.common.basictree.AbstractNode-">isJsonContainer</a></span>(<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;node)</code>
+<div class="block">Returns <code>true</code> if the specified <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a> represents a JSON container (ie, an array or
+ object).</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>static boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/json/JsonUtils.html#isJsonValue-uk.blankaspect.common.basictree.AbstractNode-">isJsonValue</a></span>(<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;node)</code>
+<div class="block">Returns <code>true</code> if the specified <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a> represents a JSON value.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>static boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/json/JsonUtils.html#isSimpleJsonValue-uk.blankaspect.common.basictree.AbstractNode-">isSimpleJsonValue</a></span>(<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;node)</code>
+<div class="block">Returns <code>true</code> if the specified <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a> represents a simple JSON value (ie, a null,
+ a Boolean, a number or a string).</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>static <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/json/JsonUtils.html#readFile-java.nio.file.Path-">readFile</a></span>(java.nio.file.Path&nbsp;file)</code>
 <div class="block">Reads the specified file, parses its content as JSON text and returns the resulting JSON value.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/json/JsonUtils.html#readText-java.nio.file.Path-">readText</a></span>(java.nio.file.Path&nbsp;file)</code>
 <div class="block">Reads the specified file and returns the resulting text, which is assumed to have the UTF-8 character encoding.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/json/JsonUtils.html#writeFile-java.nio.file.Path-uk.blankaspect.common.basictree.AbstractNode-">writeFile</a></span>(java.nio.file.Path&nbsp;file,
          <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;value)</code>
 <div class="block">Writes the specified JSON value to the specified file as JSON text.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/json/JsonUtils.html#writeFile-java.nio.file.Path-uk.blankaspect.common.basictree.AbstractNode-uk.blankaspect.common.json.JsonGenerator-">writeFile</a></span>(java.nio.file.Path&nbsp;file,
          <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;value,
@@ -156,7 +176,7 @@ extends java.lang.Object</pre>
  <a href="../../../../uk/blankaspect/common/json/JsonGenerator.html" title="class in uk.blankaspect.common.json"><code>JsonGenerator</code></a>.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/json/JsonUtils.html#writeText-java.nio.file.Path-java.lang.String-">writeText</a></span>(java.nio.file.Path&nbsp;file,
          java.lang.String&nbsp;text)</code>
@@ -185,6 +205,56 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="isJsonValue-uk.blankaspect.common.basictree.AbstractNode-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isJsonValue</h4>
+<pre>public static&nbsp;boolean&nbsp;isJsonValue(<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;node)</pre>
+<div class="block">Returns <code>true</code> if the specified <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a> represents a JSON value.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>node</code> - the node of interest.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><code>true</code> if <i>node</i> represents a JSON value; <code>false</code> otherwise.</dd>
+</dl>
+</li>
+</ul>
+<a name="isSimpleJsonValue-uk.blankaspect.common.basictree.AbstractNode-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isSimpleJsonValue</h4>
+<pre>public static&nbsp;boolean&nbsp;isSimpleJsonValue(<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;node)</pre>
+<div class="block">Returns <code>true</code> if the specified <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a> represents a simple JSON value (ie, a null,
+ a Boolean, a number or a string).</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>node</code> - the node of interest.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><code>true</code> if <i>node</i> represents a JSON null, Boolean, number or string; <code>false</code> otherwise.</dd>
+</dl>
+</li>
+</ul>
+<a name="isJsonContainer-uk.blankaspect.common.basictree.AbstractNode-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isJsonContainer</h4>
+<pre>public static&nbsp;boolean&nbsp;isJsonContainer(<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;node)</pre>
+<div class="block">Returns <code>true</code> if the specified <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a> represents a JSON container (ie, an array or
+ object).</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>node</code> - the node of interest.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><code>true</code> if <i>node</i> represents a JSON array or object; <code>false</code> otherwise.</dd>
+</dl>
+</li>
+</ul>
 <a name="readFile-java.nio.file.Path-">
 <!--   -->
 </a>

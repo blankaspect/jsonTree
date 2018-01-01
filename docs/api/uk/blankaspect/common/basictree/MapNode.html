@@ -201,6 +201,12 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <div class="block">The character that denotes the start of the string representation of a map node.</div>
 </td>
 </tr>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="../../../../uk/blankaspect/common/basictree/NodeType.html" title="class in uk.blankaspect.common.basictree">NodeType</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/MapNode.html#TYPE">TYPE</a></span></code>
+<div class="block">The type of a map node.</div>
+</td>
+</tr>
 </table>
 </li>
 </ul>
@@ -570,25 +576,19 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 </td>
 </tr>
 <tr id="i39" class="rowColor">
-<td class="colFirst"><code><a href="../../../../uk/blankaspect/common/basictree/NodeKind.html" title="enum in uk.blankaspect.common.basictree">NodeKind</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/MapNode.html#getKind--">getKind</a></span>()</code>
-<div class="block">Returns the kind of this node.</div>
-</td>
-</tr>
-<tr id="i40" class="altColor">
 <td class="colFirst"><code><a href="../../../../uk/blankaspect/common/basictree/ListNode.html" title="class in uk.blankaspect.common.basictree">ListNode</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/MapNode.html#getListNode-java.lang.String-">getListNode</a></span>(java.lang.String&nbsp;key)</code>
 <div class="block">Returns the <a href="../../../../uk/blankaspect/common/basictree/ListNode.html" title="class in uk.blankaspect.common.basictree">list node</a> that is associated with the specified key in this map node.</div>
 </td>
 </tr>
-<tr id="i41" class="rowColor">
+<tr id="i40" class="altColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/MapNode.html#getLong-java.lang.String-">getLong</a></span>(java.lang.String&nbsp;key)</code>
 <div class="block">Returns the underlying value of the <a href="../../../../uk/blankaspect/common/basictree/LongNode.html" title="class in uk.blankaspect.common.basictree">'long' node</a> that is associated with the specified key
  in this map node.</div>
 </td>
 </tr>
-<tr id="i42" class="altColor">
+<tr id="i41" class="rowColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/MapNode.html#getLong-java.lang.String-long-">getLong</a></span>(java.lang.String&nbsp;key,
        long&nbsp;defaultValue)</code>
@@ -596,56 +596,56 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
  in this map node.</div>
 </td>
 </tr>
-<tr id="i43" class="rowColor">
+<tr id="i42" class="altColor">
 <td class="colFirst"><code><a href="../../../../uk/blankaspect/common/basictree/LongNode.html" title="class in uk.blankaspect.common.basictree">LongNode</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/MapNode.html#getLongNode-java.lang.String-">getLongNode</a></span>(java.lang.String&nbsp;key)</code>
 <div class="block">Returns the <a href="../../../../uk/blankaspect/common/basictree/LongNode.html" title="class in uk.blankaspect.common.basictree">'long' node</a> that is associated with the specified key in this map node.</div>
 </td>
 </tr>
-<tr id="i44" class="altColor">
+<tr id="i43" class="rowColor">
 <td class="colFirst"><code><a href="../../../../uk/blankaspect/common/basictree/MapNode.html" title="class in uk.blankaspect.common.basictree">MapNode</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/MapNode.html#getMapNode-java.lang.String-">getMapNode</a></span>(java.lang.String&nbsp;key)</code>
 <div class="block">Returns the <a href="../../../../uk/blankaspect/common/basictree/MapNode.html" title="class in uk.blankaspect.common.basictree">map node</a> that is associated with the specified key in this map node.</div>
 </td>
 </tr>
-<tr id="i45" class="rowColor">
+<tr id="i44" class="altColor">
 <td class="colFirst"><code><a href="../../../../uk/blankaspect/common/basictree/NullNode.html" title="class in uk.blankaspect.common.basictree">NullNode</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/MapNode.html#getNullNode-java.lang.String-">getNullNode</a></span>(java.lang.String&nbsp;key)</code>
 <div class="block">Returns the <a href="../../../../uk/blankaspect/common/basictree/NullNode.html" title="class in uk.blankaspect.common.basictree">null node</a> that is associated with the specified key in this map node.</div>
 </td>
 </tr>
-<tr id="i46" class="altColor">
+<tr id="i45" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/MapNode.html#getNumPairs--">getNumPairs</a></span>()</code>
 <div class="block">Returns the number of key&ndash;value pairs that this map node contains.</div>
 </td>
 </tr>
-<tr id="i47" class="rowColor">
+<tr id="i46" class="altColor">
 <td class="colFirst"><code>java.util.Iterator&lt;java.util.Map.Entry&lt;java.lang.String,<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/MapNode.html#getPairIterator--">getPairIterator</a></span>()</code>
 <div class="block">Returns an iterator over the key&ndash;value pairs of this map node.</div>
 </td>
 </tr>
-<tr id="i48" class="altColor">
+<tr id="i47" class="rowColor">
 <td class="colFirst"><code>java.util.List&lt;<a href="../../../../uk/blankaspect/common/basictree/MapNode.Pair.html" title="class in uk.blankaspect.common.basictree">MapNode.Pair</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/MapNode.html#getPairList--">getPairList</a></span>()</code>
 <div class="block">Returns a list of the key&ndash;value pairs of this map node.</div>
 </td>
 </tr>
-<tr id="i49" class="rowColor">
+<tr id="i48" class="altColor">
 <td class="colFirst"><code>java.util.Map&lt;java.lang.String,<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/MapNode.html#getPairMap--">getPairMap</a></span>()</code>
 <div class="block">Returns an unmodifiable map of the key&ndash;value pairs of this map node.</div>
 </td>
 </tr>
-<tr id="i50" class="altColor">
+<tr id="i49" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/MapNode.html#getString-java.lang.String-">getString</a></span>(java.lang.String&nbsp;key)</code>
 <div class="block">Returns the underlying value of the <a href="../../../../uk/blankaspect/common/basictree/StringNode.html" title="class in uk.blankaspect.common.basictree">string node</a> that is associated with the specified key
  in this map node.</div>
 </td>
 </tr>
-<tr id="i51" class="rowColor">
+<tr id="i50" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/MapNode.html#getString-java.lang.String-java.lang.String-">getString</a></span>(java.lang.String&nbsp;key,
          java.lang.String&nbsp;defaultValue)</code>
@@ -653,10 +653,16 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
  in this map node.</div>
 </td>
 </tr>
-<tr id="i52" class="altColor">
+<tr id="i51" class="rowColor">
 <td class="colFirst"><code><a href="../../../../uk/blankaspect/common/basictree/StringNode.html" title="class in uk.blankaspect.common.basictree">StringNode</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/MapNode.html#getStringNode-java.lang.String-">getStringNode</a></span>(java.lang.String&nbsp;key)</code>
 <div class="block">Returns the <a href="../../../../uk/blankaspect/common/basictree/StringNode.html" title="class in uk.blankaspect.common.basictree">string node</a> that is associated with the specified key in this map node.</div>
+</td>
+</tr>
+<tr id="i52" class="altColor">
+<td class="colFirst"><code><a href="../../../../uk/blankaspect/common/basictree/NodeType.html" title="class in uk.blankaspect.common.basictree">NodeType</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/MapNode.html#getType--">getType</a></span>()</code>
+<div class="block">Returns the type of this node.</div>
 </td>
 </tr>
 <tr id="i53" class="rowColor">
@@ -884,7 +890,7 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <a name="PAIR_SEPARATOR_CHAR">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>PAIR_SEPARATOR_CHAR</h4>
 <pre>public static final&nbsp;char PAIR_SEPARATOR_CHAR</pre>
@@ -893,6 +899,16 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../../constant-values.html#uk.blankaspect.common.basictree.MapNode.PAIR_SEPARATOR_CHAR">Constant Field Values</a></dd>
 </dl>
+</li>
+</ul>
+<a name="TYPE">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>TYPE</h4>
+<pre>public static final&nbsp;<a href="../../../../uk/blankaspect/common/basictree/NodeType.html" title="class in uk.blankaspect.common.basictree">NodeType</a> TYPE</pre>
+<div class="block">The type of a map node.</div>
 </li>
 </ul>
 </li>
@@ -1132,20 +1148,20 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 </dl>
 </li>
 </ul>
-<a name="getKind--">
+<a name="getType--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getKind</h4>
-<pre>public&nbsp;<a href="../../../../uk/blankaspect/common/basictree/NodeKind.html" title="enum in uk.blankaspect.common.basictree">NodeKind</a>&nbsp;getKind()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html#getKind--">AbstractNode</a></code></span></div>
-<div class="block">Returns the kind of this node.</div>
+<h4>getType</h4>
+<pre>public&nbsp;<a href="../../../../uk/blankaspect/common/basictree/NodeType.html" title="class in uk.blankaspect.common.basictree">NodeType</a>&nbsp;getType()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html#getType--">AbstractNode</a></code></span></div>
+<div class="block">Returns the type of this node.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html#getKind--">getKind</a></code>&nbsp;in class&nbsp;<code><a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a></code></dd>
+<dd><code><a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html#getType--">getType</a></code>&nbsp;in class&nbsp;<code><a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd><a href="../../../../uk/blankaspect/common/basictree/NodeKind.html#MAP"><code>NodeKind.MAP</code></a>.</dd>
+<dd><a href="../../../../uk/blankaspect/common/basictree/MapNode.html#TYPE"><code>TYPE</code></a>.</dd>
 </dl>
 </li>
 </ul>

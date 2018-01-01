@@ -73,13 +73,13 @@ var activeTableTab = "activeTableTab";
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
@@ -125,6 +125,27 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- =========== FIELD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field.summary">
+<!--   -->
+</a>
+<h3>Field Summary</h3>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Field Summary table, listing fields, and an explanation">
+<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Field and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="../../../../uk/blankaspect/common/basictree/NodeType.html" title="class in uk.blankaspect.common.basictree">NodeType</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/DoubleNode.html#TYPE">TYPE</a></span></code>
+<div class="block">The type of a 'double' node.</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <ul class="blockList">
 <li class="blockList"><a name="constructor.summary">
@@ -176,9 +197,9 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 </td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code><a href="../../../../uk/blankaspect/common/basictree/NodeKind.html" title="enum in uk.blankaspect.common.basictree">NodeKind</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/DoubleNode.html#getKind--">getKind</a></span>()</code>
-<div class="block">Returns the kind of this node.</div>
+<td class="colFirst"><code><a href="../../../../uk/blankaspect/common/basictree/NodeType.html" title="class in uk.blankaspect.common.basictree">NodeType</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/DoubleNode.html#getType--">getType</a></span>()</code>
+<div class="block">Returns the type of this node.</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
@@ -249,6 +270,24 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
+<!-- ============ FIELD DETAIL =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field.detail">
+<!--   -->
+</a>
+<h3>Field Detail</h3>
+<a name="TYPE">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>TYPE</h4>
+<pre>public static final&nbsp;<a href="../../../../uk/blankaspect/common/basictree/NodeType.html" title="class in uk.blankaspect.common.basictree">NodeType</a> TYPE</pre>
+<div class="block">The type of a 'double' node.</div>
+</li>
+</ul>
+</li>
+</ul>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <ul class="blockList">
 <li class="blockList"><a name="constructor.detail">
@@ -327,20 +366,20 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 </dl>
 </li>
 </ul>
-<a name="getKind--">
+<a name="getType--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getKind</h4>
-<pre>public&nbsp;<a href="../../../../uk/blankaspect/common/basictree/NodeKind.html" title="enum in uk.blankaspect.common.basictree">NodeKind</a>&nbsp;getKind()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html#getKind--">AbstractNode</a></code></span></div>
-<div class="block">Returns the kind of this node.</div>
+<h4>getType</h4>
+<pre>public&nbsp;<a href="../../../../uk/blankaspect/common/basictree/NodeType.html" title="class in uk.blankaspect.common.basictree">NodeType</a>&nbsp;getType()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html#getType--">AbstractNode</a></code></span></div>
+<div class="block">Returns the type of this node.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html#getKind--">getKind</a></code>&nbsp;in class&nbsp;<code><a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a></code></dd>
+<dd><code><a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html#getType--">getType</a></code>&nbsp;in class&nbsp;<code><a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd><a href="../../../../uk/blankaspect/common/basictree/NodeKind.html#DOUBLE"><code>NodeKind.DOUBLE</code></a>.</dd>
+<dd><a href="../../../../uk/blankaspect/common/basictree/DoubleNode.html#TYPE"><code>TYPE</code></a>.</dd>
 </dl>
 </li>
 </ul>
@@ -496,13 +535,13 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
