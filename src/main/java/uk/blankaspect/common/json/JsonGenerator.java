@@ -25,6 +25,7 @@ import java.util.Map;
 import uk.blankaspect.common.basictree.AbstractNode;
 import uk.blankaspect.common.basictree.ListNode;
 import uk.blankaspect.common.basictree.MapNode;
+import uk.blankaspect.common.basictree.NodeTypeException;
 
 //----------------------------------------------------------------------
 
@@ -209,6 +210,8 @@ public class JsonGenerator
 	 * @param  value
 	 *           the JSON value for which JSON text will be generated.
 	 * @return JSON text for <i>value</i>.
+	 * @throws NodeTypeException
+	 *           if any node in the tree whose root is <i>value</i> does not represent a JSON value.
 	 */
 
 	public String generate(AbstractNode value)
@@ -241,48 +244,37 @@ public class JsonGenerator
 		boolean singleLine = true;
 		if (isMultilineMode())
 		{
-			switch (value.getKind())
+			// Array
+			if (value instanceof ListNode)
 			{
-				case NULL:
-				case BOOLEAN:
-				case INT:
-				case LONG:
-				case DOUBLE:
-				case STRING:
-					break;
-
-				case LIST:
+				ListNode list = (ListNode)value;
+				int numElements = list.getNumElements();
+				if (((mode == Mode.EXPANDED) && (numElements > 0))
+					|| list.getElements().stream().anyMatch(element -> !isValueOnSingleLine(element, indent + 2)))
+					singleLine = false;
+				else if (numElements > 1)
 				{
-					ListNode list = (ListNode)value;
-					int numElements = list.getNumElements();
-					if (((mode == Mode.EXPANDED) && (numElements > 0))
-						|| list.getElements().stream().anyMatch(element -> !isValueOnSingleLine(element, indent + 2)))
-						singleLine = false;
-					else if (numElements > 1)
+					int lineLength = indent + 2 + 2 * numElements;
+					for (int i = 0; i < numElements; i++)
 					{
-						int lineLength = indent + 2 + 2 * numElements;
-						for (int i = 0; i < numElements; i++)
+						lineLength += list.getElement(i).toString().length();
+						if (lineLength > maxLineLength)
 						{
-							lineLength += list.getElement(i).toString().length();
-							if (lineLength > maxLineLength)
-							{
-								singleLine = false;
-								break;
-							}
+							singleLine = false;
+							break;
 						}
 					}
-					break;
 				}
+			}
 
-				case MAP:
-				{
-					MapNode map = (MapNode)value;
-					int numProperties = map.getNumPairs();
-					singleLine = (numProperties == 0)
-									|| ((mode != Mode.EXPANDED) && (numProperties == 1)
-										&& isValueOnSingleLine(map.getPairIterator().next().getValue(), indent + 2));
-					break;
-				}
+			// Object
+			else if (value instanceof MapNode)
+			{
+				MapNode map = (MapNode)value;
+				int numProperties = map.getNumPairs();
+				singleLine = (numProperties == 0)
+								|| ((mode != Mode.EXPANDED) && (numProperties == 1)
+									&& isValueOnSingleLine(map.getPairIterator().next().getValue(), indent + 2));
 			}
 		}
 		return singleLine;
@@ -294,12 +286,14 @@ public class JsonGenerator
 	 * Generates the JSON text for the specified {@linkplain AbstractNode JSON value} and appends it to the specified
 	 * buffer.
 	 *
-	 * @param value
-	 *          the JSON value for which JSON text will be generated.
-	 * @param indent
-	 *          the number of spaces by which a line of the JSON text is indented.
-	 * @param buffer
-	 *          the buffer to which the JSON text will be appended.
+	 * @param  value
+	 *           the JSON value for which JSON text will be generated.
+	 * @param  indent
+	 *           the number of spaces by which a line of the JSON text is indented.
+	 * @param  buffer
+	 *           the buffer to which the JSON text will be appended.
+	 * @throws NodeTypeException
+	 *           if <i>value</i> does not represent a JSON value.
 	 */
 
 	private void appendValue(AbstractNode  value,
@@ -323,26 +317,21 @@ public class JsonGenerator
 			buffer.append(spaces, 0, indent);
 		}
 
-		// Append value
-		switch (value.getKind())
-		{
-			case NULL:
-			case BOOLEAN:
-			case INT:
-			case LONG:
-			case DOUBLE:
-			case STRING:
-				buffer.append(value);
-				break;
+		// Append array
+		if (value instanceof ListNode)
+			appendArray((ListNode)value, indent, buffer);
 
-			case LIST:
-				appendArray((ListNode)value, indent, buffer);
-				break;
+		// Append object
+		else if (value instanceof MapNode)
+			appendObject((MapNode)value, indent, buffer);
 
-			case MAP:
-				appendObject((MapNode)value, indent, buffer);
-				break;
-		}
+		// Append simple value
+		else if (JsonUtils.isSimpleJsonValue(value))
+			buffer.append(value);
+
+		// Not a JSON value
+		else
+			throw new NodeTypeException(value.getType());
 	}
 
 	//------------------------------------------------------------------
@@ -371,7 +360,7 @@ public class JsonGenerator
 			removeLineFeedAndIndent(buffer);
 
 		// Append opening bracket
-		buffer.append(JsonArray.START_CHAR);
+		buffer.append(JsonConstants.ARRAY_START_CHAR);
 
 		// Elements of array are on a single line ...
 		if (isValueOnSingleLine(array, indent))
@@ -381,7 +370,7 @@ public class JsonGenerator
 			{
 				// Append separator between elements
 				if (i > 0)
-					buffer.append(JsonArray.ELEMENT_SEPARATOR_CHAR);
+					buffer.append(JsonConstants.ARRAY_ELEMENT_SEPARATOR_CHAR);
 
 				// Append space after separator
 				if (mode != Mode.DENSE)
@@ -429,7 +418,7 @@ public class JsonGenerator
 
 					// Append separator between elements
 					if (moreElements)
-						buffer.append(JsonArray.ELEMENT_SEPARATOR_CHAR);
+						buffer.append(JsonConstants.ARRAY_ELEMENT_SEPARATOR_CHAR);
 
 					// Append LF after element
 					buffer.append('\n');
@@ -474,7 +463,7 @@ public class JsonGenerator
 
 						// Append separator between elements
 						if (moreElements)
-							buffer.append(JsonArray.ELEMENT_SEPARATOR_CHAR);
+							buffer.append(JsonConstants.ARRAY_ELEMENT_SEPARATOR_CHAR);
 
 						// If expanded mode, append LF after separator ...
 						if (mode == Mode.EXPANDED)
@@ -496,7 +485,7 @@ public class JsonGenerator
 
 						// Append separator between elements
 						if (moreElements)
-							buffer.append(JsonArray.ELEMENT_SEPARATOR_CHAR);
+							buffer.append(JsonConstants.ARRAY_ELEMENT_SEPARATOR_CHAR);
 					}
 				}
 			}
@@ -510,7 +499,7 @@ public class JsonGenerator
 		}
 
 		// Append closing bracket
-		buffer.append(JsonArray.END_CHAR);
+		buffer.append(JsonConstants.ARRAY_END_CHAR);
 	}
 
 	//------------------------------------------------------------------
@@ -536,7 +525,7 @@ public class JsonGenerator
 			removeLineFeedAndIndent(buffer);
 
 		// Append opening brace
-		buffer.append(JsonObject.START_CHAR);
+		buffer.append(JsonConstants.OBJECT_START_CHAR);
 
 		// Properties of object are on a single line ...
 		if (isValueOnSingleLine(object, indent))
@@ -556,7 +545,7 @@ public class JsonGenerator
 				buffer.append(object.keyToString(property.getKey()));
 
 				// Append separator between name and value
-				buffer.append(JsonObject.NAME_VALUE_SEPARATOR_CHAR);
+				buffer.append(JsonConstants.OBJECT_NAME_VALUE_SEPARATOR_CHAR);
 
 				// Append space after separator
 				if (mode != Mode.DENSE)
@@ -567,7 +556,7 @@ public class JsonGenerator
 
 				// Append separator between properties
 				if (it.hasNext())
-					buffer.append(JsonObject.PROPERTY_SEPARATOR_CHAR);
+					buffer.append(JsonConstants.OBJECT_PROPERTY_SEPARATOR_CHAR);
 			}
 
 			// Append space before closing brace
@@ -601,7 +590,7 @@ public class JsonGenerator
 				buffer.append(object.keyToString(property.getKey()));
 
 				// Append separator between name and value
-				buffer.append(JsonObject.NAME_VALUE_SEPARATOR_CHAR);
+				buffer.append(JsonConstants.OBJECT_NAME_VALUE_SEPARATOR_CHAR);
 
 				// Get value of property
 				AbstractNode value = property.getValue();
@@ -619,7 +608,7 @@ public class JsonGenerator
 
 				// Append separator between properties
 				if (it.hasNext())
-					buffer.append(JsonObject.PROPERTY_SEPARATOR_CHAR);
+					buffer.append(JsonConstants.OBJECT_PROPERTY_SEPARATOR_CHAR);
 
 				// Append LF after property
 				buffer.append('\n');
@@ -630,7 +619,7 @@ public class JsonGenerator
 		}
 
 		// Append closing brace
-		buffer.append(JsonObject.END_CHAR);
+		buffer.append(JsonConstants.OBJECT_END_CHAR);
 	}
 
 	//------------------------------------------------------------------

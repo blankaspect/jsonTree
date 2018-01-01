@@ -36,6 +36,9 @@ public class BooleanNode
 	/** The string representation of a Boolean node whose value is <i>true</i>. */
 	public static final	String	VALUE_TRUE	= "true";
 
+	/** The type of a Boolean node. */
+	public static final	NodeType	TYPE	= new NodeType(AbstractNode.TYPE, BooleanNode.class);
+
 ////////////////////////////////////////////////////////////////////////
 //  Constructors
 ////////////////////////////////////////////////////////////////////////
@@ -81,13 +84,13 @@ public class BooleanNode
 ////////////////////////////////////////////////////////////////////////
 
 	/**
-	 * @return {@link NodeKind#BOOLEAN}.
+	 * @return {@link #TYPE}.
 	 */
 
 	@Override
-	public NodeKind getKind()
+	public NodeType getType()
 	{
-		return NodeKind.BOOLEAN;
+		return TYPE;
 	}
 
 	//------------------------------------------------------------------

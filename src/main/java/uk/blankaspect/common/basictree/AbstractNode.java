@@ -50,6 +50,13 @@ public abstract class AbstractNode
 {
 
 ////////////////////////////////////////////////////////////////////////
+//  Constants
+////////////////////////////////////////////////////////////////////////
+
+	/** The type of an abstract node. */
+	public static final	NodeType	TYPE	= NodeType.ROOT;
+
+////////////////////////////////////////////////////////////////////////
 //  Constructors
 ////////////////////////////////////////////////////////////////////////
 
@@ -73,12 +80,12 @@ public abstract class AbstractNode
 ////////////////////////////////////////////////////////////////////////
 
 	/**
-	 * Returns the kind of this node.
+	 * Returns the type of this node.
 	 *
-	 * @return the kind of this node.
+	 * @return the type of this node.
 	 */
 
-	public abstract NodeKind getKind();
+	public abstract NodeType getType();
 
 	//------------------------------------------------------------------
 

@@ -68,6 +68,53 @@ public class JsonUtils
 ////////////////////////////////////////////////////////////////////////
 
 	/**
+	 * Returns {@code true} if the specified {@linkplain AbstractNode node} represents a JSON value.
+	 *
+	 * @param  node
+	 *           the node of interest.
+	 * @return {@code true} if <i>node</i> represents a JSON value; {@code false} otherwise.
+	 */
+
+	public static boolean isJsonValue(AbstractNode node)
+	{
+		return node.getType().isAnyOf(JsonConstants.NODE_TYPES);
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns {@code true} if the specified {@linkplain AbstractNode node} represents a simple JSON value (ie, a null,
+	 * a Boolean, a number or a string).
+	 *
+	 * @param  node
+	 *           the node of interest.
+	 * @return {@code true} if <i>node</i> represents a JSON null, Boolean, number or string; {@code false} otherwise.
+	 */
+
+	public static boolean isSimpleJsonValue(AbstractNode node)
+	{
+		return node.getType().isAnyOf(JsonConstants.SIMPLE_NODE_TYPES);
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns {@code true} if the specified {@linkplain AbstractNode node} represents a JSON container (ie, an array or
+	 * object).
+	 *
+	 * @param  node
+	 *           the node of interest.
+	 * @return {@code true} if <i>node</i> represents a JSON array or object; {@code false} otherwise.
+	 */
+
+	public static boolean isJsonContainer(AbstractNode node)
+	{
+		return node.getType().isAnyOf(JsonConstants.CONTAINER_NODE_TYPES);
+	}
+
+	//------------------------------------------------------------------
+
+	/**
 	 * Reads the specified file, parses its content as JSON text and returns the resulting JSON value.
 	 *
 	 * @param  file

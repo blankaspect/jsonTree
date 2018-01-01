@@ -62,12 +62,12 @@ public class JsonParser
 	/** Structural characters. */
 	private static final	char[]	STRUCTURAL_CHARS	= new char[]
 	{
-		JsonObject.START_CHAR,
-		JsonObject.END_CHAR,
-		JsonArray.START_CHAR,
-		JsonArray.END_CHAR,
-		JsonObject.NAME_VALUE_SEPARATOR_CHAR,
-		JsonObject.PROPERTY_SEPARATOR_CHAR
+		JsonConstants.ARRAY_START_CHAR,
+		JsonConstants.ARRAY_END_CHAR,
+		JsonConstants.OBJECT_START_CHAR,
+		JsonConstants.OBJECT_END_CHAR,
+		JsonConstants.OBJECT_NAME_VALUE_SEPARATOR_CHAR,
+		JsonConstants.OBJECT_PROPERTY_SEPARATOR_CHAR
 	};
 
 	/** Value terminators: the union of whitespace characters and structural characters. */
@@ -450,20 +450,20 @@ public class JsonParser
 								state = State.STRING_VALUE;
 								break;
 
-							case JsonArray.START_CHAR:
+							case JsonConstants.ARRAY_START_CHAR:
 								value = new ListNode(value);
 								state = State.ARRAY_ELEMENT_START;
 								break;
 
-							case JsonObject.START_CHAR:
+							case JsonConstants.OBJECT_START_CHAR:
 								value = new MapNode(value);
 								state = State.PROPERTY_START;
 								break;
 
-							case JsonArray.END_CHAR:
-							case JsonObject.END_CHAR:
-							case JsonObject.NAME_VALUE_SEPARATOR_CHAR:
-							case JsonObject.PROPERTY_SEPARATOR_CHAR:
+							case JsonConstants.ARRAY_END_CHAR:
+							case JsonConstants.OBJECT_END_CHAR:
+							case JsonConstants.OBJECT_NAME_VALUE_SEPARATOR_CHAR:
+							case JsonConstants.OBJECT_PROPERTY_SEPARATOR_CHAR:
 								throw new ParseException(ErrorMsg.VALUE_EXPECTED, lineIndex,
 														 tokenIndex - lineStartIndex);
 
@@ -491,50 +491,50 @@ public class JsonParser
 					if (parent == null)
 						state = State.VALUE_START;
 
-					// ... otherwise, if parent is object or array, add value to parent
-					else
+					// ... otherwise, if parent is array or object, add value to it
+					else if (parent.isContainer())
 					{
-						switch (parent.getKind())
+						// Parent is array
+						if (parent instanceof ListNode)
 						{
-							case LIST:
-								// Add element to its parent array
-								((ListNode)parent).addElement(value);
+							// Add element to its parent array
+							((ListNode)parent).addElement(value);
 
-								// Set next state
-								state = State.ARRAY_ELEMENT_END;
-								break;
-
-							case MAP:
-							{
-								// Cast parent to map node
-								MapNode object = (MapNode)parent;
-
-								// Get name of current property from stack
-								PropertyName propertyName = propertyNameStack.removeFirst();
-
-								// Test for duplicate property name
-								if (object.hasKey(propertyName.name))
-									throw new ParseException(ErrorMsg.DUPLICATE_PROPERTY_NAME, propertyName.lineIndex,
-															 propertyName.index - lineStartIndex, propertyName.name);
-
-								// Add property to its parent object value
-								object.addPair(propertyName.name, value);
-
-								// Set next state
-								state = State.PROPERTY_END;
-								break;
-							}
-
-							default:
-								throw new RuntimeException("Unexpected error: invalid parent");
+							// Set next state
+							state = State.ARRAY_ELEMENT_END;
 						}
 
-						// Rewind index to property/element separator or object/array terminator
+						// Parent is object
+						else if (parent instanceof MapNode)
+						{
+							// Cast parent to map node
+							MapNode object = (MapNode)parent;
+
+							// Get name of current property from stack
+							PropertyName propertyName = propertyNameStack.removeFirst();
+
+							// Test for duplicate property name
+							if (object.hasKey(propertyName.name))
+								throw new ParseException(ErrorMsg.DUPLICATE_PROPERTY_NAME, propertyName.lineIndex,
+														 propertyName.index - lineStartIndex, propertyName.name);
+
+							// Add property to its parent object value
+							object.addPair(propertyName.name, value);
+
+							// Set next state
+							state = State.PROPERTY_END;
+						}
+
+						// Rewind index to element/property separator or array/object terminator
 						--index;
 
 						// Set current value to previous parent
 						value = parent;
 					}
+
+					// ... otherwise, throw exception
+					else
+						throw new RuntimeException("Unexpected error: invalid parent");
 					break;
 				}
 
@@ -676,7 +676,7 @@ public class JsonParser
 					else
 					{
 						// If end-of-object character, empty object has ended ...
-						if (ch == JsonObject.END_CHAR)
+						if (ch == JsonConstants.OBJECT_END_CHAR)
 							state = State.VALUE_END;
 
 						// ... otherwise, expect another property
@@ -769,7 +769,7 @@ public class JsonParser
 					else
 					{
 						// Test for property-name separator
-						if (ch != JsonObject.NAME_VALUE_SEPARATOR_CHAR)
+						if (ch != JsonConstants.OBJECT_NAME_VALUE_SEPARATOR_CHAR)
 							throw new ParseException(ErrorMsg.NAME_SEPARATOR_EXPECTED, lineIndex,
 													 tokenIndex - lineStartIndex);
 
@@ -803,11 +803,11 @@ public class JsonParser
 						// Set next state according to current character
 						switch (ch)
 						{
-							case JsonObject.PROPERTY_SEPARATOR_CHAR:
+							case JsonConstants.OBJECT_PROPERTY_SEPARATOR_CHAR:
 								state = State.PROPERTY_NAME_START;
 								break;
 
-							case JsonObject.END_CHAR:
+							case JsonConstants.OBJECT_END_CHAR:
 								state = State.VALUE_END;
 								break;
 
@@ -837,7 +837,7 @@ public class JsonParser
 					else
 					{
 						// If end-of-array character, array has ended ...
-						if (ch == JsonArray.END_CHAR)
+						if (ch == JsonConstants.ARRAY_END_CHAR)
 						{
 							// Test for empty array
 							if (!((ListNode)value).isEmpty())
@@ -884,11 +884,11 @@ public class JsonParser
 						// Set next state according to current character
 						switch (ch)
 						{
-							case JsonArray.ELEMENT_SEPARATOR_CHAR:
+							case JsonConstants.ARRAY_ELEMENT_SEPARATOR_CHAR:
 								state = State.ARRAY_ELEMENT_START;
 								break;
 
-							case JsonArray.END_CHAR:
+							case JsonConstants.ARRAY_END_CHAR:
 								state = State.VALUE_END;
 								break;
 

@@ -33,6 +33,9 @@ public class NullNode
 	/** The string representation of a null node. */
 	public static final	String	VALUE	= "null";
 
+	/** The type of a null node. */
+	public static final	NodeType	TYPE	= new NodeType(AbstractNode.TYPE, NullNode.class);
+
 ////////////////////////////////////////////////////////////////////////
 //  Constructors
 ////////////////////////////////////////////////////////////////////////
@@ -69,13 +72,13 @@ public class NullNode
 ////////////////////////////////////////////////////////////////////////
 
 	/**
-	 * @return {@link NodeKind#NULL}.
+	 * @return {@link #TYPE}.
 	 */
 
 	@Override
-	public NodeKind getKind()
+	public NodeType getType()
 	{
-		return NodeKind.NULL;
+		return TYPE;
 	}
 
 	//------------------------------------------------------------------

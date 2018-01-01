@@ -70,6 +70,9 @@ public class StringNode
 	/** The number of the hexadecimal digits in a Unicode escape sequence. */
 	public static final		int		UNICODE_LENGTH	= 4;
 
+	/** The type of a string node. */
+	public static final	NodeType	TYPE	= new NodeType(AbstractNode.TYPE, StringNode.class);
+
 	/** Mappings from literal characters to their corresponding characters in an escape sequence. */
 	protected static final	char[][]	ESCAPE_MAPPINGS	=
 	{
@@ -324,13 +327,13 @@ public class StringNode
 ////////////////////////////////////////////////////////////////////////
 
 	/**
-	 * @return {@link NodeKind#STRING}.
+	 * @return {@link #TYPE}.
 	 */
 
 	@Override
-	public NodeKind getKind()
+	public NodeType getType()
 	{
-		return NodeKind.STRING;
+		return TYPE;
 	}
 
 	//------------------------------------------------------------------

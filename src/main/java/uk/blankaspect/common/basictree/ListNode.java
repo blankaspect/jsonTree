@@ -61,72 +61,8 @@ public class ListNode
 	/** The character that separates adjacent elements in the string representation of a list node. */
 	public static final	char	ELEMENT_SEPARATOR_CHAR	= ',';
 
-////////////////////////////////////////////////////////////////////////
-//  Member classes : non-inner classes
-////////////////////////////////////////////////////////////////////////
-
-
-	// CLASS: 'ELEMENT KIND' EXCEPTION
-
-
-	/**
-	 * This class implements an unchecked exception that is thrown by a method that processes the elements of a
-	 * {@linkplain ListNode list node} if it finds that an element is not of the expected kind.
-	 */
-
-	public static class ElementKindException
-		extends RuntimeException
-	{
-
-	////////////////////////////////////////////////////////////////////
-	//  Constructors
-	////////////////////////////////////////////////////////////////////
-
-		/**
-		 * Creates a new instance of an exception that is associated with the specified kind of node.
-		 *
-		 * @param nodeKind
-		 *          the kind of node that will be associated with this exception.
-		 */
-
-		public ElementKindException(NodeKind nodeKind)
-		{
-			// Call superclass constructor
-			super(nodeKind.toString());
-
-			// Initialise instance field
-			this.nodeKind = nodeKind;
-		}
-
-		//--------------------------------------------------------------
-
-	////////////////////////////////////////////////////////////////////
-	//  Instance methods
-	////////////////////////////////////////////////////////////////////
-
-		/**
-		 * Returns the kind of node that is associated with this exception.
-		 *
-		 * @return the kind of node that is associated with this exception.
-		 */
-
-		public NodeKind getNodeKind()
-		{
-			return nodeKind;
-		}
-
-		//--------------------------------------------------------------
-
-	////////////////////////////////////////////////////////////////////
-	//  Instance fields
-	////////////////////////////////////////////////////////////////////
-
-		/** The kind of node that is associated with this exception. */
-		private	NodeKind	nodeKind;
-
-	}
-
-	//==================================================================
+	/** The type of a list node. */
+	public static final	NodeType	TYPE	= new NodeType(AbstractNode.TYPE, ListNode.class);
 
 ////////////////////////////////////////////////////////////////////////
 //  Constructors
@@ -223,13 +159,13 @@ public class ListNode
 ////////////////////////////////////////////////////////////////////////
 
 	/**
-	 * @return {@link NodeKind#LIST}.
+	 * @return {@link #TYPE}.
 	 */
 
 	@Override
-	public NodeKind getKind()
+	public NodeType getType()
 	{
-		return NodeKind.LIST;
+		return TYPE;
 	}
 
 	//------------------------------------------------------------------
@@ -578,12 +514,12 @@ public class ListNode
 	 * Returns the underlying values of the elements of this list node as an array of {@code boolean}s.
 	 *
 	 * @return an array of the underlying {@code boolean} values of the elements of this list node.
-	 * @throws ElementKindException
+	 * @throws NodeTypeException
 	 *           if any of the elements of this list node is not a {@linkplain BooleanNode Boolean node}.
 	 */
 
 	public boolean[] getBooleanArray()
-		throws ElementKindException
+		throws NodeTypeException
 	{
 		boolean[] outValues = new boolean[elements.size()];
 		for (int i = 0; i < outValues.length; i++)
@@ -591,9 +527,9 @@ public class ListNode
 			// Get element
 			AbstractNode element = elements.get(i);
 
-			// Check for element of the required kind
-			if (element.getKind() != NodeKind.BOOLEAN)
-				throw new ElementKindException(element.getKind());
+			// Check for element of the required type
+			if (!(element instanceof BooleanNode))
+				throw new NodeTypeException(element.getType());
 
 			// Add value of element to array
 			outValues[i] = ((BooleanNode)element).getValue();
@@ -607,19 +543,19 @@ public class ListNode
 	 * Returns the underlying values of the elements of this list node as a list of {@code Boolean}s.
 	 *
 	 * @return a list of the underlying {@code Boolean} values of the elements of this list node.
-	 * @throws ElementKindException
+	 * @throws NodeTypeException
 	 *           if any of the elements of this list node is not a {@linkplain BooleanNode Boolean node}.
 	 */
 
 	public List<Boolean> getBooleanList()
-		throws ElementKindException
+		throws NodeTypeException
 	{
 		List<Boolean> outValues = new ArrayList<>();
 		for (AbstractNode element : elements)
 		{
-			// Check for element of the required kind
-			if (element.getKind() != NodeKind.BOOLEAN)
-				throw new ElementKindException(element.getKind());
+			// Check for element of the required type
+			if (!(element instanceof BooleanNode))
+				throw new NodeTypeException(element.getType());
 
 			// Add value of element to list
 			outValues.add(((BooleanNode)element).getValue());
@@ -633,12 +569,12 @@ public class ListNode
 	 * Returns the underlying values of the elements of this list node as an array of {@code int}s.
 	 *
 	 * @return an array of the underlying {@code int} values of the elements of this list node.
-	 * @throws ElementKindException
+	 * @throws NodeTypeException
 	 *           if any of the elements of this list node is not an {@linkplain IntNode 'int' node}.
 	 */
 
 	public int[] getIntArray()
-		throws ElementKindException
+		throws NodeTypeException
 	{
 		int[] outValues = new int[elements.size()];
 		for (int i = 0; i < outValues.length; i++)
@@ -646,9 +582,9 @@ public class ListNode
 			// Get element
 			AbstractNode element = elements.get(i);
 
-			// Check for element of the required kind
-			if (element.getKind() != NodeKind.INT)
-				throw new ElementKindException(element.getKind());
+			// Check for element of the required type
+			if (!(element instanceof IntNode))
+				throw new NodeTypeException(element.getType());
 
 			// Add value of element to array
 			outValues[i] = ((IntNode)element).getValue();
@@ -662,19 +598,19 @@ public class ListNode
 	 * Returns the underlying values of the elements of this list node as a list of {@code Integer}s.
 	 *
 	 * @return a list of the underlying {@code Integer} values of the elements of this list node.
-	 * @throws ElementKindException
+	 * @throws NodeTypeException
 	 *           if any of the elements of this list node is not an {@linkplain IntNode 'int' node}.
 	 */
 
 	public List<Integer> getIntList()
-		throws ElementKindException
+		throws NodeTypeException
 	{
 		List<Integer> outValues = new ArrayList<>();
 		for (AbstractNode element : elements)
 		{
-			// Check for element of the required kind
-			if (element.getKind() != NodeKind.INT)
-				throw new ElementKindException(element.getKind());
+			// Check for element of the required type
+			if (!(element instanceof IntNode))
+				throw new NodeTypeException(element.getType());
 
 			// Add value of element to list
 			outValues.add(((IntNode)element).getValue());
@@ -688,12 +624,12 @@ public class ListNode
 	 * Returns the underlying values of the elements of this list node as an array of {@code long}s.
 	 *
 	 * @return an array of the underlying {@code long} values of the elements of this list node.
-	 * @throws ElementKindException
+	 * @throws NodeTypeException
 	 *           if any of the elements of this list node is not a {@linkplain LongNode 'long' node}.
 	 */
 
 	public long[] getLongArray()
-		throws ElementKindException
+		throws NodeTypeException
 	{
 		long[] outValues = new long[elements.size()];
 		for (int i = 0; i < outValues.length; i++)
@@ -701,9 +637,9 @@ public class ListNode
 			// Get element
 			AbstractNode element = elements.get(i);
 
-			// Check for element of the required kind
-			if (element.getKind() != NodeKind.LONG)
-				throw new ElementKindException(element.getKind());
+			// Check for element of the required type
+			if (!(element instanceof LongNode))
+				throw new NodeTypeException(element.getType());
 
 			// Add value of element to array
 			outValues[i] = ((LongNode)element).getValue();
@@ -717,19 +653,19 @@ public class ListNode
 	 * Returns the underlying values of the elements of this list node as a list of {@code Long}s.
 	 *
 	 * @return a list of the underlying {@code Long} values of the elements of this list node.
-	 * @throws ElementKindException
+	 * @throws NodeTypeException
 	 *           if any of the elements of this list node is not a {@linkplain LongNode 'long' node}.
 	 */
 
 	public List<Long> getLongList()
-		throws ElementKindException
+		throws NodeTypeException
 	{
 		List<Long> outValues = new ArrayList<>();
 		for (AbstractNode element : elements)
 		{
-			// Check for element of the required kind
-			if (element.getKind() != NodeKind.LONG)
-				throw new ElementKindException(element.getKind());
+			// Check for element of the required type
+			if (!(element instanceof LongNode))
+				throw new NodeTypeException(element.getType());
 
 			// Add value of element to list
 			outValues.add(((LongNode)element).getValue());
@@ -743,12 +679,12 @@ public class ListNode
 	 * Returns the underlying values of the elements of this list node as an array of {@code double}s.
 	 *
 	 * @return an array of the underlying {@code double} values of the elements of this list node.
-	 * @throws ElementKindException
+	 * @throws NodeTypeException
 	 *           if any of the elements of this list node is not a {@linkplain DoubleNode 'double' node}.
 	 */
 
 	public double[] getDoubleArray()
-		throws ElementKindException
+		throws NodeTypeException
 	{
 		double[] outValues = new double[elements.size()];
 		for (int i = 0; i < outValues.length; i++)
@@ -756,9 +692,9 @@ public class ListNode
 			// Get element
 			AbstractNode element = elements.get(i);
 
-			// Check for element of the required kind
-			if (element.getKind() != NodeKind.DOUBLE)
-				throw new ElementKindException(element.getKind());
+			// Check for element of the required type
+			if (!(element instanceof DoubleNode))
+				throw new NodeTypeException(element.getType());
 
 			// Add value of element to array
 			outValues[i] = ((DoubleNode)element).getValue();
@@ -772,19 +708,19 @@ public class ListNode
 	 * Returns the underlying values of the elements of this list node as a list of {@code Double}s.
 	 *
 	 * @return a list of the underlying {@code Double} values of the elements of this list node.
-	 * @throws ElementKindException
+	 * @throws NodeTypeException
 	 *           if any of the elements of this list node is not a {@linkplain DoubleNode 'double' node}.
 	 */
 
 	public List<Double> getDoubleList()
-		throws ElementKindException
+		throws NodeTypeException
 	{
 		List<Double> outValues = new ArrayList<>();
 		for (AbstractNode element : elements)
 		{
-			// Check for element of the required kind
-			if (element.getKind() != NodeKind.DOUBLE)
-				throw new ElementKindException(element.getKind());
+			// Check for element of the required type
+			if (!(element instanceof DoubleNode))
+				throw new NodeTypeException(element.getType());
 
 			// Add value of element to list
 			outValues.add(((DoubleNode)element).getValue());
@@ -798,12 +734,12 @@ public class ListNode
 	 * Returns the underlying values of the elements of this list node as an array of strings.
 	 *
 	 * @return an array of the underlying string values of the elements of this list node.
-	 * @throws ElementKindException
+	 * @throws NodeTypeException
 	 *           if any of the elements of this list node is not a {@linkplain StringNode string node}.
 	 */
 
 	public String[] getStringArray()
-		throws ElementKindException
+		throws NodeTypeException
 	{
 		String[] outValues = new String[elements.size()];
 		for (int i = 0; i < outValues.length; i++)
@@ -811,9 +747,9 @@ public class ListNode
 			// Get element
 			AbstractNode element = elements.get(i);
 
-			// Check for element of the required kind
-			if (element.getKind() != NodeKind.STRING)
-				throw new ElementKindException(element.getKind());
+			// Check for element of the required type
+			if (!(element instanceof StringNode))
+				throw new NodeTypeException(element.getType());
 
 			// Add value of element to array
 			outValues[i] = ((StringNode)element).getValue();
@@ -827,19 +763,19 @@ public class ListNode
 	 * Returns the underlying values of the elements of this list node as a list of strings.
 	 *
 	 * @return a list of the underlying string values of the elements of this list node.
-	 * @throws ElementKindException
+	 * @throws NodeTypeException
 	 *           if any of the elements of this list node is not a {@linkplain StringNode string node}.
 	 */
 
 	public List<String> getStringList()
-		throws ElementKindException
+		throws NodeTypeException
 	{
 		List<String> outValues = new ArrayList<>();
 		for (AbstractNode element : elements)
 		{
-			// Check for element of the required kind
-			if (element.getKind() != NodeKind.STRING)
-				throw new ElementKindException(element.getKind());
+			// Check for element of the required type
+			if (!(element instanceof StringNode))
+				throw new NodeTypeException(element.getType());
 
 			// Add value of element to list
 			outValues.add(((StringNode)element).getValue());

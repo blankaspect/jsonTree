@@ -77,6 +77,9 @@ public class MapNode
 	/** The character that separates adjacent KV pairs in the string representation of a map node. */
 	public static final	char	PAIR_SEPARATOR_CHAR			= ',';
 
+	/** The type of a map node. */
+	public static final	NodeType	TYPE	= new NodeType(AbstractNode.TYPE, MapNode.class);
+
 ////////////////////////////////////////////////////////////////////////
 //  Member classes : non-inner classes
 ////////////////////////////////////////////////////////////////////////
@@ -536,13 +539,13 @@ public class MapNode
 ////////////////////////////////////////////////////////////////////////
 
 	/**
-	 * @return {@link NodeKind#MAP}.
+	 * @return {@link #TYPE}.
 	 */
 
 	@Override
-	public NodeKind getKind()
+	public NodeType getType()
 	{
-		return NodeKind.MAP;
+		return TYPE;
 	}
 
 	//------------------------------------------------------------------
