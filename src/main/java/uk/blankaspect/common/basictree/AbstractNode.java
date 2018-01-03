@@ -205,7 +205,16 @@ public abstract class AbstractNode
 
 	public int getListIndex()
 	{
-		return (parent instanceof ListNode) ? ((ListNode)parent).indexOf(this) : -1;
+		if (parent instanceof ListNode)
+		{
+			List<AbstractNode> elements = ((ListNode)parent).getElements();
+			for (int i = 0; i < elements.size(); i++)
+			{
+				if (elements.get(i) == this)
+					return i;
+			}
+		}
+		return -1;
 	}
 
 	//------------------------------------------------------------------
@@ -225,7 +234,7 @@ public abstract class AbstractNode
 			MapNode node = (MapNode)parent;
 			for (String name : node.getKeys())
 			{
-				if (node.getValue(name) == this)
+				if (node.get(name) == this)
 					return name;
 			}
 		}
