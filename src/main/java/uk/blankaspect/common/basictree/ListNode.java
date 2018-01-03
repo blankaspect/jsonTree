@@ -335,7 +335,7 @@ public class ListNode
 	 *           if (<i>index</i> &lt; 0) or (<i>index</i> &gt;= {@link #getNumElements()}).
 	 */
 
-	public AbstractNode getElement(int index)
+	public AbstractNode get(int index)
 	{
 		return elements.get(index);
 	}
@@ -844,7 +844,7 @@ public class ListNode
 	 *          the node that will be added to the end of the list of elements of this list node.
 	 */
 
-	public void addElement(AbstractNode node)
+	public void add(AbstractNode node)
 	{
 		elements.add(node);
 		node.setParent(this);
@@ -863,7 +863,7 @@ public class ListNode
 	public void addElements(AbstractNode... nodes)
 	{
 		for (AbstractNode node : nodes)
-			addElement(node);
+			add(node);
 	}
 
 	//------------------------------------------------------------------
@@ -879,7 +879,7 @@ public class ListNode
 	public void addElements(Iterable<? extends AbstractNode> nodes)
 	{
 		for (AbstractNode node : nodes)
-			addElement(node);
+			add(node);
 	}
 
 	//------------------------------------------------------------------
@@ -894,7 +894,7 @@ public class ListNode
 	public NullNode addNull()
 	{
 		NullNode node = new NullNode();
-		addElement(node);
+		add(node);
 		return node;
 	}
 
@@ -912,7 +912,7 @@ public class ListNode
 	public BooleanNode addBoolean(boolean value)
 	{
 		BooleanNode node = new BooleanNode(value);
-		addElement(node);
+		add(node);
 		return node;
 	}
 
@@ -929,7 +929,7 @@ public class ListNode
 	public void addBooleans(boolean... values)
 	{
 		for (boolean value : values)
-			addElement(new BooleanNode(value));
+			add(new BooleanNode(value));
 	}
 
 	//------------------------------------------------------------------
@@ -945,7 +945,7 @@ public class ListNode
 	public void addBooleans(Iterable<Boolean> values)
 	{
 		for (Boolean value : values)
-			addElement(new BooleanNode(value));
+			add(new BooleanNode(value));
 	}
 
 	//------------------------------------------------------------------
@@ -962,7 +962,7 @@ public class ListNode
 	public IntNode addInt(int value)
 	{
 		IntNode node = new IntNode(value);
-		addElement(node);
+		add(node);
 		return node;
 	}
 
@@ -979,7 +979,7 @@ public class ListNode
 	public void addInts(int... values)
 	{
 		for (int value : values)
-			addElement(new IntNode(value));
+			add(new IntNode(value));
 	}
 
 	//------------------------------------------------------------------
@@ -995,7 +995,7 @@ public class ListNode
 	public void addInts(Iterable<Integer> values)
 	{
 		for (Integer value : values)
-			addElement(new IntNode(value));
+			add(new IntNode(value));
 	}
 
 	//------------------------------------------------------------------
@@ -1012,7 +1012,7 @@ public class ListNode
 	public LongNode addLong(long value)
 	{
 		LongNode node = new LongNode(value);
-		addElement(node);
+		add(node);
 		return node;
 	}
 
@@ -1029,7 +1029,7 @@ public class ListNode
 	public void addLongs(long... values)
 	{
 		for (long value : values)
-			addElement(new LongNode(value));
+			add(new LongNode(value));
 	}
 
 	//------------------------------------------------------------------
@@ -1045,7 +1045,7 @@ public class ListNode
 	public void addLongs(Iterable<Long> values)
 	{
 		for (Long value : values)
-			addElement(new LongNode(value));
+			add(new LongNode(value));
 	}
 
 	//------------------------------------------------------------------
@@ -1062,7 +1062,7 @@ public class ListNode
 	public DoubleNode addDouble(double value)
 	{
 		DoubleNode node = new DoubleNode(value);
-		addElement(node);
+		add(node);
 		return node;
 	}
 
@@ -1079,7 +1079,7 @@ public class ListNode
 	public void addDoubles(double... values)
 	{
 		for (double value : values)
-			addElement(new DoubleNode(value));
+			add(new DoubleNode(value));
 	}
 
 	//------------------------------------------------------------------
@@ -1095,7 +1095,7 @@ public class ListNode
 	public void addDoubles(Iterable<Double> values)
 	{
 		for (Double value : values)
-			addElement(new DoubleNode(value));
+			add(new DoubleNode(value));
 	}
 
 	//------------------------------------------------------------------
@@ -1112,7 +1112,7 @@ public class ListNode
 	public StringNode addString(String value)
 	{
 		StringNode node = new StringNode(value);
-		addElement(node);
+		add(node);
 		return node;
 	}
 
@@ -1129,7 +1129,7 @@ public class ListNode
 	public void addStrings(String... values)
 	{
 		for (String value : values)
-			addElement(new StringNode(value));
+			add(new StringNode(value));
 	}
 
 	//------------------------------------------------------------------
@@ -1145,7 +1145,7 @@ public class ListNode
 	public void addStrings(Iterable<String> values)
 	{
 		for (String value : values)
-			addElement(new StringNode(value));
+			add(new StringNode(value));
 	}
 
 	//------------------------------------------------------------------
@@ -1162,7 +1162,7 @@ public class ListNode
 	public ListNode addList(AbstractNode... elements)
 	{
 		ListNode node = new ListNode(Arrays.asList(elements));
-		addElement(node);
+		add(node);
 		return node;
 	}
 
@@ -1180,7 +1180,7 @@ public class ListNode
 	public ListNode addList(Iterable<AbstractNode> elements)
 	{
 		ListNode node = new ListNode(elements);
-		addElement(node);
+		add(node);
 		return node;
 	}
 
@@ -1199,7 +1199,7 @@ public class ListNode
 	public MapNode addMap(Map<String, AbstractNode> pairs)
 	{
 		MapNode node = new MapNode(pairs);
-		addElement(node);
+		add(node);
 		return node;
 	}
 
