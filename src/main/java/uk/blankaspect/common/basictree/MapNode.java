@@ -730,8 +730,8 @@ public class MapNode
 	 *
 	 * @return a list of the values of the key&ndash;value pairs of this map node.
 	 * @see    #getKeys()
+	 * @see    #getPairs()
 	 * @see    #getPairList()
-	 * @see    #getPairMap()
 	 */
 
 	@Override
@@ -1025,24 +1025,6 @@ public class MapNode
 	//------------------------------------------------------------------
 
 	/**
-	 * Returns a list of the keys of the key&ndash;value pairs of this map node.  The keys are in the order in which
-	 * their associated KV pairs were added to this map node.  The list is independent of this map node, so it may be
-	 * modified without affecting this node.
-	 *
-	 * @return a list of the keys of the key&ndash;value pairs of this map node.
-	 * @see    #getChildren()
-	 * @see    #getPairList()
-	 * @see    #getPairMap()
-	 */
-
-	public List<String> getKeys()
-	{
-		return new ArrayList<>(pairs.keySet());
-	}
-
-	//------------------------------------------------------------------
-
-	/**
 	 * Returns the value of the key&ndash;value pair of this map node with the specified key.
 	 *
 	 * @param  key
@@ -1051,7 +1033,7 @@ public class MapNode
 	 *         map node does not contain a KV pair with such a key.
 	 */
 
-	public AbstractNode getValue(String key)
+	public AbstractNode get(String key)
 	{
 		return pairs.get(key);
 	}
@@ -1426,22 +1408,19 @@ public class MapNode
 	//------------------------------------------------------------------
 
 	/**
-	 * Returns a list of the key&ndash;value pairs of this map node.  Iterating over the list will traverse the KV pairs
-	 * in the order in which they were added to this map node.  Modifying the value of a KV pair (for example, changing
-	 * the parent of a node) will affect this map node.
+	 * Returns a list of the keys of the key&ndash;value pairs of this map node.  The keys are in the order in which
+	 * their associated KV pairs were added to this map node.  The list is independent of this map node, so it may be
+	 * modified without affecting this node.
 	 *
-	 * @return a list of the key&ndash;value pairs of this map node.
-	 * @see    #getPairMap()
+	 * @return a list of the keys of the key&ndash;value pairs of this map node.
 	 * @see    #getChildren()
-	 * @see    #getKeys()
+	 * @see    #getPairList()
+	 * @see    #getPairs()
 	 */
 
-	public List<Pair> getPairList()
+	public List<String> getKeys()
 	{
-		List<Pair> pairs = new ArrayList<>();
-		for (Map.Entry<String, AbstractNode> entry : this.pairs.entrySet())
-			pairs.add(new Pair(entry.getKey(), entry.getValue()));
-		return pairs;
+		return new ArrayList<>(pairs.keySet());
 	}
 
 	//------------------------------------------------------------------
@@ -1458,7 +1437,7 @@ public class MapNode
 	 * @see    #getKeys()
 	 */
 
-	public Map<String, AbstractNode> getPairMap()
+	public Map<String, AbstractNode> getPairs()
 	{
 		return Collections.unmodifiableMap(pairs);
 	}
@@ -1474,6 +1453,27 @@ public class MapNode
 	public Iterator<Map.Entry<String, AbstractNode>> getPairIterator()
 	{
 		return pairs.entrySet().iterator();
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns a list of the key&ndash;value pairs of this map node.  Iterating over the list will traverse the KV pairs
+	 * in the order in which they were added to this map node.  Modifying the value of a KV pair (for example, changing
+	 * the parent of a node) will affect this map node.
+	 *
+	 * @return a list of the key&ndash;value pairs of this map node.
+	 * @see    #getPairs()
+	 * @see    #getChildren()
+	 * @see    #getKeys()
+	 */
+
+	public List<Pair> getPairList()
+	{
+		List<Pair> pairs = new ArrayList<>();
+		for (Map.Entry<String, AbstractNode> entry : this.pairs.entrySet())
+			pairs.add(new Pair(entry.getKey(), entry.getValue()));
+		return pairs;
 	}
 
 	//------------------------------------------------------------------
@@ -1504,9 +1504,9 @@ public class MapNode
 	 *          the value of the key&ndash;value pair.
 	 */
 
-	public void addPair(AbstractNode value)
+	public void add(AbstractNode value)
 	{
-		addPair(keyGenerator.apply(this), value);
+		add(keyGenerator.apply(this), value);
 	}
 
 	//------------------------------------------------------------------
@@ -1522,9 +1522,9 @@ public class MapNode
 	 *          if <i>pair</i> is {@code null}.
 	 */
 
-	public void addPair(Pair pair)
+	public void add(Pair pair)
 	{
-		addPair(pair.key, pair.value);
+		add(pair.key, pair.value);
 	}
 
 	//------------------------------------------------------------------
@@ -1540,8 +1540,8 @@ public class MapNode
 	 *          the value of the key&ndash;value pair.
 	 */
 
-	public void addPair(String       key,
-						AbstractNode value)
+	public void add(String       key,
+					AbstractNode value)
 	{
 		pairs.put(key, value);
 		value.setParent(this);
@@ -1562,7 +1562,7 @@ public class MapNode
 	public void addPairs(Pair... pairs)
 	{
 		for (Pair pair : pairs)
-			addPair(pair);
+			add(pair);
 	}
 
 	//------------------------------------------------------------------
@@ -1580,7 +1580,7 @@ public class MapNode
 	public void addPairs(Iterable<? extends Pair> pairs)
 	{
 		for (Pair pair : pairs)
-			addPair(pair);
+			add(pair);
 	}
 
 	//------------------------------------------------------------------
@@ -1599,7 +1599,7 @@ public class MapNode
 	public void addPairs(Map<String, AbstractNode> pairs)
 	{
 		for (Map.Entry<String, AbstractNode> pair : pairs.entrySet())
-			addPair(pair.getKey(), pair.getValue());
+			add(pair.getKey(), pair.getValue());
 	}
 
 	//------------------------------------------------------------------
@@ -1637,7 +1637,7 @@ public class MapNode
 	public NullNode addNull(String key)
 	{
 		NullNode node = new NullNode();
-		addPair(key, node);
+		add(key, node);
 		return node;
 	}
 
@@ -1681,7 +1681,7 @@ public class MapNode
 								  boolean value)
 	{
 		BooleanNode node = new BooleanNode(value);
-		addPair(key, node);
+		add(key, node);
 		return node;
 	}
 
@@ -1707,7 +1707,7 @@ public class MapNode
 	{
 		ListNode node = new ListNode();
 		node.addBooleans(values);
-		addPair(key, node);
+		add(key, node);
 		return node;
 	}
 
@@ -1733,7 +1733,7 @@ public class MapNode
 	{
 		ListNode node = new ListNode();
 		node.addBooleans(values);
-		addPair(key, node);
+		add(key, node);
 		return node;
 	}
 
@@ -1777,7 +1777,7 @@ public class MapNode
 						  int    value)
 	{
 		IntNode node = new IntNode(value);
-		addPair(key, node);
+		add(key, node);
 		return node;
 	}
 
@@ -1803,7 +1803,7 @@ public class MapNode
 	{
 		ListNode node = new ListNode();
 		node.addInts(values);
-		addPair(key, node);
+		add(key, node);
 		return node;
 	}
 
@@ -1829,7 +1829,7 @@ public class MapNode
 	{
 		ListNode node = new ListNode();
 		node.addInts(values);
-		addPair(key, node);
+		add(key, node);
 		return node;
 	}
 
@@ -1873,7 +1873,7 @@ public class MapNode
 							long   value)
 	{
 		LongNode node = new LongNode(value);
-		addPair(key, node);
+		add(key, node);
 		return node;
 	}
 
@@ -1899,7 +1899,7 @@ public class MapNode
 	{
 		ListNode node = new ListNode();
 		node.addLongs(values);
-		addPair(key, node);
+		add(key, node);
 		return node;
 	}
 
@@ -1925,7 +1925,7 @@ public class MapNode
 	{
 		ListNode node = new ListNode();
 		node.addLongs(values);
-		addPair(key, node);
+		add(key, node);
 		return node;
 	}
 
@@ -1969,7 +1969,7 @@ public class MapNode
 								double value)
 	{
 		DoubleNode node = new DoubleNode(value);
-		addPair(key, node);
+		add(key, node);
 		return node;
 	}
 
@@ -1995,7 +1995,7 @@ public class MapNode
 	{
 		ListNode node = new ListNode();
 		node.addDoubles(values);
-		addPair(key, node);
+		add(key, node);
 		return node;
 	}
 
@@ -2021,7 +2021,7 @@ public class MapNode
 	{
 		ListNode node = new ListNode();
 		node.addDoubles(values);
-		addPair(key, node);
+		add(key, node);
 		return node;
 	}
 
@@ -2065,7 +2065,7 @@ public class MapNode
 								String value)
 	{
 		StringNode node = new StringNode(value);
-		addPair(key, node);
+		add(key, node);
 		return node;
 	}
 
@@ -2091,7 +2091,7 @@ public class MapNode
 	{
 		ListNode node = new ListNode();
 		node.addStrings(values);
-		addPair(key, node);
+		add(key, node);
 		return node;
 	}
 
@@ -2117,7 +2117,7 @@ public class MapNode
 	{
 		ListNode node = new ListNode();
 		node.addStrings(values);
-		addPair(key, node);
+		add(key, node);
 		return node;
 	}
 
@@ -2181,7 +2181,7 @@ public class MapNode
 							AbstractNode... elements)
 	{
 		ListNode node = new ListNode(Arrays.asList(elements));
-		addPair(key, node);
+		add(key, node);
 		return node;
 	}
 
@@ -2205,7 +2205,7 @@ public class MapNode
 							Iterable<? extends AbstractNode> elements)
 	{
 		ListNode node = new ListNode(elements);
-		addPair(key, node);
+		add(key, node);
 		return node;
 	}
 
@@ -2270,7 +2270,7 @@ public class MapNode
 						  Pair... pairs)
 	{
 		MapNode node = new MapNode(pairs);
-		addPair(key, node);
+		add(key, node);
 		return node;
 	}
 
@@ -2295,7 +2295,7 @@ public class MapNode
 						  Iterable<? extends Pair> pairs)
 	{
 		MapNode node = new MapNode(pairs);
-		addPair(key, node);
+		add(key, node);
 		return node;
 	}
 
@@ -2340,7 +2340,7 @@ public class MapNode
 						  Map<String, AbstractNode> pairs)
 	{
 		MapNode node = new MapNode(pairs);
-		addPair(key, node);
+		add(key, node);
 		return node;
 	}
 
