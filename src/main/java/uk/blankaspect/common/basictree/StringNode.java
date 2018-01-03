@@ -18,7 +18,9 @@ package uk.blankaspect.common.basictree;
 // IMPORTS
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 //----------------------------------------------------------------------
 
@@ -318,6 +320,44 @@ public class StringNode
 	public static String escapeAndQuote(CharSequence seq)
 	{
 		return START_CHAR + escape(seq) + END_CHAR;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Creates a list of string nodes for the specified values, preserving the order of the elements, and returns the
+	 * list, which may be used to construct a {@linkplain ListNode list node}.
+	 *
+	 * @param  values
+	 *           the values for which string nodes will be created.
+	 * @return a list of string nodes whose underlying values are <i>values</i>.
+	 */
+
+	public static List<StringNode> valuesToNodes(String... values)
+	{
+		List<StringNode> outValues = new ArrayList<>();
+		for (String value : values)
+			outValues.add(new StringNode(value));
+		return outValues;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Creates a list of string nodes for the specified values, preserving the order of the elements, and returns the
+	 * list, which may be used to construct a {@linkplain ListNode list node}.
+	 *
+	 * @param  values
+	 *           the values for which string nodes will be created.
+	 * @return a list of string nodes whose underlying values are <i>values</i>.
+	 */
+
+	public static List<StringNode> valuesToNodes(Iterable<String> values)
+	{
+		List<StringNode> outValues = new ArrayList<>();
+		for (String value : values)
+			outValues.add(new StringNode(value));
+		return outValues;
 	}
 
 	//------------------------------------------------------------------

@@ -15,6 +15,15 @@ package uk.blankaspect.common.basictree;
 //----------------------------------------------------------------------
 
 
+// IMPORTS
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+//----------------------------------------------------------------------
+
+
 // CLASS: BOOLEAN NODE
 
 
@@ -75,6 +84,48 @@ public class BooleanNode
 
 		// Initialise instance fields
 		this.value = value;
+	}
+
+	//------------------------------------------------------------------
+
+////////////////////////////////////////////////////////////////////////
+//  Class methods
+////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * Creates a list of Boolean nodes for the specified values, preserving the order of the elements, and returns the
+	 * list, which may be used to construct a {@linkplain ListNode list node}.
+	 *
+	 * @param  values
+	 *           the values for which Boolean nodes will be created.
+	 * @return a list of Boolean nodes whose underlying values are <i>values</i>.
+	 */
+
+	public static List<BooleanNode> valuesToNodes(boolean... values)
+	{
+		List<BooleanNode> outValues = new ArrayList<>();
+		for (boolean value : values)
+			outValues.add(new BooleanNode(value));
+		return outValues;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Creates a list of Boolean nodes for the specified values, preserving the order of the elements, and returns the
+	 * list, which may be used to construct a {@linkplain ListNode list node}.
+	 *
+	 * @param  values
+	 *           the values for which Boolean nodes will be created.
+	 * @return a list of Boolean nodes whose underlying values are <i>values</i>.
+	 */
+
+	public static List<BooleanNode> valuesToNodes(Iterable<Boolean> values)
+	{
+		List<BooleanNode> outValues = new ArrayList<>();
+		for (Boolean value : values)
+			outValues.add(new BooleanNode(value));
+		return outValues;
 	}
 
 	//------------------------------------------------------------------
