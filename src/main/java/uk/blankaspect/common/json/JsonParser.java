@@ -498,7 +498,7 @@ public class JsonParser
 						if (parent instanceof ListNode)
 						{
 							// Add element to its parent array
-							((ListNode)parent).addElement(value);
+							((ListNode)parent).add(value);
 
 							// Set next state
 							state = State.ARRAY_ELEMENT_END;
@@ -519,7 +519,7 @@ public class JsonParser
 														 propertyName.index - lineStartIndex, propertyName.name);
 
 							// Add property to its parent object value
-							object.addPair(propertyName.name, value);
+							object.add(propertyName.name, value);
 
 							// Set next state
 							state = State.PROPERTY_END;

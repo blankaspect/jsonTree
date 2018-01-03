@@ -257,7 +257,7 @@ public class JsonGenerator
 					int lineLength = indent + 2 + 2 * numElements;
 					for (int i = 0; i < numElements; i++)
 					{
-						lineLength += list.getElement(i).toString().length();
+						lineLength += list.get(i).toString().length();
 						if (lineLength > maxLineLength)
 						{
 							singleLine = false;
@@ -377,7 +377,7 @@ public class JsonGenerator
 					buffer.append(' ');
 
 				// Append element
-				appendValue(array.getElement(i), 0, buffer);
+				appendValue(array.get(i), 0, buffer);
 			}
 
 			// Append space before closing bracket
@@ -401,7 +401,7 @@ public class JsonGenerator
 			for (int i = 0; i < numElements; i++)
 			{
 				// Get element
-				AbstractNode element = array.getElement(i);
+				AbstractNode element = array.get(i);
 
 				// Set 'more elements' flag
 				boolean moreElements = (i < numElements - 1);
