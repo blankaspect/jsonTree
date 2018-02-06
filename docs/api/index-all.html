@@ -101,6 +101,10 @@
 <dd>
 <div class="block">Creates a new message with the specified attributes and adds it to this list.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="uk/blankaspect/common/basictree/NodeMessage.List.html#add-uk.blankaspect.common.basictree.AbstractNode-uk.blankaspect.common.basictree.NodeMessage.Kind-java.lang.Throwable-">add(AbstractNode, NodeMessage.Kind, Throwable)</a></span> - Method in class uk.blankaspect.common.basictree.<a href="uk/blankaspect/common/basictree/NodeMessage.List.html" title="class in uk.blankaspect.common.basictree">NodeMessage.List</a></dt>
+<dd>
+<div class="block">Creates a new message with the specified attributes and adds it to this list.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="uk/blankaspect/common/basictree/NodeMessage.List.html#add-uk.blankaspect.common.basictree.AbstractNode-uk.blankaspect.common.basictree.NodeMessage.Kind-java.lang.String-java.lang.Throwable-java.lang.CharSequence...-">add(AbstractNode, NodeMessage.Kind, String, Throwable, CharSequence...)</a></span> - Method in class uk.blankaspect.common.basictree.<a href="uk/blankaspect/common/basictree/NodeMessage.List.html" title="class in uk.blankaspect.common.basictree">NodeMessage.List</a></dt>
 <dd>
 <div class="block">Creates a new message with the specified attributes and adds it to this list.</div>
@@ -723,6 +727,12 @@
 <dd>
 <div class="block">Returns an unmodifiable list of the elements of this list node.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="uk/blankaspect/common/basictree/MapNode.html#getEnumValue-java.lang.Class-java.lang.String-java.util.function.Function-E-">getEnumValue(Class&lt;E&gt;, String, Function&lt;E, String&gt;, E)</a></span> - Method in class uk.blankaspect.common.basictree.<a href="uk/blankaspect/common/basictree/MapNode.html" title="class in uk.blankaspect.common.basictree">MapNode</a></dt>
+<dd>
+<div class="block">Returns the constant of the specified enumeration type that, after the specified converter has been applied to
+ it, matches the underlying value of the <a href="uk/blankaspect/common/basictree/StringNode.html" title="class in uk.blankaspect.common.basictree">string node</a> that is associated with the specified
+ key in this map node.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="uk/blankaspect/common/basictree/NodeMessage.html#getException--">getException()</a></span> - Method in class uk.blankaspect.common.basictree.<a href="uk/blankaspect/common/basictree/NodeMessage.html" title="class in uk.blankaspect.common.basictree">NodeMessage</a></dt>
 <dd>
 <div class="block">Returns the exception that is associated with this message.</div>
@@ -1169,6 +1179,10 @@
 <dd>
 <div class="block">Returns <code>true</code> if this list contains no messages.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="uk/blankaspect/common/basictree/NodeMessage.html#isError--">isError()</a></span> - Method in class uk.blankaspect.common.basictree.<a href="uk/blankaspect/common/basictree/NodeMessage.html" title="class in uk.blankaspect.common.basictree">NodeMessage</a></dt>
+<dd>
+<div class="block">Returns <code>true</code> if the kind of this message is an error or a fatal error.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="uk/blankaspect/common/json/JsonUtils.html#isJsonContainer-uk.blankaspect.common.basictree.AbstractNode-">isJsonContainer(AbstractNode)</a></span> - Static method in class uk.blankaspect.common.json.<a href="uk/blankaspect/common/json/JsonUtils.html" title="class in uk.blankaspect.common.json">JsonUtils</a></dt>
 <dd>
 <div class="block">Returns <code>true</code> if the specified <a href="uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a> represents a JSON container (ie, an array or
@@ -1273,7 +1287,7 @@
 <dl>
 <dt><span class="memberNameLink"><a href="uk/blankaspect/common/basictree/NodeMessage.List.html#List--">List()</a></span> - Constructor for class uk.blankaspect.common.basictree.<a href="uk/blankaspect/common/basictree/NodeMessage.List.html" title="class in uk.blankaspect.common.basictree">NodeMessage.List</a></dt>
 <dd>
-<div class="block">Creates a new instance of a <a href="uk/blankaspect/common/basictree/NodeMessage.html" title="class in uk.blankaspect.common.basictree">node-related messages</a>.</div>
+<div class="block">Creates a new instance of a list of <a href="uk/blankaspect/common/basictree/NodeMessage.html" title="class in uk.blankaspect.common.basictree">node-related messages</a>.</div>
 </dd>
 <dt><a href="uk/blankaspect/common/basictree/ListNode.html" title="class in uk.blankaspect.common.basictree"><span class="typeNameLink">ListNode</span></a> - Class in <a href="uk/blankaspect/common/basictree/package-summary.html">uk.blankaspect.common.basictree</a></dt>
 <dd>
@@ -1387,11 +1401,15 @@
 </dd>
 <dt><span class="memberNameLink"><a href="uk/blankaspect/common/basictree/NodeMessage.html#NodeMessage-uk.blankaspect.common.basictree.AbstractNode-uk.blankaspect.common.basictree.NodeMessage.Kind-java.lang.String-">NodeMessage(AbstractNode, NodeMessage.Kind, String)</a></span> - Constructor for class uk.blankaspect.common.basictree.<a href="uk/blankaspect/common/basictree/NodeMessage.html" title="class in uk.blankaspect.common.basictree">NodeMessage</a></dt>
 <dd>
-<div class="block">Creates a new instance of a message that relates to the specified <a href="uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a>.</div>
+<div class="block">Creates a new instance of a message of the specified kind that relates to the specified <a href="uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a>.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="uk/blankaspect/common/basictree/NodeMessage.html#NodeMessage-uk.blankaspect.common.basictree.AbstractNode-uk.blankaspect.common.basictree.NodeMessage.Kind-java.lang.Throwable-">NodeMessage(AbstractNode, NodeMessage.Kind, Throwable)</a></span> - Constructor for class uk.blankaspect.common.basictree.<a href="uk/blankaspect/common/basictree/NodeMessage.html" title="class in uk.blankaspect.common.basictree">NodeMessage</a></dt>
+<dd>
+<div class="block">Creates a new instance of a message of the specified kind that relates to the specified <a href="uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a>.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="uk/blankaspect/common/basictree/NodeMessage.html#NodeMessage-uk.blankaspect.common.basictree.AbstractNode-uk.blankaspect.common.basictree.NodeMessage.Kind-java.lang.String-java.lang.Throwable-">NodeMessage(AbstractNode, NodeMessage.Kind, String, Throwable)</a></span> - Constructor for class uk.blankaspect.common.basictree.<a href="uk/blankaspect/common/basictree/NodeMessage.html" title="class in uk.blankaspect.common.basictree">NodeMessage</a></dt>
 <dd>
-<div class="block">Creates a new instance of a message that relates to the specified <a href="uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a>.</div>
+<div class="block">Creates a new instance of a message of the specified kind that relates to the specified <a href="uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a>.</div>
 </dd>
 <dt><a href="uk/blankaspect/common/basictree/NodeMessage.Component.html" title="enum in uk.blankaspect.common.basictree"><span class="typeNameLink">NodeMessage.Component</span></a> - Enum in <a href="uk/blankaspect/common/basictree/package-summary.html">uk.blankaspect.common.basictree</a></dt>
 <dd>

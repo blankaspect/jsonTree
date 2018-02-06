@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -133,7 +133,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/NodeMessage.List.html#List--">List</a></span>()</code>
-<div class="block">Creates a new instance of a <a href="../../../../uk/blankaspect/common/basictree/NodeMessage.html" title="class in uk.blankaspect.common.basictree">node-related messages</a>.</div>
+<div class="block">Creates a new instance of a list of <a href="../../../../uk/blankaspect/common/basictree/NodeMessage.html" title="class in uk.blankaspect.common.basictree">node-related messages</a>.</div>
 </td>
 </tr>
 </table>
@@ -171,18 +171,26 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i2" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/NodeMessage.List.html#add-uk.blankaspect.common.basictree.AbstractNode-uk.blankaspect.common.basictree.NodeMessage.Kind-java.lang.Throwable-">add</a></span>(<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;node,
+   <a href="../../../../uk/blankaspect/common/basictree/NodeMessage.Kind.html" title="enum in uk.blankaspect.common.basictree">NodeMessage.Kind</a>&nbsp;kind,
+   java.lang.Throwable&nbsp;exception)</code>
+<div class="block">Creates a new message with the specified attributes and adds it to this list.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>java.util.List&lt;<a href="../../../../uk/blankaspect/common/basictree/NodeMessage.html" title="class in uk.blankaspect.common.basictree">NodeMessage</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/NodeMessage.List.html#getMessages--">getMessages</a></span>()</code>
 <div class="block">Returns an unmodifiable list of the messages in this list.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/NodeMessage.List.html#hasFatalError--">hasFatalError</a></span>()</code>
 <div class="block">Returns <code>true</code> if this list contains at least one 'fatal error' message.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/NodeMessage.List.html#isEmpty--">isEmpty</a></span>()</code>
 <div class="block">Returns <code>true</code> if this list contains no messages.</div>
@@ -217,7 +225,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>List</h4>
 <pre>public&nbsp;List()</pre>
-<div class="block">Creates a new instance of a <a href="../../../../uk/blankaspect/common/basictree/NodeMessage.html" title="class in uk.blankaspect.common.basictree">node-related messages</a>.</div>
+<div class="block">Creates a new instance of a list of <a href="../../../../uk/blankaspect/common/basictree/NodeMessage.html" title="class in uk.blankaspect.common.basictree">node-related messages</a>.</div>
 </li>
 </ul>
 </li>
@@ -285,11 +293,31 @@ extends java.lang.Object</pre>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>node</code> - the node that will be associated with the message.</dd>
 <dd><code>kind</code> - the kind of the message.</dd>
-<dd><code>text</code> - the text of the message.</dd>
+<dd><code>text</code> - the text of the message, which may be <code>null</code>.</dd>
 <dd><code>replacements</code> - the text that will replace placeholders in <i>text</i>; see <a href="../../../../uk/blankaspect/common/indexedsub/IndexedSub.html#sub-java.lang.String-java.lang.CharSequence...-"><code>IndexedSub.sub(String,
            CharSequence...)</code></a>.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.IllegalArgumentException</code> - if <i>node</i> is <code>null</code> or <i>kind</i> is <code>null</code> or <i>text</i> is <code>null</code>.</dd>
+<dd><code>java.lang.IllegalArgumentException</code> - if <i>node</i> is <code>null</code> or <i>kind</i> is <code>null</code>.</dd>
+</dl>
+</li>
+</ul>
+<a name="add-uk.blankaspect.common.basictree.AbstractNode-uk.blankaspect.common.basictree.NodeMessage.Kind-java.lang.Throwable-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>add</h4>
+<pre>public&nbsp;void&nbsp;add(<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;node,
+                <a href="../../../../uk/blankaspect/common/basictree/NodeMessage.Kind.html" title="enum in uk.blankaspect.common.basictree">NodeMessage.Kind</a>&nbsp;kind,
+                java.lang.Throwable&nbsp;exception)</pre>
+<div class="block">Creates a new message with the specified attributes and adds it to this list.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>node</code> - the node that will be associated with the message.</dd>
+<dd><code>kind</code> - the kind of the message.</dd>
+<dd><code>exception</code> - the exception that will be associated with the message, which may be <code>null</code>.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.IllegalArgumentException</code> - if <i>node</i> is <code>null</code> or <i>kind</i> is <code>null</code>.</dd>
 </dl>
 </li>
 </ul>
@@ -309,12 +337,12 @@ extends java.lang.Object</pre>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>node</code> - the node that will be associated with the message.</dd>
 <dd><code>kind</code> - the kind of the message.</dd>
-<dd><code>text</code> - the text of the message.</dd>
+<dd><code>text</code> - the text of the message, which may be <code>null</code>.</dd>
 <dd><code>exception</code> - the exception that will be associated with the message, which may be <code>null</code>.</dd>
 <dd><code>replacements</code> - the text that will replace placeholders in <i>text</i>; see <a href="../../../../uk/blankaspect/common/indexedsub/IndexedSub.html#sub-java.lang.String-java.lang.CharSequence...-"><code>IndexedSub.sub(String,
            CharSequence...)</code></a>.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.IllegalArgumentException</code> - if <i>node</i> is <code>null</code> or <i>kind</i> is <code>null</code> or <i>text</i> is <code>null</code>.</dd>
+<dd><code>java.lang.IllegalArgumentException</code> - if <i>node</i> is <code>null</code> or <i>kind</i> is <code>null</code>.</dd>
 </dl>
 </li>
 </ul>
