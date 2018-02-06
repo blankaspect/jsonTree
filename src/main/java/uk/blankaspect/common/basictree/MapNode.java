@@ -385,6 +385,7 @@ public class MapNode
 	//  Instance fields
 	////////////////////////////////////////////////////////////////////
 
+		/** The map from map nodes to indices. */
 		private	Map<MapNode, Integer>	indices;
 
 	}
@@ -1403,6 +1404,50 @@ public class MapNode
 	public MapNode getMapNode(String key)
 	{
 		return (MapNode)pairs.get(key);
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns the constant of the specified enumeration type that, after the specified converter has been applied to
+	 * it, matches the underlying value of the {@linkplain StringNode string node} that is associated with the specified
+	 * key in this map node.  If this map node does not contain a key&ndash;value pair with such a key, or if the
+	 * associated value is not a string node, or if the value of the string node does not match any of the converted
+	 * enumeration constants, the specified default value is returned instead.
+	 *
+	 * @param  <E>
+	 *           the enumeration type.
+	 * @param  cls
+	 *           the class of the enumeration type.
+	 * @param  key
+	 *           the key of the key&ndash;value pair whose underlying value is required to match an enumeration constant
+	 *           of <i>cls</i> after <i>converter</i> has been applied to it.
+	 * @param  converter
+	 *           the function that converts the enumeration constants of <i>cls</i> to strings.
+	 * @param  defaultValue
+	 *           the value that will be returned if this map node does not contain a key&ndash;value pair whose key is
+	 *           <i>key</i> or the value of the pair is not a string node or the value of the string node does not match
+	 *           any of the converted enumeration constants.
+	 * @return the enumeration constant of <i>cls</i> that, after <i>converter</i> has been applied to it, matches the
+	 *         the underlying value of the string node that is associated with <i>key</i> in this map node, or
+	 *         <i>defaultValue</i> if there is no such node or there is no matching enumeration constant.
+	 */
+
+	public <E extends Enum<E>> E getEnumValue(Class<E>            cls,
+											  String              key,
+											  Function<E, String> converter,
+											  E                   defaultValue)
+	{
+		if (hasString(key))
+		{
+			String str = getStringNode(key).getValue();
+			for (E value : cls.getEnumConstants())
+			{
+				if (converter.apply(value).equals(str))
+					return value;
+			}
+		}
+		return defaultValue;
 	}
 
 	//------------------------------------------------------------------
