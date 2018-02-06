@@ -20,6 +20,8 @@ package uk.blankaspect.common.json;
 
 import java.io.IOException;
 
+import java.nio.charset.StandardCharsets;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
@@ -42,9 +44,6 @@ public class JsonUtils
 ////////////////////////////////////////////////////////////////////////
 //  Constants
 ////////////////////////////////////////////////////////////////////////
-
-	/** The name of the UTF-8 character encoding in the JDK. */
-	private static final	String	ENCODING_NAME_UTF8	= "UTF-8";
 
 	/** The string that is prefixed to the name of a temporary file. */
 	private static final	String	TEMP_FILE_PREFIX	= "_$_";
@@ -150,7 +149,7 @@ public class JsonUtils
 		throws IOException
 	{
 		// Read the file; convert its content to text and return the text
-		return new String(Files.readAllBytes(file), ENCODING_NAME_UTF8);
+		return new String(Files.readAllBytes(file), StandardCharsets.UTF_8);
 	}
 
 	//------------------------------------------------------------------
@@ -232,7 +231,7 @@ public class JsonUtils
 			tempFile = Files.createTempFile(parent, TEMP_FILE_PREFIX, null);
 
 			// Write the text to the temporary file
-			Files.write(tempFile, text.getBytes(ENCODING_NAME_UTF8));
+			Files.write(tempFile, text.getBytes(StandardCharsets.UTF_8));
 
 			// Rename the temporary file to the output file
 			Files.move(tempFile, file, StandardCopyOption.REPLACE_EXISTING);
