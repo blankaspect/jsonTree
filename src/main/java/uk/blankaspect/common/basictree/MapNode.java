@@ -1409,6 +1409,38 @@ public class MapNode
 	//------------------------------------------------------------------
 
 	/**
+	 * Returns the constant of the specified enumeration type whose name matches the underlying value of the {@linkplain
+	 * StringNode string node} that is associated with the specified key in this map node.  If this map node does not
+	 * contain a key&ndash;value pair with such a key, or if the associated value is not a string node, or if the value
+	 * of the string node does not match the name of any of the enumeration constants, the specified default value is
+	 * returned instead.
+	 *
+	 * @param  <E>
+	 *           the enumeration type.
+	 * @param  cls
+	 *           the class of the enumeration type.
+	 * @param  key
+	 *           the key of the key&ndash;value pair whose underlying value is required to match the name of an
+	 *           enumeration constant of <i>cls</i>.
+	 * @param  defaultValue
+	 *           the value that will be returned if this map node does not contain a key&ndash;value pair whose key is
+	 *           <i>key</i> or the value of the pair is not a string node or the value of the string node does not match
+	 *           the name of any of the enumeration constants.
+	 * @return the enumeration constant of <i>cls</i> whose name matches the the underlying value of the string node
+	 *         that is associated with <i>key</i> in this map node, or <i>defaultValue</i> if there is no such node or
+	 *         there is no matching enumeration constant.
+	 */
+
+	public <E extends Enum<E>> E getEnumValue(Class<E> cls,
+											  String   key,
+											  E        defaultValue)
+	{
+		return getEnumValue(cls, key, value -> value.name(), defaultValue);
+	}
+
+	//------------------------------------------------------------------
+
+	/**
 	 * Returns the constant of the specified enumeration type that, after the specified converter has been applied to
 	 * it, matches the underlying value of the {@linkplain StringNode string node} that is associated with the specified
 	 * key in this map node.  If this map node does not contain a key&ndash;value pair with such a key, or if the
