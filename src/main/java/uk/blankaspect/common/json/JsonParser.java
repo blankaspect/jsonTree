@@ -227,7 +227,7 @@ public class JsonParser
 		//--------------------------------------------------------------
 
 	////////////////////////////////////////////////////////////////////
-	//  Instance fields
+	//  Instance variables
 	////////////////////////////////////////////////////////////////////
 
 		/** The zero-based index of the line of the input text at which the exception occurred. */
@@ -279,7 +279,7 @@ public class JsonParser
 		//--------------------------------------------------------------
 
 	////////////////////////////////////////////////////////////////////
-	//  Instance fields
+	//  Instance variables
 	////////////////////////////////////////////////////////////////////
 
 		/** The name of a property of a JSON object. */
@@ -1280,7 +1280,7 @@ public class JsonParser
 	//------------------------------------------------------------------
 
 ////////////////////////////////////////////////////////////////////////
-//  Instance fields
+//  Instance variables
 ////////////////////////////////////////////////////////////////////////
 
 	/** Flag: if {@code true}, a JSON number that is deemed to be an integer but is too large to be stored as a
