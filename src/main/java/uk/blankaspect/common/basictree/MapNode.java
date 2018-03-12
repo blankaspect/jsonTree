@@ -273,7 +273,7 @@ public class MapNode
 		//--------------------------------------------------------------
 
 	////////////////////////////////////////////////////////////////////
-	//  Class fields
+	//  Class variables
 	////////////////////////////////////////////////////////////////////
 
 		/** The function that converts the key of a key&ndash;value pair to its string representation for {@link
@@ -281,7 +281,7 @@ public class MapNode
 		private static	Function<CharSequence, String>	keyConverter	= StringNode::escapeAndQuote;
 
 	////////////////////////////////////////////////////////////////////
-	//  Instance fields
+	//  Instance variables
 	////////////////////////////////////////////////////////////////////
 
 		/** The key of this key&ndash;value pair. */
@@ -382,7 +382,7 @@ public class MapNode
 		//--------------------------------------------------------------
 
 	////////////////////////////////////////////////////////////////////
-	//  Instance fields
+	//  Instance variables
 	////////////////////////////////////////////////////////////////////
 
 		/** The map from map nodes to indices. */
@@ -959,6 +959,25 @@ public class MapNode
 
 	/**
 	 * Returns {@code true} if this map node contains a key&ndash;value pair whose key is the specified key and whose
+	 * value is either an {@linkplain IntNode 'int' node} or a {@linkplain LongNode 'long' node}.
+	 *
+	 * @param  key
+	 *           the key of the key&ndash;value pair of interest.
+	 * @return {@code true} if this map node contains a key&ndash;value pair whose key is <i>key</i> and whose value is
+	 *         either an {@linkplain IntNode 'int' node} or a {@linkplain LongNode 'long' node}; {@code false}
+	 *         otherwise.
+	 */
+
+	public boolean hasIntOrLong(String key)
+	{
+		AbstractNode value = pairs.get(key);
+		return (value instanceof IntNode) || (value instanceof LongNode);
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns {@code true} if this map node contains a key&ndash;value pair whose key is the specified key and whose
 	 * value is a {@linkplain DoubleNode 'double' node}.
 	 *
 	 * @param  key
@@ -1095,7 +1114,7 @@ public class MapNode
 
 	public boolean getBoolean(String key)
 	{
-		return getBooleanNode(key).getValue();
+		return ((BooleanNode)pairs.get(key)).getValue();
 	}
 
 	//------------------------------------------------------------------
@@ -1117,7 +1136,8 @@ public class MapNode
 	public boolean getBoolean(String  key,
 							  boolean defaultValue)
 	{
-		return hasBoolean(key) ? getBooleanNode(key).getValue() : defaultValue;
+		AbstractNode value = pairs.get(key);
+		return (value instanceof BooleanNode) ? ((BooleanNode)value).getValue() : defaultValue;
 	}
 
 	//------------------------------------------------------------------
@@ -1157,7 +1177,7 @@ public class MapNode
 
 	public int getInt(String key)
 	{
-		return getIntNode(key).getValue();
+		return ((IntNode)pairs.get(key)).getValue();
 	}
 
 	//------------------------------------------------------------------
@@ -1179,7 +1199,8 @@ public class MapNode
 	public int getInt(String key,
 					  int    defaultValue)
 	{
-		return hasInt(key) ? getIntNode(key).getValue() : defaultValue;
+		AbstractNode value = pairs.get(key);
+		return (value instanceof IntNode) ? ((IntNode)value).getValue() : defaultValue;
 	}
 
 	//------------------------------------------------------------------
@@ -1219,7 +1240,7 @@ public class MapNode
 
 	public long getLong(String key)
 	{
-		return getLongNode(key).getValue();
+		return ((LongNode)pairs.get(key)).getValue();
 	}
 
 	//------------------------------------------------------------------
@@ -1241,7 +1262,63 @@ public class MapNode
 	public long getLong(String key,
 						long   defaultValue)
 	{
-		return hasLong(key) ? getLongNode(key).getValue() : defaultValue;
+		AbstractNode value = pairs.get(key);
+		return (value instanceof LongNode) ? ((LongNode)value).getValue() : defaultValue;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns the underlying value of the {@linkplain IntNode 'int' node} or {@linkplain LongNode 'long' node} that is
+	 * associated with the specified key in this map node.
+	 *
+	 * @param  key
+	 *           the key of the key&ndash;value pair whose underlying value is required.
+	 * @return the underlying value of the 'int' node or 'long' node that is associated with <i>key</i> in this map
+	 *         node.
+	 * @throws NullPointerException
+	 *           if this map node does not contain a KV pair with the specified key.
+	 * @throws NodeTypeException
+	 *           if this map node contains a KV pair with the specified key and its value is neither an instance of
+	 *           {@link IntNode} nor an instance of {@link LongNode}.
+	 */
+
+	public long getIntOrLong(String key)
+	{
+		AbstractNode value = pairs.get(key);
+		if (value instanceof IntNode)
+			return ((IntNode)value).getValue();
+		if (value instanceof LongNode)
+			return ((LongNode)value).getValue();
+		throw new NodeTypeException(value.getType());
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns the underlying value of the {@linkplain IntNode 'int' node} or {@linkplain LongNode 'long' node} that is
+	 * associated with the specified key in this map node.  If this map node does not contain a key&ndash;value pair
+	 * with such a key, or if the associated value is neither an 'int' node nor a 'long' node, the specified default
+	 * value is returned instead.
+	 *
+	 * @param  key
+	 *           the key of the key&ndash;value pair whose underlying value is required.
+	 * @param  defaultValue
+	 *           the value that will be returned if this map node does not contain a key&ndash;value pair whose key is
+	 *           <i>key</i> or the value of the pair is neither an 'int' node nor a 'long' node.
+	 * @return the underlying value of the 'int' node or 'long' node that is associated with <i>key</i> in this map
+	 *         node, or <i>defaultValue</i> if there is no such node.
+	 */
+
+	public long getIntOrLong(String key,
+							 long   defaultValue)
+	{
+		AbstractNode value = pairs.get(key);
+		if (value instanceof IntNode)
+			return ((IntNode)value).getValue();
+		if (value instanceof LongNode)
+			return ((LongNode)value).getValue();
+		return defaultValue;
 	}
 
 	//------------------------------------------------------------------
@@ -1281,7 +1358,7 @@ public class MapNode
 
 	public double getDouble(String key)
 	{
-		return getDoubleNode(key).getValue();
+		return ((DoubleNode)pairs.get(key)).getValue();
 	}
 
 	//------------------------------------------------------------------
@@ -1303,7 +1380,8 @@ public class MapNode
 	public double getDouble(String key,
 							double defaultValue)
 	{
-		return hasDouble(key) ? getDoubleNode(key).getValue() : defaultValue;
+		AbstractNode value = pairs.get(key);
+		return (value instanceof DoubleNode) ? ((DoubleNode)value).getValue() : defaultValue;
 	}
 
 	//------------------------------------------------------------------
@@ -1343,7 +1421,7 @@ public class MapNode
 
 	public String getString(String key)
 	{
-		return getStringNode(key).getValue();
+		return ((StringNode)pairs.get(key)).getValue();
 	}
 
 	//------------------------------------------------------------------
@@ -1365,7 +1443,8 @@ public class MapNode
 	public String getString(String key,
 							String defaultValue)
 	{
-		return hasString(key) ? getStringNode(key).getValue() : defaultValue;
+		AbstractNode value = pairs.get(key);
+		return (value instanceof StringNode) ? ((StringNode)value).getValue() : defaultValue;
 	}
 
 	//------------------------------------------------------------------
@@ -2439,7 +2518,7 @@ public class MapNode
 	//------------------------------------------------------------------
 
 ////////////////////////////////////////////////////////////////////////
-//  Class fields
+//  Class variables
 ////////////////////////////////////////////////////////////////////////
 
 	/** The prefix of keys that are generated by the default {@linkplain #keyGenerator key generator}. */
@@ -2462,7 +2541,7 @@ public class MapNode
 	}
 
 ////////////////////////////////////////////////////////////////////////
-//  Instance fields
+//  Instance variables
 ////////////////////////////////////////////////////////////////////////
 
 	/** A map of the key&ndash;value pairs of this map node. */
