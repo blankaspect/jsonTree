@@ -676,6 +676,67 @@ public class ListNode
 	//------------------------------------------------------------------
 
 	/**
+	 * Returns the underlying values of the elements of this list node as an array of {@code long}s.  The elements of
+	 * this list may be either {@linkplain IntNode 'int' nodes} or {@linkplain LongNode 'long' nodes}.
+	 *
+	 * @return an array of the underlying {@code long} values of the elements of this list node.
+	 * @throws NodeTypeException
+	 *           if any of the elements of this list node is neither an {@linkplain IntNode 'int' node} nor a
+	 *           {@linkplain LongNode 'long' node}.
+	 */
+
+	public long[] getIntOrLongArray()
+		throws NodeTypeException
+	{
+		long[] outValues = new long[elements.size()];
+		for (int i = 0; i < outValues.length; i++)
+		{
+			// Get element
+			AbstractNode element = elements.get(i);
+
+			// Add value of element to array
+			if (element instanceof IntNode)
+				outValues[i] = ((IntNode)element).getValue();
+			else if (element instanceof LongNode)
+				outValues[i] = ((LongNode)element).getValue();
+			else
+				throw new NodeTypeException(element.getType());
+		}
+		return outValues;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns the underlying values of the elements of this list node as a list of {@code Long}s.  The elements of this
+	 * list may be either {@linkplain IntNode 'int' nodes} or {@linkplain LongNode 'long' nodes}.
+	 *
+	 * @return a list of the underlying {@code Long} values of the elements of this list node.
+	 * @throws NodeTypeException
+	 *           if any of the elements of this list node is neither an {@linkplain IntNode 'int' node} nor a
+	 *           {@linkplain LongNode 'long' node}.
+	 */
+
+	public List<Long> getIntOrLongList()
+		throws NodeTypeException
+	{
+		List<Long> outValues = new ArrayList<>();
+		for (AbstractNode element : elements)
+		{
+			// Add value of element to list
+			if (element instanceof IntNode)
+				outValues.add((long)((IntNode)element).getValue());
+			else if (element instanceof LongNode)
+				outValues.add(((LongNode)element).getValue());
+			else
+				throw new NodeTypeException(element.getType());
+		}
+		return outValues;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
 	 * Returns the underlying values of the elements of this list node as an array of {@code double}s.
 	 *
 	 * @return an array of the underlying {@code double} values of the elements of this list node.
@@ -1206,7 +1267,7 @@ public class ListNode
 	//------------------------------------------------------------------
 
 ////////////////////////////////////////////////////////////////////////
-//  Instance fields
+//  Instance variables
 ////////////////////////////////////////////////////////////////////////
 
 	/** A list of the elements of this list node. */
