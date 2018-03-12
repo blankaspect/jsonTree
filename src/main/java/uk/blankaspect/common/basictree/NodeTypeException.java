@@ -74,7 +74,7 @@ public class NodeTypeException
 	//------------------------------------------------------------------
 
 ////////////////////////////////////////////////////////////////////////
-//  Instance fields
+//  Instance variables
 ////////////////////////////////////////////////////////////////////////
 
 	/** The node type that is associated with this exception. */

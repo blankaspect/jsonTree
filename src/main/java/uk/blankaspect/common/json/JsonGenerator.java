@@ -666,7 +666,7 @@ public class JsonGenerator
 	//------------------------------------------------------------------
 
 ////////////////////////////////////////////////////////////////////////
-//  Instance fields
+//  Instance variables
 ////////////////////////////////////////////////////////////////////////
 
 	/** The mode of this generator, which controls the way in which whitespace is written between the tokens of the JSON
