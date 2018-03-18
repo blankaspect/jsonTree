@@ -40,7 +40,7 @@ public class LongNode
 ////////////////////////////////////////////////////////////////////////
 
 	/** The type of a 'long' node. */
-	public static final	NodeType	TYPE	= new NodeType(AbstractNode.TYPE, LongNode.class);
+	public static final	NodeType	TYPE	= new NodeType(NodeType.ANY, LongNode.class);
 
 ////////////////////////////////////////////////////////////////////////
 //  Constructors

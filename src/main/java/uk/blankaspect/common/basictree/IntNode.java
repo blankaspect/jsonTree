@@ -40,7 +40,7 @@ public class IntNode
 ////////////////////////////////////////////////////////////////////////
 
 	/** The type of an 'int' node. */
-	public static final	NodeType	TYPE	= new NodeType(AbstractNode.TYPE, IntNode.class);
+	public static final	NodeType	TYPE	= new NodeType(NodeType.ANY, IntNode.class);
 
 ////////////////////////////////////////////////////////////////////////
 //  Constructors

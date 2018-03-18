@@ -46,7 +46,7 @@ public class BooleanNode
 	public static final	String	VALUE_TRUE	= "true";
 
 	/** The type of a Boolean node. */
-	public static final	NodeType	TYPE	= new NodeType(AbstractNode.TYPE, BooleanNode.class);
+	public static final	NodeType	TYPE	= new NodeType(NodeType.ANY, BooleanNode.class);
 
 ////////////////////////////////////////////////////////////////////////
 //  Constructors

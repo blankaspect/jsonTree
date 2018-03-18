@@ -34,7 +34,7 @@ public class NullNode
 	public static final	String	VALUE	= "null";
 
 	/** The type of a null node. */
-	public static final	NodeType	TYPE	= new NodeType(AbstractNode.TYPE, NullNode.class);
+	public static final	NodeType	TYPE	= new NodeType(NodeType.ANY, NullNode.class);
 
 ////////////////////////////////////////////////////////////////////////
 //  Constructors

@@ -73,7 +73,7 @@ public class StringNode
 	public static final		int		UNICODE_LENGTH	= 4;
 
 	/** The type of a string node. */
-	public static final	NodeType	TYPE	= new NodeType(AbstractNode.TYPE, StringNode.class);
+	public static final	NodeType	TYPE	= new NodeType(NodeType.ANY, StringNode.class);
 
 	/** Mappings from literal characters to their corresponding characters in an escape sequence. */
 	protected static final	char[][]	ESCAPE_MAPPINGS	=

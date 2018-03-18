@@ -62,7 +62,7 @@ public class ListNode
 	public static final	char	ELEMENT_SEPARATOR_CHAR	= ',';
 
 	/** The type of a list node. */
-	public static final	NodeType	TYPE	= new NodeType(AbstractNode.TYPE, ListNode.class);
+	public static final	NodeType	TYPE	= new NodeType(NodeType.ANY, ListNode.class);
 
 ////////////////////////////////////////////////////////////////////////
 //  Constructors

@@ -40,7 +40,7 @@ public class DoubleNode
 ////////////////////////////////////////////////////////////////////////
 
 	/** The type of a 'double' node. */
-	public static final	NodeType	TYPE	= new NodeType(AbstractNode.TYPE, DoubleNode.class);
+	public static final	NodeType	TYPE	= new NodeType(NodeType.ANY, DoubleNode.class);
 
 ////////////////////////////////////////////////////////////////////////
 //  Constructors

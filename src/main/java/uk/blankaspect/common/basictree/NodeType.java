@@ -32,7 +32,7 @@ import uk.blankaspect.common.tree.ITreeNode;
 
 /**
  * This class represents the type of a {@linkplain AbstractNode node}.  Node types form a hierarchy whose root is {@link
- * #ROOT}, the node type of {@link AbstractNode}.  The hierarchy of node types mirrors the hierarchy of the classes with
+ * #ANY}, the node type of {@link AbstractNode}.  The hierarchy of node types mirrors the hierarchy of the classes with
  * which the node types are associated, so node types are likely to be useful only when it is inconvenient to work with
  * the classes of nodes.
  */
@@ -45,8 +45,8 @@ public final class NodeType
 //  Constants
 ////////////////////////////////////////////////////////////////////////
 
-	/** The root of the node-type hierarchy: the node type of {@link AbstractNode}. */
-	public static final	NodeType	ROOT	= new NodeType(AbstractNode.class);
+	/** The root of the node-type hierarchy. */
+	public static final	NodeType	ANY	= new NodeType(AbstractNode.class);
 
 ////////////////////////////////////////////////////////////////////////
 //  Constructors
@@ -85,7 +85,7 @@ public final class NodeType
 
 	/**
 	 * Creates a new node type that is associated with the specified class of {@linkplain AbstractNode node}.  This
-	 * constructor is used only to create the {@linkplain #ROOT root node}.
+	 * constructor is used only to create the {@linkplain #ANY root node}.
 	 *
 	 * @param  nodeClass
 	 *           the class of node with which the node type will be associated.

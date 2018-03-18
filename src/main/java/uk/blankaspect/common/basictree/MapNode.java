@@ -90,7 +90,7 @@ public class MapNode
 	public static final	String	DEFAULT_GENERATED_KEY_PREFIX	= "#";
 
 	/** The type of a map node. */
-	public static final	NodeType	TYPE	= new NodeType(AbstractNode.TYPE, MapNode.class);
+	public static final	NodeType	TYPE	= new NodeType(NodeType.ANY, MapNode.class);
 
 ////////////////////////////////////////////////////////////////////////
 //  Member classes : non-inner classes
