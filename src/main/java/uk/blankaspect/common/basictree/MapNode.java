@@ -1635,6 +1635,17 @@ public class MapNode
 	//------------------------------------------------------------------
 
 	/**
+	 * Removes all the key&ndash;value pairs of this map node.
+	 */
+
+	public void clear()
+	{
+		pairs.clear();
+	}
+
+	//------------------------------------------------------------------
+
+	/**
 	 * Sets the key&ndash;value pairs of this map node to the specified pairs of keys and {@linkplain AbstractNode
 	 * values}.
 	 *

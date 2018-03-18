@@ -869,6 +869,17 @@ public class ListNode
 	//------------------------------------------------------------------
 
 	/**
+	 * Removes all the elements of this list node.
+	 */
+
+	public void clear()
+	{
+		elements.clear();
+	}
+
+	//------------------------------------------------------------------
+
+	/**
 	 * Sets the elements of this list node to the specified nodes.
 	 *
 	 * @param nodes
