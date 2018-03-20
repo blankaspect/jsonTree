@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10,"i34":10,"i35":10,"i36":10,"i37":10,"i38":10,"i39":10,"i40":10,"i41":10,"i42":10,"i43":10,"i44":10,"i45":10,"i46":10,"i47":10,"i48":10,"i49":10,"i50":10,"i51":10,"i52":10,"i53":10,"i54":10,"i55":10,"i56":10,"i57":10,"i58":10,"i59":10,"i60":10,"i61":10,"i62":10,"i63":10,"i64":10,"i65":10,"i66":10,"i67":10,"i68":10,"i69":10,"i70":10,"i71":10,"i72":10,"i73":10,"i74":10,"i75":10,"i76":10,"i77":10,"i78":10,"i79":10,"i80":10,"i81":10,"i82":10,"i83":10,"i84":10,"i85":9,"i86":9,"i87":9,"i88":9,"i89":9,"i90":9,"i91":9,"i92":9,"i93":10,"i94":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10,"i34":10,"i35":10,"i36":10,"i37":10,"i38":10,"i39":10,"i40":10,"i41":10,"i42":10,"i43":10,"i44":10,"i45":10,"i46":10,"i47":10,"i48":10,"i49":10,"i50":10,"i51":10,"i52":10,"i53":10,"i54":10,"i55":10,"i56":10,"i57":10,"i58":10,"i59":10,"i60":10,"i61":10,"i62":10,"i63":10,"i64":10,"i65":10,"i66":10,"i67":10,"i68":10,"i69":10,"i70":10,"i71":10,"i72":10,"i73":10,"i74":10,"i75":10,"i76":10,"i77":10,"i78":10,"i79":10,"i80":10,"i81":10,"i82":10,"i83":10,"i84":10,"i85":9,"i86":9,"i87":9,"i88":9,"i89":9,"i90":10,"i91":10,"i92":10,"i93":9,"i94":10,"i95":10,"i96":10,"i97":9,"i98":9,"i99":10,"i100":10,"i101":10,"i102":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -954,30 +954,79 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 </td>
 </tr>
 <tr id="i90" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/MapNode.html#remove-java.lang.Iterable-">remove</a></span>(java.lang.Iterable&lt;java.lang.String&gt;&nbsp;keys)</code>
+<div class="block">Removes the key&ndash;value pairs with the specified keys from this map node.</div>
+</td>
+</tr>
+<tr id="i91" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/MapNode.html#remove-java.util.function.Predicate-">remove</a></span>(java.util.function.Predicate&lt;java.lang.String&gt;&nbsp;keyFilter)</code>
+<div class="block">Removes the key&ndash;value pairs whose keys are accepted by the specified filter from this map node.</div>
+</td>
+</tr>
+<tr id="i92" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/MapNode.html#remove-java.lang.String...-">remove</a></span>(java.lang.String...&nbsp;keys)</code>
+<div class="block">Removes the key&ndash;value pairs with the specified keys from this map node.</div>
+</td>
+</tr>
+<tr id="i93" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/MapNode.html#resetGeneratedKeyIndex--">resetGeneratedKeyIndex</a></span>()</code>
 <div class="block">Resets the index that is used by the default key-generator function.</div>
 </td>
 </tr>
-<tr id="i91" class="rowColor">
+<tr id="i94" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/MapNode.html#retain-java.util.Collection-">retain</a></span>(java.util.Collection&lt;java.lang.String&gt;&nbsp;keys)</code>
+<div class="block">Removes all key&ndash;value pairs from this map node except for those with the specified keys.</div>
+</td>
+</tr>
+<tr id="i95" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/MapNode.html#retain-java.util.function.Predicate-">retain</a></span>(java.util.function.Predicate&lt;java.lang.String&gt;&nbsp;keyFilter)</code>
+<div class="block">Removes all key&ndash;value pairs from this map node except for those whose keys are accepted by the specified
+ filter.</div>
+</td>
+</tr>
+<tr id="i96" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/MapNode.html#retain-java.lang.String...-">retain</a></span>(java.lang.String...&nbsp;keys)</code>
+<div class="block">Removes all key&ndash;value pairs from this map node except for those with the specified keys.</div>
+</td>
+</tr>
+<tr id="i97" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/MapNode.html#setGeneratedKeyPrefix-java.lang.String-">setGeneratedKeyPrefix</a></span>(java.lang.String&nbsp;prefix)</code>
 <div class="block">Sets the prefix of the keys that are generated by the default key-generator function to the specified value.</div>
 </td>
 </tr>
-<tr id="i92" class="altColor">
+<tr id="i98" class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/MapNode.html#setKeyGenerator-java.util.function.Function-">setKeyGenerator</a></span>(java.util.function.Function&lt;<a href="../../../../uk/blankaspect/common/basictree/MapNode.html" title="class in uk.blankaspect.common.basictree">MapNode</a>,java.lang.String&gt;&nbsp;generator)</code>
 <div class="block">Sets the function that generates a key for a given map node to the specified value.</div>
 </td>
 </tr>
-<tr id="i93" class="rowColor">
+<tr id="i99" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/MapNode.html#setPairs-java.util.Map-">setPairs</a></span>(java.util.Map&lt;java.lang.String,<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;&nbsp;pairs)</code>
 <div class="block">Sets the key&ndash;value pairs of this map node to the specified pairs of keys and <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">values</a>.</div>
 </td>
 </tr>
-<tr id="i94" class="altColor">
+<tr id="i100" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/MapNode.html#sort--">sort</a></span>()</code>
+<div class="block">Sorts the key&ndash;value pairs of this map node into ascending order of their keys by applying the <code>String.compareTo(String)</code> method to the keys.</div>
+</td>
+</tr>
+<tr id="i101" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/MapNode.html#sort-java.util.Comparator-">sort</a></span>(java.util.Comparator&lt;java.lang.String&gt;&nbsp;keyComparator)</code>
+<div class="block">Sorts the key&ndash;value pairs of this map node by applying the specified comparator to their keys.</div>
+</td>
+</tr>
+<tr id="i102" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/MapNode.html#toString--">toString</a></span>()</code>
 <div class="block">Returns a string representation of this map node.</div>
@@ -2355,6 +2404,8 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>key</code> - the key of the key&ndash;value pair.</dd>
 <dd><code>value</code> - the value of the key&ndash;value pair.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.IllegalArgumentException</code> - if <i>value</i> is <code>null</code>.</dd>
 </dl>
 </li>
 </ul>
@@ -3094,6 +3145,118 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the new map node that contains <i>pairs</i> and that was added to this map node as a key&ndash;value pair
          whose key is <i>key</i>.</dd>
+</dl>
+</li>
+</ul>
+<a name="remove-java.lang.String...-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>remove</h4>
+<pre>public&nbsp;void&nbsp;remove(java.lang.String...&nbsp;keys)</pre>
+<div class="block">Removes the key&ndash;value pairs with the specified keys from this map node.  If a specified key is not
+ associated with a KV pair of this map node, it is ignored.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>keys</code> - the keys of the key&ndash;value pairs that will be removed from this map node.</dd>
+</dl>
+</li>
+</ul>
+<a name="remove-java.lang.Iterable-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>remove</h4>
+<pre>public&nbsp;void&nbsp;remove(java.lang.Iterable&lt;java.lang.String&gt;&nbsp;keys)</pre>
+<div class="block">Removes the key&ndash;value pairs with the specified keys from this map node.  If a specified key is not
+ associated with a KV pair of this map node, it is ignored.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>keys</code> - the keys of the key&ndash;value pairs that will be removed from this map node.</dd>
+</dl>
+</li>
+</ul>
+<a name="remove-java.util.function.Predicate-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>remove</h4>
+<pre>public&nbsp;void&nbsp;remove(java.util.function.Predicate&lt;java.lang.String&gt;&nbsp;keyFilter)</pre>
+<div class="block">Removes the key&ndash;value pairs whose keys are accepted by the specified filter from this map node.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>keyFilter</code> - the function that selects the keys of the key&ndash;value pairs that will be removed from this map node.</dd>
+</dl>
+</li>
+</ul>
+<a name="retain-java.lang.String...-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>retain</h4>
+<pre>public&nbsp;void&nbsp;retain(java.lang.String...&nbsp;keys)</pre>
+<div class="block">Removes all key&ndash;value pairs from this map node except for those with the specified keys.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>keys</code> - the keys of the key&ndash;value pairs that will be retained by this map node.</dd>
+</dl>
+</li>
+</ul>
+<a name="retain-java.util.Collection-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>retain</h4>
+<pre>public&nbsp;void&nbsp;retain(java.util.Collection&lt;java.lang.String&gt;&nbsp;keys)</pre>
+<div class="block">Removes all key&ndash;value pairs from this map node except for those with the specified keys.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>keys</code> - the keys of the key&ndash;value pairs that will be retained by this map node.</dd>
+</dl>
+</li>
+</ul>
+<a name="retain-java.util.function.Predicate-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>retain</h4>
+<pre>public&nbsp;void&nbsp;retain(java.util.function.Predicate&lt;java.lang.String&gt;&nbsp;keyFilter)</pre>
+<div class="block">Removes all key&ndash;value pairs from this map node except for those whose keys are accepted by the specified
+ filter.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>keyFilter</code> - the function that selects the keys of the key&ndash;value pairs that will be retained by this map node.</dd>
+</dl>
+</li>
+</ul>
+<a name="sort--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>sort</h4>
+<pre>public&nbsp;void&nbsp;sort()</pre>
+<div class="block">Sorts the key&ndash;value pairs of this map node into ascending order of their keys by applying the <code>String.compareTo(String)</code> method to the keys.</div>
+</li>
+</ul>
+<a name="sort-java.util.Comparator-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>sort</h4>
+<pre>public&nbsp;void&nbsp;sort(java.util.Comparator&lt;java.lang.String&gt;&nbsp;keyComparator)</pre>
+<div class="block">Sorts the key&ndash;value pairs of this map node by applying the specified comparator to their keys.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>keyComparator</code> - the comparator that will be applied to the keys of this map node to determine the order of the
+          key&ndash;value pairs.  If this is <code>null</code>, the keys will be sorted by applying the <code>String.compareTo(String)</code> method to them.</dd>
 </dl>
 </li>
 </ul>
