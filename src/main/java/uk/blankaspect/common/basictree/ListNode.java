@@ -912,13 +912,22 @@ public class ListNode
 	/**
 	 * Adds the specified node to the end of the list of elements of this list node.
 	 *
-	 * @param node
-	 *          the node that will be added to the end of the list of elements of this list node.
+	 * @param  node
+	 *           the node that will be added to the end of the list of elements of this list node.
+	 * @throws IllegalArgumentException
+	 *           if <i>node</i> is {@code null}.
 	 */
 
 	public void add(AbstractNode node)
 	{
+		// Validate argument
+		if (node == null)
+			throw new IllegalArgumentException("Null value");
+
+		// Add element to list
 		elements.add(node);
+
+		// Set parent of new element
 		node.setParent(this);
 	}
 
