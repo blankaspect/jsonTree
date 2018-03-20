@@ -20,7 +20,10 @@ package uk.blankaspect.common.basictree;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.IdentityHashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -28,6 +31,7 @@ import java.util.List;
 import java.util.Map;
 
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 //----------------------------------------------------------------------
 
@@ -1701,16 +1705,25 @@ public class MapNode
 	 * a KV pair with the specified key, the specified value will replace the value of the existing pair without
 	 * affecting the order of the pairs; otherwise, a new KV pair will be added to the end of the collection of pairs.
 	 *
-	 * @param key
-	 *          the key of the key&ndash;value pair.
-	 * @param value
-	 *          the value of the key&ndash;value pair.
+	 * @param  key
+	 *           the key of the key&ndash;value pair.
+	 * @param  value
+	 *           the value of the key&ndash;value pair.
+	 * @throws IllegalArgumentException
+	 *           if <i>value</i> is {@code null}.
 	 */
 
 	public void add(String       key,
 					AbstractNode value)
 	{
+		// Validate arguments
+		if (value == null)
+			throw new IllegalArgumentException("Null value");
+
+		// Add pair to map
 		pairs.put(key, value);
+
+		// Set parent of new pair
 		value.setParent(this);
 	}
 
@@ -2509,6 +2522,147 @@ public class MapNode
 		MapNode node = new MapNode(pairs);
 		add(key, node);
 		return node;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Removes the key&ndash;value pairs with the specified keys from this map node.  If a specified key is not
+	 * associated with a KV pair of this map node, it is ignored.
+	 *
+	 * @param keys
+	 *          the keys of the key&ndash;value pairs that will be removed from this map node.
+	 */
+
+	public void remove(String... keys)
+	{
+		for (String key : keys)
+			pairs.remove(key);
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Removes the key&ndash;value pairs with the specified keys from this map node.  If a specified key is not
+	 * associated with a KV pair of this map node, it is ignored.
+	 *
+	 * @param keys
+	 *          the keys of the key&ndash;value pairs that will be removed from this map node.
+	 */
+
+	public void remove(Iterable<String> keys)
+	{
+		for (String key : keys)
+			pairs.remove(key);
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Removes the key&ndash;value pairs whose keys are accepted by the specified filter from this map node.
+	 *
+	 * @param keyFilter
+	 *          the function that selects the keys of the key&ndash;value pairs that will be removed from this map node.
+	 */
+
+	public void remove(Predicate<String> keyFilter)
+	{
+		for (String key : pairs.keySet())
+		{
+			if (keyFilter.test(key))
+				pairs.remove(key);
+		}
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Removes all key&ndash;value pairs from this map node except for those with the specified keys.
+	 *
+	 * @param keys
+	 *          the keys of the key&ndash;value pairs that will be retained by this map node.
+	 */
+
+	public void retain(String... keys)
+	{
+		retain(Arrays.asList(keys));
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Removes all key&ndash;value pairs from this map node except for those with the specified keys.
+	 *
+	 * @param keys
+	 *          the keys of the key&ndash;value pairs that will be retained by this map node.
+	 */
+
+	public void retain(Collection<String> keys)
+	{
+		for (String key : pairs.keySet())
+		{
+			if (!keys.contains(key))
+				pairs.remove(key);
+		}
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Removes all key&ndash;value pairs from this map node except for those whose keys are accepted by the specified
+	 * filter.
+	 *
+	 * @param keyFilter
+	 *          the function that selects the keys of the key&ndash;value pairs that will be retained by this map node.
+	 */
+
+	public void retain(Predicate<String> keyFilter)
+	{
+		for (String key : pairs.keySet())
+		{
+			if (!keyFilter.test(key))
+				pairs.remove(key);
+		}
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Sorts the key&ndash;value pairs of this map node into ascending order of their keys by applying the {@link
+	 * String#compareTo(String)} method to the keys.
+	 */
+
+	public void sort()
+	{
+		sort(null);
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Sorts the key&ndash;value pairs of this map node by applying the specified comparator to their keys.
+	 *
+	 * @param keyComparator
+	 *          the comparator that will be applied to the keys of this map node to determine the order of the
+	 *          key&ndash;value pairs.  If this is {@code null}, the keys will be sorted by applying the {@link
+	 *          String#compareTo(String)} method to them.
+	 */
+
+	public void sort(Comparator<String> keyComparator)
+	{
+		// Create a list of the keys
+		List<String> keys = new ArrayList<>(pairs.keySet());
+
+		// Sort the keys
+		keys.sort(keyComparator);
+
+		// Create a copy of the KV pairs
+		Map<String, AbstractNode> pairsCopy = new HashMap<>(pairs);
+
+		// Clear the map of KV pairs and copy the pairs back into it in the order of the sorted keys
+		pairs.clear();
+		for (String key : keys)
+			pairs.put(key, pairsCopy.get(key));
 	}
 
 	//------------------------------------------------------------------
