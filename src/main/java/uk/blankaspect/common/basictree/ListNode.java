@@ -92,7 +92,7 @@ public class ListNode
 		// Call superclass constructor
 		super(parent);
 
-		// Initialise instance fields
+		// Initialise instance variables
 		elements = new ArrayList<>();
 	}
 
@@ -148,7 +148,7 @@ public class ListNode
 		// Call alternative constructor
 		this(parent);
 
-		// Initialise instance fields
+		// Initialise instance variables
 		setElements(elements);
 	}
 

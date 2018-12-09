@@ -187,7 +187,7 @@ public class JsonParser
 			// Call superclass constructor
 			super("(" + (lineIndex + 1) + ", " + (columnIndex + 1) + "): " + IndexedSub.sub(message, substitutionSeqs));
 
-			// Initialise instance fields
+			// Initialise instance variables
 			this.lineIndex = lineIndex;
 			this.columnIndex = columnIndex;
 		}
@@ -270,7 +270,7 @@ public class JsonParser
 							 int    index,
 							 int    lineIndex)
 		{
-			// Initialise instance fields
+			// Initialise instance variables
 			this.name = name;
 			this.index = index;
 			this.lineIndex = lineIndex;
@@ -305,7 +305,7 @@ public class JsonParser
 
 	public JsonParser()
 	{
-		// Initialise instance fields
+		// Initialise instance variables
 		tokenBuffer = new StringBuilder();
 	}
 
@@ -381,7 +381,7 @@ public class JsonParser
 	public AbstractNode parse(CharSequence text)
 		throws ParseException
 	{
-		// Reset instance fields
+		// Reset instance variables
 		index = 0;
 		lineIndex = 0;
 		lineStartIndex = 0;
