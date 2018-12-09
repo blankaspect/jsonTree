@@ -50,7 +50,7 @@ public class NodeTypeException
 		// Call superclass constructor
 		super(nodeType.toString());
 
-		// Initialise instance field
+		// Initialise instance variable
 		this.nodeType = nodeType;
 	}
 

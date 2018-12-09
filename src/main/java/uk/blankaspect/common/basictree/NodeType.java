@@ -283,7 +283,7 @@ public final class NodeType
 		if (nodeClass == null)
 			throw new IllegalArgumentException("Null node class");
 
-		// Initialise instance fields
+		// Initialise instance variables
 		this.parent = parent;
 		children = new ArrayList<>();
 		this.nodeClass = nodeClass;

@@ -132,7 +132,7 @@ public class StringNode
 		if (value == null)
 			throw new IllegalArgumentException("Null value");
 
-		// Initialise instance fields
+		// Initialise instance variables
 		this.value = value;
 	}
 

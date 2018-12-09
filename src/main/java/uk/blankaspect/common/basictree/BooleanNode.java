@@ -82,7 +82,7 @@ public class BooleanNode
 		// Call superclass constructor
 		super(parent);
 
-		// Initialise instance fields
+		// Initialise instance variables
 		this.value = value;
 	}
 

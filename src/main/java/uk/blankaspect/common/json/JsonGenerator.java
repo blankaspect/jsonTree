@@ -183,7 +183,7 @@ public class JsonGenerator
 						 int     indentIncrement,
 						 int     maxLineLength)
 	{
-		// Initialise instance fields
+		// Initialise instance variables
 		this.mode = mode;
 		this.openingBracketOnSameLine = openingBracketOnSameLine;
 		this.indentIncrement = indentIncrement;

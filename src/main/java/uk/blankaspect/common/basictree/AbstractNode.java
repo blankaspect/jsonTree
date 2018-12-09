@@ -62,7 +62,7 @@ public abstract class AbstractNode
 
 	protected AbstractNode(AbstractNode parent)
 	{
-		// Initialise instance fields
+		// Initialise instance variables
 		this.parent = parent;
 	}
 
