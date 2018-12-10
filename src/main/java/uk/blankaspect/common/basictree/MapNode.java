@@ -1675,7 +1675,7 @@ public class MapNode
 	 *          the value of the key&ndash;value pair.
 	 */
 
-	public void add(AbstractNode value)
+	public void addAuto(AbstractNode value)
 	{
 		add(keyGenerator.apply(this), value);
 	}
