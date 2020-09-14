@@ -18,10 +18,17 @@ package uk.blankaspect.common.json;
 // IMPORTS
 
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.io.Reader;
+
 import java.math.BigDecimal;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+
 import java.util.ArrayDeque;
-import java.util.Arrays;
 import java.util.Deque;
 
 import uk.blankaspect.common.basictree.AbstractNode;
@@ -34,20 +41,18 @@ import uk.blankaspect.common.basictree.MapNode;
 import uk.blankaspect.common.basictree.NullNode;
 import uk.blankaspect.common.basictree.StringNode;
 
-import uk.blankaspect.common.indexedsub.IndexedSub;
-
 //----------------------------------------------------------------------
 
 /**
  * This class implements a parser that transforms JSON text into a tree of values that are represented by {@linkplain
- * AbstractNode nodes}.  The input text of the parser must conform to the JSON grammar as specified in the following
- * documents:
+ * AbstractNode nodes}.  The input text of the parser is expected to conform to the JSON grammar as specified in the
+ * following documents:
  * <ul>
  *   <li><a href="https://tools.ietf.org/html/rfc7159">IETF RFC7159</a></li>
  *   <li><a href="https://www.ecma-international.org/publications/standards/Ecma-404.htm">ECMA-404</a></li>
  * </ul>
  * <p>
- * The parser is implemented in the {@link #parse(CharSequence)} method as a <a
+ * The parser is implemented in the {@link #parse(Reader)} method as a <a
  * href="https://en.wikipedia.org/wiki/Finite-state_machine">finite-state machine</a> (FSM) that terminates with an
  * exception at the first error in the input text.  The FSM combines the lexical analysis and parsing of the input text
  * with the generation of the output (a tree of {@linkplain AbstractNode nodes} that represent JSON values).
@@ -73,12 +78,16 @@ public class JsonParser
 	/** Value terminators: the union of whitespace characters and structural characters. */
 	private static final	String	VALUE_TERMINATORS	= WHITESPACE + new String(STRUCTURAL_CHARS);
 
-	/** The prefix of a four-hex-digit Unicode representaton of a character. */
+	/** The prefix of a four-hex-digit Unicode representation of a character. */
 	private static final	String	UNICODE_PREFIX	= "U+";
 
+	/** The number of hexadecimal digits in a Unicode escape sequence. */
+	private static final	int		UNICODE_SEQUENCE_LENGTH	= 4;
+
 	/** Miscellaneous strings. */
-	private static final	String	CHARACTER_NOT_ALLOWED_STR	= "the character %1 at index %2 is not allowed.";
-	private static final	String	ENDED_PREMATURELY_STR		= "it ended prematurely at index %1.";
+	private static final	String	CHARACTER_NOT_ALLOWED_STR	= "the character %s at index %s is not allowed.";
+	private static final	String	ENDED_PREMATURELY_STR		= "it ended prematurely at index %s.";
+	private static final	String	UNSUPPORTED_OPERATION_STR	= "Unsupported operation";
 
 	/** Mappings from characters in an escape sequence to their corresponding literal characters. */
 	private static final	char[][]	ESCAPE_MAPPINGS	=
@@ -128,20 +137,22 @@ public class JsonParser
 	/** Error messages. */
 	private interface ErrorMsg
 	{
-		String	PREMATURE_END_OF_TEXT		= "The input text ended prematurely.";
-		String	EXTRANEOUS_TEXT				= "There is extraneous text after the JSON value.";
-		String	VALUE_EXPECTED				= "A value was expected.";
-		String	PROPERTY_NAME_EXPECTED		= "A property name was expected.";
-		String	NAME_SEPARATOR_EXPECTED		= "A name separator was expected.";
-		String	END_OF_OBJECT_EXPECTED		= "An end-of-object character was expected.";
-		String	ARRAY_ELEMENT_EXPECTED		= "An array element was expected.";
-		String	END_OF_ARRAY_EXPECTED		= "An end-of-array character was expected.";
-		String	ILLEGAL_CHARACTER_IN_STRING	= "The character '%1' is not allowed in a string.";
-		String	ILLEGAL_VALUE				= "The value is illegal.";
-		String	ILLEGAL_ESCAPE_SEQUENCE		= "The escape sequence '%1' is illegal.";
-		String	DUPLICATE_PROPERTY_NAME		= "The object has more than one property with the name '%1'.";
-		String	INVALID_NUMBER				= "The number is not valid";
-		String	TOO_LARGE_FOR_INTEGER		= "The number is too large for an integer.";
+		String	ERROR_READING_FROM_STREAM		= "An error occured when reading from the input stream.";
+		String	PREMATURE_END_OF_TEXT			= "The input text ended prematurely.";
+		String	EXTRANEOUS_TEXT					= "There is extraneous text after the JSON value.";
+		String	VALUE_EXPECTED					= "A value was expected.";
+		String	PROPERTY_NAME_EXPECTED			= "A property name was expected.";
+		String	NAME_SEPARATOR_EXPECTED			= "A name separator was expected.";
+		String	END_OF_OBJECT_EXPECTED			= "An end-of-object character was expected.";
+		String	ARRAY_ELEMENT_EXPECTED			= "An array element was expected.";
+		String	END_OF_ARRAY_EXPECTED			= "An end-of-array character was expected.";
+		String	ILLEGAL_CHARACTER_IN_STRING		= "The character '%s' is not allowed in a string.";
+		String	ILLEGAL_VALUE					= "The value is illegal.";
+		String	ILLEGAL_ESCAPE_SEQUENCE			= "The escape sequence '%s' is illegal.";
+		String	ILLEGAL_UNICODE_ESCAPE_SEQUENCE	= "The Unicode escape sequence '%s' is illegal.";
+		String	DUPLICATE_PROPERTY_NAME			= "The object has more than one property with the name '%s'.";
+		String	INVALID_NUMBER					= "The number is not valid";
+		String	TOO_LARGE_FOR_INTEGER			= "The number is too large for an integer.";
 	}
 
 ////////////////////////////////////////////////////////////////////////
@@ -161,12 +172,22 @@ public class JsonParser
 	{
 
 	////////////////////////////////////////////////////////////////////
+	//  Instance variables
+	////////////////////////////////////////////////////////////////////
+
+		/** The zero-based index of the line of the input text at which the exception occurred. */
+		private	int	lineIndex;
+
+		/** The zero-based index of the column of the input text at which the exception occurred. */
+		private	int	columnIndex;
+
+	////////////////////////////////////////////////////////////////////
 	//  Constructors
 	////////////////////////////////////////////////////////////////////
 
 		/**
 		 * Creates a new instance of an exception with the specified message, line index, column index and optional
-		 * substitution text.
+		 * replacements for placeholders in the message.
 		 *
 		 * @param message
 		 *          the message of the exception.
@@ -174,18 +195,46 @@ public class JsonParser
 		 *          the zero-based index of the line at which the exception occurred.
 		 * @param columnIndex
 		 *          the zero-based index of the column at which the exception occurred.
-		 * @param substitutionSeqs
-		 *          the text that will replace placeholders in <i>message</i>; see {@link IndexedSub#sub(String,
-		 *          CharSequence...)}.
+		 * @param replacements
+		 *          the text that will replace placeholders in <i>message</i>.
 		 */
 
-		private ParseException(String          message,
-							   int             lineIndex,
-							   int             columnIndex,
-							   CharSequence... substitutionSeqs)
+		private ParseException(String    message,
+							   int       lineIndex,
+							   int       columnIndex,
+							   Object... replacements)
+		{
+			// Call alternative constructor
+			this(message, null, lineIndex, columnIndex, replacements);
+		}
+
+		//--------------------------------------------------------------
+
+		/**
+		 * Creates a new instance of an exception with the specified message, cause, line index, column index and
+		 * optional replacements for placeholders in the message.
+		 *
+		 * @param message
+		 *          the message of the exception.
+		 * @param cause
+		 *          the underlying cause of the exception, which may be {@code null}.
+		 * @param lineIndex
+		 *          the zero-based index of the line at which the exception occurred.
+		 * @param columnIndex
+		 *          the zero-based index of the column at which the exception occurred.
+		 * @param replacements
+		 *          the text that will replace placeholders in <i>message</i>.
+		 */
+
+		private ParseException(String    message,
+							   Throwable cause,
+							   int       lineIndex,
+							   int       columnIndex,
+							   Object... replacements)
 		{
 			// Call superclass constructor
-			super("(" + (lineIndex + 1) + ", " + (columnIndex + 1) + "): " + IndexedSub.sub(message, substitutionSeqs));
+			super("(" + (lineIndex + 1) + ", " + (columnIndex + 1) + "): " + String.format(message, replacements),
+				  cause);
 
 			// Initialise instance variables
 			this.lineIndex = lineIndex;
@@ -226,16 +275,6 @@ public class JsonParser
 
 		//--------------------------------------------------------------
 
-	////////////////////////////////////////////////////////////////////
-	//  Instance variables
-	////////////////////////////////////////////////////////////////////
-
-		/** The zero-based index of the line of the input text at which the exception occurred. */
-		private	int	lineIndex;
-
-		/** The zero-based index of the column of the input text at which the exception occurred. */
-		private	int	columnIndex;
-
 	}
 
 	//==================================================================
@@ -250,6 +289,19 @@ public class JsonParser
 
 	private static class PropertyName
 	{
+
+	////////////////////////////////////////////////////////////////////
+	//  Instance variables
+	////////////////////////////////////////////////////////////////////
+
+		/** The name of a property of a JSON object. */
+		private	String	name;
+
+		/** The index of the property name in the input text. */
+		private	int		index;
+
+		/** The index of the line containing the property name in the input text. */
+		private	int		lineIndex;
 
 	////////////////////////////////////////////////////////////////////
 	//  Constructors
@@ -278,22 +330,45 @@ public class JsonParser
 
 		//--------------------------------------------------------------
 
-	////////////////////////////////////////////////////////////////////
-	//  Instance variables
-	////////////////////////////////////////////////////////////////////
-
-		/** The name of a property of a JSON object. */
-		private	String	name;
-
-		/** The index of the property name in the input text. */
-		private	int		index;
-
-		/** The index of the line containing the property name in the input text. */
-		private	int		lineIndex;
-
 	}
 
 	//==================================================================
+
+////////////////////////////////////////////////////////////////////////
+//  Instance variables
+////////////////////////////////////////////////////////////////////////
+
+	/** The character stream from which the JSON text is read. */
+	private	Reader			inputStream;
+
+	/** The last character that was read from {@link #inputStream}. */
+	private	char			inputChar;
+
+	/** Flag: if {@code true}, the end of the input stream has been reached. */
+	private	boolean			endOfInput;
+
+	/** Flag: if {@code true}, the last character that was read from the input stream has been pushed back. */
+	private	boolean			pushedBack;
+
+	/** The index of the next character in the input stream. */
+	private	int				index;
+
+	/** The index of the current line in the input text. */
+	private	int				lineIndex;
+
+	/** The index of the start of the current line in the input text. */
+	private	int				lineStartIndex;
+
+	/** The index of the current token in the input text. */
+	private	int				tokenIndex;
+
+	/** A buffer for the current token. */
+	private	StringBuilder	tokenBuffer;
+
+	/** Flag: if {@code true}, a JSON number that is deemed to be an integer but is too large to be stored as a
+		{@linkplain Long signed 64-bit integer} will be stored as a {@linkplain Double double-precision floating-point
+		number}. */
+	private	boolean			storeExcessiveIntegerAsFP;
 
 ////////////////////////////////////////////////////////////////////////
 //  Constructors
@@ -319,7 +394,7 @@ public class JsonParser
 	 * Returns {@code true} if the specified character is whitespace.
 	 *
 	 * @param  ch
-	 *           the character of interest.
+	 *           the character that will be tested.
 	 * @return {@code true} if <i>ch</i> is whitespace.
 	 */
 
@@ -335,7 +410,7 @@ public class JsonParser
 	 * character).
 	 *
 	 * @param  ch
-	 *           the character of interest.
+	 *           the character that will be tested.
 	 * @return {@code true} if <i>ch</i> is whitespace or a structural character.
 	 */
 
@@ -368,8 +443,8 @@ public class JsonParser
 	//------------------------------------------------------------------
 
 	/**
-	 * Parses the specified text and, if it conforms to the JSON grammar, transforms it into a tree of {@linkplain
-	 * AbstractNode nodes} that represent JSON values and returns the root of the tree.
+	 * Parses the specified text.  If the text conforms to the JSON grammar, this method transforms it into a tree of
+	 * {@linkplain AbstractNode nodes} that represent JSON values and returns the root of the tree.
 	 *
 	 * @param  text
 	 *           the text that will be parsed as JSON text.
@@ -381,6 +456,110 @@ public class JsonParser
 	public AbstractNode parse(CharSequence text)
 		throws ParseException
 	{
+		// Validate argument
+		if (text == null)
+			throw new IllegalArgumentException("Null text");
+
+		// Parse text
+		return parse(new Reader()
+		{
+			@Override
+			public int read()
+				throws IOException
+			{
+				return (index < text.length()) ? text.charAt(index) : -1;
+			}
+
+			@Override
+			public int read(char[] buffer,
+							int    offset,
+							int    length)
+				throws IOException
+			{
+				throw new IOException(UNSUPPORTED_OPERATION_STR);
+			}
+
+			@Override
+			public void close()
+				throws IOException
+			{
+				throw new IOException(UNSUPPORTED_OPERATION_STR);
+			}
+		});
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Parses the text that is composed of characters that are read from the specified byte stream using the UTF-8
+	 * character encoding.  If the text conforms to the JSON grammar, this method transforms it into a tree of
+	 * {@linkplain AbstractNode nodes} that represent JSON values and returns the root of the tree.
+	 *
+	 * @param  inputStream
+	 *           the byte stream from which the JSON text will be read.
+	 * @return the tree of JSON values that was created from parsing the text that was read from <i>inputStream</i>.
+	 * @throws ParseException
+	 *           if an error occurred when parsing the input text.
+	 */
+
+	public AbstractNode parse(InputStream inputStream)
+		throws ParseException
+	{
+		return parse(inputStream, StandardCharsets.UTF_8);
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Parses the text that is composed of characters that are read from the specified byte stream using the specified
+	 * character encoding.  If the text conforms to the JSON grammar, this method transforms it into a tree of
+	 * {@linkplain AbstractNode nodes} that represent JSON values and returns the root of the tree.
+	 *
+	 * @param  inputStream
+	 *           the byte stream from which the JSON text will be read.
+	 * @param  encoding
+	 *           the character encoding of <i>inputStream</i>; if {@code null}, the UTF-8 encoding will be used.
+	 * @return the tree of JSON values that was created from parsing the text that was read from <i>inputStream</i>.
+	 * @throws ParseException
+	 *           if an error occurred when parsing the input text.
+	 */
+
+	public AbstractNode parse(InputStream inputStream,
+							  Charset     encoding)
+		throws ParseException
+	{
+		// Validate argument
+		if (inputStream == null)
+			throw new IllegalArgumentException("Null input stream");
+
+		// Read text from input stream and parse it
+		return parse(new InputStreamReader(inputStream, (encoding == null) ? StandardCharsets.UTF_8 : encoding));
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Parses the text that is composed of characters that are read from the specified input stream.  If the text
+	 * conforms to the JSON grammar, this method transforms it into a tree of {@linkplain AbstractNode nodes} that
+	 * represent JSON values and returns the root of the tree.
+	 *
+	 * @param  inputStream
+	 *           the character stream from which the JSON text will be read.
+	 * @return the tree of JSON values that was created from parsing the text that was read from <i>inputStream</i>.
+	 * @throws ParseException
+	 *           if an error occurred when parsing the input text.
+	 */
+
+	public AbstractNode parse(Reader inputStream)
+		throws ParseException
+	{
+		// Validate argument
+		if (inputStream == null)
+			throw new IllegalArgumentException("Null input stream");
+
+		// Initialise instance variables
+		this.inputStream = inputStream;
+
 		// Reset instance variables
 		index = 0;
 		lineIndex = 0;
@@ -398,11 +577,8 @@ public class JsonParser
 		// Parse text
 		while (state != State.DONE)
 		{
-			// Set flag to indicate end of input text
-			boolean endOfText = (index >= text.length());
-
-			// Get next character of input text
-			char ch = endOfText ? ' ' : text.charAt(index++);
+			// Get next character from input stream
+			char ch = getNextChar();
 
 			// Execute finite-state machine
 			switch (state)
@@ -410,13 +586,13 @@ public class JsonParser
 				//----  Start of JSON value
 				case VALUE_START:
 				{
-					// Character is whitespace ...
+					// Case: character is whitespace
 					if (isWhitespace(ch))
 					{
-						// If end of input text, test whether parsing is complete ...
-						if (endOfText)
+						// If end of input stream, test whether parsing is complete ...
+						if (endOfInput)
 						{
-							// If current value is not root, input text has ended prematurely ...
+							// If current value is not root, input stream has ended prematurely ...
 							if (!value.isRoot())
 								throw new ParseException(ErrorMsg.PREMATURE_END_OF_TEXT, lineIndex,
 														 index - lineStartIndex);
@@ -430,7 +606,7 @@ public class JsonParser
 							newLine(ch);
 					}
 
-					// Character is not whitespace ...
+					// Case: character is not whitespace
 					else
 					{
 						// Update index of current token
@@ -468,8 +644,8 @@ public class JsonParser
 														 tokenIndex - lineStartIndex);
 
 							default:
-								// Rewind index to start of number or literal
-								--index;
+								// Push back start of number or literal
+								pushBackChar();
 
 								// Set next state
 								state = ((ch == '-') || ((ch >= '0') && (ch <= '9'))) ? State.NUMBER_VALUE
@@ -494,7 +670,7 @@ public class JsonParser
 					// ... otherwise, if parent is array or object, add value to it
 					else if (parent.isContainer())
 					{
-						// Parent is array
+						// Case: parent is array
 						if (parent instanceof ListNode)
 						{
 							// Add element to its parent array
@@ -504,7 +680,7 @@ public class JsonParser
 							state = State.ARRAY_ELEMENT_END;
 						}
 
-						// Parent is object
+						// Case: parent is object
 						else if (parent instanceof MapNode)
 						{
 							// Cast parent to map node
@@ -525,8 +701,8 @@ public class JsonParser
 							state = State.PROPERTY_END;
 						}
 
-						// Rewind index to element/property separator or array/object terminator
-						--index;
+						// Push back element/property separator or array/object terminator
+						pushBackChar();
 
 						// Set current value to previous parent
 						value = parent;
@@ -563,8 +739,8 @@ public class JsonParser
 														 tokenIndex - lineStartIndex);
 						}
 
-						// Rewind index to value terminator
-						--index;
+						// Push back value terminator
+						pushBackChar();
 
 						// Set next state
 						state = State.VALUE_END;
@@ -579,17 +755,17 @@ public class JsonParser
 				//----  JSON number value
 				case NUMBER_VALUE:
 				{
-					// Test for premature end of input text
-					if (endOfText)
+					// Test for premature end of input stream
+					if (endOfInput)
 						throw new ParseException(ErrorMsg.PREMATURE_END_OF_TEXT, lineIndex, index - lineStartIndex);
 
 					try
 					{
-						// Rewind index to start of number
-						--index;
+						// Push back start of number
+						pushBackChar();
 
 						// Validate number; put valid number in token buffer
-						validateNumber(text);
+						validateNumber();
 
 						// Parse number by creating new instance of BigDecimal from token
 						String numberStr = tokenBuffer.toString();
@@ -622,8 +798,8 @@ public class JsonParser
 						else
 							value = new DoubleNode(value, number.doubleValue());
 
-						// Rewind index to terminator
-						--index;
+						// Push back terminator
+						pushBackChar();
 
 						// Set next state
 						state = State.VALUE_END;
@@ -642,12 +818,12 @@ public class JsonParser
 				//----  JSON string value
 				case STRING_VALUE:
 				{
-					// Test for premature end of input text
-					if (endOfText)
+					// Test for premature end of input stream
+					if (endOfInput)
 						throw new ParseException(ErrorMsg.PREMATURE_END_OF_TEXT, lineIndex, index - lineStartIndex);
 
 					// Parse string; put valid string in token buffer; if string is valid, create JSON string value
-					if (parseString(text, ch))
+					if (parseString(ch))
 					{
 						// Create JSON string value from token
 						value = new StringNode(value, tokenBuffer.toString());
@@ -661,18 +837,18 @@ public class JsonParser
 				//----  Start of property of JSON object
 				case PROPERTY_START:
 				{
-					// Test for premature end of input text
-					if (endOfText)
+					// Test for premature end of input stream
+					if (endOfInput)
 						throw new ParseException(ErrorMsg.PREMATURE_END_OF_TEXT, lineIndex, index - lineStartIndex);
 
-					// Character is whitespace ...
+					// Case: character is whitespace
 					if (isWhitespace(ch))
 					{
 						// If character is LF, start new line
 						newLine(ch);
 					}
 
-					// Character is not whitespace ...
+					// Case: character is not whitespace
 					else
 					{
 						// If end-of-object character, empty object has ended ...
@@ -682,8 +858,8 @@ public class JsonParser
 						// ... otherwise, expect another property
 						else
 						{
-							// Rewind index to start of property
-							--index;
+							// Push back start of property
+							pushBackChar();
 
 							// Set next state
 							state = State.PROPERTY_NAME_START;
@@ -695,18 +871,18 @@ public class JsonParser
 				//----  Start of name of property of JSON object
 				case PROPERTY_NAME_START:
 				{
-					// Test for premature end of input text
-					if (endOfText)
+					// Test for premature end of input stream
+					if (endOfInput)
 						throw new ParseException(ErrorMsg.PREMATURE_END_OF_TEXT, lineIndex, index - lineStartIndex);
 
-					// Character is whitespace ...
+					// Case: character is whitespace
 					if (isWhitespace(ch))
 					{
 						// If character is LF, start new line
 						newLine(ch);
 					}
 
-					// Character is not whitespace ...
+					// Case: character is not whitespace
 					else
 					{
 						// Update index of current token
@@ -733,13 +909,13 @@ public class JsonParser
 				//----  Name of property of JSON object
 				case PROPERTY_NAME:
 				{
-					// Test for premature end of input text
-					if (endOfText)
+					// Test for premature end of input stream
+					if (endOfInput)
 						throw new ParseException(ErrorMsg.PREMATURE_END_OF_TEXT, lineIndex, index - lineStartIndex);
 
 					// Parse property name; put valid property name in token buffer; if property name is valid, put it
 					// on stack
-					if (parseString(text, ch))
+					if (parseString(ch))
 					{
 						// Create property name and put it on stack
 						propertyNameStack.addFirst(new PropertyName(tokenBuffer.toString(), propertyIndex,
@@ -754,18 +930,18 @@ public class JsonParser
 				//----  End of name of property of JSON object
 				case PROPERTY_NAME_END:
 				{
-					// Test for premature end of input text
-					if (endOfText)
+					// Test for premature end of input stream
+					if (endOfInput)
 						throw new ParseException(ErrorMsg.PREMATURE_END_OF_TEXT, lineIndex, index - lineStartIndex);
 
-					// Character is whitespace ...
+					// Case: character is whitespace
 					if (isWhitespace(ch))
 					{
 						// If character is LF, start new line
 						newLine(ch);
 					}
 
-					// Character is not whitespace ...
+					// Case: character is not whitespace
 					else
 					{
 						// Test for property-name separator
@@ -783,18 +959,18 @@ public class JsonParser
 				//----  End of property of JSON object
 				case PROPERTY_END:
 				{
-					// Test for premature end of input text
-					if (endOfText)
+					// Test for premature end of input stream
+					if (endOfInput)
 						throw new ParseException(ErrorMsg.PREMATURE_END_OF_TEXT, lineIndex, index - lineStartIndex);
 
-					// Character is whitespace ...
+					// Case: character is whitespace
 					if (isWhitespace(ch))
 					{
 						// If character is LF, start new line
 						newLine(ch);
 					}
 
-					// Character is not whitespace ...
+					// Case: character is not whitespace
 					else
 					{
 						// Update index of current token
@@ -822,18 +998,18 @@ public class JsonParser
 				//----  Start of element of JSON array
 				case ARRAY_ELEMENT_START:
 				{
-					// Test for premature end of input text
-					if (endOfText)
+					// Test for premature end of input stream
+					if (endOfInput)
 						throw new ParseException(ErrorMsg.PREMATURE_END_OF_TEXT, lineIndex, index - lineStartIndex);
 
-					// Character is whitespace ...
+					// Case: character is whitespace
 					if (isWhitespace(ch))
 					{
 						// If character is LF, start new line
 						newLine(ch);
 					}
 
-					// Character is not whitespace ...
+					// Case: character is not whitespace
 					else
 					{
 						// If end-of-array character, array has ended ...
@@ -851,8 +1027,8 @@ public class JsonParser
 						// ... otherwise, expect another element
 						else
 						{
-							// Rewind index to start of element
-							--index;
+							// Push back start of element
+							pushBackChar();
 
 							// Set next state
 							state = State.VALUE_START;
@@ -864,18 +1040,18 @@ public class JsonParser
 				//----  End of element of JSON array
 				case ARRAY_ELEMENT_END:
 				{
-					// Test for premature end of input text
-					if (endOfText)
+					// Test for premature end of input stream
+					if (endOfInput)
 						throw new ParseException(ErrorMsg.PREMATURE_END_OF_TEXT, lineIndex, index - lineStartIndex);
 
-					// Character is whitespace ...
+					// Case: character is whitespace
 					if (isWhitespace(ch))
 					{
 						// If character is LF, start new line
 						newLine(ch);
 					}
 
-					// Character is not whitespace ...
+					// Case: character is not whitespace
 					else
 					{
 						// Update index of current token
@@ -913,11 +1089,92 @@ public class JsonParser
 	//------------------------------------------------------------------
 
 	/**
-	 * Increments the index of the current line in the input text and resets the index of the start of the current line
-	 * in the input text if the specified character (from the input text) is a line feed (U+000A).
+	 * Reads and returns the next character from the input stream.  If a character has been {@linkplain #pushBackChar()
+	 * pushed back}, the last character that was read from input stream is returned.
+	 *
+	 * @return the next character from the input stream, or a space character (U+0020) if the end of the input stream
+	 *         has been reached.
+	 * @throws ParseException
+	 *           if an error occurred when reading from the input stream.
+	 */
+
+	private char getNextChar()
+		throws ParseException
+	{
+		// Case: a character is pushed back
+		if (pushedBack)
+		{
+			// Clear 'pushed back' flag
+			pushedBack = false;
+
+			// Increment input index
+			++index;
+		}
+
+		// Case: no character is pushed back
+		else
+		{
+			try
+			{
+				// Read next character from input stream
+				int ch = inputStream.read();
+
+				// Set flag to indicate end of input stream
+				endOfInput = (ch < 0);
+
+				// If not end of input stream, increment input index
+				if (!endOfInput)
+					++index;
+
+				// Update last character that was read from input stream
+				inputChar = endOfInput ? ' ' : (char)ch;
+			}
+			catch (IOException e)
+			{
+				throw new ParseException(ErrorMsg.ERROR_READING_FROM_STREAM, e, lineIndex, index - lineStartIndex);
+			}
+		}
+
+		// Return last character that was read from input stream
+		return inputChar;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Pushes the last character that was read from input stream back to the stream.  This method may be called only
+	 * once after each call to {@link #getNextChar()}.
+	 *
+	 * @throws IllegalStateException
+	 *           if a character is already pushed back or {@link #getNextChar()} has not yet been called on the input
+	 *           stream.
+	 */
+
+	private void pushBackChar()
+	{
+		// Test whether a character is already pushed back
+		if (pushedBack)
+			throw new IllegalStateException("Character already pushed back");
+
+		// Test for start of input stream
+		if (index == 0)
+			throw new IllegalStateException("Start of input stream");
+
+		// Set 'pushed back' flag
+		pushedBack = true;
+
+		// Decrement input index
+		--index;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Increments the index of the current line in the input stream and resets the index of the start of the current
+	 * line in the input stream if the specified character (from the input stream) is a line feed (U+000A).
 	 *
 	 * @param ch
-	 *          the next character from the input text.
+	 *          the next character from the input stream.
 	 */
 
 	private void newLine(char ch)
@@ -952,14 +1209,14 @@ public class JsonParser
 
 		// If character is terminator, secondary message is 'ended prematurely' ...
 		if (isValueTerminator(ch))
-			message = IndexedSub.sub(ENDED_PREMATURELY_STR, indexStr);
+			message = String.format(ENDED_PREMATURELY_STR, indexStr);
 
 		// ... otherwise, secondary message is 'character is not allowed'
 		else
 		{
 			String charStr = ((ch < '\u0020') || (ch > '\u007E')) ? UNICODE_PREFIX + StringNode.charToUnicodeHex(ch)
 																  : "'" + Character.toString(ch) + "'";
-			message = IndexedSub.sub(CHARACTER_NOT_ALLOWED_STR, charStr, indexStr);
+			message = String.format(CHARACTER_NOT_ALLOWED_STR, charStr, indexStr);
 		}
 
 		// Throw exception
@@ -977,20 +1234,18 @@ public class JsonParser
 	 * faster.
 	 * </p>
 	 *
-	 * @param  text
-	 *           the text that contains a JSON representation of a number at the current index.
 	 * @throws ParseException
 	 *           if the text at the current index is not a valid JSON representation of a number.
 	 */
 
-	private void validateNumber(CharSequence text)
+	private void validateNumber()
 		throws ParseException
 	{
 		NumberState state = NumberState.INTEGER_PART_SIGN;
 		while (state != NumberState.DONE)
 		{
-			// Get next character of input text
-			char ch = (index < text.length()) ? text.charAt(index++) : ' ';
+			// Get next character from input stream
+			char ch = getNextChar();
 
 			// Execute finite-state machine
 			switch (state)
@@ -1002,9 +1257,9 @@ public class JsonParser
 					if (ch == '-')
 						tokenBuffer.append(ch);
 
-					// ... otherwise, rewind index to first character of number
+					// ... otherwise, push back first character of number
 					else
-						--index;
+						pushBackChar();
 
 					// Set next state
 					state = NumberState.INTEGER_PART_FIRST_DIGIT;
@@ -1062,7 +1317,7 @@ public class JsonParser
 							case 1:
 								if (tokenBuffer.charAt(0) == '0')
 								{
-									--index;
+									pushBackChar();
 									throwNumberException('0');
 								}
 								break;
@@ -1071,7 +1326,7 @@ public class JsonParser
 							case 2:
 								if ((tokenBuffer.charAt(0) == '-') && (tokenBuffer.charAt(1) == '0'))
 								{
-									--index;
+									pushBackChar();
 									throwNumberException('0');
 								}
 								break;
@@ -1141,9 +1396,9 @@ public class JsonParser
 					if ((ch == '-') || (ch == '+'))
 						tokenBuffer.append(ch);
 
-					// ... otherwise, rewind index to first digit of exponent
+					// ... otherwise, push back first digit of exponent
 					else
-						--index;
+						pushBackChar();
 
 					// Set next state
 					state = NumberState.EXPONENT_FIRST_DIGIT;
@@ -1197,8 +1452,6 @@ public class JsonParser
 	 * string in the {@linkplain #tokenBuffer token buffer}.  This method is not called on the quotation mark (U+0022)
 	 * at the start of the string.
 	 *
-	 * @param  text
-	 *           the input text that contains a JSON representation of a string at the current index.
 	 * @param  ch
 	 *           the current character of the JSON string representation.
 	 * @return {@code true} if the string has been parsed successfully, {@code false} if the end of the string has not
@@ -1207,8 +1460,7 @@ public class JsonParser
 	 *           if an error occurred when parsing the JSON string.
 	 */
 
-	private boolean parseString(CharSequence text,
-								char         ch)
+	private boolean parseString(char ch)
 		throws ParseException
 	{
 		// Test for end of string
@@ -1223,50 +1475,65 @@ public class JsonParser
 		// If character is escape prefix, parse escape sequence
 		if (ch == StringNode.ESCAPE_PREFIX_CHAR)
 		{
-			// Test whether input text ends before first character of escape sequence after prefix
-			if (index >= text.length())
+			// Get first character of escape sequence after prefix
+			ch = getNextChar();
+
+			// Test whether input stream ended before first character of escape sequence after prefix
+			if (endOfInput)
 				throw new ParseException(ErrorMsg.PREMATURE_END_OF_TEXT, lineIndex, index - lineStartIndex);
 
 			// Initialise index of start of escape sequence without prefix
 			int startIndex = index;
 
-			// Get first character of escape sequence after prefix
-			ch = text.charAt(index++);
-
-			// If escape sequence is Unicode ...
+			// Case: Unicode escape sequence
 			if (ch == StringNode.UNICODE_ESCAPE_CHAR)
 			{
-				// Test whether input text ends before expected end of Unicode escape sequence
-				if (index + StringNode.UNICODE_LENGTH >= text.length())
-					throw new ParseException(ErrorMsg.PREMATURE_END_OF_TEXT, lineIndex, text.length() - lineStartIndex);
-
-				// Increment index to end of Unicode escape sequence
-				index += StringNode.UNICODE_LENGTH;
-			}
-
-			// Parse escape sequence
-			try
-			{
-				// If Unicode escape sequence, parse it as such ...
-				if (ch == StringNode.UNICODE_ESCAPE_CHAR)
-					ch = (char)Integer.parseUnsignedInt(text.subSequence(startIndex + 1, index).toString(), 16);
-
-				// ... otherwise, parse it as a non-Unicode escape sequence
-				else
+				// Read Unicode escape sequence from input stream
+				char[] unicodeSeqChars = new char[UNICODE_SEQUENCE_LENGTH];
+				for (int i = 0; i < UNICODE_SEQUENCE_LENGTH; i++)
 				{
-					char ch0 = ch;
-					char[] pair = Arrays.stream(ESCAPE_MAPPINGS)
-										.filter(pair0 -> (ch0 == pair0[0]))
-										.findFirst()
-										.orElseThrow(() -> new IllegalArgumentException());
-					ch = pair[1];
+					// Get next character of Unicode escape sequence from input stream
+					unicodeSeqChars[i] = getNextChar();
+
+					// Test whether input stream ended before end of Unicode escape sequence
+					if (endOfInput)
+						throw new ParseException(ErrorMsg.PREMATURE_END_OF_TEXT, lineIndex, index - lineStartIndex);
+				}
+				String unicodeSeq = new String(unicodeSeqChars);
+
+				// Parse Unicode escape sequence
+				try
+				{
+					ch = (char)Integer.parseUnsignedInt(unicodeSeq, 16);
+				}
+				catch (NumberFormatException e)
+				{
+					--startIndex;
+					throw new ParseException(ErrorMsg.ILLEGAL_UNICODE_ESCAPE_SEQUENCE, lineIndex,
+											 startIndex - lineStartIndex, StringNode.ESCAPE_PREFIX + ch + unicodeSeq);
 				}
 			}
-			catch (IllegalArgumentException e)
+
+			// Case: escape sequence other than Unicode
+			else
 			{
-				--startIndex;
-				throw new ParseException(ErrorMsg.ILLEGAL_ESCAPE_SEQUENCE, lineIndex, startIndex - lineStartIndex,
-										 text.subSequence(startIndex, index));
+				boolean found = false;
+				for (int i = 0; i < ESCAPE_MAPPINGS.length; i++)
+				{
+					char[] pair = ESCAPE_MAPPINGS[i];
+					if (ch == pair[0])
+					{
+						ch = pair[1];
+						found = true;
+						break;
+					}
+				}
+				if (!found)
+				{
+					--startIndex;
+					throw new ParseException(ErrorMsg.ILLEGAL_ESCAPE_SEQUENCE, lineIndex, startIndex - lineStartIndex,
+											 StringNode.ESCAPE_PREFIX + ch);
+				}
 			}
 		}
 
@@ -1278,30 +1545,6 @@ public class JsonParser
 	}
 
 	//------------------------------------------------------------------
-
-////////////////////////////////////////////////////////////////////////
-//  Instance variables
-////////////////////////////////////////////////////////////////////////
-
-	/** Flag: if {@code true}, a JSON number that is deemed to be an integer but is too large to be stored as a
-		{@linkplain Long signed 64-bit integer} will be stored as a {@linkplain Double double-precision floating-point
-		number}. */
-	private	boolean			storeExcessiveIntegerAsFP;
-
-	/** The index of the current character in the input text. */
-	private	int				index;
-
-	/** The index of the current line in the input text. */
-	private	int				lineIndex;
-
-	/** The index of the start of the current line in the input text. */
-	private	int				lineStartIndex;
-
-	/** The index of the current token in the input text. */
-	private	int				tokenIndex;
-
-	/** A buffer for the current token. */
-	private	StringBuilder	tokenBuffer;
 
 }
 
