@@ -18,12 +18,11 @@ Package information
  * The generator performs the reverse operation, transforming a tree of {@link
  * uk.blankaspect.common.basictree.AbstractNode}s into JSON text, with some control over the formatting of the output.
  * </p>
- * <p>
+ * <p style="margin-bottom: 0.25em;">
  * This package depends on the following packages:
  * </p>
- * <ul>
+ * <ul style="margin-top: 0.25em;">
  *   <li>{@code uk.blankaspect.common.basictree}</li>
- *   <li>{@code uk.blankaspect.common.indexedsub}</li>
  *   <li>{@code uk.blankaspect.common.tree}</li>
  * </ul>
  */
