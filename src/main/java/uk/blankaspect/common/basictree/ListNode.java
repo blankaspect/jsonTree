@@ -21,6 +21,7 @@ package uk.blankaspect.common.basictree;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -46,6 +47,7 @@ import java.util.Map;
 
 public class ListNode
 	extends AbstractNode
+	implements Iterable<AbstractNode>
 {
 
 ////////////////////////////////////////////////////////////////////////
@@ -63,6 +65,13 @@ public class ListNode
 
 	/** The type of a list node. */
 	public static final	NodeType	TYPE	= new NodeType(NodeType.ANY, ListNode.class);
+
+////////////////////////////////////////////////////////////////////////
+//  Instance variables
+////////////////////////////////////////////////////////////////////////
+
+	/** A list of the elements of this list node. */
+	private	ArrayList<AbstractNode>	elements;
 
 ////////////////////////////////////////////////////////////////////////
 //  Constructors
@@ -202,6 +211,19 @@ public class ListNode
 
 	//------------------------------------------------------------------
 
+	/**
+	 * Returns an iterator over the elements of this list node.
+	 *
+	 * @return an iterator over the elements of this list node.
+	 */
+
+	@Override
+	public Iterator<AbstractNode> iterator()
+	{
+		return elements.iterator();
+	}
+
+	//------------------------------------------------------------------
 	/**
 	 * Returns {@code true} if the specified object is an instance of {@code ListNode} <i>and</i> this list node
 	 * contains the same number of elements as the other list node <i>and</i> each element in this list node is equal
@@ -1285,13 +1307,6 @@ public class ListNode
 	}
 
 	//------------------------------------------------------------------
-
-////////////////////////////////////////////////////////////////////////
-//  Instance variables
-////////////////////////////////////////////////////////////////////////
-
-	/** A list of the elements of this list node. */
-	private	ArrayList<AbstractNode>	elements;
 
 }
 
