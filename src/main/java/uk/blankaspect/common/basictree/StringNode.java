@@ -19,7 +19,6 @@ package uk.blankaspect.common.basictree;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 //----------------------------------------------------------------------
@@ -30,11 +29,11 @@ import java.util.List;
 
 /**
  * This class implements a {@linkplain AbstractNode node} that contains a string.
- * <p>
+ * <p style="margin-bottom: 0.25em;">
  * The default string representation of a string node begins and ends with quotation marks, between which are zero or
  * more literal characters or escape sequences.  Within the quotation marks, the following characters must be escaped:
  * </p>
- * <ul>
+ * <ul style="margin-top: 0.25em;">
  *   <li>{@code U+0022 : } quotation mark ("),</li>
  *   <li>{@code U+005C : } reverse solidus (\),</li>
  *   <li>a control character in the range {@code U+0000} to {@code U+001F} inclusive.</li>
@@ -65,12 +64,9 @@ public class StringNode
 	/** The string with which an escape sequence begins. */
 	public static final		String	ESCAPE_PREFIX		= Character.toString(ESCAPE_PREFIX_CHAR);
 
-	/** The character that denotes a Unicode escape sequence, following the {@linkplain #ESCAPE_PREFIX escape
+	/** The character that denotes a Unicode escape sequence when it follows the {@linkplain #ESCAPE_PREFIX escape
 		prefix}. */
 	public static final		char	UNICODE_ESCAPE_CHAR	= 'u';
-
-	/** The number of the hexadecimal digits in a Unicode escape sequence. */
-	public static final		int		UNICODE_LENGTH	= 4;
 
 	/** The type of a string node. */
 	public static final	NodeType	TYPE	= new NodeType(NodeType.ANY, StringNode.class);
@@ -89,6 +85,13 @@ public class StringNode
 
 	/** Hexadecimal-digit characters. */
 	private static final	char[]	HEX_DIGITS	= "0123456789ABCDEF".toCharArray();
+
+////////////////////////////////////////////////////////////////////////
+//  Instance variables
+////////////////////////////////////////////////////////////////////////
+
+	/** The value of this string node. */
+	private	String	value;
 
 ////////////////////////////////////////////////////////////////////////
 //  Constructors
@@ -195,55 +198,57 @@ public class StringNode
 	 * </p>
 	 * <table>
 	 *   <caption><i>Two-character escape sequences</i></caption>
-	 *   <tr>
-	 *     <td>U+0008</td>
-	 *     <td>&nbsp;</td>
-	 *     <td>backspace</td>
-	 *     <td>&nbsp;&nbsp;&nbsp;</td>
-	 *     <td>{@code \b}</td>
-	 *   </tr>
-	 *   <tr>
-	 *     <td>U+0009</td>
-	 *     <td>&nbsp;</td>
-	 *     <td>tab</td>
-	 *     <td>&nbsp;&nbsp;&nbsp;</td>
-	 *     <td>{@code \t}</td>
-	 *   </tr>
-	 *   <tr>
-	 *     <td>U+000A</td>
-	 *     <td>&nbsp;</td>
-	 *     <td>line feed</td>
-	 *     <td>&nbsp;&nbsp;&nbsp;</td>
-	 *     <td>{@code \n}</td>
-	 *   </tr>
-	 *   <tr>
-	 *     <td>U+000C</td>
-	 *     <td>&nbsp;</td>
-	 *     <td>form feed</td>
-	 *     <td>&nbsp;&nbsp;&nbsp;</td>
-	 *     <td>{@code \f}</td>
-	 *   </tr>
-	 *   <tr>
-	 *     <td>U+000D</td>
-	 *     <td>&nbsp;</td>
-	 *     <td>carriage return</td>
-	 *     <td>&nbsp;&nbsp;&nbsp;</td>
-	 *     <td>{@code \r}</td>
-	 *   </tr>
-	 *   <tr>
-	 *     <td>U+0022</td>
-	 *     <td>&nbsp;</td>
-	 *     <td>quotation mark (")</td>
-	 *     <td>&nbsp;&nbsp;&nbsp;</td>
-	 *     <td>{@code \"}</td>
-	 *   </tr>
-	 *   <tr>
-	 *     <td>U+005C</td>
-	 *     <td>&nbsp;</td>
-	 *     <td>reverse solidus (\)</td>
-	 *     <td>&nbsp;&nbsp;&nbsp;</td>
-	 *     <td>{@code \\}</td>
-	 *   </tr>
+	 *   <tbody>
+	 *     <tr>
+	 *       <td>U+0008</td>
+	 *       <td>&nbsp;</td>
+	 *       <td>backspace</td>
+	 *       <td>&nbsp;&nbsp;&nbsp;</td>
+	 *       <td>{@code \b}</td>
+	 *     </tr>
+	 *     <tr>
+	 *       <td>U+0009</td>
+	 *       <td>&nbsp;</td>
+	 *       <td>tab</td>
+	 *       <td>&nbsp;&nbsp;&nbsp;</td>
+	 *       <td>{@code \t}</td>
+	 *     </tr>
+	 *     <tr>
+	 *       <td>U+000A</td>
+	 *       <td>&nbsp;</td>
+	 *       <td>line feed</td>
+	 *       <td>&nbsp;&nbsp;&nbsp;</td>
+	 *       <td>{@code \n}</td>
+	 *     </tr>
+	 *     <tr>
+	 *       <td>U+000C</td>
+	 *       <td>&nbsp;</td>
+	 *       <td>form feed</td>
+	 *       <td>&nbsp;&nbsp;&nbsp;</td>
+	 *       <td>{@code \f}</td>
+	 *     </tr>
+	 *     <tr>
+	 *       <td>U+000D</td>
+	 *       <td>&nbsp;</td>
+	 *       <td>carriage return</td>
+	 *       <td>&nbsp;&nbsp;&nbsp;</td>
+	 *       <td>{@code \r}</td>
+	 *     </tr>
+	 *     <tr>
+	 *       <td>U+0022</td>
+	 *       <td>&nbsp;</td>
+	 *       <td>quotation mark (")</td>
+	 *       <td>&nbsp;&nbsp;&nbsp;</td>
+	 *       <td>{@code \"}</td>
+	 *     </tr>
+	 *     <tr>
+	 *       <td>U+005C</td>
+	 *       <td>&nbsp;</td>
+	 *       <td>reverse solidus (\)</td>
+	 *       <td>&nbsp;&nbsp;&nbsp;</td>
+	 *       <td>{@code \\}</td>
+	 *     </tr>
+	 *   </tbody>
 	 * </table>
 	 * <p>
 	 * In addition, each character in the input sequence that lies outside the range U+0020 to U+007E inclusive and is
@@ -277,10 +282,16 @@ public class StringNode
 			char ch = seq.charAt(i);
 
 			// Search for standard escape sequence for character
-			char[] pair = Arrays.stream(ESCAPE_MAPPINGS)
-								.filter(pair0 -> (ch == pair0[0]))
-								.findFirst()
-								.orElse(null);
+			char[] pair = null;
+			for (int j = 0; j < ESCAPE_MAPPINGS.length; j++)
+			{
+				char[] pair0 = ESCAPE_MAPPINGS[j];
+				if (ch == pair0[0])
+				{
+					pair = pair0;
+					break;
+				}
+			}
 
 			// If there is a standard escape sequence for character, use it ...
 			if (pair != null)
@@ -289,13 +300,9 @@ public class StringNode
 				buffer.append(pair[1]);
 			}
 
-			// ... otherwise, if character is not 'printable', replace it with its Unicode escape sequence ...
+			// ... otherwise, if character is not printable ASCII, replace it with its Unicode escape sequence ...
 			else if ((ch < '\u0020') || (ch > '\u007E'))
-			{
-				buffer.append(ESCAPE_PREFIX_CHAR);
-				buffer.append(UNICODE_ESCAPE_CHAR);
-				buffer.append(charToUnicodeHex(ch));
-			}
+				buffer.append(unicodeEscape(ch));
 
 			// ... otherwise, append the character unchanged
 			else
@@ -469,13 +476,6 @@ public class StringNode
 	}
 
 	//------------------------------------------------------------------
-
-////////////////////////////////////////////////////////////////////////
-//  Instance variables
-////////////////////////////////////////////////////////////////////////
-
-	/** The value of this string node. */
-	private	String	value;
 
 }
 
