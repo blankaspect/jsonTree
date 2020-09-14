@@ -13,7 +13,8 @@
 <!--[if IE]>
 <script type="text/javascript" src="../../../../jquery/jszip-utils/dist/jszip-utils-ie.min.js"></script>
 <![endif]-->
-<script type="text/javascript" src="../../../../jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="../../../../jquery/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="../../../../jquery/jquery-migrate-3.0.1.js"></script>
 <script type="text/javascript" src="../../../../jquery/jquery-ui.js"></script>
 </head>
 <body>
@@ -26,13 +27,15 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10,"i34":10,"i35":10,"i36":10,"i37":10,"i38":10,"i39":10,"i40":10,"i41":10,"i42":10,"i43":10,"i44":10,"i45":10,"i46":10,"i47":10,"i48":10,"i49":10,"i50":10,"i51":10,"i52":10,"i53":10,"i54":10,"i55":10,"i56":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10,"i34":10,"i35":10,"i36":10,"i37":10,"i38":10,"i39":10,"i40":10,"i41":10,"i42":10,"i43":10,"i44":10,"i45":10,"i46":10,"i47":10,"i48":10,"i49":10,"i50":10,"i51":10,"i52":10,"i53":10,"i54":10,"i55":10,"i56":10,"i57":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
 var activeTableTab = "activeTableTab";
-var pathtoroot = "../../../../";loadScripts(document, 'script');</script>
+var pathtoroot = "../../../../";
+var useModuleDirectories = true;
+loadScripts(document, 'script');</script>
 <noscript>
 <div>JavaScript is disabled on your browser.</div>
 </noscript>
@@ -48,7 +51,7 @@ var pathtoroot = "../../../../";loadScripts(document, 'script');</script>
 <!--   -->
 </a>
 <ul class="navList" title="Navigation">
-<li><a href="../../../../overview-summary.html">Overview</a></li>
+<li><a href="../../../../index.html">Overview</a></li>
 <li><a href="package-summary.html">Package</a></li>
 <li class="navBarCell1Rev">Class</li>
 <li><a href="package-tree.html">Tree</a></li>
@@ -58,38 +61,6 @@ var pathtoroot = "../../../../";loadScripts(document, 'script');</script>
 </ul>
 </div>
 <div class="subNav">
-<ul class="navList">
-<li><a href="../../../../uk/blankaspect/common/basictree/IntNode.html" title="class in uk.blankaspect.common.basictree"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../uk/blankaspect/common/basictree/LongNode.html" title="class in uk.blankaspect.common.basictree"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
-</ul>
-<ul class="navList">
-<li><a href="../../../../index.html?uk/blankaspect/common/basictree/ListNode.html" target="_top">Frames</a></li>
-<li><a href="ListNode.html" target="_top">No&nbsp;Frames</a></li>
-</ul>
-<ul class="navList" id="allclasses_navbar_top">
-<li><a href="../../../../allclasses-noframe.html">All&nbsp;Classes</a></li>
-</ul>
-<ul class="navListSearch">
-<li><label for="search">SEARCH:</label>
-<input type="text" id="search" value="search" disabled="disabled">
-<input type="reset" id="reset" value="reset" disabled="disabled">
-</li>
-</ul>
-<div>
-<script type="text/javascript"><!--
-  allClassesLink = document.getElementById("allclasses_navbar_top");
-  if(window==top) {
-    allClassesLink.style.display = "block";
-  }
-  else {
-    allClassesLink.style.display = "none";
-  }
-  //-->
-</script>
-<noscript>
-<div>JavaScript is disabled on your browser.</div>
-</noscript>
-</div>
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
@@ -105,9 +76,16 @@ var pathtoroot = "../../../../";loadScripts(document, 'script');</script>
 <li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
+<ul class="navListSearch">
+<li><label for="search">SEARCH:</label>
+<input type="text" id="search" value="search" disabled="disabled">
+<input type="reset" id="reset" value="reset" disabled="disabled">
+</li>
+</ul>
+</div>
 <a id="skip.navbar.top">
 <!--   -->
-</a></div>
+</a>
 <!-- ========= END OF TOP NAVBAR ========= -->
 </div>
 <div class="navPadding">&nbsp;</div>
@@ -120,7 +98,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <!-- ======== START OF CLASS DATA ======== -->
 <main role="main">
 <div class="header">
-<div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="../../../../uk/blankaspect/common/basictree/package-summary.html">uk.blankaspect.common.basictree</a></div>
+<div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">uk.blankaspect.common.basictree</a></div>
 <h2 title="Class ListNode" class="title">Class ListNode</h2>
 </div>
 <div class="contentContainer">
@@ -128,7 +106,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li><a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">uk.blankaspect.common.basictree.AbstractNode</a></li>
+<li><a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">uk.blankaspect.common.basictree.AbstractNode</a></li>
 <li>
 <ul class="inheritance">
 <li>uk.blankaspect.common.basictree.ListNode</li>
@@ -142,13 +120,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><code>java.lang.Cloneable</code>, <code><a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;</code></dd>
+<dd><code>java.lang.Cloneable</code>, <code>java.lang.Iterable&lt;<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;</code>, <code><a href="../tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;</code></dd>
 </dl>
 <hr>
 <pre>public class <span class="typeNameLabel">ListNode</span>
-extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a></pre>
-<div class="block">This class implements a <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a> that contains a sequence of elements that are <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">nodes</a>.  The elements may be of different types (eg, a mixture of <a href="../../../../uk/blankaspect/common/basictree/StringNode.html" title="class in uk.blankaspect.common.basictree">string nodes</a>
- and <a href="../../../../uk/blankaspect/common/basictree/ListNode.html" title="class in uk.blankaspect.common.basictree">list nodes</a>).
+extends <a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>
+implements java.lang.Iterable&lt;<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;</pre>
+<div class="block">This class implements a <a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a> that contains a sequence of elements that are <a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">nodes</a>.  The elements may be of different types (eg, a mixture of <a href="StringNode.html" title="class in uk.blankaspect.common.basictree">string nodes</a>
+ and <a href="ListNode.html" title="class in uk.blankaspect.common.basictree">list nodes</a>).
  <p>
  A list node may be created with an initial collection of elements, and elements may be added to a list node after its
  creation, but elements cannot be removed from a list node.
@@ -170,42 +149,46 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <!--   -->
 </a>
 <h3>Field Summary</h3>
-<table class="memberSummary">
+<div class="memberSummary">
+<table>
 <caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colSecond" scope="col">Field</th>
 <th class="colLast" scope="col">Description</th>
 </tr>
+<tbody>
 <tr class="altColor">
 <td class="colFirst"><code>static char</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#ELEMENT_SEPARATOR_CHAR">ELEMENT_SEPARATOR_CHAR</a></span></code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#ELEMENT_SEPARATOR_CHAR">ELEMENT_SEPARATOR_CHAR</a></span></code></th>
 <td class="colLast">
 <div class="block">The character that separates adjacent elements in the string representation of a list node.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static char</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#END_CHAR">END_CHAR</a></span></code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#END_CHAR">END_CHAR</a></span></code></th>
 <td class="colLast">
 <div class="block">The character that denotes the end of the string representation of a list node.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static char</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#START_CHAR">START_CHAR</a></span></code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#START_CHAR">START_CHAR</a></span></code></th>
 <td class="colLast">
 <div class="block">The character that denotes the start of the string representation of a list node.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>static <a href="../../../../uk/blankaspect/common/basictree/NodeType.html" title="class in uk.blankaspect.common.basictree">NodeType</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#TYPE">TYPE</a></span></code></th>
+<td class="colFirst"><code>static <a href="NodeType.html" title="class in uk.blankaspect.common.basictree">NodeType</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#TYPE">TYPE</a></span></code></th>
 <td class="colLast">
 <div class="block">The type of a list node.</div>
 </td>
 </tr>
+</tbody>
 </table>
+</div>
 </li>
 </ul>
 </section>
@@ -216,47 +199,51 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <!--   -->
 </a>
 <h3>Constructor Summary</h3>
-<table class="memberSummary">
+<div class="memberSummary">
+<table>
 <caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
 <th class="colFirst" scope="col">Constructor</th>
 <th class="colLast" scope="col">Description</th>
 </tr>
+<tbody>
 <tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#%3Cinit%3E()">ListNode</a></span>()</code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E()">ListNode</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Creates a new instance of a list node that has no parent and initially contains no elements.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#%3Cinit%3E(java.lang.Iterable)">ListNode</a></span>&#8203;(java.lang.Iterable&lt;? extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;&nbsp;elements)</code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.lang.Iterable)">ListNode</a></span>&#8203;(java.lang.Iterable&lt;? extends <a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;&nbsp;elements)</code></th>
 <td class="colLast">
 <div class="block">Creates a new instance of a list node that has no parent and initially contains the specified elements.</div>
 </td>
 </tr>
 <tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#%3Cinit%3E(uk.blankaspect.common.basictree.AbstractNode)">ListNode</a></span>&#8203;(<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;parent)</code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(uk.blankaspect.common.basictree.AbstractNode)">ListNode</a></span>&#8203;(<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;parent)</code></th>
 <td class="colLast">
 <div class="block">Creates a new instance of a list node that has the specified parent and initially contains no elements.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#%3Cinit%3E(uk.blankaspect.common.basictree.AbstractNode,java.lang.Iterable)">ListNode</a></span>&#8203;(<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;parent,
-        java.lang.Iterable&lt;? extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;&nbsp;elements)</code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(uk.blankaspect.common.basictree.AbstractNode,java.lang.Iterable)">ListNode</a></span>&#8203;(<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;parent,
+        java.lang.Iterable&lt;? extends <a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;&nbsp;elements)</code></th>
 <td class="colLast">
 <div class="block">Creates a new instance of a list node that has the specified parent and initially contains the specified
  elements.</div>
 </td>
 </tr>
 <tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#%3Cinit%3E(uk.blankaspect.common.basictree.AbstractNode,uk.blankaspect.common.basictree.AbstractNode...)">ListNode</a></span>&#8203;(<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;parent,
-        <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>...&nbsp;elements)</code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(uk.blankaspect.common.basictree.AbstractNode,uk.blankaspect.common.basictree.AbstractNode...)">ListNode</a></span>&#8203;(<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;parent,
+        <a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>...&nbsp;elements)</code></th>
 <td class="colLast">
 <div class="block">Creates a new instance of a list node that has the specified parent and initially contains the specified
  elements.</div>
 </td>
 </tr>
+</tbody>
 </table>
+</div>
 </li>
 </ul>
 </section>
@@ -267,447 +254,453 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <!--   -->
 </a>
 <h3>Method Summary</h3>
-<table class="memberSummary">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<div class="memberSummary">
+<div role="tablist" aria-orientation="horizontal"><button role="tab" aria-selected="true" aria-controls="memberSummary_tabpanel" tabindex="0" onkeydown="switchTab(event)" id="t0" class="activeTableTab">All Methods</button><button role="tab" aria-selected="false" aria-controls="memberSummary_tabpanel" tabindex="-1" onkeydown="switchTab(event)" id="t2" class="tableTab" onclick="show(2);">Instance Methods</button><button role="tab" aria-selected="false" aria-controls="memberSummary_tabpanel" tabindex="-1" onkeydown="switchTab(event)" id="t4" class="tableTab" onclick="show(8);">Concrete Methods</button></div>
+<div id="memberSummary_tabpanel" role="tabpanel">
+<table aria-labelledby="t0">
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colSecond" scope="col">Method</th>
 <th class="colLast" scope="col">Description</th>
 </tr>
-<tr id="i0" class="altColor">
+<tbody>
+<tr class="altColor" id="i0">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#add(uk.blankaspect.common.basictree.AbstractNode)">add</a></span>&#8203;(<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;node)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#add(uk.blankaspect.common.basictree.AbstractNode)">add</a></span>&#8203;(<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;node)</code></th>
 <td class="colLast">
 <div class="block">Adds the specified node to the end of the list of elements of this list node.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
-<td class="colFirst"><code><a href="../../../../uk/blankaspect/common/basictree/BooleanNode.html" title="class in uk.blankaspect.common.basictree">BooleanNode</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#addBoolean(boolean)">addBoolean</a></span>&#8203;(boolean&nbsp;value)</code></th>
+<tr class="rowColor" id="i1">
+<td class="colFirst"><code><a href="BooleanNode.html" title="class in uk.blankaspect.common.basictree">BooleanNode</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addBoolean(boolean)">addBoolean</a></span>&#8203;(boolean&nbsp;value)</code></th>
 <td class="colLast">
-<div class="block">Creates a new instance of a <a href="../../../../uk/blankaspect/common/basictree/BooleanNode.html" title="class in uk.blankaspect.common.basictree">Boolean node</a> with the specified value, adds it to the end of
+<div class="block">Creates a new instance of a <a href="BooleanNode.html" title="class in uk.blankaspect.common.basictree">Boolean node</a> with the specified value, adds it to the end of
  of the list of elements of this list node and returns it.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr class="altColor" id="i2">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#addBooleans(boolean...)">addBooleans</a></span>&#8203;(boolean...&nbsp;values)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addBooleans(boolean...)">addBooleans</a></span>&#8203;(boolean...&nbsp;values)</code></th>
 <td class="colLast">
-<div class="block">Creates new instances of <a href="../../../../uk/blankaspect/common/basictree/BooleanNode.html" title="class in uk.blankaspect.common.basictree">Boolean nodes</a> with the specified values and adds them to the
+<div class="block">Creates new instances of <a href="BooleanNode.html" title="class in uk.blankaspect.common.basictree">Boolean nodes</a> with the specified values and adds them to the
  end of the list of elements of this list node, preserving the order of the values.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr class="rowColor" id="i3">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#addBooleans(java.lang.Iterable)">addBooleans</a></span>&#8203;(java.lang.Iterable&lt;java.lang.Boolean&gt;&nbsp;values)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addBooleans(java.lang.Iterable)">addBooleans</a></span>&#8203;(java.lang.Iterable&lt;java.lang.Boolean&gt;&nbsp;values)</code></th>
 <td class="colLast">
-<div class="block">Creates new instances of <a href="../../../../uk/blankaspect/common/basictree/BooleanNode.html" title="class in uk.blankaspect.common.basictree">Boolean nodes</a> with the specified values and adds them to the
+<div class="block">Creates new instances of <a href="BooleanNode.html" title="class in uk.blankaspect.common.basictree">Boolean nodes</a> with the specified values and adds them to the
  end of the list of elements of this list node, preserving the order of the values.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
-<td class="colFirst"><code><a href="../../../../uk/blankaspect/common/basictree/DoubleNode.html" title="class in uk.blankaspect.common.basictree">DoubleNode</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#addDouble(double)">addDouble</a></span>&#8203;(double&nbsp;value)</code></th>
+<tr class="altColor" id="i4">
+<td class="colFirst"><code><a href="DoubleNode.html" title="class in uk.blankaspect.common.basictree">DoubleNode</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addDouble(double)">addDouble</a></span>&#8203;(double&nbsp;value)</code></th>
 <td class="colLast">
-<div class="block">Creates a new instance of a <a href="../../../../uk/blankaspect/common/basictree/DoubleNode.html" title="class in uk.blankaspect.common.basictree">'double' node</a> with the specified value, adds it to the end of
+<div class="block">Creates a new instance of a <a href="DoubleNode.html" title="class in uk.blankaspect.common.basictree">'double' node</a> with the specified value, adds it to the end of
  the list of elements of this list node and returns it.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr class="rowColor" id="i5">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#addDoubles(double...)">addDoubles</a></span>&#8203;(double...&nbsp;values)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addDoubles(double...)">addDoubles</a></span>&#8203;(double...&nbsp;values)</code></th>
 <td class="colLast">
-<div class="block">Creates new instances of <a href="../../../../uk/blankaspect/common/basictree/DoubleNode.html" title="class in uk.blankaspect.common.basictree">'double' nodes</a> with the specified values and adds them to the
+<div class="block">Creates new instances of <a href="DoubleNode.html" title="class in uk.blankaspect.common.basictree">'double' nodes</a> with the specified values and adds them to the
  end of the list of elements of this list node, preserving the order of the values.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr class="altColor" id="i6">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#addDoubles(java.lang.Iterable)">addDoubles</a></span>&#8203;(java.lang.Iterable&lt;java.lang.Double&gt;&nbsp;values)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addDoubles(java.lang.Iterable)">addDoubles</a></span>&#8203;(java.lang.Iterable&lt;java.lang.Double&gt;&nbsp;values)</code></th>
 <td class="colLast">
-<div class="block">Creates new instances of <a href="../../../../uk/blankaspect/common/basictree/DoubleNode.html" title="class in uk.blankaspect.common.basictree">'double' nodes</a> with the specified values and adds them to the
+<div class="block">Creates new instances of <a href="DoubleNode.html" title="class in uk.blankaspect.common.basictree">'double' nodes</a> with the specified values and adds them to the
  end of the list of elements of this list node, preserving the order of the values.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr class="rowColor" id="i7">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#addElements(java.lang.Iterable)">addElements</a></span>&#8203;(java.lang.Iterable&lt;? extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;&nbsp;nodes)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addElements(java.lang.Iterable)">addElements</a></span>&#8203;(java.lang.Iterable&lt;? extends <a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;&nbsp;nodes)</code></th>
 <td class="colLast">
 <div class="block">Adds the specified nodes to the end of the list of elements of this list node.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr class="altColor" id="i8">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#addElements(uk.blankaspect.common.basictree.AbstractNode...)">addElements</a></span>&#8203;(<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>...&nbsp;nodes)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addElements(uk.blankaspect.common.basictree.AbstractNode...)">addElements</a></span>&#8203;(<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>...&nbsp;nodes)</code></th>
 <td class="colLast">
 <div class="block">Adds the specified nodes to the end of the list of elements of this list node.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
-<td class="colFirst"><code><a href="../../../../uk/blankaspect/common/basictree/IntNode.html" title="class in uk.blankaspect.common.basictree">IntNode</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#addInt(int)">addInt</a></span>&#8203;(int&nbsp;value)</code></th>
+<tr class="rowColor" id="i9">
+<td class="colFirst"><code><a href="IntNode.html" title="class in uk.blankaspect.common.basictree">IntNode</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addInt(int)">addInt</a></span>&#8203;(int&nbsp;value)</code></th>
 <td class="colLast">
-<div class="block">Creates a new instance of an <a href="../../../../uk/blankaspect/common/basictree/IntNode.html" title="class in uk.blankaspect.common.basictree">'int' node</a> with the specified value, adds it to the end of the
+<div class="block">Creates a new instance of an <a href="IntNode.html" title="class in uk.blankaspect.common.basictree">'int' node</a> with the specified value, adds it to the end of the
  list of elements of this list node and returns it.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr class="altColor" id="i10">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#addInts(int...)">addInts</a></span>&#8203;(int...&nbsp;values)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addInts(int...)">addInts</a></span>&#8203;(int...&nbsp;values)</code></th>
 <td class="colLast">
-<div class="block">Creates new instances of <a href="../../../../uk/blankaspect/common/basictree/IntNode.html" title="class in uk.blankaspect.common.basictree">'int' nodes</a> with the specified values and adds them to the end of
+<div class="block">Creates new instances of <a href="IntNode.html" title="class in uk.blankaspect.common.basictree">'int' nodes</a> with the specified values and adds them to the end of
  the list of elements of this list node, preserving the order of the values.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr class="rowColor" id="i11">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#addInts(java.lang.Iterable)">addInts</a></span>&#8203;(java.lang.Iterable&lt;java.lang.Integer&gt;&nbsp;values)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addInts(java.lang.Iterable)">addInts</a></span>&#8203;(java.lang.Iterable&lt;java.lang.Integer&gt;&nbsp;values)</code></th>
 <td class="colLast">
-<div class="block">Creates new instances of <a href="../../../../uk/blankaspect/common/basictree/IntNode.html" title="class in uk.blankaspect.common.basictree">'int' nodes</a> with the specified values and adds them to the end of
+<div class="block">Creates new instances of <a href="IntNode.html" title="class in uk.blankaspect.common.basictree">'int' nodes</a> with the specified values and adds them to the end of
  the list of elements of this list node, preserving the order of the values.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
-<td class="colFirst"><code><a href="../../../../uk/blankaspect/common/basictree/ListNode.html" title="class in uk.blankaspect.common.basictree">ListNode</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#addList(java.lang.Iterable)">addList</a></span>&#8203;(java.lang.Iterable&lt;<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;&nbsp;elements)</code></th>
+<tr class="altColor" id="i12">
+<td class="colFirst"><code><a href="ListNode.html" title="class in uk.blankaspect.common.basictree">ListNode</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addList(java.lang.Iterable)">addList</a></span>&#8203;(java.lang.Iterable&lt;<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;&nbsp;elements)</code></th>
 <td class="colLast">
-<div class="block">Creates a new instance of a <a href="../../../../uk/blankaspect/common/basictree/ListNode.html" title="class in uk.blankaspect.common.basictree">list node</a> with the specified elements, adds it to the end of
+<div class="block">Creates a new instance of a <a href="ListNode.html" title="class in uk.blankaspect.common.basictree">list node</a> with the specified elements, adds it to the end of
  the list of elements of this list node and returns it.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
-<td class="colFirst"><code><a href="../../../../uk/blankaspect/common/basictree/ListNode.html" title="class in uk.blankaspect.common.basictree">ListNode</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#addList(uk.blankaspect.common.basictree.AbstractNode...)">addList</a></span>&#8203;(<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>...&nbsp;elements)</code></th>
+<tr class="rowColor" id="i13">
+<td class="colFirst"><code><a href="ListNode.html" title="class in uk.blankaspect.common.basictree">ListNode</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addList(uk.blankaspect.common.basictree.AbstractNode...)">addList</a></span>&#8203;(<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>...&nbsp;elements)</code></th>
 <td class="colLast">
-<div class="block">Creates a new instance of a <a href="../../../../uk/blankaspect/common/basictree/ListNode.html" title="class in uk.blankaspect.common.basictree">list node</a> with the specified elements, adds it to the end of
+<div class="block">Creates a new instance of a <a href="ListNode.html" title="class in uk.blankaspect.common.basictree">list node</a> with the specified elements, adds it to the end of
  the list of elements of this list node and returns it.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
-<td class="colFirst"><code><a href="../../../../uk/blankaspect/common/basictree/LongNode.html" title="class in uk.blankaspect.common.basictree">LongNode</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#addLong(long)">addLong</a></span>&#8203;(long&nbsp;value)</code></th>
+<tr class="altColor" id="i14">
+<td class="colFirst"><code><a href="LongNode.html" title="class in uk.blankaspect.common.basictree">LongNode</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addLong(long)">addLong</a></span>&#8203;(long&nbsp;value)</code></th>
 <td class="colLast">
-<div class="block">Creates a new instance of a <a href="../../../../uk/blankaspect/common/basictree/LongNode.html" title="class in uk.blankaspect.common.basictree">'long' node</a> with the specified value, adds it to the end of the
+<div class="block">Creates a new instance of a <a href="LongNode.html" title="class in uk.blankaspect.common.basictree">'long' node</a> with the specified value, adds it to the end of the
  list of elements of this list node and returns it.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr class="rowColor" id="i15">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#addLongs(long...)">addLongs</a></span>&#8203;(long...&nbsp;values)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addLongs(long...)">addLongs</a></span>&#8203;(long...&nbsp;values)</code></th>
 <td class="colLast">
-<div class="block">Creates new instances of <a href="../../../../uk/blankaspect/common/basictree/LongNode.html" title="class in uk.blankaspect.common.basictree">'long' nodes</a> with the specified values and adds them to the end of
+<div class="block">Creates new instances of <a href="LongNode.html" title="class in uk.blankaspect.common.basictree">'long' nodes</a> with the specified values and adds them to the end of
  the list of elements of this list node, preserving the order of the values.</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr class="altColor" id="i16">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#addLongs(java.lang.Iterable)">addLongs</a></span>&#8203;(java.lang.Iterable&lt;java.lang.Long&gt;&nbsp;values)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addLongs(java.lang.Iterable)">addLongs</a></span>&#8203;(java.lang.Iterable&lt;java.lang.Long&gt;&nbsp;values)</code></th>
 <td class="colLast">
-<div class="block">Creates new instances of <a href="../../../../uk/blankaspect/common/basictree/LongNode.html" title="class in uk.blankaspect.common.basictree">'long' nodes</a> with the specified values and adds them to the end of
+<div class="block">Creates new instances of <a href="LongNode.html" title="class in uk.blankaspect.common.basictree">'long' nodes</a> with the specified values and adds them to the end of
  the list of elements of this list node, preserving the order of the values.</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
-<td class="colFirst"><code><a href="../../../../uk/blankaspect/common/basictree/MapNode.html" title="class in uk.blankaspect.common.basictree">MapNode</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#addMap(java.util.Map)">addMap</a></span>&#8203;(java.util.Map&lt;java.lang.String,<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;&nbsp;pairs)</code></th>
+<tr class="rowColor" id="i17">
+<td class="colFirst"><code><a href="MapNode.html" title="class in uk.blankaspect.common.basictree">MapNode</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addMap(java.util.Map)">addMap</a></span>&#8203;(java.util.Map&lt;java.lang.String,&#8203;<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;&nbsp;pairs)</code></th>
 <td class="colLast">
-<div class="block">Creates a new instance of a <a href="../../../../uk/blankaspect/common/basictree/MapNode.html" title="class in uk.blankaspect.common.basictree">map node</a> with the specified key&ndash;value pairs, adds it to
+<div class="block">Creates a new instance of a <a href="MapNode.html" title="class in uk.blankaspect.common.basictree">map node</a> with the specified key&ndash;value pairs, adds it to
  the end of the list of elements of this list node and returns it.</div>
 </td>
 </tr>
-<tr id="i18" class="altColor">
-<td class="colFirst"><code><a href="../../../../uk/blankaspect/common/basictree/NullNode.html" title="class in uk.blankaspect.common.basictree">NullNode</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#addNull()">addNull</a></span>()</code></th>
+<tr class="altColor" id="i18">
+<td class="colFirst"><code><a href="NullNode.html" title="class in uk.blankaspect.common.basictree">NullNode</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addNull()">addNull</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Creates a new instance of a <a href="../../../../uk/blankaspect/common/basictree/NullNode.html" title="class in uk.blankaspect.common.basictree">null node</a> and adds it to the end of the list of elements of
+<div class="block">Creates a new instance of a <a href="NullNode.html" title="class in uk.blankaspect.common.basictree">null node</a> and adds it to the end of the list of elements of
  this list node.</div>
 </td>
 </tr>
-<tr id="i19" class="rowColor">
-<td class="colFirst"><code><a href="../../../../uk/blankaspect/common/basictree/StringNode.html" title="class in uk.blankaspect.common.basictree">StringNode</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#addString(java.lang.String)">addString</a></span>&#8203;(java.lang.String&nbsp;value)</code></th>
+<tr class="rowColor" id="i19">
+<td class="colFirst"><code><a href="StringNode.html" title="class in uk.blankaspect.common.basictree">StringNode</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addString(java.lang.String)">addString</a></span>&#8203;(java.lang.String&nbsp;value)</code></th>
 <td class="colLast">
-<div class="block">Creates a new instance of a <a href="../../../../uk/blankaspect/common/basictree/StringNode.html" title="class in uk.blankaspect.common.basictree">string node</a> with the specified value, adds it to the end of
+<div class="block">Creates a new instance of a <a href="StringNode.html" title="class in uk.blankaspect.common.basictree">string node</a> with the specified value, adds it to the end of
  the list of elements of this list node and returns it.</div>
 </td>
 </tr>
-<tr id="i20" class="altColor">
+<tr class="altColor" id="i20">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#addStrings(java.lang.Iterable)">addStrings</a></span>&#8203;(java.lang.Iterable&lt;java.lang.String&gt;&nbsp;values)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addStrings(java.lang.Iterable)">addStrings</a></span>&#8203;(java.lang.Iterable&lt;java.lang.String&gt;&nbsp;values)</code></th>
 <td class="colLast">
-<div class="block">Creates new instances of <a href="../../../../uk/blankaspect/common/basictree/StringNode.html" title="class in uk.blankaspect.common.basictree">string nodes</a> with the specified values and adds them to the end
+<div class="block">Creates new instances of <a href="StringNode.html" title="class in uk.blankaspect.common.basictree">string nodes</a> with the specified values and adds them to the end
  of the list of elements of this list node, preserving the order of the values.</div>
 </td>
 </tr>
-<tr id="i21" class="rowColor">
+<tr class="rowColor" id="i21">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#addStrings(java.lang.String...)">addStrings</a></span>&#8203;(java.lang.String...&nbsp;values)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addStrings(java.lang.String...)">addStrings</a></span>&#8203;(java.lang.String...&nbsp;values)</code></th>
 <td class="colLast">
-<div class="block">Creates new instances of <a href="../../../../uk/blankaspect/common/basictree/StringNode.html" title="class in uk.blankaspect.common.basictree">string nodes</a> with the specified values and adds them to the end
+<div class="block">Creates new instances of <a href="StringNode.html" title="class in uk.blankaspect.common.basictree">string nodes</a> with the specified values and adds them to the end
  of the list of elements of this list node, preserving the order of the values.</div>
 </td>
 </tr>
-<tr id="i22" class="altColor">
+<tr class="altColor" id="i22">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#clear()">clear</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#clear()">clear</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Removes all the elements of this list node.</div>
 </td>
 </tr>
-<tr id="i23" class="rowColor">
-<td class="colFirst"><code><a href="../../../../uk/blankaspect/common/basictree/ListNode.html" title="class in uk.blankaspect.common.basictree">ListNode</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#clone()">clone</a></span>()</code></th>
+<tr class="rowColor" id="i23">
+<td class="colFirst"><code><a href="ListNode.html" title="class in uk.blankaspect.common.basictree">ListNode</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#clone()">clone</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Creates and returns a deep copy of this list node that has no parent.</div>
 </td>
 </tr>
-<tr id="i24" class="altColor">
+<tr class="altColor" id="i24">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#equals(java.lang.Object)">equals</a></span>&#8203;(java.lang.Object&nbsp;obj)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#equals(java.lang.Object)">equals</a></span>&#8203;(java.lang.Object&nbsp;obj)</code></th>
 <td class="colLast">
 <div class="block">Returns <code>true</code> if the specified object is an instance of <code>ListNode</code> <i>and</i> this list node
  contains the same number of elements as the other list node <i>and</i> each element in this list node is equal
  to the element at the same index in the other list node.</div>
 </td>
 </tr>
-<tr id="i25" class="rowColor">
-<td class="colFirst"><code><a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#get(int)">get</a></span>&#8203;(int&nbsp;index)</code></th>
+<tr class="rowColor" id="i25">
+<td class="colFirst"><code><a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#get(int)">get</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
 <div class="block">Returns the element of this list node at the specified index.</div>
 </td>
 </tr>
-<tr id="i26" class="altColor">
-<td class="colFirst"><code><a href="../../../../uk/blankaspect/common/basictree/BooleanNode.html" title="class in uk.blankaspect.common.basictree">BooleanNode</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getBoolean(int)">getBoolean</a></span>&#8203;(int&nbsp;index)</code></th>
+<tr class="altColor" id="i26">
+<td class="colFirst"><code><a href="BooleanNode.html" title="class in uk.blankaspect.common.basictree">BooleanNode</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getBoolean(int)">getBoolean</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
-<div class="block">Returns the element of this list node at the specified index as a <a href="../../../../uk/blankaspect/common/basictree/BooleanNode.html" title="class in uk.blankaspect.common.basictree">Boolean node</a>.</div>
+<div class="block">Returns the element of this list node at the specified index as a <a href="BooleanNode.html" title="class in uk.blankaspect.common.basictree">Boolean node</a>.</div>
 </td>
 </tr>
-<tr id="i27" class="rowColor">
+<tr class="rowColor" id="i27">
 <td class="colFirst"><code>boolean[]</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getBooleanArray()">getBooleanArray</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getBooleanArray()">getBooleanArray</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the underlying values of the elements of this list node as an array of <code>boolean</code>s.</div>
 </td>
 </tr>
-<tr id="i28" class="altColor">
+<tr class="altColor" id="i28">
 <td class="colFirst"><code>java.util.List&lt;java.lang.Boolean&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getBooleanList()">getBooleanList</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getBooleanList()">getBooleanList</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the underlying values of the elements of this list node as a list of <code>Boolean</code>s.</div>
 </td>
 </tr>
-<tr id="i29" class="rowColor">
-<td class="colFirst"><code>java.util.List&lt;<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getChildren()">getChildren</a></span>()</code></th>
+<tr class="rowColor" id="i29">
+<td class="colFirst"><code>java.util.List&lt;<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getChildren()">getChildren</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns a list of the elements of this list node.</div>
 </td>
 </tr>
-<tr id="i30" class="altColor">
-<td class="colFirst"><code><a href="../../../../uk/blankaspect/common/basictree/DoubleNode.html" title="class in uk.blankaspect.common.basictree">DoubleNode</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getDouble(int)">getDouble</a></span>&#8203;(int&nbsp;index)</code></th>
+<tr class="altColor" id="i30">
+<td class="colFirst"><code><a href="DoubleNode.html" title="class in uk.blankaspect.common.basictree">DoubleNode</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getDouble(int)">getDouble</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
-<div class="block">Returns the element of this list node at the specified index as a <a href="../../../../uk/blankaspect/common/basictree/DoubleNode.html" title="class in uk.blankaspect.common.basictree">'double' node</a>.</div>
+<div class="block">Returns the element of this list node at the specified index as a <a href="DoubleNode.html" title="class in uk.blankaspect.common.basictree">'double' node</a>.</div>
 </td>
 </tr>
-<tr id="i31" class="rowColor">
+<tr class="rowColor" id="i31">
 <td class="colFirst"><code>double[]</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getDoubleArray()">getDoubleArray</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getDoubleArray()">getDoubleArray</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the underlying values of the elements of this list node as an array of <code>double</code>s.</div>
 </td>
 </tr>
-<tr id="i32" class="altColor">
+<tr class="altColor" id="i32">
 <td class="colFirst"><code>java.util.List&lt;java.lang.Double&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getDoubleList()">getDoubleList</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getDoubleList()">getDoubleList</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the underlying values of the elements of this list node as a list of <code>Double</code>s.</div>
 </td>
 </tr>
-<tr id="i33" class="rowColor">
-<td class="colFirst"><code>java.util.List&lt;<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getElements()">getElements</a></span>()</code></th>
+<tr class="rowColor" id="i33">
+<td class="colFirst"><code>java.util.List&lt;<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getElements()">getElements</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns an unmodifiable list of the elements of this list node.</div>
 </td>
 </tr>
-<tr id="i34" class="altColor">
-<td class="colFirst"><code><a href="../../../../uk/blankaspect/common/basictree/IntNode.html" title="class in uk.blankaspect.common.basictree">IntNode</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getInt(int)">getInt</a></span>&#8203;(int&nbsp;index)</code></th>
+<tr class="altColor" id="i34">
+<td class="colFirst"><code><a href="IntNode.html" title="class in uk.blankaspect.common.basictree">IntNode</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getInt(int)">getInt</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
-<div class="block">Returns the element of this list node at the specified index as an <a href="../../../../uk/blankaspect/common/basictree/IntNode.html" title="class in uk.blankaspect.common.basictree">'int' node</a>.</div>
+<div class="block">Returns the element of this list node at the specified index as an <a href="IntNode.html" title="class in uk.blankaspect.common.basictree">'int' node</a>.</div>
 </td>
 </tr>
-<tr id="i35" class="rowColor">
+<tr class="rowColor" id="i35">
 <td class="colFirst"><code>int[]</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getIntArray()">getIntArray</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getIntArray()">getIntArray</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the underlying values of the elements of this list node as an array of <code>int</code>s.</div>
 </td>
 </tr>
-<tr id="i36" class="altColor">
+<tr class="altColor" id="i36">
 <td class="colFirst"><code>java.util.List&lt;java.lang.Integer&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getIntList()">getIntList</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getIntList()">getIntList</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the underlying values of the elements of this list node as a list of <code>Integer</code>s.</div>
 </td>
 </tr>
-<tr id="i37" class="rowColor">
+<tr class="rowColor" id="i37">
 <td class="colFirst"><code>long[]</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getIntOrLongArray()">getIntOrLongArray</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getIntOrLongArray()">getIntOrLongArray</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the underlying values of the elements of this list node as an array of <code>long</code>s.</div>
 </td>
 </tr>
-<tr id="i38" class="altColor">
+<tr class="altColor" id="i38">
 <td class="colFirst"><code>java.util.List&lt;java.lang.Long&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getIntOrLongList()">getIntOrLongList</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getIntOrLongList()">getIntOrLongList</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the underlying values of the elements of this list node as a list of <code>Long</code>s.</div>
 </td>
 </tr>
-<tr id="i39" class="rowColor">
-<td class="colFirst"><code><a href="../../../../uk/blankaspect/common/basictree/ListNode.html" title="class in uk.blankaspect.common.basictree">ListNode</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getList(int)">getList</a></span>&#8203;(int&nbsp;index)</code></th>
+<tr class="rowColor" id="i39">
+<td class="colFirst"><code><a href="ListNode.html" title="class in uk.blankaspect.common.basictree">ListNode</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getList(int)">getList</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
-<div class="block">Returns the element of this list node at the specified index as a <a href="../../../../uk/blankaspect/common/basictree/ListNode.html" title="class in uk.blankaspect.common.basictree">list node</a>.</div>
+<div class="block">Returns the element of this list node at the specified index as a <a href="ListNode.html" title="class in uk.blankaspect.common.basictree">list node</a>.</div>
 </td>
 </tr>
-<tr id="i40" class="altColor">
-<td class="colFirst"><code><a href="../../../../uk/blankaspect/common/basictree/LongNode.html" title="class in uk.blankaspect.common.basictree">LongNode</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getLong(int)">getLong</a></span>&#8203;(int&nbsp;index)</code></th>
+<tr class="altColor" id="i40">
+<td class="colFirst"><code><a href="LongNode.html" title="class in uk.blankaspect.common.basictree">LongNode</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getLong(int)">getLong</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
-<div class="block">Returns the element of this list node at the specified index as a <a href="../../../../uk/blankaspect/common/basictree/LongNode.html" title="class in uk.blankaspect.common.basictree">'long' node</a>.</div>
+<div class="block">Returns the element of this list node at the specified index as a <a href="LongNode.html" title="class in uk.blankaspect.common.basictree">'long' node</a>.</div>
 </td>
 </tr>
-<tr id="i41" class="rowColor">
+<tr class="rowColor" id="i41">
 <td class="colFirst"><code>long[]</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getLongArray()">getLongArray</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getLongArray()">getLongArray</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the underlying values of the elements of this list node as an array of <code>long</code>s.</div>
 </td>
 </tr>
-<tr id="i42" class="altColor">
+<tr class="altColor" id="i42">
 <td class="colFirst"><code>java.util.List&lt;java.lang.Long&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getLongList()">getLongList</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getLongList()">getLongList</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the underlying values of the elements of this list node as a list of <code>Long</code>s.</div>
 </td>
 </tr>
-<tr id="i43" class="rowColor">
-<td class="colFirst"><code><a href="../../../../uk/blankaspect/common/basictree/MapNode.html" title="class in uk.blankaspect.common.basictree">MapNode</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getMap(int)">getMap</a></span>&#8203;(int&nbsp;index)</code></th>
+<tr class="rowColor" id="i43">
+<td class="colFirst"><code><a href="MapNode.html" title="class in uk.blankaspect.common.basictree">MapNode</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getMap(int)">getMap</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
-<div class="block">Returns the element of this list node at the specified index as a <a href="../../../../uk/blankaspect/common/basictree/MapNode.html" title="class in uk.blankaspect.common.basictree">map node</a>.</div>
+<div class="block">Returns the element of this list node at the specified index as a <a href="MapNode.html" title="class in uk.blankaspect.common.basictree">map node</a>.</div>
 </td>
 </tr>
-<tr id="i44" class="altColor">
-<td class="colFirst"><code><a href="../../../../uk/blankaspect/common/basictree/NullNode.html" title="class in uk.blankaspect.common.basictree">NullNode</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getNull(int)">getNull</a></span>&#8203;(int&nbsp;index)</code></th>
+<tr class="altColor" id="i44">
+<td class="colFirst"><code><a href="NullNode.html" title="class in uk.blankaspect.common.basictree">NullNode</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getNull(int)">getNull</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
-<div class="block">Returns the element of this list node at the specified index as a <a href="../../../../uk/blankaspect/common/basictree/NullNode.html" title="class in uk.blankaspect.common.basictree">null node</a>.</div>
+<div class="block">Returns the element of this list node at the specified index as a <a href="NullNode.html" title="class in uk.blankaspect.common.basictree">null node</a>.</div>
 </td>
 </tr>
-<tr id="i45" class="rowColor">
+<tr class="rowColor" id="i45">
 <td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getNumElements()">getNumElements</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getNumElements()">getNumElements</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the number of elements that this list node contains.</div>
 </td>
 </tr>
-<tr id="i46" class="altColor">
-<td class="colFirst"><code><a href="../../../../uk/blankaspect/common/basictree/StringNode.html" title="class in uk.blankaspect.common.basictree">StringNode</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getString(int)">getString</a></span>&#8203;(int&nbsp;index)</code></th>
+<tr class="altColor" id="i46">
+<td class="colFirst"><code><a href="StringNode.html" title="class in uk.blankaspect.common.basictree">StringNode</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getString(int)">getString</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">
-<div class="block">Returns the element of this list node at the specified index as a <a href="../../../../uk/blankaspect/common/basictree/StringNode.html" title="class in uk.blankaspect.common.basictree">string node</a>.</div>
+<div class="block">Returns the element of this list node at the specified index as a <a href="StringNode.html" title="class in uk.blankaspect.common.basictree">string node</a>.</div>
 </td>
 </tr>
-<tr id="i47" class="rowColor">
+<tr class="rowColor" id="i47">
 <td class="colFirst"><code>java.lang.String[]</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getStringArray()">getStringArray</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getStringArray()">getStringArray</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the underlying values of the elements of this list node as an array of strings.</div>
 </td>
 </tr>
-<tr id="i48" class="altColor">
+<tr class="altColor" id="i48">
 <td class="colFirst"><code>java.util.List&lt;java.lang.String&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getStringList()">getStringList</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getStringList()">getStringList</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the underlying values of the elements of this list node as a list of strings.</div>
 </td>
 </tr>
-<tr id="i49" class="rowColor">
-<td class="colFirst"><code><a href="../../../../uk/blankaspect/common/basictree/NodeType.html" title="class in uk.blankaspect.common.basictree">NodeType</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getType()">getType</a></span>()</code></th>
+<tr class="rowColor" id="i49">
+<td class="colFirst"><code><a href="NodeType.html" title="class in uk.blankaspect.common.basictree">NodeType</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getType()">getType</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the type of this node.</div>
 </td>
 </tr>
-<tr id="i50" class="altColor">
+<tr class="altColor" id="i50">
 <td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#hashCode()">hashCode</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hashCode()">hashCode</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the hash code of this list node, which is the hash code of its elements.</div>
 </td>
 </tr>
-<tr id="i51" class="rowColor">
+<tr class="rowColor" id="i51">
 <td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#indexOf(uk.blankaspect.common.basictree.AbstractNode)">indexOf</a></span>&#8203;(<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;node)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#indexOf(uk.blankaspect.common.basictree.AbstractNode)">indexOf</a></span>&#8203;(<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;node)</code></th>
 <td class="colLast">
 <div class="block">Returns the index of the specified node in the list of the elements of this list node.</div>
 </td>
 </tr>
-<tr id="i52" class="altColor">
+<tr class="altColor" id="i52">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#isContainer()">isContainer</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isContainer()">isContainer</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns <code>true</code> if this node can contain other nodes.</div>
 </td>
 </tr>
-<tr id="i53" class="rowColor">
+<tr class="rowColor" id="i53">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#isEmpty()">isEmpty</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isEmpty()">isEmpty</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns <code>true</code> if this list node contains no elements.</div>
 </td>
 </tr>
-<tr id="i54" class="altColor">
+<tr class="altColor" id="i54">
+<td class="colFirst"><code>java.util.Iterator&lt;<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#iterator()">iterator</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns an iterator over the elements of this list node.</div>
+</td>
+</tr>
+<tr class="rowColor" id="i55">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#setElements(java.lang.Iterable)">setElements</a></span>&#8203;(java.lang.Iterable&lt;? extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;&nbsp;nodes)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setElements(java.lang.Iterable)">setElements</a></span>&#8203;(java.lang.Iterable&lt;? extends <a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;&nbsp;nodes)</code></th>
 <td class="colLast">
 <div class="block">Sets the elements of this list node to the specified nodes.</div>
 </td>
 </tr>
-<tr id="i55" class="rowColor">
+<tr class="altColor" id="i56">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#setElements(uk.blankaspect.common.basictree.AbstractNode...)">setElements</a></span>&#8203;(<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>...&nbsp;nodes)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setElements(uk.blankaspect.common.basictree.AbstractNode...)">setElements</a></span>&#8203;(<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>...&nbsp;nodes)</code></th>
 <td class="colLast">
 <div class="block">Sets the elements of this list node to the specified nodes.</div>
 </td>
 </tr>
-<tr id="i56" class="altColor">
+<tr class="rowColor" id="i57">
 <td class="colFirst"><code>java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#toString()">toString</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns a string representation of this list node.</div>
 </td>
 </tr>
+</tbody>
 </table>
+</div>
+</div>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.uk.blankaspect.common.basictree.AbstractNode">
 <!--   -->
 </a>
-<h3>Methods inherited from class&nbsp;uk.blankaspect.common.basictree.<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a></h3>
-<code><a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html#getListIndex()">getListIndex</a>, <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html#getMapKey()">getMapKey</a>, <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html#getParent()">getParent</a>, <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html#isRoot()">isRoot</a>, <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html#setParent(uk.blankaspect.common.basictree.AbstractNode)">setParent</a></code></li>
-</ul>
-<ul class="blockList">
-<li class="blockList"><a id="methods.inherited.from.class.uk.blankaspect.common.tree.ITreeNode">
-<!--   -->
-</a>
-<h3>Methods inherited from interface&nbsp;uk.blankaspect.common.tree.<a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a></h3>
-<code><a href="../../../../uk/blankaspect/common/tree/ITreeNode.html#isLeaf()">isLeaf</a></code></li>
+<h3>Methods inherited from class&nbsp;uk.blankaspect.common.basictree.<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a></h3>
+<code><a href="AbstractNode.html#getListIndex()">getListIndex</a>, <a href="AbstractNode.html#getMapKey()">getMapKey</a>, <a href="AbstractNode.html#getParent()">getParent</a>, <a href="AbstractNode.html#isRoot()">isRoot</a>, <a href="AbstractNode.html#setParent(uk.blankaspect.common.basictree.AbstractNode)">setParent</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
@@ -715,6 +708,20 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
 <code>finalize, getClass, notify, notifyAll, wait, wait, wait</code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a id="methods.inherited.from.class.java.lang.Iterable">
+<!--   -->
+</a>
+<h3>Methods inherited from interface&nbsp;java.lang.Iterable</h3>
+<code>forEach, spliterator</code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a id="methods.inherited.from.class.uk.blankaspect.common.tree.ITreeNode">
+<!--   -->
+</a>
+<h3>Methods inherited from interface&nbsp;uk.blankaspect.common.tree.<a href="../tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a></h3>
+<code><a href="../tree/ITreeNode.html#isLeaf()">isLeaf</a></code></li>
 </ul>
 </li>
 </ul>
@@ -780,7 +787,7 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockListLast">
 <li class="blockList">
 <h4>TYPE</h4>
-<pre>public static final&nbsp;<a href="../../../../uk/blankaspect/common/basictree/NodeType.html" title="class in uk.blankaspect.common.basictree">NodeType</a> TYPE</pre>
+<pre>public static final&nbsp;<a href="NodeType.html" title="class in uk.blankaspect.common.basictree">NodeType</a> TYPE</pre>
 <div class="block">The type of a list node.</div>
 </li>
 </ul>
@@ -810,7 +817,7 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>ListNode</h4>
-<pre>public&nbsp;ListNode&#8203;(<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;parent)</pre>
+<pre>public&nbsp;ListNode&#8203;(<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;parent)</pre>
 <div class="block">Creates a new instance of a list node that has the specified parent and initially contains no elements.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -824,7 +831,7 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>ListNode</h4>
-<pre>public&nbsp;ListNode&#8203;(java.lang.Iterable&lt;? extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;&nbsp;elements)</pre>
+<pre>public&nbsp;ListNode&#8203;(java.lang.Iterable&lt;? extends <a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;&nbsp;elements)</pre>
 <div class="block">Creates a new instance of a list node that has no parent and initially contains the specified elements.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -838,8 +845,8 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>ListNode</h4>
-<pre>public&nbsp;ListNode&#8203;(<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;parent,
-                <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>...&nbsp;elements)</pre>
+<pre>public&nbsp;ListNode&#8203;(<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;parent,
+                <a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>...&nbsp;elements)</pre>
 <div class="block">Creates a new instance of a list node that has the specified parent and initially contains the specified
  elements.</div>
 <dl>
@@ -855,8 +862,8 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockListLast">
 <li class="blockList">
 <h4>ListNode</h4>
-<pre>public&nbsp;ListNode&#8203;(<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;parent,
-                java.lang.Iterable&lt;? extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;&nbsp;elements)</pre>
+<pre>public&nbsp;ListNode&#8203;(<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;parent,
+                java.lang.Iterable&lt;? extends <a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;&nbsp;elements)</pre>
 <div class="block">Creates a new instance of a list node that has the specified parent and initially contains the specified
  elements.</div>
 <dl>
@@ -882,14 +889,14 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>getType</h4>
-<pre>public&nbsp;<a href="../../../../uk/blankaspect/common/basictree/NodeType.html" title="class in uk.blankaspect.common.basictree">NodeType</a>&nbsp;getType()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html#getType()">AbstractNode</a></code></span></div>
+<pre class="methodSignature">public&nbsp;<a href="NodeType.html" title="class in uk.blankaspect.common.basictree">NodeType</a>&nbsp;getType()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="AbstractNode.html#getType()">AbstractNode</a></code></span></div>
 <div class="block">Returns the type of this node.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html#getType()">getType</a></code>&nbsp;in class&nbsp;<code><a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a></code></dd>
+<dd><code><a href="AbstractNode.html#getType()">getType</a></code>&nbsp;in class&nbsp;<code><a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#TYPE"><code>TYPE</code></a>.</dd>
+<dd><a href="#TYPE"><code>TYPE</code></a>.</dd>
 </dl>
 </li>
 </ul>
@@ -899,12 +906,12 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>isContainer</h4>
-<pre>public&nbsp;boolean&nbsp;isContainer()</pre>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;isContainer()</pre>
 <div class="block">Returns <code>true</code> if this node can contain other nodes.
  For a list node, this method always returns <code>true</code>.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html#isContainer()">isContainer</a></code>&nbsp;in class&nbsp;<code><a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a></code></dd>
+<dd><code><a href="AbstractNode.html#isContainer()">isContainer</a></code>&nbsp;in class&nbsp;<code><a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd><code>true</code>.</dd>
 </dl>
@@ -916,19 +923,35 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>getChildren</h4>
-<pre>public&nbsp;java.util.List&lt;<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;&nbsp;getChildren()</pre>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;&nbsp;getChildren()</pre>
 <div class="block">Returns a list of the elements of this list node.  The returned list may be modified without affecting this list
  node, but modifying the elements of the list (for example, changing the parent of a node) <i>will</i> affect this
  list node.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../uk/blankaspect/common/tree/ITreeNode.html#getChildren()">getChildren</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;</code></dd>
+<dd><code><a href="../tree/ITreeNode.html#getChildren()">getChildren</a></code>&nbsp;in interface&nbsp;<code><a href="../tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;</code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html#getChildren()">getChildren</a></code>&nbsp;in class&nbsp;<code><a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a></code></dd>
+<dd><code><a href="AbstractNode.html#getChildren()">getChildren</a></code>&nbsp;in class&nbsp;<code><a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a list of the elements of this list node.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getElements()"><code>getElements()</code></a></dd>
+<dd><a href="#getElements()"><code>getElements()</code></a></dd>
+</dl>
+</li>
+</ul>
+<a id="iterator()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>iterator</h4>
+<pre class="methodSignature">public&nbsp;java.util.Iterator&lt;<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;&nbsp;iterator()</pre>
+<div class="block">Returns an iterator over the elements of this list node.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code>iterator</code>&nbsp;in interface&nbsp;<code>java.lang.Iterable&lt;<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>an iterator over the elements of this list node.</dd>
 </dl>
 </li>
 </ul>
@@ -938,7 +961,7 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>equals</h4>
-<pre>public&nbsp;boolean&nbsp;equals&#8203;(java.lang.Object&nbsp;obj)</pre>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;equals&#8203;(java.lang.Object&nbsp;obj)</pre>
 <div class="block">Returns <code>true</code> if the specified object is an instance of <code>ListNode</code> <i>and</i> this list node
  contains the same number of elements as the other list node <i>and</i> each element in this list node is equal
  to the element at the same index in the other list node.</div>
@@ -960,7 +983,7 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>hashCode</h4>
-<pre>public&nbsp;int&nbsp;hashCode()</pre>
+<pre class="methodSignature">public&nbsp;int&nbsp;hashCode()</pre>
 <div class="block">Returns the hash code of this list node, which is the hash code of its elements.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
@@ -976,11 +999,11 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>clone</h4>
-<pre>public&nbsp;<a href="../../../../uk/blankaspect/common/basictree/ListNode.html" title="class in uk.blankaspect.common.basictree">ListNode</a>&nbsp;clone()</pre>
+<pre class="methodSignature">public&nbsp;<a href="ListNode.html" title="class in uk.blankaspect.common.basictree">ListNode</a>&nbsp;clone()</pre>
 <div class="block">Creates and returns a deep copy of this list node that has no parent.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html#clone()">clone</a></code>&nbsp;in class&nbsp;<code><a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a></code></dd>
+<dd><code><a href="AbstractNode.html#clone()">clone</a></code>&nbsp;in class&nbsp;<code><a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a deep copy of this list node that has no parent.</dd>
 </dl>
@@ -992,7 +1015,7 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>toString</h4>
-<pre>public&nbsp;java.lang.String&nbsp;toString()</pre>
+<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;toString()</pre>
 <div class="block">Returns a string representation of this list node.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
@@ -1008,7 +1031,7 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>isEmpty</h4>
-<pre>public&nbsp;boolean&nbsp;isEmpty()</pre>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;isEmpty()</pre>
 <div class="block">Returns <code>true</code> if this list node contains no elements.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -1022,7 +1045,7 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>getNumElements</h4>
-<pre>public&nbsp;int&nbsp;getNumElements()</pre>
+<pre class="methodSignature">public&nbsp;int&nbsp;getNumElements()</pre>
 <div class="block">Returns the number of elements that this list node contains.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -1036,7 +1059,7 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>get</h4>
-<pre>public&nbsp;<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;get&#8203;(int&nbsp;index)</pre>
+<pre class="methodSignature">public&nbsp;<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;get&#8203;(int&nbsp;index)</pre>
 <div class="block">Returns the element of this list node at the specified index.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1044,7 +1067,7 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the element of this list node at <i>index</i>.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.IndexOutOfBoundsException</code> - if (<i>index</i> &lt; 0) or (<i>index</i> &gt;= <a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getNumElements()"><code>getNumElements()</code></a>).</dd>
+<dd><code>java.lang.IndexOutOfBoundsException</code> - if (<i>index</i> &lt; 0) or (<i>index</i> &gt;= <a href="#getNumElements()"><code>getNumElements()</code></a>).</dd>
 </dl>
 </li>
 </ul>
@@ -1054,16 +1077,16 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>getNull</h4>
-<pre>public&nbsp;<a href="../../../../uk/blankaspect/common/basictree/NullNode.html" title="class in uk.blankaspect.common.basictree">NullNode</a>&nbsp;getNull&#8203;(int&nbsp;index)</pre>
-<div class="block">Returns the element of this list node at the specified index as a <a href="../../../../uk/blankaspect/common/basictree/NullNode.html" title="class in uk.blankaspect.common.basictree">null node</a>.</div>
+<pre class="methodSignature">public&nbsp;<a href="NullNode.html" title="class in uk.blankaspect.common.basictree">NullNode</a>&nbsp;getNull&#8203;(int&nbsp;index)</pre>
+<div class="block">Returns the element of this list node at the specified index as a <a href="NullNode.html" title="class in uk.blankaspect.common.basictree">null node</a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>index</code> - the index of the required element.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the element of this list node at <i>index</i>, cast to a <a href="../../../../uk/blankaspect/common/basictree/NullNode.html" title="class in uk.blankaspect.common.basictree"><code>NullNode</code></a>.</dd>
+<dd>the element of this list node at <i>index</i>, cast to a <a href="NullNode.html" title="class in uk.blankaspect.common.basictree"><code>NullNode</code></a>.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.IndexOutOfBoundsException</code> - if (<i>index</i> &lt; 0) or (<i>index</i> &gt;= <a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getNumElements()"><code>getNumElements()</code></a>).</dd>
-<dd><code>java.lang.ClassCastException</code> - if the element at <i>index</i> is not an instance of <a href="../../../../uk/blankaspect/common/basictree/NullNode.html" title="class in uk.blankaspect.common.basictree"><code>NullNode</code></a>.</dd>
+<dd><code>java.lang.IndexOutOfBoundsException</code> - if (<i>index</i> &lt; 0) or (<i>index</i> &gt;= <a href="#getNumElements()"><code>getNumElements()</code></a>).</dd>
+<dd><code>java.lang.ClassCastException</code> - if the element at <i>index</i> is not an instance of <a href="NullNode.html" title="class in uk.blankaspect.common.basictree"><code>NullNode</code></a>.</dd>
 </dl>
 </li>
 </ul>
@@ -1073,16 +1096,16 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>getBoolean</h4>
-<pre>public&nbsp;<a href="../../../../uk/blankaspect/common/basictree/BooleanNode.html" title="class in uk.blankaspect.common.basictree">BooleanNode</a>&nbsp;getBoolean&#8203;(int&nbsp;index)</pre>
-<div class="block">Returns the element of this list node at the specified index as a <a href="../../../../uk/blankaspect/common/basictree/BooleanNode.html" title="class in uk.blankaspect.common.basictree">Boolean node</a>.</div>
+<pre class="methodSignature">public&nbsp;<a href="BooleanNode.html" title="class in uk.blankaspect.common.basictree">BooleanNode</a>&nbsp;getBoolean&#8203;(int&nbsp;index)</pre>
+<div class="block">Returns the element of this list node at the specified index as a <a href="BooleanNode.html" title="class in uk.blankaspect.common.basictree">Boolean node</a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>index</code> - the index of the required element.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the element of this list node at <i>index</i>, cast to a <a href="../../../../uk/blankaspect/common/basictree/BooleanNode.html" title="class in uk.blankaspect.common.basictree"><code>BooleanNode</code></a>.</dd>
+<dd>the element of this list node at <i>index</i>, cast to a <a href="BooleanNode.html" title="class in uk.blankaspect.common.basictree"><code>BooleanNode</code></a>.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.IndexOutOfBoundsException</code> - if (<i>index</i> &lt; 0) or (<i>index</i> &gt;= <a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getNumElements()"><code>getNumElements()</code></a>).</dd>
-<dd><code>java.lang.ClassCastException</code> - if the element at <i>index</i> is not an instance of <a href="../../../../uk/blankaspect/common/basictree/BooleanNode.html" title="class in uk.blankaspect.common.basictree"><code>BooleanNode</code></a>.</dd>
+<dd><code>java.lang.IndexOutOfBoundsException</code> - if (<i>index</i> &lt; 0) or (<i>index</i> &gt;= <a href="#getNumElements()"><code>getNumElements()</code></a>).</dd>
+<dd><code>java.lang.ClassCastException</code> - if the element at <i>index</i> is not an instance of <a href="BooleanNode.html" title="class in uk.blankaspect.common.basictree"><code>BooleanNode</code></a>.</dd>
 </dl>
 </li>
 </ul>
@@ -1092,16 +1115,16 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>getInt</h4>
-<pre>public&nbsp;<a href="../../../../uk/blankaspect/common/basictree/IntNode.html" title="class in uk.blankaspect.common.basictree">IntNode</a>&nbsp;getInt&#8203;(int&nbsp;index)</pre>
-<div class="block">Returns the element of this list node at the specified index as an <a href="../../../../uk/blankaspect/common/basictree/IntNode.html" title="class in uk.blankaspect.common.basictree">'int' node</a>.</div>
+<pre class="methodSignature">public&nbsp;<a href="IntNode.html" title="class in uk.blankaspect.common.basictree">IntNode</a>&nbsp;getInt&#8203;(int&nbsp;index)</pre>
+<div class="block">Returns the element of this list node at the specified index as an <a href="IntNode.html" title="class in uk.blankaspect.common.basictree">'int' node</a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>index</code> - the index of the required element.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the element of this list node at <i>index</i>, cast to a <a href="../../../../uk/blankaspect/common/basictree/IntNode.html" title="class in uk.blankaspect.common.basictree"><code>IntNode</code></a>.</dd>
+<dd>the element of this list node at <i>index</i>, cast to a <a href="IntNode.html" title="class in uk.blankaspect.common.basictree"><code>IntNode</code></a>.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.IndexOutOfBoundsException</code> - if (<i>index</i> &lt; 0) or (<i>index</i> &gt;= <a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getNumElements()"><code>getNumElements()</code></a>).</dd>
-<dd><code>java.lang.ClassCastException</code> - if the element at <i>index</i> is not an instance of <a href="../../../../uk/blankaspect/common/basictree/IntNode.html" title="class in uk.blankaspect.common.basictree"><code>IntNode</code></a>.</dd>
+<dd><code>java.lang.IndexOutOfBoundsException</code> - if (<i>index</i> &lt; 0) or (<i>index</i> &gt;= <a href="#getNumElements()"><code>getNumElements()</code></a>).</dd>
+<dd><code>java.lang.ClassCastException</code> - if the element at <i>index</i> is not an instance of <a href="IntNode.html" title="class in uk.blankaspect.common.basictree"><code>IntNode</code></a>.</dd>
 </dl>
 </li>
 </ul>
@@ -1111,16 +1134,16 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>getLong</h4>
-<pre>public&nbsp;<a href="../../../../uk/blankaspect/common/basictree/LongNode.html" title="class in uk.blankaspect.common.basictree">LongNode</a>&nbsp;getLong&#8203;(int&nbsp;index)</pre>
-<div class="block">Returns the element of this list node at the specified index as a <a href="../../../../uk/blankaspect/common/basictree/LongNode.html" title="class in uk.blankaspect.common.basictree">'long' node</a>.</div>
+<pre class="methodSignature">public&nbsp;<a href="LongNode.html" title="class in uk.blankaspect.common.basictree">LongNode</a>&nbsp;getLong&#8203;(int&nbsp;index)</pre>
+<div class="block">Returns the element of this list node at the specified index as a <a href="LongNode.html" title="class in uk.blankaspect.common.basictree">'long' node</a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>index</code> - the index of the required element.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the element of this list node at <i>index</i>, cast to a <a href="../../../../uk/blankaspect/common/basictree/LongNode.html" title="class in uk.blankaspect.common.basictree"><code>LongNode</code></a>.</dd>
+<dd>the element of this list node at <i>index</i>, cast to a <a href="LongNode.html" title="class in uk.blankaspect.common.basictree"><code>LongNode</code></a>.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.IndexOutOfBoundsException</code> - if (<i>index</i> &lt; 0) or (<i>index</i> &gt;= <a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getNumElements()"><code>getNumElements()</code></a>).</dd>
-<dd><code>java.lang.ClassCastException</code> - if the element at <i>index</i> is not an instance of <a href="../../../../uk/blankaspect/common/basictree/LongNode.html" title="class in uk.blankaspect.common.basictree"><code>LongNode</code></a>.</dd>
+<dd><code>java.lang.IndexOutOfBoundsException</code> - if (<i>index</i> &lt; 0) or (<i>index</i> &gt;= <a href="#getNumElements()"><code>getNumElements()</code></a>).</dd>
+<dd><code>java.lang.ClassCastException</code> - if the element at <i>index</i> is not an instance of <a href="LongNode.html" title="class in uk.blankaspect.common.basictree"><code>LongNode</code></a>.</dd>
 </dl>
 </li>
 </ul>
@@ -1130,16 +1153,16 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>getDouble</h4>
-<pre>public&nbsp;<a href="../../../../uk/blankaspect/common/basictree/DoubleNode.html" title="class in uk.blankaspect.common.basictree">DoubleNode</a>&nbsp;getDouble&#8203;(int&nbsp;index)</pre>
-<div class="block">Returns the element of this list node at the specified index as a <a href="../../../../uk/blankaspect/common/basictree/DoubleNode.html" title="class in uk.blankaspect.common.basictree">'double' node</a>.</div>
+<pre class="methodSignature">public&nbsp;<a href="DoubleNode.html" title="class in uk.blankaspect.common.basictree">DoubleNode</a>&nbsp;getDouble&#8203;(int&nbsp;index)</pre>
+<div class="block">Returns the element of this list node at the specified index as a <a href="DoubleNode.html" title="class in uk.blankaspect.common.basictree">'double' node</a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>index</code> - the index of the required element.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the element of this list node at <i>index</i>, cast to a <a href="../../../../uk/blankaspect/common/basictree/DoubleNode.html" title="class in uk.blankaspect.common.basictree"><code>DoubleNode</code></a>.</dd>
+<dd>the element of this list node at <i>index</i>, cast to a <a href="DoubleNode.html" title="class in uk.blankaspect.common.basictree"><code>DoubleNode</code></a>.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.IndexOutOfBoundsException</code> - if (<i>index</i> &lt; 0) or (<i>index</i> &gt;= <a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getNumElements()"><code>getNumElements()</code></a>).</dd>
-<dd><code>java.lang.ClassCastException</code> - if the element at <i>index</i> is not an instance of <a href="../../../../uk/blankaspect/common/basictree/DoubleNode.html" title="class in uk.blankaspect.common.basictree"><code>DoubleNode</code></a>.</dd>
+<dd><code>java.lang.IndexOutOfBoundsException</code> - if (<i>index</i> &lt; 0) or (<i>index</i> &gt;= <a href="#getNumElements()"><code>getNumElements()</code></a>).</dd>
+<dd><code>java.lang.ClassCastException</code> - if the element at <i>index</i> is not an instance of <a href="DoubleNode.html" title="class in uk.blankaspect.common.basictree"><code>DoubleNode</code></a>.</dd>
 </dl>
 </li>
 </ul>
@@ -1149,16 +1172,16 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>getString</h4>
-<pre>public&nbsp;<a href="../../../../uk/blankaspect/common/basictree/StringNode.html" title="class in uk.blankaspect.common.basictree">StringNode</a>&nbsp;getString&#8203;(int&nbsp;index)</pre>
-<div class="block">Returns the element of this list node at the specified index as a <a href="../../../../uk/blankaspect/common/basictree/StringNode.html" title="class in uk.blankaspect.common.basictree">string node</a>.</div>
+<pre class="methodSignature">public&nbsp;<a href="StringNode.html" title="class in uk.blankaspect.common.basictree">StringNode</a>&nbsp;getString&#8203;(int&nbsp;index)</pre>
+<div class="block">Returns the element of this list node at the specified index as a <a href="StringNode.html" title="class in uk.blankaspect.common.basictree">string node</a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>index</code> - the index of the required element.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the element of this list node at <i>index</i>, cast to a <a href="../../../../uk/blankaspect/common/basictree/StringNode.html" title="class in uk.blankaspect.common.basictree"><code>StringNode</code></a>.</dd>
+<dd>the element of this list node at <i>index</i>, cast to a <a href="StringNode.html" title="class in uk.blankaspect.common.basictree"><code>StringNode</code></a>.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.IndexOutOfBoundsException</code> - if (<i>index</i> &lt; 0) or (<i>index</i> &gt;= <a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getNumElements()"><code>getNumElements()</code></a>).</dd>
-<dd><code>java.lang.ClassCastException</code> - if the element at <i>index</i> is not an instance of <a href="../../../../uk/blankaspect/common/basictree/StringNode.html" title="class in uk.blankaspect.common.basictree"><code>StringNode</code></a>.</dd>
+<dd><code>java.lang.IndexOutOfBoundsException</code> - if (<i>index</i> &lt; 0) or (<i>index</i> &gt;= <a href="#getNumElements()"><code>getNumElements()</code></a>).</dd>
+<dd><code>java.lang.ClassCastException</code> - if the element at <i>index</i> is not an instance of <a href="StringNode.html" title="class in uk.blankaspect.common.basictree"><code>StringNode</code></a>.</dd>
 </dl>
 </li>
 </ul>
@@ -1168,16 +1191,16 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>getList</h4>
-<pre>public&nbsp;<a href="../../../../uk/blankaspect/common/basictree/ListNode.html" title="class in uk.blankaspect.common.basictree">ListNode</a>&nbsp;getList&#8203;(int&nbsp;index)</pre>
-<div class="block">Returns the element of this list node at the specified index as a <a href="../../../../uk/blankaspect/common/basictree/ListNode.html" title="class in uk.blankaspect.common.basictree">list node</a>.</div>
+<pre class="methodSignature">public&nbsp;<a href="ListNode.html" title="class in uk.blankaspect.common.basictree">ListNode</a>&nbsp;getList&#8203;(int&nbsp;index)</pre>
+<div class="block">Returns the element of this list node at the specified index as a <a href="ListNode.html" title="class in uk.blankaspect.common.basictree">list node</a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>index</code> - the index of the required element.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the element of this list node at <i>index</i>, cast to a <a href="../../../../uk/blankaspect/common/basictree/ListNode.html" title="class in uk.blankaspect.common.basictree"><code>ListNode</code></a>.</dd>
+<dd>the element of this list node at <i>index</i>, cast to a <a href="ListNode.html" title="class in uk.blankaspect.common.basictree"><code>ListNode</code></a>.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.IndexOutOfBoundsException</code> - if (<i>index</i> &lt; 0) or (<i>index</i> &gt;= <a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getNumElements()"><code>getNumElements()</code></a>).</dd>
-<dd><code>java.lang.ClassCastException</code> - if the element at <i>index</i> is not an instance of <a href="../../../../uk/blankaspect/common/basictree/ListNode.html" title="class in uk.blankaspect.common.basictree"><code>ListNode</code></a>.</dd>
+<dd><code>java.lang.IndexOutOfBoundsException</code> - if (<i>index</i> &lt; 0) or (<i>index</i> &gt;= <a href="#getNumElements()"><code>getNumElements()</code></a>).</dd>
+<dd><code>java.lang.ClassCastException</code> - if the element at <i>index</i> is not an instance of <a href="ListNode.html" title="class in uk.blankaspect.common.basictree"><code>ListNode</code></a>.</dd>
 </dl>
 </li>
 </ul>
@@ -1187,16 +1210,16 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>getMap</h4>
-<pre>public&nbsp;<a href="../../../../uk/blankaspect/common/basictree/MapNode.html" title="class in uk.blankaspect.common.basictree">MapNode</a>&nbsp;getMap&#8203;(int&nbsp;index)</pre>
-<div class="block">Returns the element of this list node at the specified index as a <a href="../../../../uk/blankaspect/common/basictree/MapNode.html" title="class in uk.blankaspect.common.basictree">map node</a>.</div>
+<pre class="methodSignature">public&nbsp;<a href="MapNode.html" title="class in uk.blankaspect.common.basictree">MapNode</a>&nbsp;getMap&#8203;(int&nbsp;index)</pre>
+<div class="block">Returns the element of this list node at the specified index as a <a href="MapNode.html" title="class in uk.blankaspect.common.basictree">map node</a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>index</code> - the index of the required element.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the element of this list node at <i>index</i>, cast to a <a href="../../../../uk/blankaspect/common/basictree/MapNode.html" title="class in uk.blankaspect.common.basictree"><code>MapNode</code></a>.</dd>
+<dd>the element of this list node at <i>index</i>, cast to a <a href="MapNode.html" title="class in uk.blankaspect.common.basictree"><code>MapNode</code></a>.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.lang.IndexOutOfBoundsException</code> - if (<i>index</i> &lt; 0) or (<i>index</i> &gt;= <a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getNumElements()"><code>getNumElements()</code></a>).</dd>
-<dd><code>java.lang.ClassCastException</code> - if the element at <i>index</i> is not an instance of <a href="../../../../uk/blankaspect/common/basictree/MapNode.html" title="class in uk.blankaspect.common.basictree"><code>MapNode</code></a>.</dd>
+<dd><code>java.lang.IndexOutOfBoundsException</code> - if (<i>index</i> &lt; 0) or (<i>index</i> &gt;= <a href="#getNumElements()"><code>getNumElements()</code></a>).</dd>
+<dd><code>java.lang.ClassCastException</code> - if the element at <i>index</i> is not an instance of <a href="MapNode.html" title="class in uk.blankaspect.common.basictree"><code>MapNode</code></a>.</dd>
 </dl>
 </li>
 </ul>
@@ -1206,7 +1229,7 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>getElements</h4>
-<pre>public&nbsp;java.util.List&lt;<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;&nbsp;getElements()</pre>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;&nbsp;getElements()</pre>
 <div class="block">Returns an unmodifiable list of the elements of this list node.  Although the returned list cannot be modified,
  its elements <i>can</i> be modified, and doing so (for example, changing the parent of a node) will affect this
  list node.</div>
@@ -1214,7 +1237,7 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>an unmodifiable list of the elements of this list node.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../uk/blankaspect/common/basictree/ListNode.html#getChildren()"><code>getChildren()</code></a></dd>
+<dd><a href="#getChildren()"><code>getChildren()</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -1224,14 +1247,14 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>getBooleanArray</h4>
-<pre>public&nbsp;boolean[]&nbsp;getBooleanArray()
-                          throws <a href="../../../../uk/blankaspect/common/basictree/NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></pre>
+<pre class="methodSignature">public&nbsp;boolean[]&nbsp;getBooleanArray()
+                          throws <a href="NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></pre>
 <div class="block">Returns the underlying values of the elements of this list node as an array of <code>boolean</code>s.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>an array of the underlying <code>boolean</code> values of the elements of this list node.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../../../../uk/blankaspect/common/basictree/NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></code> - if any of the elements of this list node is not a <a href="../../../../uk/blankaspect/common/basictree/BooleanNode.html" title="class in uk.blankaspect.common.basictree">Boolean node</a>.</dd>
+<dd><code><a href="NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></code> - if any of the elements of this list node is not a <a href="BooleanNode.html" title="class in uk.blankaspect.common.basictree">Boolean node</a>.</dd>
 </dl>
 </li>
 </ul>
@@ -1241,14 +1264,14 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>getBooleanList</h4>
-<pre>public&nbsp;java.util.List&lt;java.lang.Boolean&gt;&nbsp;getBooleanList()
-                                                 throws <a href="../../../../uk/blankaspect/common/basictree/NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></pre>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;java.lang.Boolean&gt;&nbsp;getBooleanList()
+                                                 throws <a href="NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></pre>
 <div class="block">Returns the underlying values of the elements of this list node as a list of <code>Boolean</code>s.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a list of the underlying <code>Boolean</code> values of the elements of this list node.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../../../../uk/blankaspect/common/basictree/NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></code> - if any of the elements of this list node is not a <a href="../../../../uk/blankaspect/common/basictree/BooleanNode.html" title="class in uk.blankaspect.common.basictree">Boolean node</a>.</dd>
+<dd><code><a href="NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></code> - if any of the elements of this list node is not a <a href="BooleanNode.html" title="class in uk.blankaspect.common.basictree">Boolean node</a>.</dd>
 </dl>
 </li>
 </ul>
@@ -1258,14 +1281,14 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>getIntArray</h4>
-<pre>public&nbsp;int[]&nbsp;getIntArray()
-                  throws <a href="../../../../uk/blankaspect/common/basictree/NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></pre>
+<pre class="methodSignature">public&nbsp;int[]&nbsp;getIntArray()
+                  throws <a href="NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></pre>
 <div class="block">Returns the underlying values of the elements of this list node as an array of <code>int</code>s.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>an array of the underlying <code>int</code> values of the elements of this list node.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../../../../uk/blankaspect/common/basictree/NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></code> - if any of the elements of this list node is not an <a href="../../../../uk/blankaspect/common/basictree/IntNode.html" title="class in uk.blankaspect.common.basictree">'int' node</a>.</dd>
+<dd><code><a href="NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></code> - if any of the elements of this list node is not an <a href="IntNode.html" title="class in uk.blankaspect.common.basictree">'int' node</a>.</dd>
 </dl>
 </li>
 </ul>
@@ -1275,14 +1298,14 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>getIntList</h4>
-<pre>public&nbsp;java.util.List&lt;java.lang.Integer&gt;&nbsp;getIntList()
-                                             throws <a href="../../../../uk/blankaspect/common/basictree/NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></pre>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;java.lang.Integer&gt;&nbsp;getIntList()
+                                             throws <a href="NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></pre>
 <div class="block">Returns the underlying values of the elements of this list node as a list of <code>Integer</code>s.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a list of the underlying <code>Integer</code> values of the elements of this list node.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../../../../uk/blankaspect/common/basictree/NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></code> - if any of the elements of this list node is not an <a href="../../../../uk/blankaspect/common/basictree/IntNode.html" title="class in uk.blankaspect.common.basictree">'int' node</a>.</dd>
+<dd><code><a href="NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></code> - if any of the elements of this list node is not an <a href="IntNode.html" title="class in uk.blankaspect.common.basictree">'int' node</a>.</dd>
 </dl>
 </li>
 </ul>
@@ -1292,14 +1315,14 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>getLongArray</h4>
-<pre>public&nbsp;long[]&nbsp;getLongArray()
-                    throws <a href="../../../../uk/blankaspect/common/basictree/NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></pre>
+<pre class="methodSignature">public&nbsp;long[]&nbsp;getLongArray()
+                    throws <a href="NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></pre>
 <div class="block">Returns the underlying values of the elements of this list node as an array of <code>long</code>s.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>an array of the underlying <code>long</code> values of the elements of this list node.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../../../../uk/blankaspect/common/basictree/NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></code> - if any of the elements of this list node is not a <a href="../../../../uk/blankaspect/common/basictree/LongNode.html" title="class in uk.blankaspect.common.basictree">'long' node</a>.</dd>
+<dd><code><a href="NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></code> - if any of the elements of this list node is not a <a href="LongNode.html" title="class in uk.blankaspect.common.basictree">'long' node</a>.</dd>
 </dl>
 </li>
 </ul>
@@ -1309,14 +1332,14 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>getLongList</h4>
-<pre>public&nbsp;java.util.List&lt;java.lang.Long&gt;&nbsp;getLongList()
-                                           throws <a href="../../../../uk/blankaspect/common/basictree/NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></pre>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;java.lang.Long&gt;&nbsp;getLongList()
+                                           throws <a href="NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></pre>
 <div class="block">Returns the underlying values of the elements of this list node as a list of <code>Long</code>s.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a list of the underlying <code>Long</code> values of the elements of this list node.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../../../../uk/blankaspect/common/basictree/NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></code> - if any of the elements of this list node is not a <a href="../../../../uk/blankaspect/common/basictree/LongNode.html" title="class in uk.blankaspect.common.basictree">'long' node</a>.</dd>
+<dd><code><a href="NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></code> - if any of the elements of this list node is not a <a href="LongNode.html" title="class in uk.blankaspect.common.basictree">'long' node</a>.</dd>
 </dl>
 </li>
 </ul>
@@ -1326,16 +1349,16 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>getIntOrLongArray</h4>
-<pre>public&nbsp;long[]&nbsp;getIntOrLongArray()
-                         throws <a href="../../../../uk/blankaspect/common/basictree/NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></pre>
+<pre class="methodSignature">public&nbsp;long[]&nbsp;getIntOrLongArray()
+                         throws <a href="NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></pre>
 <div class="block">Returns the underlying values of the elements of this list node as an array of <code>long</code>s.  The elements of
- this list may be either <a href="../../../../uk/blankaspect/common/basictree/IntNode.html" title="class in uk.blankaspect.common.basictree">'int' nodes</a> or <a href="../../../../uk/blankaspect/common/basictree/LongNode.html" title="class in uk.blankaspect.common.basictree">'long' nodes</a>.</div>
+ this list may be either <a href="IntNode.html" title="class in uk.blankaspect.common.basictree">'int' nodes</a> or <a href="LongNode.html" title="class in uk.blankaspect.common.basictree">'long' nodes</a>.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>an array of the underlying <code>long</code> values of the elements of this list node.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../../../../uk/blankaspect/common/basictree/NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></code> - if any of the elements of this list node is neither an <a href="../../../../uk/blankaspect/common/basictree/IntNode.html" title="class in uk.blankaspect.common.basictree">'int' node</a> nor a
-           <a href="../../../../uk/blankaspect/common/basictree/LongNode.html" title="class in uk.blankaspect.common.basictree">'long' node</a>.</dd>
+<dd><code><a href="NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></code> - if any of the elements of this list node is neither an <a href="IntNode.html" title="class in uk.blankaspect.common.basictree">'int' node</a> nor a
+           <a href="LongNode.html" title="class in uk.blankaspect.common.basictree">'long' node</a>.</dd>
 </dl>
 </li>
 </ul>
@@ -1345,16 +1368,16 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>getIntOrLongList</h4>
-<pre>public&nbsp;java.util.List&lt;java.lang.Long&gt;&nbsp;getIntOrLongList()
-                                                throws <a href="../../../../uk/blankaspect/common/basictree/NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></pre>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;java.lang.Long&gt;&nbsp;getIntOrLongList()
+                                                throws <a href="NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></pre>
 <div class="block">Returns the underlying values of the elements of this list node as a list of <code>Long</code>s.  The elements of this
- list may be either <a href="../../../../uk/blankaspect/common/basictree/IntNode.html" title="class in uk.blankaspect.common.basictree">'int' nodes</a> or <a href="../../../../uk/blankaspect/common/basictree/LongNode.html" title="class in uk.blankaspect.common.basictree">'long' nodes</a>.</div>
+ list may be either <a href="IntNode.html" title="class in uk.blankaspect.common.basictree">'int' nodes</a> or <a href="LongNode.html" title="class in uk.blankaspect.common.basictree">'long' nodes</a>.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a list of the underlying <code>Long</code> values of the elements of this list node.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../../../../uk/blankaspect/common/basictree/NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></code> - if any of the elements of this list node is neither an <a href="../../../../uk/blankaspect/common/basictree/IntNode.html" title="class in uk.blankaspect.common.basictree">'int' node</a> nor a
-           <a href="../../../../uk/blankaspect/common/basictree/LongNode.html" title="class in uk.blankaspect.common.basictree">'long' node</a>.</dd>
+<dd><code><a href="NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></code> - if any of the elements of this list node is neither an <a href="IntNode.html" title="class in uk.blankaspect.common.basictree">'int' node</a> nor a
+           <a href="LongNode.html" title="class in uk.blankaspect.common.basictree">'long' node</a>.</dd>
 </dl>
 </li>
 </ul>
@@ -1364,14 +1387,14 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>getDoubleArray</h4>
-<pre>public&nbsp;double[]&nbsp;getDoubleArray()
-                        throws <a href="../../../../uk/blankaspect/common/basictree/NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></pre>
+<pre class="methodSignature">public&nbsp;double[]&nbsp;getDoubleArray()
+                        throws <a href="NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></pre>
 <div class="block">Returns the underlying values of the elements of this list node as an array of <code>double</code>s.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>an array of the underlying <code>double</code> values of the elements of this list node.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../../../../uk/blankaspect/common/basictree/NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></code> - if any of the elements of this list node is not a <a href="../../../../uk/blankaspect/common/basictree/DoubleNode.html" title="class in uk.blankaspect.common.basictree">'double' node</a>.</dd>
+<dd><code><a href="NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></code> - if any of the elements of this list node is not a <a href="DoubleNode.html" title="class in uk.blankaspect.common.basictree">'double' node</a>.</dd>
 </dl>
 </li>
 </ul>
@@ -1381,14 +1404,14 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>getDoubleList</h4>
-<pre>public&nbsp;java.util.List&lt;java.lang.Double&gt;&nbsp;getDoubleList()
-                                               throws <a href="../../../../uk/blankaspect/common/basictree/NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></pre>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;java.lang.Double&gt;&nbsp;getDoubleList()
+                                               throws <a href="NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></pre>
 <div class="block">Returns the underlying values of the elements of this list node as a list of <code>Double</code>s.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a list of the underlying <code>Double</code> values of the elements of this list node.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../../../../uk/blankaspect/common/basictree/NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></code> - if any of the elements of this list node is not a <a href="../../../../uk/blankaspect/common/basictree/DoubleNode.html" title="class in uk.blankaspect.common.basictree">'double' node</a>.</dd>
+<dd><code><a href="NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></code> - if any of the elements of this list node is not a <a href="DoubleNode.html" title="class in uk.blankaspect.common.basictree">'double' node</a>.</dd>
 </dl>
 </li>
 </ul>
@@ -1398,14 +1421,14 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>getStringArray</h4>
-<pre>public&nbsp;java.lang.String[]&nbsp;getStringArray()
-                                  throws <a href="../../../../uk/blankaspect/common/basictree/NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></pre>
+<pre class="methodSignature">public&nbsp;java.lang.String[]&nbsp;getStringArray()
+                                  throws <a href="NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></pre>
 <div class="block">Returns the underlying values of the elements of this list node as an array of strings.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>an array of the underlying string values of the elements of this list node.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../../../../uk/blankaspect/common/basictree/NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></code> - if any of the elements of this list node is not a <a href="../../../../uk/blankaspect/common/basictree/StringNode.html" title="class in uk.blankaspect.common.basictree">string node</a>.</dd>
+<dd><code><a href="NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></code> - if any of the elements of this list node is not a <a href="StringNode.html" title="class in uk.blankaspect.common.basictree">string node</a>.</dd>
 </dl>
 </li>
 </ul>
@@ -1415,14 +1438,14 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>getStringList</h4>
-<pre>public&nbsp;java.util.List&lt;java.lang.String&gt;&nbsp;getStringList()
-                                               throws <a href="../../../../uk/blankaspect/common/basictree/NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></pre>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;java.lang.String&gt;&nbsp;getStringList()
+                                               throws <a href="NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></pre>
 <div class="block">Returns the underlying values of the elements of this list node as a list of strings.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a list of the underlying string values of the elements of this list node.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../../../../uk/blankaspect/common/basictree/NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></code> - if any of the elements of this list node is not a <a href="../../../../uk/blankaspect/common/basictree/StringNode.html" title="class in uk.blankaspect.common.basictree">string node</a>.</dd>
+<dd><code><a href="NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></code> - if any of the elements of this list node is not a <a href="StringNode.html" title="class in uk.blankaspect.common.basictree">string node</a>.</dd>
 </dl>
 </li>
 </ul>
@@ -1432,7 +1455,7 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>indexOf</h4>
-<pre>public&nbsp;int&nbsp;indexOf&#8203;(<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;node)</pre>
+<pre class="methodSignature">public&nbsp;int&nbsp;indexOf&#8203;(<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;node)</pre>
 <div class="block">Returns the index of the specified node in the list of the elements of this list node.  The node is compared for
  identity, not equality, with each element of the list until a match is found or all elements have been compared.</div>
 <dl>
@@ -1450,7 +1473,7 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>clear</h4>
-<pre>public&nbsp;void&nbsp;clear()</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;clear()</pre>
 <div class="block">Removes all the elements of this list node.</div>
 </li>
 </ul>
@@ -1460,7 +1483,7 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>setElements</h4>
-<pre>public&nbsp;void&nbsp;setElements&#8203;(<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>...&nbsp;nodes)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;setElements&#8203;(<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>...&nbsp;nodes)</pre>
 <div class="block">Sets the elements of this list node to the specified nodes.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1474,7 +1497,7 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>setElements</h4>
-<pre>public&nbsp;void&nbsp;setElements&#8203;(java.lang.Iterable&lt;? extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;&nbsp;nodes)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;setElements&#8203;(java.lang.Iterable&lt;? extends <a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;&nbsp;nodes)</pre>
 <div class="block">Sets the elements of this list node to the specified nodes.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1488,7 +1511,7 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>add</h4>
-<pre>public&nbsp;void&nbsp;add&#8203;(<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;node)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;add&#8203;(<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;node)</pre>
 <div class="block">Adds the specified node to the end of the list of elements of this list node.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1504,7 +1527,7 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>addElements</h4>
-<pre>public&nbsp;void&nbsp;addElements&#8203;(<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>...&nbsp;nodes)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;addElements&#8203;(<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>...&nbsp;nodes)</pre>
 <div class="block">Adds the specified nodes to the end of the list of elements of this list node.  The nodes are added in the order
  of the arguments.</div>
 <dl>
@@ -1519,7 +1542,7 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>addElements</h4>
-<pre>public&nbsp;void&nbsp;addElements&#8203;(java.lang.Iterable&lt;? extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;&nbsp;nodes)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;addElements&#8203;(java.lang.Iterable&lt;? extends <a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;&nbsp;nodes)</pre>
 <div class="block">Adds the specified nodes to the end of the list of elements of this list node.  The nodes are added in the order
  in which they are returned by their iterator.</div>
 <dl>
@@ -1534,8 +1557,8 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>addNull</h4>
-<pre>public&nbsp;<a href="../../../../uk/blankaspect/common/basictree/NullNode.html" title="class in uk.blankaspect.common.basictree">NullNode</a>&nbsp;addNull()</pre>
-<div class="block">Creates a new instance of a <a href="../../../../uk/blankaspect/common/basictree/NullNode.html" title="class in uk.blankaspect.common.basictree">null node</a> and adds it to the end of the list of elements of
+<pre class="methodSignature">public&nbsp;<a href="NullNode.html" title="class in uk.blankaspect.common.basictree">NullNode</a>&nbsp;addNull()</pre>
+<div class="block">Creates a new instance of a <a href="NullNode.html" title="class in uk.blankaspect.common.basictree">null node</a> and adds it to the end of the list of elements of
  this list node.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -1549,8 +1572,8 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>addBoolean</h4>
-<pre>public&nbsp;<a href="../../../../uk/blankaspect/common/basictree/BooleanNode.html" title="class in uk.blankaspect.common.basictree">BooleanNode</a>&nbsp;addBoolean&#8203;(boolean&nbsp;value)</pre>
-<div class="block">Creates a new instance of a <a href="../../../../uk/blankaspect/common/basictree/BooleanNode.html" title="class in uk.blankaspect.common.basictree">Boolean node</a> with the specified value, adds it to the end of
+<pre class="methodSignature">public&nbsp;<a href="BooleanNode.html" title="class in uk.blankaspect.common.basictree">BooleanNode</a>&nbsp;addBoolean&#8203;(boolean&nbsp;value)</pre>
+<div class="block">Creates a new instance of a <a href="BooleanNode.html" title="class in uk.blankaspect.common.basictree">Boolean node</a> with the specified value, adds it to the end of
  of the list of elements of this list node and returns it.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1566,8 +1589,8 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>addBooleans</h4>
-<pre>public&nbsp;void&nbsp;addBooleans&#8203;(boolean...&nbsp;values)</pre>
-<div class="block">Creates new instances of <a href="../../../../uk/blankaspect/common/basictree/BooleanNode.html" title="class in uk.blankaspect.common.basictree">Boolean nodes</a> with the specified values and adds them to the
+<pre class="methodSignature">public&nbsp;void&nbsp;addBooleans&#8203;(boolean...&nbsp;values)</pre>
+<div class="block">Creates new instances of <a href="BooleanNode.html" title="class in uk.blankaspect.common.basictree">Boolean nodes</a> with the specified values and adds them to the
  end of the list of elements of this list node, preserving the order of the values.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1581,8 +1604,8 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>addBooleans</h4>
-<pre>public&nbsp;void&nbsp;addBooleans&#8203;(java.lang.Iterable&lt;java.lang.Boolean&gt;&nbsp;values)</pre>
-<div class="block">Creates new instances of <a href="../../../../uk/blankaspect/common/basictree/BooleanNode.html" title="class in uk.blankaspect.common.basictree">Boolean nodes</a> with the specified values and adds them to the
+<pre class="methodSignature">public&nbsp;void&nbsp;addBooleans&#8203;(java.lang.Iterable&lt;java.lang.Boolean&gt;&nbsp;values)</pre>
+<div class="block">Creates new instances of <a href="BooleanNode.html" title="class in uk.blankaspect.common.basictree">Boolean nodes</a> with the specified values and adds them to the
  end of the list of elements of this list node, preserving the order of the values.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1596,8 +1619,8 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>addInt</h4>
-<pre>public&nbsp;<a href="../../../../uk/blankaspect/common/basictree/IntNode.html" title="class in uk.blankaspect.common.basictree">IntNode</a>&nbsp;addInt&#8203;(int&nbsp;value)</pre>
-<div class="block">Creates a new instance of an <a href="../../../../uk/blankaspect/common/basictree/IntNode.html" title="class in uk.blankaspect.common.basictree">'int' node</a> with the specified value, adds it to the end of the
+<pre class="methodSignature">public&nbsp;<a href="IntNode.html" title="class in uk.blankaspect.common.basictree">IntNode</a>&nbsp;addInt&#8203;(int&nbsp;value)</pre>
+<div class="block">Creates a new instance of an <a href="IntNode.html" title="class in uk.blankaspect.common.basictree">'int' node</a> with the specified value, adds it to the end of the
  list of elements of this list node and returns it.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1613,8 +1636,8 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>addInts</h4>
-<pre>public&nbsp;void&nbsp;addInts&#8203;(int...&nbsp;values)</pre>
-<div class="block">Creates new instances of <a href="../../../../uk/blankaspect/common/basictree/IntNode.html" title="class in uk.blankaspect.common.basictree">'int' nodes</a> with the specified values and adds them to the end of
+<pre class="methodSignature">public&nbsp;void&nbsp;addInts&#8203;(int...&nbsp;values)</pre>
+<div class="block">Creates new instances of <a href="IntNode.html" title="class in uk.blankaspect.common.basictree">'int' nodes</a> with the specified values and adds them to the end of
  the list of elements of this list node, preserving the order of the values.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1628,8 +1651,8 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>addInts</h4>
-<pre>public&nbsp;void&nbsp;addInts&#8203;(java.lang.Iterable&lt;java.lang.Integer&gt;&nbsp;values)</pre>
-<div class="block">Creates new instances of <a href="../../../../uk/blankaspect/common/basictree/IntNode.html" title="class in uk.blankaspect.common.basictree">'int' nodes</a> with the specified values and adds them to the end of
+<pre class="methodSignature">public&nbsp;void&nbsp;addInts&#8203;(java.lang.Iterable&lt;java.lang.Integer&gt;&nbsp;values)</pre>
+<div class="block">Creates new instances of <a href="IntNode.html" title="class in uk.blankaspect.common.basictree">'int' nodes</a> with the specified values and adds them to the end of
  the list of elements of this list node, preserving the order of the values.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1643,8 +1666,8 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>addLong</h4>
-<pre>public&nbsp;<a href="../../../../uk/blankaspect/common/basictree/LongNode.html" title="class in uk.blankaspect.common.basictree">LongNode</a>&nbsp;addLong&#8203;(long&nbsp;value)</pre>
-<div class="block">Creates a new instance of a <a href="../../../../uk/blankaspect/common/basictree/LongNode.html" title="class in uk.blankaspect.common.basictree">'long' node</a> with the specified value, adds it to the end of the
+<pre class="methodSignature">public&nbsp;<a href="LongNode.html" title="class in uk.blankaspect.common.basictree">LongNode</a>&nbsp;addLong&#8203;(long&nbsp;value)</pre>
+<div class="block">Creates a new instance of a <a href="LongNode.html" title="class in uk.blankaspect.common.basictree">'long' node</a> with the specified value, adds it to the end of the
  list of elements of this list node and returns it.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1660,8 +1683,8 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>addLongs</h4>
-<pre>public&nbsp;void&nbsp;addLongs&#8203;(long...&nbsp;values)</pre>
-<div class="block">Creates new instances of <a href="../../../../uk/blankaspect/common/basictree/LongNode.html" title="class in uk.blankaspect.common.basictree">'long' nodes</a> with the specified values and adds them to the end of
+<pre class="methodSignature">public&nbsp;void&nbsp;addLongs&#8203;(long...&nbsp;values)</pre>
+<div class="block">Creates new instances of <a href="LongNode.html" title="class in uk.blankaspect.common.basictree">'long' nodes</a> with the specified values and adds them to the end of
  the list of elements of this list node, preserving the order of the values.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1675,8 +1698,8 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>addLongs</h4>
-<pre>public&nbsp;void&nbsp;addLongs&#8203;(java.lang.Iterable&lt;java.lang.Long&gt;&nbsp;values)</pre>
-<div class="block">Creates new instances of <a href="../../../../uk/blankaspect/common/basictree/LongNode.html" title="class in uk.blankaspect.common.basictree">'long' nodes</a> with the specified values and adds them to the end of
+<pre class="methodSignature">public&nbsp;void&nbsp;addLongs&#8203;(java.lang.Iterable&lt;java.lang.Long&gt;&nbsp;values)</pre>
+<div class="block">Creates new instances of <a href="LongNode.html" title="class in uk.blankaspect.common.basictree">'long' nodes</a> with the specified values and adds them to the end of
  the list of elements of this list node, preserving the order of the values.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1690,8 +1713,8 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>addDouble</h4>
-<pre>public&nbsp;<a href="../../../../uk/blankaspect/common/basictree/DoubleNode.html" title="class in uk.blankaspect.common.basictree">DoubleNode</a>&nbsp;addDouble&#8203;(double&nbsp;value)</pre>
-<div class="block">Creates a new instance of a <a href="../../../../uk/blankaspect/common/basictree/DoubleNode.html" title="class in uk.blankaspect.common.basictree">'double' node</a> with the specified value, adds it to the end of
+<pre class="methodSignature">public&nbsp;<a href="DoubleNode.html" title="class in uk.blankaspect.common.basictree">DoubleNode</a>&nbsp;addDouble&#8203;(double&nbsp;value)</pre>
+<div class="block">Creates a new instance of a <a href="DoubleNode.html" title="class in uk.blankaspect.common.basictree">'double' node</a> with the specified value, adds it to the end of
  the list of elements of this list node and returns it.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1707,8 +1730,8 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>addDoubles</h4>
-<pre>public&nbsp;void&nbsp;addDoubles&#8203;(double...&nbsp;values)</pre>
-<div class="block">Creates new instances of <a href="../../../../uk/blankaspect/common/basictree/DoubleNode.html" title="class in uk.blankaspect.common.basictree">'double' nodes</a> with the specified values and adds them to the
+<pre class="methodSignature">public&nbsp;void&nbsp;addDoubles&#8203;(double...&nbsp;values)</pre>
+<div class="block">Creates new instances of <a href="DoubleNode.html" title="class in uk.blankaspect.common.basictree">'double' nodes</a> with the specified values and adds them to the
  end of the list of elements of this list node, preserving the order of the values.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1722,8 +1745,8 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>addDoubles</h4>
-<pre>public&nbsp;void&nbsp;addDoubles&#8203;(java.lang.Iterable&lt;java.lang.Double&gt;&nbsp;values)</pre>
-<div class="block">Creates new instances of <a href="../../../../uk/blankaspect/common/basictree/DoubleNode.html" title="class in uk.blankaspect.common.basictree">'double' nodes</a> with the specified values and adds them to the
+<pre class="methodSignature">public&nbsp;void&nbsp;addDoubles&#8203;(java.lang.Iterable&lt;java.lang.Double&gt;&nbsp;values)</pre>
+<div class="block">Creates new instances of <a href="DoubleNode.html" title="class in uk.blankaspect.common.basictree">'double' nodes</a> with the specified values and adds them to the
  end of the list of elements of this list node, preserving the order of the values.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1737,8 +1760,8 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>addString</h4>
-<pre>public&nbsp;<a href="../../../../uk/blankaspect/common/basictree/StringNode.html" title="class in uk.blankaspect.common.basictree">StringNode</a>&nbsp;addString&#8203;(java.lang.String&nbsp;value)</pre>
-<div class="block">Creates a new instance of a <a href="../../../../uk/blankaspect/common/basictree/StringNode.html" title="class in uk.blankaspect.common.basictree">string node</a> with the specified value, adds it to the end of
+<pre class="methodSignature">public&nbsp;<a href="StringNode.html" title="class in uk.blankaspect.common.basictree">StringNode</a>&nbsp;addString&#8203;(java.lang.String&nbsp;value)</pre>
+<div class="block">Creates a new instance of a <a href="StringNode.html" title="class in uk.blankaspect.common.basictree">string node</a> with the specified value, adds it to the end of
  the list of elements of this list node and returns it.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1754,8 +1777,8 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>addStrings</h4>
-<pre>public&nbsp;void&nbsp;addStrings&#8203;(java.lang.String...&nbsp;values)</pre>
-<div class="block">Creates new instances of <a href="../../../../uk/blankaspect/common/basictree/StringNode.html" title="class in uk.blankaspect.common.basictree">string nodes</a> with the specified values and adds them to the end
+<pre class="methodSignature">public&nbsp;void&nbsp;addStrings&#8203;(java.lang.String...&nbsp;values)</pre>
+<div class="block">Creates new instances of <a href="StringNode.html" title="class in uk.blankaspect.common.basictree">string nodes</a> with the specified values and adds them to the end
  of the list of elements of this list node, preserving the order of the values.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1769,8 +1792,8 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>addStrings</h4>
-<pre>public&nbsp;void&nbsp;addStrings&#8203;(java.lang.Iterable&lt;java.lang.String&gt;&nbsp;values)</pre>
-<div class="block">Creates new instances of <a href="../../../../uk/blankaspect/common/basictree/StringNode.html" title="class in uk.blankaspect.common.basictree">string nodes</a> with the specified values and adds them to the end
+<pre class="methodSignature">public&nbsp;void&nbsp;addStrings&#8203;(java.lang.Iterable&lt;java.lang.String&gt;&nbsp;values)</pre>
+<div class="block">Creates new instances of <a href="StringNode.html" title="class in uk.blankaspect.common.basictree">string nodes</a> with the specified values and adds them to the end
  of the list of elements of this list node, preserving the order of the values.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1784,8 +1807,8 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>addList</h4>
-<pre>public&nbsp;<a href="../../../../uk/blankaspect/common/basictree/ListNode.html" title="class in uk.blankaspect.common.basictree">ListNode</a>&nbsp;addList&#8203;(<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>...&nbsp;elements)</pre>
-<div class="block">Creates a new instance of a <a href="../../../../uk/blankaspect/common/basictree/ListNode.html" title="class in uk.blankaspect.common.basictree">list node</a> with the specified elements, adds it to the end of
+<pre class="methodSignature">public&nbsp;<a href="ListNode.html" title="class in uk.blankaspect.common.basictree">ListNode</a>&nbsp;addList&#8203;(<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>...&nbsp;elements)</pre>
+<div class="block">Creates a new instance of a <a href="ListNode.html" title="class in uk.blankaspect.common.basictree">list node</a> with the specified elements, adds it to the end of
  the list of elements of this list node and returns it.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1801,8 +1824,8 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockList">
 <li class="blockList">
 <h4>addList</h4>
-<pre>public&nbsp;<a href="../../../../uk/blankaspect/common/basictree/ListNode.html" title="class in uk.blankaspect.common.basictree">ListNode</a>&nbsp;addList&#8203;(java.lang.Iterable&lt;<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;&nbsp;elements)</pre>
-<div class="block">Creates a new instance of a <a href="../../../../uk/blankaspect/common/basictree/ListNode.html" title="class in uk.blankaspect.common.basictree">list node</a> with the specified elements, adds it to the end of
+<pre class="methodSignature">public&nbsp;<a href="ListNode.html" title="class in uk.blankaspect.common.basictree">ListNode</a>&nbsp;addList&#8203;(java.lang.Iterable&lt;<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;&nbsp;elements)</pre>
+<div class="block">Creates a new instance of a <a href="ListNode.html" title="class in uk.blankaspect.common.basictree">list node</a> with the specified elements, adds it to the end of
  the list of elements of this list node and returns it.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1818,8 +1841,8 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <ul class="blockListLast">
 <li class="blockList">
 <h4>addMap</h4>
-<pre>public&nbsp;<a href="../../../../uk/blankaspect/common/basictree/MapNode.html" title="class in uk.blankaspect.common.basictree">MapNode</a>&nbsp;addMap&#8203;(java.util.Map&lt;java.lang.String,<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;&nbsp;pairs)</pre>
-<div class="block">Creates a new instance of a <a href="../../../../uk/blankaspect/common/basictree/MapNode.html" title="class in uk.blankaspect.common.basictree">map node</a> with the specified key&ndash;value pairs, adds it to
+<pre class="methodSignature">public&nbsp;<a href="MapNode.html" title="class in uk.blankaspect.common.basictree">MapNode</a>&nbsp;addMap&#8203;(java.util.Map&lt;java.lang.String,&#8203;<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;&nbsp;pairs)</pre>
+<div class="block">Creates a new instance of a <a href="MapNode.html" title="class in uk.blankaspect.common.basictree">map node</a> with the specified key&ndash;value pairs, adds it to
  the end of the list of elements of this list node and returns it.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -1850,7 +1873,7 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <!--   -->
 </a>
 <ul class="navList" title="Navigation">
-<li><a href="../../../../overview-summary.html">Overview</a></li>
+<li><a href="../../../../index.html">Overview</a></li>
 <li><a href="package-summary.html">Package</a></li>
 <li class="navBarCell1Rev">Class</li>
 <li><a href="package-tree.html">Tree</a></li>
@@ -1860,32 +1883,6 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 </ul>
 </div>
 <div class="subNav">
-<ul class="navList">
-<li><a href="../../../../uk/blankaspect/common/basictree/IntNode.html" title="class in uk.blankaspect.common.basictree"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../uk/blankaspect/common/basictree/LongNode.html" title="class in uk.blankaspect.common.basictree"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
-</ul>
-<ul class="navList">
-<li><a href="../../../../index.html?uk/blankaspect/common/basictree/ListNode.html" target="_top">Frames</a></li>
-<li><a href="ListNode.html" target="_top">No&nbsp;Frames</a></li>
-</ul>
-<ul class="navList" id="allclasses_navbar_bottom">
-<li><a href="../../../../allclasses-noframe.html">All&nbsp;Classes</a></li>
-</ul>
-<div>
-<script type="text/javascript"><!--
-  allClassesLink = document.getElementById("allclasses_navbar_bottom");
-  if(window==top) {
-    allClassesLink.style.display = "block";
-  }
-  else {
-    allClassesLink.style.display = "none";
-  }
-  //-->
-</script>
-<noscript>
-<div>JavaScript is disabled on your browser.</div>
-</noscript>
-</div>
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
@@ -1901,9 +1898,10 @@ extends <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" 
 <li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
+</div>
 <a id="skip.navbar.bottom">
 <!--   -->
-</a></div>
+</a>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
 </nav>
 </footer>

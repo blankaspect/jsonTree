@@ -13,7 +13,8 @@
 <!--[if IE]>
 <script type="text/javascript" src="../../../../jquery/jszip-utils/dist/jszip-utils-ie.min.js"></script>
 <![endif]-->
-<script type="text/javascript" src="../../../../jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="../../../../jquery/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="../../../../jquery/jquery-migrate-3.0.1.js"></script>
 <script type="text/javascript" src="../../../../jquery/jquery-ui.js"></script>
 </head>
 <body>
@@ -26,13 +27,15 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":9,"i9":9,"i10":9,"i11":9,"i12":9,"i13":9,"i14":9,"i15":9,"i16":9,"i17":9,"i18":9,"i19":9,"i20":9};
+var data = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":9,"i9":9,"i10":9,"i11":9,"i12":9,"i13":9,"i14":9,"i15":9,"i16":9,"i17":9,"i18":9,"i19":9,"i20":9};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
 var activeTableTab = "activeTableTab";
-var pathtoroot = "../../../../";loadScripts(document, 'script');</script>
+var pathtoroot = "../../../../";
+var useModuleDirectories = true;
+loadScripts(document, 'script');</script>
 <noscript>
 <div>JavaScript is disabled on your browser.</div>
 </noscript>
@@ -48,7 +51,7 @@ var pathtoroot = "../../../../";loadScripts(document, 'script');</script>
 <!--   -->
 </a>
 <ul class="navList" title="Navigation">
-<li><a href="../../../../overview-summary.html">Overview</a></li>
+<li><a href="../../../../index.html">Overview</a></li>
 <li><a href="package-summary.html">Package</a></li>
 <li class="navBarCell1Rev">Class</li>
 <li><a href="package-tree.html">Tree</a></li>
@@ -58,38 +61,6 @@ var pathtoroot = "../../../../";loadScripts(document, 'script');</script>
 </ul>
 </div>
 <div class="subNav">
-<ul class="navList">
-<li><a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li>Next&nbsp;Class</li>
-</ul>
-<ul class="navList">
-<li><a href="../../../../index.html?uk/blankaspect/common/tree/TreeUtils.html" target="_top">Frames</a></li>
-<li><a href="TreeUtils.html" target="_top">No&nbsp;Frames</a></li>
-</ul>
-<ul class="navList" id="allclasses_navbar_top">
-<li><a href="../../../../allclasses-noframe.html">All&nbsp;Classes</a></li>
-</ul>
-<ul class="navListSearch">
-<li><label for="search">SEARCH:</label>
-<input type="text" id="search" value="search" disabled="disabled">
-<input type="reset" id="reset" value="reset" disabled="disabled">
-</li>
-</ul>
-<div>
-<script type="text/javascript"><!--
-  allClassesLink = document.getElementById("allclasses_navbar_top");
-  if(window==top) {
-    allClassesLink.style.display = "block";
-  }
-  else {
-    allClassesLink.style.display = "none";
-  }
-  //-->
-</script>
-<noscript>
-<div>JavaScript is disabled on your browser.</div>
-</noscript>
-</div>
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
@@ -105,9 +76,16 @@ var pathtoroot = "../../../../";loadScripts(document, 'script');</script>
 <li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
+<ul class="navListSearch">
+<li><label for="search">SEARCH:</label>
+<input type="text" id="search" value="search" disabled="disabled">
+<input type="reset" id="reset" value="reset" disabled="disabled">
+</li>
+</ul>
+</div>
 <a id="skip.navbar.top">
 <!--   -->
-</a></div>
+</a>
 <!-- ========= END OF TOP NAVBAR ========= -->
 </div>
 <div class="navPadding">&nbsp;</div>
@@ -120,7 +98,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <!-- ======== START OF CLASS DATA ======== -->
 <main role="main">
 <div class="header">
-<div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="../../../../uk/blankaspect/common/tree/package-summary.html">uk.blankaspect.common.tree</a></div>
+<div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">uk.blankaspect.common.tree</a></div>
 <h2 title="Class TreeUtils" class="title">Class TreeUtils</h2>
 </div>
 <div class="contentContainer">
@@ -138,7 +116,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <hr>
 <pre>public class <span class="typeNameLabel">TreeUtils</span>
 extends java.lang.Object</pre>
-<div class="block">This class contains utility methods that relate to trees whose nodes implement the <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a> interface.</div>
+<div class="block">This class contains utility methods that relate to trees whose nodes implement the <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a> interface.</div>
 </li>
 </ul>
 </div>
@@ -152,100 +130,103 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Summary</h3>
-<table class="memberSummary">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t1" class="tableTab"><span><a href="javascript:show(1);">Static Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<div class="memberSummary">
+<div role="tablist" aria-orientation="horizontal"><button role="tab" aria-selected="true" aria-controls="memberSummary_tabpanel" tabindex="0" onkeydown="switchTab(event)" id="t0" class="activeTableTab">All Methods</button><button role="tab" aria-selected="false" aria-controls="memberSummary_tabpanel" tabindex="-1" onkeydown="switchTab(event)" id="t1" class="tableTab" onclick="show(1);">Static Methods</button><button role="tab" aria-selected="false" aria-controls="memberSummary_tabpanel" tabindex="-1" onkeydown="switchTab(event)" id="t4" class="tableTab" onclick="show(8);">Concrete Methods</button></div>
+<div id="memberSummary_tabpanel" role="tabpanel">
+<table aria-labelledby="t0">
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colSecond" scope="col">Method</th>
 <th class="colLast" scope="col">Description</th>
 </tr>
-<tr id="i0" class="altColor">
-<td class="colFirst"><code>static &lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;,U&gt;<br>T</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/tree/TreeUtils.html#findNode(T,java.lang.Iterable,java.util.function.BiPredicate)">findNode</a></span>&#8203;(T&nbsp;root,
+<tbody>
+<tr class="altColor" id="i0">
+<td class="colFirst"><code>static &lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;,&#8203;U&gt;<br>T</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#findNode(T,java.lang.Iterable,java.util.function.BiPredicate)">findNode</a></span>&#8203;(T&nbsp;root,
         java.lang.Iterable&lt;U&gt;&nbsp;path,
-        java.util.function.BiPredicate&lt;T,U&gt;&nbsp;matcher)</code></th>
+        java.util.function.BiPredicate&lt;T,&#8203;U&gt;&nbsp;matcher)</code></th>
 <td class="colLast">
-<div class="block">Searches a tree of <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s, starting from the specified root node, for a node whose path from the root
+<div class="block">Searches a tree of <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s, starting from the specified root node, for a node whose path from the root
  matches the specified path descriptor.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
-<td class="colFirst"><code>static &lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/tree/TreeUtils.html#getDepth(T)">getDepth</a></span>&#8203;(T&nbsp;node)</code></th>
+<tr class="rowColor" id="i1">
+<td class="colFirst"><code>static &lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getDepth(T)">getDepth</a></span>&#8203;(T&nbsp;node)</code></th>
 <td class="colLast">
-<div class="block">Returns the depth of the specified <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">node</a> (ie, the number of levels below the root node of
+<div class="block">Returns the depth of the specified <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">node</a> (ie, the number of levels below the root node of
  the tree to which the specified node belongs).</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
-<td class="colFirst"><code>static &lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/tree/TreeUtils.html#getDepth(T,T)">getDepth</a></span>&#8203;(T&nbsp;root,
+<tr class="altColor" id="i2">
+<td class="colFirst"><code>static &lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getDepth(T,T)">getDepth</a></span>&#8203;(T&nbsp;root,
         T&nbsp;node)</code></th>
 <td class="colLast">
-<div class="block">Returns the number of levels of the specified <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">node</a> below the specified root node.</div>
+<div class="block">Returns the number of levels of the specified <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">node</a> below the specified root node.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
-<td class="colFirst"><code>static &lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>java.util.List&lt;java.lang.Integer&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/tree/TreeUtils.html#getIndices(T,int)">getIndices</a></span>&#8203;(T&nbsp;node,
+<tr class="rowColor" id="i3">
+<td class="colFirst"><code>static &lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>java.util.List&lt;java.lang.Integer&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getIndices(T,int)">getIndices</a></span>&#8203;(T&nbsp;node,
           int&nbsp;baseIndex)</code></th>
 <td class="colLast">
-<div class="block">Returns a list of indices to the specified <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">node</a> from the root of the tree to which it
+<div class="block">Returns a list of indices to the specified <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">node</a> from the root of the tree to which it
  belongs.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
-<td class="colFirst"><code>static &lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>java.util.List&lt;java.lang.Integer&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/tree/TreeUtils.html#getIndices(T,T,boolean,int)">getIndices</a></span>&#8203;(T&nbsp;root,
+<tr class="altColor" id="i4">
+<td class="colFirst"><code>static &lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>java.util.List&lt;java.lang.Integer&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getIndices(T,T,boolean,int)">getIndices</a></span>&#8203;(T&nbsp;root,
           T&nbsp;node,
           boolean&nbsp;includeRoot,
           int&nbsp;baseIndex)</code></th>
 <td class="colLast">
-<div class="block">Returns a list of indices of the path from the specified root <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">node</a> to the specified node,
+<div class="block">Returns a list of indices of the path from the specified root <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">node</a> to the specified node,
  which is assumed to be a descendant of the specified root.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
-<td class="colFirst"><code>static &lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>java.util.List&lt;T&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/tree/TreeUtils.html#getPath(T)">getPath</a></span>&#8203;(T&nbsp;node)</code></th>
+<tr class="rowColor" id="i5">
+<td class="colFirst"><code>static &lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>java.util.List&lt;T&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPath(T)">getPath</a></span>&#8203;(T&nbsp;node)</code></th>
 <td class="colLast">
-<div class="block">Returns the path to the specified <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">node</a> from the root of the tree to which it belongs.</div>
+<div class="block">Returns the path to the specified <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">node</a> from the root of the tree to which it belongs.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
-<td class="colFirst"><code>static &lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>java.util.List&lt;T&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/tree/TreeUtils.html#getPath(T,T)">getPath</a></span>&#8203;(T&nbsp;root,
+<tr class="altColor" id="i6">
+<td class="colFirst"><code>static &lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>java.util.List&lt;T&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPath(T,T)">getPath</a></span>&#8203;(T&nbsp;root,
        T&nbsp;node)</code></th>
 <td class="colLast">
-<div class="block">Returns the path from the specified root <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">node</a> to the specified node, which is assumed to
+<div class="block">Returns the path from the specified root <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">node</a> to the specified node, which is assumed to
  be a descendant of the specified root.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
-<td class="colFirst"><code>static &lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>T</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/tree/TreeUtils.html#getRoot(T)">getRoot</a></span>&#8203;(T&nbsp;node)</code></th>
+<tr class="rowColor" id="i7">
+<td class="colFirst"><code>static &lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>T</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getRoot(T)">getRoot</a></span>&#8203;(T&nbsp;node)</code></th>
 <td class="colLast">
-<div class="block">Returns the root node of the tree to which the specified <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">node</a> belongs.</div>
+<div class="block">Returns the root node of the tree to which the specified <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">node</a> belongs.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
-<td class="colFirst"><code>static &lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>java.util.List&lt;T&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/tree/TreeUtils.html#getSiblings(T)">getSiblings</a></span>&#8203;(T&nbsp;node)</code></th>
+<tr class="altColor" id="i8">
+<td class="colFirst"><code>static &lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>java.util.List&lt;T&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSiblings(T)">getSiblings</a></span>&#8203;(T&nbsp;node)</code></th>
 <td class="colLast">
-<div class="block">Returns a list of the siblings of the specified <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">node</a>.</div>
+<div class="block">Returns a list of the siblings of the specified <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">node</a>.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
-<td class="colFirst"><code>static &lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/tree/TreeUtils.html#isAncestor(T,T)">isAncestor</a></span>&#8203;(T&nbsp;node,
+<tr class="rowColor" id="i9">
+<td class="colFirst"><code>static &lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isAncestor(T,T)">isAncestor</a></span>&#8203;(T&nbsp;node,
           T&nbsp;target)</code></th>
 <td class="colLast">
 <div class="block">Returns <code>true</code> if the specified node is an ancestor of the specified target node.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
-<td class="colFirst"><code>static &lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/tree/TreeUtils.html#isAncestor(T,T,boolean)">isAncestor</a></span>&#8203;(T&nbsp;node,
+<tr class="altColor" id="i10">
+<td class="colFirst"><code>static &lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isAncestor(T,T,boolean)">isAncestor</a></span>&#8203;(T&nbsp;node,
           T&nbsp;target,
           boolean&nbsp;testForIdentity)</code></th>
 <td class="colLast">
@@ -253,107 +234,110 @@ extends java.lang.Object</pre>
  node is identical to the target.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
-<td class="colFirst"><code>static &lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>T</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/tree/TreeUtils.html#searchAscending(T,java.util.function.Predicate)">searchAscending</a></span>&#8203;(T&nbsp;startNode,
+<tr class="rowColor" id="i11">
+<td class="colFirst"><code>static &lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>T</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#searchAscending(T,java.util.function.Predicate)">searchAscending</a></span>&#8203;(T&nbsp;startNode,
                java.util.function.Predicate&lt;T&gt;&nbsp;test)</code></th>
 <td class="colLast">
-<div class="block">Ascends a tree of <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s from the specified start node to the root node, applying the specified test
+<div class="block">Ascends a tree of <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s from the specified start node to the root node, applying the specified test
  to each node that is visited until a node is found that satisfies the test.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
-<td class="colFirst"><code>static &lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>T</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/tree/TreeUtils.html#searchAscending(T,T,boolean,java.util.function.Predicate)">searchAscending</a></span>&#8203;(T&nbsp;startNode,
+<tr class="altColor" id="i12">
+<td class="colFirst"><code>static &lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>T</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#searchAscending(T,T,boolean,java.util.function.Predicate)">searchAscending</a></span>&#8203;(T&nbsp;startNode,
                T&nbsp;endNode,
                boolean&nbsp;includeEnd,
                java.util.function.Predicate&lt;T&gt;&nbsp;test)</code></th>
 <td class="colLast">
-<div class="block">Ascends a tree of <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s from the specified start node to the specified end node, applying the
+<div class="block">Ascends a tree of <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s from the specified start node to the specified end node, applying the
  specified test to each node that is visited until a node is found that satisfies the test.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
-<td class="colFirst"><code>static &lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>T</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/tree/TreeUtils.html#searchBreadthFirst(T,boolean,java.util.function.Predicate)">searchBreadthFirst</a></span>&#8203;(T&nbsp;root,
+<tr class="rowColor" id="i13">
+<td class="colFirst"><code>static &lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>T</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#searchBreadthFirst(T,boolean,java.util.function.Predicate)">searchBreadthFirst</a></span>&#8203;(T&nbsp;root,
                   boolean&nbsp;includeRoot,
                   java.util.function.Predicate&lt;T&gt;&nbsp;test)</code></th>
 <td class="colLast">
-<div class="block">Performs a breadth-first search of a tree of <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s, starting from the specified root node and
+<div class="block">Performs a breadth-first search of a tree of <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s, starting from the specified root node and
  applying the specified test to each node that is visited until a node is found that satisfies the test.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
-<td class="colFirst"><code>static &lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>T</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/tree/TreeUtils.html#searchDepthFirst(T,boolean,boolean,java.util.function.Predicate)">searchDepthFirst</a></span>&#8203;(T&nbsp;root,
+<tr class="altColor" id="i14">
+<td class="colFirst"><code>static &lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>T</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#searchDepthFirst(T,boolean,boolean,java.util.function.Predicate)">searchDepthFirst</a></span>&#8203;(T&nbsp;root,
                 boolean&nbsp;preorder,
                 boolean&nbsp;includeRoot,
                 java.util.function.Predicate&lt;T&gt;&nbsp;test)</code></th>
 <td class="colLast">
-<div class="block">Performs a depth-first search of a tree of <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s, starting from the specified root node and applying
+<div class="block">Performs a depth-first search of a tree of <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s, starting from the specified root node and applying
  the specified test to each node that is visited until a node is found that satisfies the test.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
-<td class="colFirst"><code>static &lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/tree/TreeUtils.html#testAscending(T,java.util.function.Predicate)">testAscending</a></span>&#8203;(T&nbsp;startNode,
+<tr class="rowColor" id="i15">
+<td class="colFirst"><code>static &lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#testAscending(T,java.util.function.Predicate)">testAscending</a></span>&#8203;(T&nbsp;startNode,
              java.util.function.Predicate&lt;T&gt;&nbsp;test)</code></th>
 <td class="colLast">
-<div class="block">Returns <code>true</code> if and only if the specified <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a> or one of its ancestors satisfies the
+<div class="block">Returns <code>true</code> if and only if the specified <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a> or one of its ancestors satisfies the
  specified test.</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
-<td class="colFirst"><code>static &lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/tree/TreeUtils.html#treeToString(T,int,java.util.function.Function)">treeToString</a></span>&#8203;(T&nbsp;root,
+<tr class="altColor" id="i16">
+<td class="colFirst"><code>static &lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#treeToString(T,int,java.util.function.Function)">treeToString</a></span>&#8203;(T&nbsp;root,
             int&nbsp;indentIncrement,
-            java.util.function.Function&lt;T,java.lang.String&gt;&nbsp;converter)</code></th>
+            java.util.function.Function&lt;T,&#8203;java.lang.String&gt;&nbsp;converter)</code></th>
 <td class="colLast">
-<div class="block">Returns a string representation of the tree of <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s whose root is the specified node.</div>
+<div class="block">Returns a string representation of the tree of <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s whose root is the specified node.</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
-<td class="colFirst"><code>static &lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/tree/TreeUtils.html#visitAscending(T,java.util.function.Function)">visitAscending</a></span>&#8203;(T&nbsp;startNode,
-              java.util.function.Function&lt;T,java.lang.Boolean&gt;&nbsp;action)</code></th>
+<tr class="rowColor" id="i17">
+<td class="colFirst"><code>static &lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#visitAscending(T,java.util.function.Function)">visitAscending</a></span>&#8203;(T&nbsp;startNode,
+              java.util.function.Function&lt;T,&#8203;java.lang.Boolean&gt;&nbsp;action)</code></th>
 <td class="colLast">
-<div class="block">Ascends a tree of <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s from the specified node to the root node, applying the specified action to
+<div class="block">Ascends a tree of <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s from the specified node to the root node, applying the specified action to
  each node that is visited, including the root.</div>
 </td>
 </tr>
-<tr id="i18" class="altColor">
-<td class="colFirst"><code>static &lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/tree/TreeUtils.html#visitAscending(T,T,boolean,java.util.function.Function)">visitAscending</a></span>&#8203;(T&nbsp;startNode,
+<tr class="altColor" id="i18">
+<td class="colFirst"><code>static &lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#visitAscending(T,T,boolean,java.util.function.Function)">visitAscending</a></span>&#8203;(T&nbsp;startNode,
               T&nbsp;endNode,
               boolean&nbsp;includeEnd,
-              java.util.function.Function&lt;T,java.lang.Boolean&gt;&nbsp;action)</code></th>
+              java.util.function.Function&lt;T,&#8203;java.lang.Boolean&gt;&nbsp;action)</code></th>
 <td class="colLast">
-<div class="block">Ascends a tree of <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s from the specified node to the specified end node, applying the specified
+<div class="block">Ascends a tree of <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s from the specified node to the specified end node, applying the specified
  action to each node that is visited.</div>
 </td>
 </tr>
-<tr id="i19" class="rowColor">
-<td class="colFirst"><code>static &lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/tree/TreeUtils.html#visitBreadthFirst(T,boolean,java.util.function.Function)">visitBreadthFirst</a></span>&#8203;(T&nbsp;root,
+<tr class="rowColor" id="i19">
+<td class="colFirst"><code>static &lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#visitBreadthFirst(T,boolean,java.util.function.Function)">visitBreadthFirst</a></span>&#8203;(T&nbsp;root,
                  boolean&nbsp;includeRoot,
-                 java.util.function.Function&lt;T,java.lang.Boolean&gt;&nbsp;action)</code></th>
+                 java.util.function.Function&lt;T,&#8203;java.lang.Boolean&gt;&nbsp;action)</code></th>
 <td class="colLast">
-<div class="block">Performs a breadth-first traversal of a tree of <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s, starting from the specified root node and
+<div class="block">Performs a breadth-first traversal of a tree of <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s, starting from the specified root node and
  applying the specified action to each node that is visited.</div>
 </td>
 </tr>
-<tr id="i20" class="altColor">
-<td class="colFirst"><code>static &lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/tree/TreeUtils.html#visitDepthFirst(T,boolean,boolean,java.util.function.Function)">visitDepthFirst</a></span>&#8203;(T&nbsp;root,
+<tr class="altColor" id="i20">
+<td class="colFirst"><code>static &lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#visitDepthFirst(T,boolean,boolean,java.util.function.Function)">visitDepthFirst</a></span>&#8203;(T&nbsp;root,
                boolean&nbsp;preorder,
                boolean&nbsp;includeRoot,
-               java.util.function.Function&lt;T,java.lang.Boolean&gt;&nbsp;action)</code></th>
+               java.util.function.Function&lt;T,&#8203;java.lang.Boolean&gt;&nbsp;action)</code></th>
 <td class="colLast">
-<div class="block">Performs a depth-first traversal of a tree of <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s, starting from the specified root node and
+<div class="block">Performs a depth-first traversal of a tree of <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s, starting from the specified root node and
  applying the specified action to each node that is visited.</div>
 </td>
 </tr>
+</tbody>
 </table>
+</div>
+</div>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
 <!--   -->
@@ -385,8 +369,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getRoot</h4>
-<pre>public static&nbsp;&lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;T&nbsp;getRoot&#8203;(T&nbsp;node)</pre>
-<div class="block">Returns the root node of the tree to which the specified <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">node</a> belongs.</div>
+<pre class="methodSignature">public static&nbsp;&lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;T&nbsp;getRoot&#8203;(T&nbsp;node)</pre>
+<div class="block">Returns the root node of the tree to which the specified <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">node</a> belongs.</div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
 <dd><code>T</code> - the type of the nodes of the tree.</dd>
@@ -405,8 +389,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getSiblings</h4>
-<pre>public static&nbsp;&lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;java.util.List&lt;T&gt;&nbsp;getSiblings&#8203;(T&nbsp;node)</pre>
-<div class="block">Returns a list of the siblings of the specified <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">node</a>.</div>
+<pre class="methodSignature">public static&nbsp;&lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;java.util.List&lt;T&gt;&nbsp;getSiblings&#8203;(T&nbsp;node)</pre>
+<div class="block">Returns a list of the siblings of the specified <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">node</a>.</div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
 <dd><code>T</code> - the type of the nodes of the tree.</dd>
@@ -425,7 +409,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>isAncestor</h4>
-<pre>public static&nbsp;&lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;boolean&nbsp;isAncestor&#8203;(T&nbsp;node,
+<pre class="methodSignature">public static&nbsp;&lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;boolean&nbsp;isAncestor&#8203;(T&nbsp;node,
                                                           T&nbsp;target)</pre>
 <div class="block">Returns <code>true</code> if the specified node is an ancestor of the specified target node.</div>
 <dl>
@@ -447,7 +431,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>isAncestor</h4>
-<pre>public static&nbsp;&lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;boolean&nbsp;isAncestor&#8203;(T&nbsp;node,
+<pre class="methodSignature">public static&nbsp;&lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;boolean&nbsp;isAncestor&#8203;(T&nbsp;node,
                                                           T&nbsp;target,
                                                           boolean&nbsp;testForIdentity)</pre>
 <div class="block">Returns <code>true</code> if the specified node is an ancestor of the specified target node or, optionally, if the
@@ -479,8 +463,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getDepth</h4>
-<pre>public static&nbsp;&lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;int&nbsp;getDepth&#8203;(T&nbsp;node)</pre>
-<div class="block">Returns the depth of the specified <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">node</a> (ie, the number of levels below the root node of
+<pre class="methodSignature">public static&nbsp;&lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;int&nbsp;getDepth&#8203;(T&nbsp;node)</pre>
+<div class="block">Returns the depth of the specified <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">node</a> (ie, the number of levels below the root node of
  the tree to which the specified node belongs).</div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
@@ -490,7 +474,7 @@ extends java.lang.Object</pre>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the depth of <i>node</i>.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../uk/blankaspect/common/tree/TreeUtils.html#getDepth(T,T)"><code>getDepth(ITreeNode, ITreeNode)</code></a></dd>
+<dd><a href="#getDepth(T,T)"><code>getDepth(ITreeNode, ITreeNode)</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -502,9 +486,9 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getDepth</h4>
-<pre>public static&nbsp;&lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;int&nbsp;getDepth&#8203;(T&nbsp;root,
+<pre class="methodSignature">public static&nbsp;&lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;int&nbsp;getDepth&#8203;(T&nbsp;root,
                                                     T&nbsp;node)</pre>
-<div class="block">Returns the number of levels of the specified <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">node</a> below the specified root node.</div>
+<div class="block">Returns the number of levels of the specified <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">node</a> below the specified root node.</div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
 <dd><code>T</code> - the type of the nodes of the tree.</dd>
@@ -514,7 +498,7 @@ extends java.lang.Object</pre>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the depth of <i>node</i> below <i>root</i>, or -1 if <i>root</i> is not an ancestor of <i>node</i>.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../uk/blankaspect/common/tree/TreeUtils.html#getDepth(T)"><code>getDepth(ITreeNode)</code></a></dd>
+<dd><a href="#getDepth(T)"><code>getDepth(ITreeNode)</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -526,8 +510,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getPath</h4>
-<pre>public static&nbsp;&lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;java.util.List&lt;T&gt;&nbsp;getPath&#8203;(T&nbsp;node)</pre>
-<div class="block">Returns the path to the specified <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">node</a> from the root of the tree to which it belongs.  The
+<pre class="methodSignature">public static&nbsp;&lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;java.util.List&lt;T&gt;&nbsp;getPath&#8203;(T&nbsp;node)</pre>
+<div class="block">Returns the path to the specified <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">node</a> from the root of the tree to which it belongs.  The
  path is a list of nodes that includes the root and the target node.</div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
@@ -537,7 +521,7 @@ extends java.lang.Object</pre>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a list of nodes that denotes the path to <i>node</i> from the root of the tree to which it belongs.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../uk/blankaspect/common/tree/TreeUtils.html#getPath(T,T)"><code>getPath(ITreeNode, ITreeNode)</code></a></dd>
+<dd><a href="#getPath(T,T)"><code>getPath(ITreeNode, ITreeNode)</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -549,9 +533,9 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getPath</h4>
-<pre>public static&nbsp;&lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;java.util.List&lt;T&gt;&nbsp;getPath&#8203;(T&nbsp;root,
+<pre class="methodSignature">public static&nbsp;&lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;java.util.List&lt;T&gt;&nbsp;getPath&#8203;(T&nbsp;root,
                                                                  T&nbsp;node)</pre>
-<div class="block">Returns the path from the specified root <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">node</a> to the specified node, which is assumed to
+<div class="block">Returns the path from the specified root <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">node</a> to the specified node, which is assumed to
  be a descendant of the specified root.  The path is a list of nodes that includes the root and the target node.
  <p>
  If the specified root node is not an ancestor of the target node, the path will be a list of nodes from the root
@@ -567,7 +551,7 @@ extends java.lang.Object</pre>
 <dd>a list of nodes that denotes the path from <i>root</i> to <i>node</i>, or, if <i>root</i> is not an
          ancestor of <i>node</i>, the path to <i>node</i> from the root of the tree to which it belongs.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../uk/blankaspect/common/tree/TreeUtils.html#getPath(T)"><code>getPath(ITreeNode)</code></a></dd>
+<dd><a href="#getPath(T)"><code>getPath(ITreeNode)</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -579,11 +563,11 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getIndices</h4>
-<pre>public static&nbsp;&lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;java.util.List&lt;java.lang.Integer&gt;&nbsp;getIndices&#8203;(T&nbsp;node,
+<pre class="methodSignature">public static&nbsp;&lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;java.util.List&lt;java.lang.Integer&gt;&nbsp;getIndices&#8203;(T&nbsp;node,
                                                                                     int&nbsp;baseIndex)</pre>
-<div class="block">Returns a list of indices to the specified <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">node</a> from the root of the tree to which it
+<div class="block">Returns a list of indices to the specified <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">node</a> from the root of the tree to which it
  belongs.  Each element of the list is the sum of the specified base index and the index of the corresponding node
- in its <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html#getParent()">parent</a>'s <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html#getChildren()">list of children</a>, or -1
+ in its <a href="ITreeNode.html#getParent()">parent</a>'s <a href="ITreeNode.html#getChildren()">list of children</a>, or -1
  if the node is not a child of its parent.  The first element of the list is a child of the root node.  The list
  is empty if the target node is a root node.</div>
 <dl>
@@ -595,7 +579,7 @@ extends java.lang.Object</pre>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a list of nodes that denotes the path to <i>node</i> from the root of the tree to which it belongs.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../uk/blankaspect/common/tree/TreeUtils.html#getPath(T)"><code>getPath(ITreeNode)</code></a></dd>
+<dd><a href="#getPath(T)"><code>getPath(ITreeNode)</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -607,13 +591,13 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getIndices</h4>
-<pre>public static&nbsp;&lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;java.util.List&lt;java.lang.Integer&gt;&nbsp;getIndices&#8203;(T&nbsp;root,
+<pre class="methodSignature">public static&nbsp;&lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;java.util.List&lt;java.lang.Integer&gt;&nbsp;getIndices&#8203;(T&nbsp;root,
                                                                                     T&nbsp;node,
                                                                                     boolean&nbsp;includeRoot,
                                                                                     int&nbsp;baseIndex)</pre>
-<div class="block">Returns a list of indices of the path from the specified root <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">node</a> to the specified node,
+<div class="block">Returns a list of indices of the path from the specified root <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">node</a> to the specified node,
  which is assumed to be a descendant of the specified root.  Each element of the list is the sum of the specified
- base index and the index of the corresponding node in its <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html#getParent()">parent</a>'s <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html#getChildren()">list of children</a>, or -1 if the node has no parent or is not a child of its parent.  The
+ base index and the index of the corresponding node in its <a href="ITreeNode.html#getParent()">parent</a>'s <a href="ITreeNode.html#getChildren()">list of children</a>, or -1 if the node has no parent or is not a child of its parent.  The
  list of indices may optionally include the index of the root node.
  <p>
  If the specified root node is not an ancestor of the target node, the list of indices will start at
@@ -634,7 +618,7 @@ extends java.lang.Object</pre>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a list of nodes that denotes the path from <i>root</i> to <i>node</i>.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../uk/blankaspect/common/tree/TreeUtils.html#getPath(T)"><code>getPath(ITreeNode)</code></a></dd>
+<dd><a href="#getPath(T)"><code>getPath(ITreeNode)</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -646,10 +630,10 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>findNode</h4>
-<pre>public static&nbsp;&lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;,U&gt;&nbsp;T&nbsp;findNode&#8203;(T&nbsp;root,
-                                                    java.lang.Iterable&lt;U&gt;&nbsp;path,
-                                                    java.util.function.BiPredicate&lt;T,U&gt;&nbsp;matcher)</pre>
-<div class="block">Searches a tree of <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s, starting from the specified root node, for a node whose path from the root
+<pre class="methodSignature">public static&nbsp;&lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;,&#8203;U&gt;&nbsp;T&nbsp;findNode&#8203;(T&nbsp;root,
+                                                          java.lang.Iterable&lt;U&gt;&nbsp;path,
+                                                          java.util.function.BiPredicate&lt;T,&#8203;U&gt;&nbsp;matcher)</pre>
+<div class="block">Searches a tree of <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s, starting from the specified root node, for a node whose path from the root
  matches the specified path descriptor.  The first element of the path descriptor is tested against the root node
  with the specified matcher: if there is no match, the search terminates immediately; otherwise, the root node
  becomes the current node, and the search proceeds by descending the tree, testing successive elements against the
@@ -677,11 +661,11 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>visitDepthFirst</h4>
-<pre>public static&nbsp;&lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;boolean&nbsp;visitDepthFirst&#8203;(T&nbsp;root,
+<pre class="methodSignature">public static&nbsp;&lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;boolean&nbsp;visitDepthFirst&#8203;(T&nbsp;root,
                                                                boolean&nbsp;preorder,
                                                                boolean&nbsp;includeRoot,
-                                                               java.util.function.Function&lt;T,java.lang.Boolean&gt;&nbsp;action)</pre>
-<div class="block">Performs a depth-first traversal of a tree of <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s, starting from the specified root node and
+                                                               java.util.function.Function&lt;T,&#8203;java.lang.Boolean&gt;&nbsp;action)</pre>
+<div class="block">Performs a depth-first traversal of a tree of <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s, starting from the specified root node and
  applying the specified action to each node that is visited.  The root node may optionally be visited.</div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
@@ -706,10 +690,10 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>visitBreadthFirst</h4>
-<pre>public static&nbsp;&lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;boolean&nbsp;visitBreadthFirst&#8203;(T&nbsp;root,
+<pre class="methodSignature">public static&nbsp;&lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;boolean&nbsp;visitBreadthFirst&#8203;(T&nbsp;root,
                                                                  boolean&nbsp;includeRoot,
-                                                                 java.util.function.Function&lt;T,java.lang.Boolean&gt;&nbsp;action)</pre>
-<div class="block">Performs a breadth-first traversal of a tree of <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s, starting from the specified root node and
+                                                                 java.util.function.Function&lt;T,&#8203;java.lang.Boolean&gt;&nbsp;action)</pre>
+<div class="block">Performs a breadth-first traversal of a tree of <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s, starting from the specified root node and
  applying the specified action to each node that is visited.  The root node may optionally be visited.</div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
@@ -732,9 +716,9 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>visitAscending</h4>
-<pre>public static&nbsp;&lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;boolean&nbsp;visitAscending&#8203;(T&nbsp;startNode,
-                                                              java.util.function.Function&lt;T,java.lang.Boolean&gt;&nbsp;action)</pre>
-<div class="block">Ascends a tree of <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s from the specified node to the root node, applying the specified action to
+<pre class="methodSignature">public static&nbsp;&lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;boolean&nbsp;visitAscending&#8203;(T&nbsp;startNode,
+                                                              java.util.function.Function&lt;T,&#8203;java.lang.Boolean&gt;&nbsp;action)</pre>
+<div class="block">Ascends a tree of <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s from the specified node to the root node, applying the specified action to
  each node that is visited, including the root.</div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
@@ -755,11 +739,11 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>visitAscending</h4>
-<pre>public static&nbsp;&lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;boolean&nbsp;visitAscending&#8203;(T&nbsp;startNode,
+<pre class="methodSignature">public static&nbsp;&lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;boolean&nbsp;visitAscending&#8203;(T&nbsp;startNode,
                                                               T&nbsp;endNode,
                                                               boolean&nbsp;includeEnd,
-                                                              java.util.function.Function&lt;T,java.lang.Boolean&gt;&nbsp;action)</pre>
-<div class="block">Ascends a tree of <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s from the specified node to the specified end node, applying the specified
+                                                              java.util.function.Function&lt;T,&#8203;java.lang.Boolean&gt;&nbsp;action)</pre>
+<div class="block">Ascends a tree of <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s from the specified node to the specified end node, applying the specified
  action to each node that is visited.  The end node may optionally be visited.</div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
@@ -783,9 +767,9 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>testAscending</h4>
-<pre>public static&nbsp;&lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;boolean&nbsp;testAscending&#8203;(T&nbsp;startNode,
+<pre class="methodSignature">public static&nbsp;&lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;boolean&nbsp;testAscending&#8203;(T&nbsp;startNode,
                                                              java.util.function.Predicate&lt;T&gt;&nbsp;test)</pre>
-<div class="block">Returns <code>true</code> if and only if the specified <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a> or one of its ancestors satisfies the
+<div class="block">Returns <code>true</code> if and only if the specified <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a> or one of its ancestors satisfies the
  specified test.</div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
@@ -806,11 +790,11 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>searchDepthFirst</h4>
-<pre>public static&nbsp;&lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;T&nbsp;searchDepthFirst&#8203;(T&nbsp;root,
+<pre class="methodSignature">public static&nbsp;&lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;T&nbsp;searchDepthFirst&#8203;(T&nbsp;root,
                                                           boolean&nbsp;preorder,
                                                           boolean&nbsp;includeRoot,
                                                           java.util.function.Predicate&lt;T&gt;&nbsp;test)</pre>
-<div class="block">Performs a depth-first search of a tree of <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s, starting from the specified root node and applying
+<div class="block">Performs a depth-first search of a tree of <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s, starting from the specified root node and applying
  the specified test to each node that is visited until a node is found that satisfies the test.  If such a node is
  found, the search terminates immediately and the matching node is returned.  The root node may optionally be
  included in the search.</div>
@@ -837,10 +821,10 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>searchBreadthFirst</h4>
-<pre>public static&nbsp;&lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;T&nbsp;searchBreadthFirst&#8203;(T&nbsp;root,
+<pre class="methodSignature">public static&nbsp;&lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;T&nbsp;searchBreadthFirst&#8203;(T&nbsp;root,
                                                             boolean&nbsp;includeRoot,
                                                             java.util.function.Predicate&lt;T&gt;&nbsp;test)</pre>
-<div class="block">Performs a breadth-first search of a tree of <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s, starting from the specified root node and
+<div class="block">Performs a breadth-first search of a tree of <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s, starting from the specified root node and
  applying the specified test to each node that is visited until a node is found that satisfies the test.  If such
  a node is found, the search terminates immediately and the matching node is returned.  The root node may
  optionally be included in the search.</div>
@@ -865,9 +849,9 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>searchAscending</h4>
-<pre>public static&nbsp;&lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;T&nbsp;searchAscending&#8203;(T&nbsp;startNode,
+<pre class="methodSignature">public static&nbsp;&lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;T&nbsp;searchAscending&#8203;(T&nbsp;startNode,
                                                          java.util.function.Predicate&lt;T&gt;&nbsp;test)</pre>
-<div class="block">Ascends a tree of <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s from the specified start node to the root node, applying the specified test
+<div class="block">Ascends a tree of <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s from the specified start node to the root node, applying the specified test
  to each node that is visited until a node is found that satisfies the test.  If such a node is found, the search
  terminates immediately and the matching node is returned.  The root is included in the search.</div>
 <dl>
@@ -890,11 +874,11 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>searchAscending</h4>
-<pre>public static&nbsp;&lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;T&nbsp;searchAscending&#8203;(T&nbsp;startNode,
+<pre class="methodSignature">public static&nbsp;&lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;T&nbsp;searchAscending&#8203;(T&nbsp;startNode,
                                                          T&nbsp;endNode,
                                                          boolean&nbsp;includeEnd,
                                                          java.util.function.Predicate&lt;T&gt;&nbsp;test)</pre>
-<div class="block">Ascends a tree of <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s from the specified start node to the specified end node, applying the
+<div class="block">Ascends a tree of <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s from the specified start node to the specified end node, applying the
  specified test to each node that is visited until a node is found that satisfies the test.  If such a node is
  found, the search terminates immediately and the matching node is returned.  The end node may optionally be
  included in the search.</div>
@@ -922,10 +906,10 @@ extends java.lang.Object</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>treeToString</h4>
-<pre>public static&nbsp;&lt;T extends <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;java.lang.String&nbsp;treeToString&#8203;(T&nbsp;root,
+<pre class="methodSignature">public static&nbsp;&lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;&nbsp;java.lang.String&nbsp;treeToString&#8203;(T&nbsp;root,
                                                                      int&nbsp;indentIncrement,
-                                                                     java.util.function.Function&lt;T,java.lang.String&gt;&nbsp;converter)</pre>
-<div class="block">Returns a string representation of the tree of <a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s whose root is the specified node.</div>
+                                                                     java.util.function.Function&lt;T,&#8203;java.lang.String&gt;&nbsp;converter)</pre>
+<div class="block">Returns a string representation of the tree of <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s whose root is the specified node.</div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
 <dd><code>T</code> - the type of the nodes of the tree.</dd>
@@ -959,7 +943,7 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <ul class="navList" title="Navigation">
-<li><a href="../../../../overview-summary.html">Overview</a></li>
+<li><a href="../../../../index.html">Overview</a></li>
 <li><a href="package-summary.html">Package</a></li>
 <li class="navBarCell1Rev">Class</li>
 <li><a href="package-tree.html">Tree</a></li>
@@ -969,32 +953,6 @@ extends java.lang.Object</pre>
 </ul>
 </div>
 <div class="subNav">
-<ul class="navList">
-<li><a href="../../../../uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li>Next&nbsp;Class</li>
-</ul>
-<ul class="navList">
-<li><a href="../../../../index.html?uk/blankaspect/common/tree/TreeUtils.html" target="_top">Frames</a></li>
-<li><a href="TreeUtils.html" target="_top">No&nbsp;Frames</a></li>
-</ul>
-<ul class="navList" id="allclasses_navbar_bottom">
-<li><a href="../../../../allclasses-noframe.html">All&nbsp;Classes</a></li>
-</ul>
-<div>
-<script type="text/javascript"><!--
-  allClassesLink = document.getElementById("allclasses_navbar_bottom");
-  if(window==top) {
-    allClassesLink.style.display = "block";
-  }
-  else {
-    allClassesLink.style.display = "none";
-  }
-  //-->
-</script>
-<noscript>
-<div>JavaScript is disabled on your browser.</div>
-</noscript>
-</div>
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
@@ -1010,9 +968,10 @@ extends java.lang.Object</pre>
 <li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
+</div>
 <a id="skip.navbar.bottom">
 <!--   -->
-</a></div>
+</a>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
 </nav>
 </footer>

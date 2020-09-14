@@ -13,7 +13,8 @@
 <!--[if IE]>
 <script type="text/javascript" src="../../../../jquery/jszip-utils/dist/jszip-utils-ie.min.js"></script>
 <![endif]-->
-<script type="text/javascript" src="../../../../jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="../../../../jquery/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="../../../../jquery/jquery-migrate-3.0.1.js"></script>
 <script type="text/javascript" src="../../../../jquery/jquery-ui.js"></script>
 </head>
 <body>
@@ -26,13 +27,15 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10};
+var data = {"i0":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
 var activeTableTab = "activeTableTab";
-var pathtoroot = "../../../../";loadScripts(document, 'script');</script>
+var pathtoroot = "../../../../";
+var useModuleDirectories = true;
+loadScripts(document, 'script');</script>
 <noscript>
 <div>JavaScript is disabled on your browser.</div>
 </noscript>
@@ -48,7 +51,7 @@ var pathtoroot = "../../../../";loadScripts(document, 'script');</script>
 <!--   -->
 </a>
 <ul class="navList" title="Navigation">
-<li><a href="../../../../overview-summary.html">Overview</a></li>
+<li><a href="../../../../index.html">Overview</a></li>
 <li><a href="package-summary.html">Package</a></li>
 <li class="navBarCell1Rev">Class</li>
 <li><a href="package-tree.html">Tree</a></li>
@@ -58,38 +61,6 @@ var pathtoroot = "../../../../";loadScripts(document, 'script');</script>
 </ul>
 </div>
 <div class="subNav">
-<ul class="navList">
-<li><a href="../../../../uk/blankaspect/common/basictree/NodeType.html" title="class in uk.blankaspect.common.basictree"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../uk/blankaspect/common/basictree/NullNode.html" title="class in uk.blankaspect.common.basictree"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
-</ul>
-<ul class="navList">
-<li><a href="../../../../index.html?uk/blankaspect/common/basictree/NodeTypeException.html" target="_top">Frames</a></li>
-<li><a href="NodeTypeException.html" target="_top">No&nbsp;Frames</a></li>
-</ul>
-<ul class="navList" id="allclasses_navbar_top">
-<li><a href="../../../../allclasses-noframe.html">All&nbsp;Classes</a></li>
-</ul>
-<ul class="navListSearch">
-<li><label for="search">SEARCH:</label>
-<input type="text" id="search" value="search" disabled="disabled">
-<input type="reset" id="reset" value="reset" disabled="disabled">
-</li>
-</ul>
-<div>
-<script type="text/javascript"><!--
-  allClassesLink = document.getElementById("allclasses_navbar_top");
-  if(window==top) {
-    allClassesLink.style.display = "block";
-  }
-  else {
-    allClassesLink.style.display = "none";
-  }
-  //-->
-</script>
-<noscript>
-<div>JavaScript is disabled on your browser.</div>
-</noscript>
-</div>
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
@@ -105,9 +76,16 @@ var pathtoroot = "../../../../";loadScripts(document, 'script');</script>
 <li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
+<ul class="navListSearch">
+<li><label for="search">SEARCH:</label>
+<input type="text" id="search" value="search" disabled="disabled">
+<input type="reset" id="reset" value="reset" disabled="disabled">
+</li>
+</ul>
+</div>
 <a id="skip.navbar.top">
 <!--   -->
-</a></div>
+</a>
 <!-- ========= END OF TOP NAVBAR ========= -->
 </div>
 <div class="navPadding">&nbsp;</div>
@@ -120,7 +98,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <!-- ======== START OF CLASS DATA ======== -->
 <main role="main">
 <div class="header">
-<div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="../../../../uk/blankaspect/common/basictree/package-summary.html">uk.blankaspect.common.basictree</a></div>
+<div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">uk.blankaspect.common.basictree</a></div>
 <h2 title="Class NodeTypeException" class="title">Class NodeTypeException</h2>
 </div>
 <div class="contentContainer">
@@ -157,7 +135,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <hr>
 <pre>public class <span class="typeNameLabel">NodeTypeException</span>
 extends java.lang.RuntimeException</pre>
-<div class="block">This class implements an unchecked exception that is associated with a <a href="../../../../uk/blankaspect/common/basictree/NodeType.html" title="class in uk.blankaspect.common.basictree">node type</a>.</div>
+<div class="block">This class implements an unchecked exception that is associated with a <a href="NodeType.html" title="class in uk.blankaspect.common.basictree">node type</a>.</div>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../../serialized-form.html#uk.blankaspect.common.basictree.NodeTypeException">Serialized Form</a></dd>
@@ -175,19 +153,23 @@ extends java.lang.RuntimeException</pre>
 <!--   -->
 </a>
 <h3>Constructor Summary</h3>
-<table class="memberSummary">
+<div class="memberSummary">
+<table>
 <caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
 <th class="colFirst" scope="col">Constructor</th>
 <th class="colLast" scope="col">Description</th>
 </tr>
+<tbody>
 <tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/NodeTypeException.html#%3Cinit%3E(uk.blankaspect.common.basictree.NodeType)">NodeTypeException</a></span>&#8203;(<a href="../../../../uk/blankaspect/common/basictree/NodeType.html" title="class in uk.blankaspect.common.basictree">NodeType</a>&nbsp;nodeType)</code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(uk.blankaspect.common.basictree.NodeType)">NodeTypeException</a></span>&#8203;(<a href="NodeType.html" title="class in uk.blankaspect.common.basictree">NodeType</a>&nbsp;nodeType)</code></th>
 <td class="colLast">
 <div class="block">Creates a new instance of an exception that is associated with the specified node type.</div>
 </td>
 </tr>
+</tbody>
 </table>
+</div>
 </li>
 </ul>
 </section>
@@ -198,34 +180,40 @@ extends java.lang.RuntimeException</pre>
 <!--   -->
 </a>
 <h3>Method Summary</h3>
-<table class="memberSummary">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<div class="memberSummary">
+<div role="tablist" aria-orientation="horizontal"><button role="tab" aria-selected="true" aria-controls="memberSummary_tabpanel" tabindex="0" onkeydown="switchTab(event)" id="t0" class="activeTableTab">All Methods</button><button role="tab" aria-selected="false" aria-controls="memberSummary_tabpanel" tabindex="-1" onkeydown="switchTab(event)" id="t2" class="tableTab" onclick="show(2);">Instance Methods</button><button role="tab" aria-selected="false" aria-controls="memberSummary_tabpanel" tabindex="-1" onkeydown="switchTab(event)" id="t4" class="tableTab" onclick="show(8);">Concrete Methods</button></div>
+<div id="memberSummary_tabpanel" role="tabpanel">
+<table aria-labelledby="t0">
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colSecond" scope="col">Method</th>
 <th class="colLast" scope="col">Description</th>
 </tr>
-<tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="../../../../uk/blankaspect/common/basictree/NodeType.html" title="class in uk.blankaspect.common.basictree">NodeType</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/NodeTypeException.html#getNodeType()">getNodeType</a></span>()</code></th>
+<tbody>
+<tr class="altColor" id="i0">
+<td class="colFirst"><code><a href="NodeType.html" title="class in uk.blankaspect.common.basictree">NodeType</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getNodeType()">getNodeType</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the node type that is associated with this exception.</div>
 </td>
 </tr>
+</tbody>
 </table>
-<ul class="blockList">
-<li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
-<!--   -->
-</a>
-<h3>Methods inherited from class&nbsp;java.lang.Object</h3>
-<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, wait, wait, wait</code></li>
-</ul>
+</div>
+</div>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Throwable">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.Throwable</h3>
 <code>addSuppressed, fillInStackTrace, getCause, getLocalizedMessage, getMessage, getStackTrace, getSuppressed, initCause, printStackTrace, printStackTrace, printStackTrace, setStackTrace, toString</code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;java.lang.Object</h3>
+<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, wait, wait, wait</code></li>
 </ul>
 </li>
 </ul>
@@ -249,7 +237,7 @@ extends java.lang.RuntimeException</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>NodeTypeException</h4>
-<pre>public&nbsp;NodeTypeException&#8203;(<a href="../../../../uk/blankaspect/common/basictree/NodeType.html" title="class in uk.blankaspect.common.basictree">NodeType</a>&nbsp;nodeType)</pre>
+<pre>public&nbsp;NodeTypeException&#8203;(<a href="NodeType.html" title="class in uk.blankaspect.common.basictree">NodeType</a>&nbsp;nodeType)</pre>
 <div class="block">Creates a new instance of an exception that is associated with the specified node type.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -273,7 +261,7 @@ extends java.lang.RuntimeException</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>getNodeType</h4>
-<pre>public&nbsp;<a href="../../../../uk/blankaspect/common/basictree/NodeType.html" title="class in uk.blankaspect.common.basictree">NodeType</a>&nbsp;getNodeType()</pre>
+<pre class="methodSignature">public&nbsp;<a href="NodeType.html" title="class in uk.blankaspect.common.basictree">NodeType</a>&nbsp;getNodeType()</pre>
 <div class="block">Returns the node type that is associated with this exception.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -301,7 +289,7 @@ extends java.lang.RuntimeException</pre>
 <!--   -->
 </a>
 <ul class="navList" title="Navigation">
-<li><a href="../../../../overview-summary.html">Overview</a></li>
+<li><a href="../../../../index.html">Overview</a></li>
 <li><a href="package-summary.html">Package</a></li>
 <li class="navBarCell1Rev">Class</li>
 <li><a href="package-tree.html">Tree</a></li>
@@ -311,32 +299,6 @@ extends java.lang.RuntimeException</pre>
 </ul>
 </div>
 <div class="subNav">
-<ul class="navList">
-<li><a href="../../../../uk/blankaspect/common/basictree/NodeType.html" title="class in uk.blankaspect.common.basictree"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../uk/blankaspect/common/basictree/NullNode.html" title="class in uk.blankaspect.common.basictree"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
-</ul>
-<ul class="navList">
-<li><a href="../../../../index.html?uk/blankaspect/common/basictree/NodeTypeException.html" target="_top">Frames</a></li>
-<li><a href="NodeTypeException.html" target="_top">No&nbsp;Frames</a></li>
-</ul>
-<ul class="navList" id="allclasses_navbar_bottom">
-<li><a href="../../../../allclasses-noframe.html">All&nbsp;Classes</a></li>
-</ul>
-<div>
-<script type="text/javascript"><!--
-  allClassesLink = document.getElementById("allclasses_navbar_bottom");
-  if(window==top) {
-    allClassesLink.style.display = "block";
-  }
-  else {
-    allClassesLink.style.display = "none";
-  }
-  //-->
-</script>
-<noscript>
-<div>JavaScript is disabled on your browser.</div>
-</noscript>
-</div>
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
@@ -352,9 +314,10 @@ extends java.lang.RuntimeException</pre>
 <li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
+</div>
 <a id="skip.navbar.bottom">
 <!--   -->
-</a></div>
+</a>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
 </nav>
 </footer>

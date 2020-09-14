@@ -13,7 +13,8 @@
 <!--[if IE]>
 <script type="text/javascript" src="../../../../jquery/jszip-utils/dist/jszip-utils-ie.min.js"></script>
 <![endif]-->
-<script type="text/javascript" src="../../../../jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="../../../../jquery/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="../../../../jquery/jquery-migrate-3.0.1.js"></script>
 <script type="text/javascript" src="../../../../jquery/jquery-ui.js"></script>
 </head>
 <body>
@@ -26,13 +27,15 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":9,"i6":10,"i7":10,"i8":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":9,"i6":10,"i7":10,"i8":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
 var activeTableTab = "activeTableTab";
-var pathtoroot = "../../../../";loadScripts(document, 'script');</script>
+var pathtoroot = "../../../../";
+var useModuleDirectories = true;
+loadScripts(document, 'script');</script>
 <noscript>
 <div>JavaScript is disabled on your browser.</div>
 </noscript>
@@ -48,7 +51,7 @@ var pathtoroot = "../../../../";loadScripts(document, 'script');</script>
 <!--   -->
 </a>
 <ul class="navList" title="Navigation">
-<li><a href="../../../../overview-summary.html">Overview</a></li>
+<li><a href="../../../../index.html">Overview</a></li>
 <li><a href="package-summary.html">Package</a></li>
 <li class="navBarCell1Rev">Class</li>
 <li><a href="package-tree.html">Tree</a></li>
@@ -58,38 +61,6 @@ var pathtoroot = "../../../../";loadScripts(document, 'script');</script>
 </ul>
 </div>
 <div class="subNav">
-<ul class="navList">
-<li><a href="../../../../uk/blankaspect/common/basictree/MapNode.Pair.html" title="class in uk.blankaspect.common.basictree"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../uk/blankaspect/common/basictree/NodeMessage.Component.html" title="enum in uk.blankaspect.common.basictree"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
-</ul>
-<ul class="navList">
-<li><a href="../../../../index.html?uk/blankaspect/common/basictree/NodeMessage.html" target="_top">Frames</a></li>
-<li><a href="NodeMessage.html" target="_top">No&nbsp;Frames</a></li>
-</ul>
-<ul class="navList" id="allclasses_navbar_top">
-<li><a href="../../../../allclasses-noframe.html">All&nbsp;Classes</a></li>
-</ul>
-<ul class="navListSearch">
-<li><label for="search">SEARCH:</label>
-<input type="text" id="search" value="search" disabled="disabled">
-<input type="reset" id="reset" value="reset" disabled="disabled">
-</li>
-</ul>
-<div>
-<script type="text/javascript"><!--
-  allClassesLink = document.getElementById("allclasses_navbar_top");
-  if(window==top) {
-    allClassesLink.style.display = "block";
-  }
-  else {
-    allClassesLink.style.display = "none";
-  }
-  //-->
-</script>
-<noscript>
-<div>JavaScript is disabled on your browser.</div>
-</noscript>
-</div>
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
@@ -105,9 +76,16 @@ var pathtoroot = "../../../../";loadScripts(document, 'script');</script>
 <li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
+<ul class="navListSearch">
+<li><label for="search">SEARCH:</label>
+<input type="text" id="search" value="search" disabled="disabled">
+<input type="reset" id="reset" value="reset" disabled="disabled">
+</li>
+</ul>
+</div>
 <a id="skip.navbar.top">
 <!--   -->
-</a></div>
+</a>
 <!-- ========= END OF TOP NAVBAR ========= -->
 </div>
 <div class="navPadding">&nbsp;</div>
@@ -120,7 +98,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <!-- ======== START OF CLASS DATA ======== -->
 <main role="main">
 <div class="header">
-<div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="../../../../uk/blankaspect/common/basictree/package-summary.html">uk.blankaspect.common.basictree</a></div>
+<div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">uk.blankaspect.common.basictree</a></div>
 <h2 title="Class NodeMessage" class="title">Class NodeMessage</h2>
 </div>
 <div class="contentContainer">
@@ -138,7 +116,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <hr>
 <pre>public class <span class="typeNameLabel">NodeMessage</span>
 extends java.lang.Object</pre>
-<div class="block">This class encapsulates a message that relates to a <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a>.  A nested class, <a href="../../../../uk/blankaspect/common/basictree/NodeMessage.List.html" title="class in uk.blankaspect.common.basictree"><code>NodeMessage.List</code></a>,
+<div class="block">This class encapsulates a message that relates to a <a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a>.  A nested class, <a href="NodeMessage.List.html" title="class in uk.blankaspect.common.basictree"><code>NodeMessage.List</code></a>,
  implements a list of such messages.</div>
 </li>
 </ul>
@@ -153,35 +131,39 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Nested Class Summary</h3>
-<table class="memberSummary">
+<div class="memberSummary">
+<table>
 <caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colSecond" scope="col">Class</th>
 <th class="colLast" scope="col">Description</th>
 </tr>
+<tbody>
 <tr class="altColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/NodeMessage.Component.html" title="enum in uk.blankaspect.common.basictree">NodeMessage.Component</a></span></code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="NodeMessage.Component.html" title="enum in uk.blankaspect.common.basictree">NodeMessage.Component</a></span></code></th>
 <td class="colLast">
-<div class="block">This is an enumeration of the components of a <a href="../../../../uk/blankaspect/common/basictree/NodeMessage.html" title="class in uk.blankaspect.common.basictree">node-related message</a>.</div>
+<div class="block">This is an enumeration of the components of a <a href="NodeMessage.html" title="class in uk.blankaspect.common.basictree">node-related message</a>.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/NodeMessage.Kind.html" title="enum in uk.blankaspect.common.basictree">NodeMessage.Kind</a></span></code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="NodeMessage.Kind.html" title="enum in uk.blankaspect.common.basictree">NodeMessage.Kind</a></span></code></th>
 <td class="colLast">
-<div class="block">This is an enumeration of the kinds of a <a href="../../../../uk/blankaspect/common/basictree/NodeMessage.html" title="class in uk.blankaspect.common.basictree">node-related message</a>.</div>
+<div class="block">This is an enumeration of the kinds of a <a href="NodeMessage.html" title="class in uk.blankaspect.common.basictree">node-related message</a>.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/NodeMessage.List.html" title="class in uk.blankaspect.common.basictree">NodeMessage.List</a></span></code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="NodeMessage.List.html" title="class in uk.blankaspect.common.basictree">NodeMessage.List</a></span></code></th>
 <td class="colLast">
-<div class="block">This class implements a list of <a href="../../../../uk/blankaspect/common/basictree/NodeMessage.html" title="class in uk.blankaspect.common.basictree">node-related messages</a>.</div>
+<div class="block">This class implements a list of <a href="NodeMessage.html" title="class in uk.blankaspect.common.basictree">node-related messages</a>.</div>
 </td>
 </tr>
+</tbody>
 </table>
+</div>
 </li>
 </ul>
 </section>
@@ -192,38 +174,42 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Constructor Summary</h3>
-<table class="memberSummary">
+<div class="memberSummary">
+<table>
 <caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
 <th class="colFirst" scope="col">Constructor</th>
 <th class="colLast" scope="col">Description</th>
 </tr>
+<tbody>
 <tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/NodeMessage.html#%3Cinit%3E(uk.blankaspect.common.basictree.AbstractNode,uk.blankaspect.common.basictree.NodeMessage.Kind,java.lang.String)">NodeMessage</a></span>&#8203;(<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;node,
-           <a href="../../../../uk/blankaspect/common/basictree/NodeMessage.Kind.html" title="enum in uk.blankaspect.common.basictree">NodeMessage.Kind</a>&nbsp;kind,
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(uk.blankaspect.common.basictree.AbstractNode,uk.blankaspect.common.basictree.NodeMessage.Kind,java.lang.String)">NodeMessage</a></span>&#8203;(<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;node,
+           <a href="NodeMessage.Kind.html" title="enum in uk.blankaspect.common.basictree">NodeMessage.Kind</a>&nbsp;kind,
            java.lang.String&nbsp;text)</code></th>
 <td class="colLast">
-<div class="block">Creates a new instance of a message of the specified kind that relates to the specified <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a>.</div>
+<div class="block">Creates a new instance of a message of the specified kind that relates to the specified <a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a>.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/NodeMessage.html#%3Cinit%3E(uk.blankaspect.common.basictree.AbstractNode,uk.blankaspect.common.basictree.NodeMessage.Kind,java.lang.String,java.lang.Throwable)">NodeMessage</a></span>&#8203;(<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;node,
-           <a href="../../../../uk/blankaspect/common/basictree/NodeMessage.Kind.html" title="enum in uk.blankaspect.common.basictree">NodeMessage.Kind</a>&nbsp;kind,
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(uk.blankaspect.common.basictree.AbstractNode,uk.blankaspect.common.basictree.NodeMessage.Kind,java.lang.String,java.lang.Throwable)">NodeMessage</a></span>&#8203;(<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;node,
+           <a href="NodeMessage.Kind.html" title="enum in uk.blankaspect.common.basictree">NodeMessage.Kind</a>&nbsp;kind,
            java.lang.String&nbsp;text,
            java.lang.Throwable&nbsp;exception)</code></th>
 <td class="colLast">
-<div class="block">Creates a new instance of a message of the specified kind that relates to the specified <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a>.</div>
+<div class="block">Creates a new instance of a message of the specified kind that relates to the specified <a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a>.</div>
 </td>
 </tr>
 <tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/NodeMessage.html#%3Cinit%3E(uk.blankaspect.common.basictree.AbstractNode,uk.blankaspect.common.basictree.NodeMessage.Kind,java.lang.Throwable)">NodeMessage</a></span>&#8203;(<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;node,
-           <a href="../../../../uk/blankaspect/common/basictree/NodeMessage.Kind.html" title="enum in uk.blankaspect.common.basictree">NodeMessage.Kind</a>&nbsp;kind,
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(uk.blankaspect.common.basictree.AbstractNode,uk.blankaspect.common.basictree.NodeMessage.Kind,java.lang.Throwable)">NodeMessage</a></span>&#8203;(<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;node,
+           <a href="NodeMessage.Kind.html" title="enum in uk.blankaspect.common.basictree">NodeMessage.Kind</a>&nbsp;kind,
            java.lang.Throwable&nbsp;exception)</code></th>
 <td class="colLast">
-<div class="block">Creates a new instance of a message of the specified kind that relates to the specified <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a>.</div>
+<div class="block">Creates a new instance of a message of the specified kind that relates to the specified <a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a>.</div>
 </td>
 </tr>
+</tbody>
 </table>
+</div>
 </li>
 </ul>
 </section>
@@ -234,77 +220,83 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Summary</h3>
-<table class="memberSummary">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t1" class="tableTab"><span><a href="javascript:show(1);">Static Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<div class="memberSummary">
+<div role="tablist" aria-orientation="horizontal"><button role="tab" aria-selected="true" aria-controls="memberSummary_tabpanel" tabindex="0" onkeydown="switchTab(event)" id="t0" class="activeTableTab">All Methods</button><button role="tab" aria-selected="false" aria-controls="memberSummary_tabpanel" tabindex="-1" onkeydown="switchTab(event)" id="t1" class="tableTab" onclick="show(1);">Static Methods</button><button role="tab" aria-selected="false" aria-controls="memberSummary_tabpanel" tabindex="-1" onkeydown="switchTab(event)" id="t2" class="tableTab" onclick="show(2);">Instance Methods</button><button role="tab" aria-selected="false" aria-controls="memberSummary_tabpanel" tabindex="-1" onkeydown="switchTab(event)" id="t4" class="tableTab" onclick="show(8);">Concrete Methods</button></div>
+<div id="memberSummary_tabpanel" role="tabpanel">
+<table aria-labelledby="t0">
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colSecond" scope="col">Method</th>
 <th class="colLast" scope="col">Description</th>
 </tr>
-<tr id="i0" class="altColor">
+<tbody>
+<tr class="altColor" id="i0">
 <td class="colFirst"><code>java.lang.Throwable</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/NodeMessage.html#getException()">getException</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getException()">getException</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the exception that is associated with this message.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
-<td class="colFirst"><code><a href="../../../../uk/blankaspect/common/basictree/NodeMessage.Kind.html" title="enum in uk.blankaspect.common.basictree">NodeMessage.Kind</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/NodeMessage.html#getKind()">getKind</a></span>()</code></th>
+<tr class="rowColor" id="i1">
+<td class="colFirst"><code><a href="NodeMessage.Kind.html" title="enum in uk.blankaspect.common.basictree">NodeMessage.Kind</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getKind()">getKind</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the kind of this message.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
-<td class="colFirst"><code><a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a></code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/NodeMessage.html#getNode()">getNode</a></span>()</code></th>
+<tr class="altColor" id="i2">
+<td class="colFirst"><code><a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getNode()">getNode</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the node that is associated with this message.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr class="rowColor" id="i3">
 <td class="colFirst"><code>java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/NodeMessage.html#getText()">getText</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getText()">getText</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns the text of this message.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr class="altColor" id="i4">
 <td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/NodeMessage.html#isError()">isError</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isError()">isError</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Returns <code>true</code> if the kind of this message is an error or a fatal error.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr class="rowColor" id="i5">
 <td class="colFirst"><code>static java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/NodeMessage.html#nodeToPathString(uk.blankaspect.common.basictree.AbstractNode)">nodeToPathString</a></span>&#8203;(<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;node)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#nodeToPathString(uk.blankaspect.common.basictree.AbstractNode)">nodeToPathString</a></span>&#8203;(<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;node)</code></th>
 <td class="colLast">
-<div class="block">Returns a string representation of the path from the specified <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a> from the root of
+<div class="block">Returns a string representation of the path from the specified <a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a> from the root of
  the tree to which it belongs.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr class="altColor" id="i6">
 <td class="colFirst"><code>java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/NodeMessage.html#toString()">toString</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 </tr>
-<tr id="i7" class="rowColor">
+<tr class="rowColor" id="i7">
 <td class="colFirst"><code>java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/NodeMessage.html#toString(java.lang.String,java.lang.Iterable)">toString</a></span>&#8203;(java.lang.String&nbsp;separator,
-        java.lang.Iterable&lt;<a href="../../../../uk/blankaspect/common/basictree/NodeMessage.Component.html" title="enum in uk.blankaspect.common.basictree">NodeMessage.Component</a>&gt;&nbsp;components)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString(java.lang.String,java.lang.Iterable)">toString</a></span>&#8203;(java.lang.String&nbsp;separator,
+        java.lang.Iterable&lt;<a href="NodeMessage.Component.html" title="enum in uk.blankaspect.common.basictree">NodeMessage.Component</a>&gt;&nbsp;components)</code></th>
 <td class="colLast">
 <div class="block">Returns a string representation of the specified components of this message.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr class="altColor" id="i8">
 <td class="colFirst"><code>java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="../../../../uk/blankaspect/common/basictree/NodeMessage.html#toString(java.lang.String,uk.blankaspect.common.basictree.NodeMessage.Component...)">toString</a></span>&#8203;(java.lang.String&nbsp;separator,
-        <a href="../../../../uk/blankaspect/common/basictree/NodeMessage.Component.html" title="enum in uk.blankaspect.common.basictree">NodeMessage.Component</a>...&nbsp;components)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString(java.lang.String,uk.blankaspect.common.basictree.NodeMessage.Component...)">toString</a></span>&#8203;(java.lang.String&nbsp;separator,
+        <a href="NodeMessage.Component.html" title="enum in uk.blankaspect.common.basictree">NodeMessage.Component</a>...&nbsp;components)</code></th>
 <td class="colLast">
 <div class="block">Returns a string representation of the specified components of this message.</div>
 </td>
 </tr>
+</tbody>
 </table>
+</div>
+</div>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
 <!--   -->
@@ -334,10 +326,10 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>NodeMessage</h4>
-<pre>public&nbsp;NodeMessage&#8203;(<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;node,
-                   <a href="../../../../uk/blankaspect/common/basictree/NodeMessage.Kind.html" title="enum in uk.blankaspect.common.basictree">NodeMessage.Kind</a>&nbsp;kind,
+<pre>public&nbsp;NodeMessage&#8203;(<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;node,
+                   <a href="NodeMessage.Kind.html" title="enum in uk.blankaspect.common.basictree">NodeMessage.Kind</a>&nbsp;kind,
                    java.lang.String&nbsp;text)</pre>
-<div class="block">Creates a new instance of a message of the specified kind that relates to the specified <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a>.</div>
+<div class="block">Creates a new instance of a message of the specified kind that relates to the specified <a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>node</code> - the node that will be associated with the message.</dd>
@@ -354,10 +346,10 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>NodeMessage</h4>
-<pre>public&nbsp;NodeMessage&#8203;(<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;node,
-                   <a href="../../../../uk/blankaspect/common/basictree/NodeMessage.Kind.html" title="enum in uk.blankaspect.common.basictree">NodeMessage.Kind</a>&nbsp;kind,
+<pre>public&nbsp;NodeMessage&#8203;(<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;node,
+                   <a href="NodeMessage.Kind.html" title="enum in uk.blankaspect.common.basictree">NodeMessage.Kind</a>&nbsp;kind,
                    java.lang.Throwable&nbsp;exception)</pre>
-<div class="block">Creates a new instance of a message of the specified kind that relates to the specified <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a>.</div>
+<div class="block">Creates a new instance of a message of the specified kind that relates to the specified <a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>node</code> - the node that will be associated with the message.</dd>
@@ -374,11 +366,11 @@ extends java.lang.Object</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>NodeMessage</h4>
-<pre>public&nbsp;NodeMessage&#8203;(<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;node,
-                   <a href="../../../../uk/blankaspect/common/basictree/NodeMessage.Kind.html" title="enum in uk.blankaspect.common.basictree">NodeMessage.Kind</a>&nbsp;kind,
+<pre>public&nbsp;NodeMessage&#8203;(<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;node,
+                   <a href="NodeMessage.Kind.html" title="enum in uk.blankaspect.common.basictree">NodeMessage.Kind</a>&nbsp;kind,
                    java.lang.String&nbsp;text,
                    java.lang.Throwable&nbsp;exception)</pre>
-<div class="block">Creates a new instance of a message of the specified kind that relates to the specified <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a>.</div>
+<div class="block">Creates a new instance of a message of the specified kind that relates to the specified <a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>node</code> - the node that will be associated with the message.</dd>
@@ -406,13 +398,13 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>nodeToPathString</h4>
-<pre>public static&nbsp;java.lang.String&nbsp;nodeToPathString&#8203;(<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;node)</pre>
-<div class="block">Returns a string representation of the path from the specified <a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a> from the root of
+<pre class="methodSignature">public static&nbsp;java.lang.String&nbsp;nodeToPathString&#8203;(<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;node)</pre>
+<div class="block">Returns a string representation of the path from the specified <a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a> from the root of
  the tree to which it belongs.  The elements of the path are:
  <ul>
-   <li>an element of a <a href="../../../../uk/blankaspect/common/basictree/ListNode.html" title="class in uk.blankaspect.common.basictree">list node</a>, which is represented by its index enclosed in square
+   <li>an element of a <a href="ListNode.html" title="class in uk.blankaspect.common.basictree">list node</a>, which is represented by its index enclosed in square
        brackets (eg, '[2]'), or</li>
-   <li>a key&ndash;value pair of a <a href="../../../../uk/blankaspect/common/basictree/MapNode.html" title="class in uk.blankaspect.common.basictree">map node</a>, which is represented by its key, with a '/'
+   <li>a key&ndash;value pair of a <a href="MapNode.html" title="class in uk.blankaspect.common.basictree">map node</a>, which is represented by its key, with a '/'
        prefixed to it if the map node is not the root.</li>
  </ul>
  <p>
@@ -432,7 +424,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>toString</h4>
-<pre>public&nbsp;java.lang.String&nbsp;toString()</pre>
+<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;toString()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code>toString</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
@@ -445,7 +437,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getNode</h4>
-<pre>public&nbsp;<a href="../../../../uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;getNode()</pre>
+<pre class="methodSignature">public&nbsp;<a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;getNode()</pre>
 <div class="block">Returns the node that is associated with this message.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -459,7 +451,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getKind</h4>
-<pre>public&nbsp;<a href="../../../../uk/blankaspect/common/basictree/NodeMessage.Kind.html" title="enum in uk.blankaspect.common.basictree">NodeMessage.Kind</a>&nbsp;getKind()</pre>
+<pre class="methodSignature">public&nbsp;<a href="NodeMessage.Kind.html" title="enum in uk.blankaspect.common.basictree">NodeMessage.Kind</a>&nbsp;getKind()</pre>
 <div class="block">Returns the kind of this message.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -473,7 +465,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getText</h4>
-<pre>public&nbsp;java.lang.String&nbsp;getText()</pre>
+<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;getText()</pre>
 <div class="block">Returns the text of this message.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -487,7 +479,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getException</h4>
-<pre>public&nbsp;java.lang.Throwable&nbsp;getException()</pre>
+<pre class="methodSignature">public&nbsp;java.lang.Throwable&nbsp;getException()</pre>
 <div class="block">Returns the exception that is associated with this message.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -501,7 +493,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>isError</h4>
-<pre>public&nbsp;boolean&nbsp;isError()</pre>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;isError()</pre>
 <div class="block">Returns <code>true</code> if the kind of this message is an error or a fatal error.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -515,8 +507,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>toString</h4>
-<pre>public&nbsp;java.lang.String&nbsp;toString&#8203;(java.lang.String&nbsp;separator,
-                                 <a href="../../../../uk/blankaspect/common/basictree/NodeMessage.Component.html" title="enum in uk.blankaspect.common.basictree">NodeMessage.Component</a>...&nbsp;components)</pre>
+<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;toString&#8203;(java.lang.String&nbsp;separator,
+                                 <a href="NodeMessage.Component.html" title="enum in uk.blankaspect.common.basictree">NodeMessage.Component</a>...&nbsp;components)</pre>
 <div class="block">Returns a string representation of the specified components of this message.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -533,8 +525,8 @@ extends java.lang.Object</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>toString</h4>
-<pre>public&nbsp;java.lang.String&nbsp;toString&#8203;(java.lang.String&nbsp;separator,
-                                 java.lang.Iterable&lt;<a href="../../../../uk/blankaspect/common/basictree/NodeMessage.Component.html" title="enum in uk.blankaspect.common.basictree">NodeMessage.Component</a>&gt;&nbsp;components)</pre>
+<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;toString&#8203;(java.lang.String&nbsp;separator,
+                                 java.lang.Iterable&lt;<a href="NodeMessage.Component.html" title="enum in uk.blankaspect.common.basictree">NodeMessage.Component</a>&gt;&nbsp;components)</pre>
 <div class="block">Returns a string representation of the specified components of this message.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -565,7 +557,7 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <ul class="navList" title="Navigation">
-<li><a href="../../../../overview-summary.html">Overview</a></li>
+<li><a href="../../../../index.html">Overview</a></li>
 <li><a href="package-summary.html">Package</a></li>
 <li class="navBarCell1Rev">Class</li>
 <li><a href="package-tree.html">Tree</a></li>
@@ -575,32 +567,6 @@ extends java.lang.Object</pre>
 </ul>
 </div>
 <div class="subNav">
-<ul class="navList">
-<li><a href="../../../../uk/blankaspect/common/basictree/MapNode.Pair.html" title="class in uk.blankaspect.common.basictree"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../uk/blankaspect/common/basictree/NodeMessage.Component.html" title="enum in uk.blankaspect.common.basictree"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
-</ul>
-<ul class="navList">
-<li><a href="../../../../index.html?uk/blankaspect/common/basictree/NodeMessage.html" target="_top">Frames</a></li>
-<li><a href="NodeMessage.html" target="_top">No&nbsp;Frames</a></li>
-</ul>
-<ul class="navList" id="allclasses_navbar_bottom">
-<li><a href="../../../../allclasses-noframe.html">All&nbsp;Classes</a></li>
-</ul>
-<div>
-<script type="text/javascript"><!--
-  allClassesLink = document.getElementById("allclasses_navbar_bottom");
-  if(window==top) {
-    allClassesLink.style.display = "block";
-  }
-  else {
-    allClassesLink.style.display = "none";
-  }
-  //-->
-</script>
-<noscript>
-<div>JavaScript is disabled on your browser.</div>
-</noscript>
-</div>
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
@@ -616,9 +582,10 @@ extends java.lang.Object</pre>
 <li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
+</div>
 <a id="skip.navbar.bottom">
 <!--   -->
-</a></div>
+</a>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
 </nav>
 </footer>

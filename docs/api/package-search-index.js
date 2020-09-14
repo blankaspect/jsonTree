@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"uk.blankaspect.common.basictree"},{"l":"uk.blankaspect.common.indexedsub"},{"l":"uk.blankaspect.common.json"},{"l":"uk.blankaspect.common.tree"}]
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"uk.blankaspect.common.basictree"},{"l":"uk.blankaspect.common.json"},{"l":"uk.blankaspect.common.tree"}]

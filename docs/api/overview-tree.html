@@ -13,7 +13,8 @@
 <!--[if IE]>
 <script type="text/javascript" src="jquery/jszip-utils/dist/jszip-utils-ie.min.js"></script>
 <![endif]-->
-<script type="text/javascript" src="jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="jquery/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="jquery/jquery-migrate-3.0.1.js"></script>
 <script type="text/javascript" src="jquery/jquery-ui.js"></script>
 </head>
 <body>
@@ -26,7 +27,9 @@
     catch(err) {
     }
 //-->
-var pathtoroot = "./";loadScripts(document, 'script');</script>
+var pathtoroot = "./";
+var useModuleDirectories = true;
+loadScripts(document, 'script');</script>
 <noscript>
 <div>JavaScript is disabled on your browser.</div>
 </noscript>
@@ -42,7 +45,7 @@ var pathtoroot = "./";loadScripts(document, 'script');</script>
 <!--   -->
 </a>
 <ul class="navList" title="Navigation">
-<li><a href="overview-summary.html">Overview</a></li>
+<li><a href="index.html">Overview</a></li>
 <li>Package</li>
 <li>Class</li>
 <li class="navBarCell1Rev">Tree</li>
@@ -52,41 +55,16 @@ var pathtoroot = "./";loadScripts(document, 'script');</script>
 </ul>
 </div>
 <div class="subNav">
-<ul class="navList">
-<li>Prev</li>
-<li>Next</li>
-</ul>
-<ul class="navList">
-<li><a href="index.html?overview-tree.html" target="_top">Frames</a></li>
-<li><a href="overview-tree.html" target="_top">No&nbsp;Frames</a></li>
-</ul>
-<ul class="navList" id="allclasses_navbar_top">
-<li><a href="allclasses-noframe.html">All&nbsp;Classes</a></li>
-</ul>
 <ul class="navListSearch">
 <li><label for="search">SEARCH:</label>
 <input type="text" id="search" value="search" disabled="disabled">
 <input type="reset" id="reset" value="reset" disabled="disabled">
 </li>
 </ul>
-<div>
-<script type="text/javascript"><!--
-  allClassesLink = document.getElementById("allclasses_navbar_top");
-  if(window==top) {
-    allClassesLink.style.display = "block";
-  }
-  else {
-    allClassesLink.style.display = "none";
-  }
-  //-->
-</script>
-<noscript>
-<div>JavaScript is disabled on your browser.</div>
-</noscript>
 </div>
 <a id="skip.navbar.top">
 <!--   -->
-</a></div>
+</a>
 <!-- ========= END OF TOP NAVBAR ========= -->
 </div>
 <div class="navPadding">&nbsp;</div>
@@ -102,7 +80,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <span class="packageHierarchyLabel">Package Hierarchies:</span>
 <ul class="horizontal">
 <li><a href="uk/blankaspect/common/basictree/package-tree.html">uk.blankaspect.common.basictree</a>, </li>
-<li><a href="uk/blankaspect/common/indexedsub/package-tree.html">uk.blankaspect.common.indexedsub</a>, </li>
 <li><a href="uk/blankaspect/common/json/package-tree.html">uk.blankaspect.common.json</a>, </li>
 <li><a href="uk/blankaspect/common/tree/package-tree.html">uk.blankaspect.common.tree</a></li>
 </ul>
@@ -118,14 +95,13 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="circle">uk.blankaspect.common.basictree.<a href="uk/blankaspect/common/basictree/BooleanNode.html" title="class in uk.blankaspect.common.basictree"><span class="typeNameLink">BooleanNode</span></a></li>
 <li class="circle">uk.blankaspect.common.basictree.<a href="uk/blankaspect/common/basictree/DoubleNode.html" title="class in uk.blankaspect.common.basictree"><span class="typeNameLink">DoubleNode</span></a></li>
 <li class="circle">uk.blankaspect.common.basictree.<a href="uk/blankaspect/common/basictree/IntNode.html" title="class in uk.blankaspect.common.basictree"><span class="typeNameLink">IntNode</span></a></li>
-<li class="circle">uk.blankaspect.common.basictree.<a href="uk/blankaspect/common/basictree/ListNode.html" title="class in uk.blankaspect.common.basictree"><span class="typeNameLink">ListNode</span></a></li>
+<li class="circle">uk.blankaspect.common.basictree.<a href="uk/blankaspect/common/basictree/ListNode.html" title="class in uk.blankaspect.common.basictree"><span class="typeNameLink">ListNode</span></a> (implements java.lang.Iterable&lt;T&gt;)</li>
 <li class="circle">uk.blankaspect.common.basictree.<a href="uk/blankaspect/common/basictree/LongNode.html" title="class in uk.blankaspect.common.basictree"><span class="typeNameLink">LongNode</span></a></li>
 <li class="circle">uk.blankaspect.common.basictree.<a href="uk/blankaspect/common/basictree/MapNode.html" title="class in uk.blankaspect.common.basictree"><span class="typeNameLink">MapNode</span></a></li>
 <li class="circle">uk.blankaspect.common.basictree.<a href="uk/blankaspect/common/basictree/NullNode.html" title="class in uk.blankaspect.common.basictree"><span class="typeNameLink">NullNode</span></a></li>
 <li class="circle">uk.blankaspect.common.basictree.<a href="uk/blankaspect/common/basictree/StringNode.html" title="class in uk.blankaspect.common.basictree"><span class="typeNameLink">StringNode</span></a></li>
 </ul>
 </li>
-<li class="circle">uk.blankaspect.common.indexedsub.<a href="uk/blankaspect/common/indexedsub/IndexedSub.html" title="class in uk.blankaspect.common.indexedsub"><span class="typeNameLink">IndexedSub</span></a></li>
 <li class="circle">uk.blankaspect.common.json.<a href="uk/blankaspect/common/json/JsonGenerator.html" title="class in uk.blankaspect.common.json"><span class="typeNameLink">JsonGenerator</span></a></li>
 <li class="circle">uk.blankaspect.common.json.<a href="uk/blankaspect/common/json/JsonParser.html" title="class in uk.blankaspect.common.json"><span class="typeNameLink">JsonParser</span></a></li>
 <li class="circle">uk.blankaspect.common.json.<a href="uk/blankaspect/common/json/JsonUtils.html" title="class in uk.blankaspect.common.json"><span class="typeNameLink">JsonUtils</span></a></li>
@@ -165,7 +141,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul>
 <li class="circle">java.lang.Object
 <ul>
-<li class="circle">java.lang.Enum&lt;E&gt; (implements java.lang.Comparable&lt;T&gt;, java.io.Serializable)
+<li class="circle">java.lang.Enum&lt;E&gt; (implements java.lang.Comparable&lt;T&gt;, java.lang.constant.Constable, java.io.Serializable)
 <ul>
 <li class="circle">uk.blankaspect.common.json.<a href="uk/blankaspect/common/json/JsonGenerator.Mode.html" title="enum in uk.blankaspect.common.json"><span class="typeNameLink">JsonGenerator.Mode</span></a></li>
 <li class="circle">uk.blankaspect.common.basictree.<a href="uk/blankaspect/common/basictree/NodeMessage.Component.html" title="enum in uk.blankaspect.common.basictree"><span class="typeNameLink">NodeMessage.Component</span></a></li>
@@ -189,7 +165,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <!--   -->
 </a>
 <ul class="navList" title="Navigation">
-<li><a href="overview-summary.html">Overview</a></li>
+<li><a href="index.html">Overview</a></li>
 <li>Package</li>
 <li>Class</li>
 <li class="navBarCell1Rev">Tree</li>
@@ -198,36 +174,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li><a href="help-doc.html">Help</a></li>
 </ul>
 </div>
-<div class="subNav">
-<ul class="navList">
-<li>Prev</li>
-<li>Next</li>
-</ul>
-<ul class="navList">
-<li><a href="index.html?overview-tree.html" target="_top">Frames</a></li>
-<li><a href="overview-tree.html" target="_top">No&nbsp;Frames</a></li>
-</ul>
-<ul class="navList" id="allclasses_navbar_bottom">
-<li><a href="allclasses-noframe.html">All&nbsp;Classes</a></li>
-</ul>
-<div>
-<script type="text/javascript"><!--
-  allClassesLink = document.getElementById("allclasses_navbar_bottom");
-  if(window==top) {
-    allClassesLink.style.display = "block";
-  }
-  else {
-    allClassesLink.style.display = "none";
-  }
-  //-->
-</script>
-<noscript>
-<div>JavaScript is disabled on your browser.</div>
-</noscript>
-</div>
 <a id="skip.navbar.bottom">
 <!--   -->
-</a></div>
+</a>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
 </nav>
 </footer>
