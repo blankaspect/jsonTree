@@ -102,6 +102,27 @@ public class JsonGenerator
 	private static final	int		DEFAULT_MAX_LINE_LENGTH		= 80;
 
 ////////////////////////////////////////////////////////////////////////
+//  Instance variables
+////////////////////////////////////////////////////////////////////////
+
+	/** The mode of this generator, which controls the way in which whitespace is written between the tokens of the JSON
+		text. */
+	private	Mode	mode;
+
+	/** Flag: if {@code true}, the opening bracket of a JSON object or array is written on the same line as the
+		non-whitespace text that precedes it. */
+	private	boolean	openingBracketOnSameLine;
+
+	/** The number of spaces by which indentation is increased from one level to the next. */
+	private	int		indentIncrement;
+
+	/** The maximum length of a line of JSON text. */
+	private int		maxLineLength;
+
+	/** An array of spaces that is used to indent line of generated JSON text. */
+	private	char[]	spaces;
+
+////////////////////////////////////////////////////////////////////////
 //  Constructors
 ////////////////////////////////////////////////////////////////////////
 
@@ -244,7 +265,7 @@ public class JsonGenerator
 		boolean singleLine = true;
 		if (isMultilineMode())
 		{
-			// Array
+			// Case: array
 			if (value instanceof ListNode)
 			{
 				ListNode list = (ListNode)value;
@@ -267,7 +288,7 @@ public class JsonGenerator
 				}
 			}
 
-			// Object
+			// Case: object
 			else if (value instanceof MapNode)
 			{
 				MapNode map = (MapNode)value;
@@ -362,7 +383,7 @@ public class JsonGenerator
 		// Append opening bracket
 		buffer.append(JsonConstants.ARRAY_START_CHAR);
 
-		// Elements of array are on a single line ...
+		// Case: elements of array are on a single line
 		if (isValueOnSingleLine(array, indent))
 		{
 			// Append elements
@@ -385,7 +406,7 @@ public class JsonGenerator
 				buffer.append(' ');
 		}
 
-		// Elements of array are not on a single line ...
+		// Case: elements of array are not on a single line
 		else
 		{
 			// Append LF after opening brace
@@ -406,7 +427,7 @@ public class JsonGenerator
 				// Set 'more elements' flag
 				boolean moreElements = (i < numElements - 1);
 
-				// Element is a container ...
+				// Case: element is a container
 				if (element.isContainer())
 				{
 					// Append LF after previous element
@@ -427,7 +448,7 @@ public class JsonGenerator
 					lineLength = 0;
 				}
 
-				// Element is not a container ...
+				// Case: element is not a container
 				else
 				{
 					// Convert element to string
@@ -449,7 +470,7 @@ public class JsonGenerator
 						}
 					}
 
-					// If start of line ...
+					// Case: start of line
 					if (lineLength == 0)
 					{
 						// Get index of start of element
@@ -474,7 +495,7 @@ public class JsonGenerator
 							lineLength = buffer.length() - index;
 					}
 
-					// If not start of line ...
+					// Case: not start of line
 					else
 					{
 						// Append space before element
@@ -527,7 +548,7 @@ public class JsonGenerator
 		// Append opening brace
 		buffer.append(JsonConstants.OBJECT_START_CHAR);
 
-		// Properties of object are on a single line ...
+		// Case: properties of object are on a single line
 		if (isValueOnSingleLine(object, indent))
 		{
 			// Append properties
@@ -564,7 +585,7 @@ public class JsonGenerator
 				buffer.append(' ');
 		}
 
-		// Properties of object are not on a single line ...
+		// Case: properties of object are not on a single line
 		else
 		{
 			// Get indent of children of target value
@@ -664,27 +685,6 @@ public class JsonGenerator
 	}
 
 	//------------------------------------------------------------------
-
-////////////////////////////////////////////////////////////////////////
-//  Instance variables
-////////////////////////////////////////////////////////////////////////
-
-	/** The mode of this generator, which controls the way in which whitespace is written between the tokens of the JSON
-		text. */
-	private	Mode	mode;
-
-	/** Flag: if {@code true}, the opening bracket of a JSON object or array is written on the same line as the
-		non-whitespace text that precedes it. */
-	private	boolean	openingBracketOnSameLine;
-
-	/** The number of spaces by which indentation is increased from one level to the next. */
-	private	int		indentIncrement;
-
-	/** The maximum length of a line of JSON text. */
-	private int		maxLineLength;
-
-	/** An array of spaces that is used to indent line of generated JSON text. */
-	private	char[]	spaces;
 
 }
 
