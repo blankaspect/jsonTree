@@ -33,7 +33,7 @@ import uk.blankaspect.common.tree.TreeUtils;
 /**
  * This is the abstract base class of a node of a tree.  It is extended by concrete classes of the {@code
  * uk.blankaspect.common.basictree} package that implement
- * <ul>
+ * <ul style="margin-top: 0.25em;">
  *   <li>a node that represents a null value,</li>
  *   <li>nodes that contain instances of fundamental Java types ({@code boolean}, {@code int}, {@code long}, {@code
  *       double} and {@code String}), and</li>
@@ -48,6 +48,13 @@ import uk.blankaspect.common.tree.TreeUtils;
 public abstract class AbstractNode
 	implements ITreeNode<AbstractNode>, Cloneable
 {
+
+////////////////////////////////////////////////////////////////////////
+//  Instance variables
+////////////////////////////////////////////////////////////////////////
+
+	/** The parent of this node. */
+	private	AbstractNode	parent;
 
 ////////////////////////////////////////////////////////////////////////
 //  Constructors
@@ -235,13 +242,6 @@ public abstract class AbstractNode
 	}
 
 	//------------------------------------------------------------------
-
-////////////////////////////////////////////////////////////////////////
-//  Instance variables
-////////////////////////////////////////////////////////////////////////
-
-	/** The parent of this node. */
-	private	AbstractNode	parent;
 
 }
 

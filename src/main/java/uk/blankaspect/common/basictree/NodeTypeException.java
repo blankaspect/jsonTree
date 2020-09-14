@@ -15,14 +15,6 @@ package uk.blankaspect.common.basictree;
 //----------------------------------------------------------------------
 
 
-// IMPORTS
-
-
-import uk.blankaspect.common.basictree.NodeType;
-
-//----------------------------------------------------------------------
-
-
 // CLASS: NODE-TYPE EXCEPTION
 
 
@@ -33,6 +25,13 @@ import uk.blankaspect.common.basictree.NodeType;
 public class NodeTypeException
 	extends RuntimeException
 {
+
+////////////////////////////////////////////////////////////////////////
+//  Instance variables
+////////////////////////////////////////////////////////////////////////
+
+	/** The node type that is associated with this exception. */
+	private	NodeType	nodeType;
 
 ////////////////////////////////////////////////////////////////////////
 //  Constructors
@@ -72,13 +71,6 @@ public class NodeTypeException
 	}
 
 	//------------------------------------------------------------------
-
-////////////////////////////////////////////////////////////////////////
-//  Instance variables
-////////////////////////////////////////////////////////////////////////
-
-	/** The node type that is associated with this exception. */
-	private	NodeType	nodeType;
 
 }
 

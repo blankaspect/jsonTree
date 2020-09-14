@@ -49,6 +49,19 @@ public final class NodeType
 	public static final	NodeType	ANY	= new NodeType(AbstractNode.class);
 
 ////////////////////////////////////////////////////////////////////////
+//  Instance variables
+////////////////////////////////////////////////////////////////////////
+
+	/** The parent type of this node type. */
+	private	NodeType						parent;
+
+	/** The child types of this node type. */
+	private	List<NodeType>					children;
+
+	/** The class of node with which this node type is associated. */
+	private	Class<? extends AbstractNode>	nodeClass;
+
+////////////////////////////////////////////////////////////////////////
 //  Constructors
 ////////////////////////////////////////////////////////////////////////
 
@@ -313,19 +326,6 @@ public final class NodeType
 	}
 
 	//------------------------------------------------------------------
-
-////////////////////////////////////////////////////////////////////////
-//  Instance variables
-////////////////////////////////////////////////////////////////////////
-
-	/** The parent type of this node type. */
-	private	NodeType						parent;
-
-	/** The child types of this node type. */
-	private	List<NodeType>					children;
-
-	/** The class of node with which this node type is associated. */
-	private	Class<? extends AbstractNode>	nodeClass;
 
 }
 
