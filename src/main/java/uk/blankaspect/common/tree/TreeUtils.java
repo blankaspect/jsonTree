@@ -34,7 +34,7 @@ import java.util.stream.Collectors;
 //----------------------------------------------------------------------
 
 
-// CLASS: TREE-RELATED UTILITY METHODS.
+// CLASS: TREE-RELATED UTILITY METHODS
 
 
 /**
@@ -72,7 +72,8 @@ public class TreeUtils
 	 * @return the root node of the tree to which <i>node</i> belongs.
 	 */
 
-	public static <T extends ITreeNode<T>> T getRoot(T node)
+	public static <T extends ITreeNode<T>> T getRoot(
+		T	node)
 	{
 		while (true)
 		{
@@ -95,7 +96,8 @@ public class TreeUtils
 	 * @return a list of the siblings of <i>node</i>.
 	 */
 
-	public static <T extends ITreeNode<T>> List<T> getSiblings(T node)
+	public static <T extends ITreeNode<T>> List<T> getSiblings(
+		T	node)
 	{
 		T parent = node.getParent();
 		return (parent == null) ? Collections.emptyList()
@@ -119,8 +121,9 @@ public class TreeUtils
 	 * @return {@code true} if <i>node</i> is an ancestor of <i>target</i>.
 	 */
 
-	public static <T extends ITreeNode<T>> boolean isAncestor(T node,
-															  T target)
+	public static <T extends ITreeNode<T>> boolean isAncestor(
+		T	node,
+		T	target)
 	{
 		return isAncestor(node, target, false);
 	}
@@ -149,9 +152,10 @@ public class TreeUtils
 	 * 		   </ul>
 	 */
 
-	public static <T extends ITreeNode<T>> boolean isAncestor(T       node,
-															  T       target,
-															  boolean testForIdentity)
+	public static <T extends ITreeNode<T>> boolean isAncestor(
+		T		node,
+		T		target,
+		boolean	testForIdentity)
 	{
 		T target0 = testForIdentity ? target : target.getParent();
 		while (target0 != null)
@@ -177,7 +181,8 @@ public class TreeUtils
 	 * @see    #getDepth(ITreeNode, ITreeNode)
 	 */
 
-	public static <T extends ITreeNode<T>> int getDepth(T node)
+	public static <T extends ITreeNode<T>> int getDepth(
+		T	node)
 	{
 		int depth = 0;
 		while (true)
@@ -206,8 +211,9 @@ public class TreeUtils
 	 * @see    #getDepth(ITreeNode)
 	 */
 
-	public static <T extends ITreeNode<T>> int getDepth(T root,
-														T node)
+	public static <T extends ITreeNode<T>> int getDepth(
+		T	root,
+		T	node)
 	{
 		int depth = 0;
 		while (depth >= 0)
@@ -247,7 +253,8 @@ public class TreeUtils
 	 * @see    #getPath(ITreeNode, ITreeNode)
 	 */
 
-	public static <T extends ITreeNode<T>> List<T> getPath(T node)
+	public static <T extends ITreeNode<T>> List<T> getPath(
+		T	node)
 	{
 		// Initialise list of nodes
 		LinkedList<T> path = new LinkedList<>();
@@ -284,8 +291,9 @@ public class TreeUtils
 	 * @see    #getPath(ITreeNode)
 	 */
 
-	public static <T extends ITreeNode<T>> List<T> getPath(T root,
-														   T node)
+	public static <T extends ITreeNode<T>> List<T> getPath(
+		T	root,
+		T	node)
 	{
 		// Initialise list of nodes
 		LinkedList<T> path = new LinkedList<>();
@@ -320,8 +328,9 @@ public class TreeUtils
 	 * @see    #getPath(ITreeNode)
 	 */
 
-	public static <T extends ITreeNode<T>> List<Integer> getIndices(T   node,
-																	int baseIndex)
+	public static <T extends ITreeNode<T>> List<Integer> getIndices(
+		T	node,
+		int	baseIndex)
 	{
 		// Initialise list of indices
 		LinkedList<Integer> indices = new LinkedList<>();
@@ -373,10 +382,11 @@ public class TreeUtils
 	 * @see    #getPath(ITreeNode)
 	 */
 
-	public static <T extends ITreeNode<T>> List<Integer> getIndices(T       root,
-																	T       node,
-																	boolean includeRoot,
-																	int     baseIndex)
+	public static <T extends ITreeNode<T>> List<Integer> getIndices(
+		T		root,
+		T		node,
+		boolean	includeRoot,
+		int		baseIndex)
 	{
 		// Initialise list of indices
 		LinkedList<Integer> indices = new LinkedList<>();
@@ -418,9 +428,10 @@ public class TreeUtils
 	 * @return the node that matches <i>path</i>, or {@code null} if no matching node is found.
 	 */
 
-	public static <T extends ITreeNode<T>, U> T findNode(T                 root,
-														 Iterable<U>       path,
-														 BiPredicate<T, U> matcher)
+	public static <T extends ITreeNode<T>, U> T findNode(
+		T					root,
+		Iterable<U>			path,
+		BiPredicate<T, U>	matcher)
 	{
 		T result = null;
 		Iterator<U> it = path.iterator();
@@ -462,10 +473,11 @@ public class TreeUtils
 	 * @return {@code true} if the traversal of the tree was completed.
 	 */
 
-	public static <T extends ITreeNode<T>> boolean visitDepthFirst(T                    root,
-																   boolean              preorder,
-																   boolean              includeRoot,
-																   Function<T, Boolean> action)
+	public static <T extends ITreeNode<T>> boolean visitDepthFirst(
+		T						root,
+		boolean					preorder,
+		boolean					includeRoot,
+		Function<T, Boolean>	action)
 	{
 		// Visit root (preorder)
 		if (includeRoot && preorder && !action.apply(root))
@@ -504,9 +516,10 @@ public class TreeUtils
 	 * @return {@code true} if the traversal of the tree was completed.
 	 */
 
-	public static <T extends ITreeNode<T>> boolean visitBreadthFirst(T                    root,
-																	 boolean              includeRoot,
-																	 Function<T, Boolean> action)
+	public static <T extends ITreeNode<T>> boolean visitBreadthFirst(
+		T						root,
+		boolean					includeRoot,
+		Function<T, Boolean>	action)
 	{
 		@SuppressWarnings("unchecked")
 		final	T	ROOT_PLACEHOLDER	= (T)new ITreeNode<T>()
@@ -568,8 +581,9 @@ public class TreeUtils
 	 * @return {@code true} if the ascent of the tree was completed.
 	 */
 
-	public static <T extends ITreeNode<T>> boolean visitAscending(T                    startNode,
-																  Function<T, Boolean> action)
+	public static <T extends ITreeNode<T>> boolean visitAscending(
+		T						startNode,
+		Function<T, Boolean>	action)
 	{
 		return visitAscending(startNode, null, false, action);
 	}
@@ -594,10 +608,11 @@ public class TreeUtils
 	 * @return {@code true} if the ascent of the tree was completed.
 	 */
 
-	public static <T extends ITreeNode<T>> boolean visitAscending(T                    startNode,
-																  T                    endNode,
-																  boolean              includeEnd,
-																  Function<T, Boolean> action)
+	public static <T extends ITreeNode<T>> boolean visitAscending(
+		T						startNode,
+		T						endNode,
+		boolean					includeEnd,
+		Function<T, Boolean>	action)
 	{
 		// Initialise current node
 		T node = startNode;
@@ -636,8 +651,9 @@ public class TreeUtils
 	 * @return {@code true} if and only if <i>startNode</i> or one of its ancestors satisfies <i>test</i>.
 	 */
 
-	public static <T extends ITreeNode<T>> boolean testAscending(T            startNode,
-																 Predicate<T> test)
+	public static <T extends ITreeNode<T>> boolean testAscending(
+		T				startNode,
+		Predicate<T>	test)
 	{
 		return (searchAscending(startNode, test) != null);
 	}
@@ -665,10 +681,11 @@ public class TreeUtils
 	 *         satisfies the test.
 	 */
 
-	public static <T extends ITreeNode<T>> T searchDepthFirst(T            root,
-															  boolean      preorder,
-															  boolean      includeRoot,
-															  Predicate<T> test)
+	public static <T extends ITreeNode<T>> T searchDepthFirst(
+		T				root,
+		boolean			preorder,
+		boolean			includeRoot,
+		Predicate<T>	test)
 	{
 		// Initialise result
 		T result = null;
@@ -716,9 +733,10 @@ public class TreeUtils
 	 *         satisfies the test.
 	 */
 
-	public static <T extends ITreeNode<T>> T searchBreadthFirst(T            root,
-																boolean      includeRoot,
-																Predicate<T> test)
+	public static <T extends ITreeNode<T>> T searchBreadthFirst(
+		T				root,
+		boolean			includeRoot,
+		Predicate<T>	test)
 	{
 		@SuppressWarnings("unchecked")
 		final	T	ROOT_PLACEHOLDER	= (T)new ITreeNode<T>()
@@ -788,8 +806,9 @@ public class TreeUtils
 	 *         satisfies the test.
 	 */
 
-	public static <T extends ITreeNode<T>> T searchAscending(T            startNode,
-															 Predicate<T> test)
+	public static <T extends ITreeNode<T>> T searchAscending(
+		T				startNode,
+		Predicate<T>	test)
 	{
 		return searchAscending(startNode, null, false, test);
 	}
@@ -818,10 +837,11 @@ public class TreeUtils
 	 *         satisfies the test.
 	 */
 
-	public static <T extends ITreeNode<T>> T searchAscending(T            startNode,
-															 T            endNode,
-															 boolean      includeEnd,
-															 Predicate<T> test)
+	public static <T extends ITreeNode<T>> T searchAscending(
+		T				startNode,
+		T				endNode,
+		boolean			includeEnd,
+		Predicate<T>	test)
 	{
 		// Initialise result
 		T result = null;
@@ -866,9 +886,10 @@ public class TreeUtils
 	 * @return a string representation of the tree whose root is <i>root</i>.
 	 */
 
-	public static <T extends ITreeNode<T>> String treeToString(T                   root,
-															   int                 indentIncrement,
-															   Function<T, String> converter)
+	public static <T extends ITreeNode<T>> String treeToString(
+		T					root,
+		int					indentIncrement,
+		Function<T, String>	converter)
 	{
 		StringBuilder buffer = new StringBuilder(256);
 		visitDepthFirst(root, true, true, node ->
