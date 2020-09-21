@@ -9,10 +9,12 @@ class `uk.blankaspect.common.basictree.AbstractNode` .
 The generator performs the reverse operation, transforming a tree of `AbstractNode`s into JSON text, with some control
 over the formatting of the output.
 
-The tree of `AbstractNode`s can be traversed with the methods of the `uk.blankaspect.common.tree.TreeUtils` class.
+A tree of `AbstractNode`s can be traversed with the methods of the `uk.blankaspect.common.tree.TreeUtils` class.
 
 The Java version of the source code is 1.8 \(Java SE 8\).
 
 All the source files in this repo have a tab width of 4. 
 
-You may use any of the source code under the terms of the MIT license.
+----
+
+You may use the contents of this repository under the terms of the MIT license.
