@@ -1280,7 +1280,7 @@ public class ListNode
 	 * @return the list node that was created from <i>elements</i> and added to the elements of this list node.
 	 */
 
-	public ListNode addList(Iterable<AbstractNode> elements)
+	public ListNode addList(Iterable<? extends AbstractNode> elements)
 	{
 		ListNode node = new ListNode(elements);
 		add(node);
