@@ -25,6 +25,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import java.util.stream.Stream;
+
 //----------------------------------------------------------------------
 
 
@@ -329,7 +331,7 @@ public class ListNode
 
 	public boolean isEmpty()
 	{
-		return (elements.size() == 0);
+		return elements.isEmpty();
 	}
 
 	//------------------------------------------------------------------
@@ -533,6 +535,38 @@ public class ListNode
 	//------------------------------------------------------------------
 
 	/**
+	 * Returns a list of the elements of this list node that are {@linkplain BooleanNode Boolean nodes}.
+	 *
+	 * @return a list of the elements of this list node that are Boolean nodes.
+	 */
+
+	public List<BooleanNode> booleanNodes()
+	{
+		List<BooleanNode> nodes = new ArrayList<>();
+		for (AbstractNode element : elements)
+		{
+			if (element instanceof BooleanNode)
+				nodes.add((BooleanNode)element);
+		}
+		return nodes;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns a stream of the elements of this list node that are {@linkplain BooleanNode Boolean nodes}.
+	 *
+	 * @return a stream of the elements of this list node that are Boolean nodes.
+	 */
+
+	public Stream<BooleanNode> booleanStream()
+	{
+		return booleanNodes().stream();
+	}
+
+	//------------------------------------------------------------------
+
+	/**
 	 * Returns the underlying values of the elements of this list node as an array of {@code boolean}s.
 	 *
 	 * @return an array of the underlying {@code boolean} values of the elements of this list node.
@@ -541,7 +575,6 @@ public class ListNode
 	 */
 
 	public boolean[] getBooleanArray()
-		throws NodeTypeException
 	{
 		boolean[] outValues = new boolean[elements.size()];
 		for (int i = 0; i < outValues.length; i++)
@@ -570,7 +603,6 @@ public class ListNode
 	 */
 
 	public List<Boolean> getBooleanList()
-		throws NodeTypeException
 	{
 		List<Boolean> outValues = new ArrayList<>();
 		for (AbstractNode element : elements)
@@ -588,6 +620,38 @@ public class ListNode
 	//------------------------------------------------------------------
 
 	/**
+	 * Returns a list of the elements of this list node that are {@linkplain IntNode 'int' nodes}.
+	 *
+	 * @return a list of the elements of this list node that are 'int' nodes.
+	 */
+
+	public List<IntNode> intNodes()
+	{
+		List<IntNode> nodes = new ArrayList<>();
+		for (AbstractNode element : elements)
+		{
+			if (element instanceof IntNode)
+				nodes.add((IntNode)element);
+		}
+		return nodes;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns a stream of the elements of this list node that are {@linkplain IntNode 'int' nodes}.
+	 *
+	 * @return a stream of the elements of this list node that are 'int' nodes.
+	 */
+
+	public Stream<IntNode> intStream()
+	{
+		return intNodes().stream();
+	}
+
+	//------------------------------------------------------------------
+
+	/**
 	 * Returns the underlying values of the elements of this list node as an array of {@code int}s.
 	 *
 	 * @return an array of the underlying {@code int} values of the elements of this list node.
@@ -596,7 +660,6 @@ public class ListNode
 	 */
 
 	public int[] getIntArray()
-		throws NodeTypeException
 	{
 		int[] outValues = new int[elements.size()];
 		for (int i = 0; i < outValues.length; i++)
@@ -625,7 +688,6 @@ public class ListNode
 	 */
 
 	public List<Integer> getIntList()
-		throws NodeTypeException
 	{
 		List<Integer> outValues = new ArrayList<>();
 		for (AbstractNode element : elements)
@@ -643,6 +705,38 @@ public class ListNode
 	//------------------------------------------------------------------
 
 	/**
+	 * Returns a list of the elements of this list node that are {@linkplain LongNode 'long' nodes}.
+	 *
+	 * @return a list of the elements of this list node that are 'long' nodes.
+	 */
+
+	public List<LongNode> longNodes()
+	{
+		List<LongNode> nodes = new ArrayList<>();
+		for (AbstractNode element : elements)
+		{
+			if (element instanceof LongNode)
+				nodes.add((LongNode)element);
+		}
+		return nodes;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns a stream of the elements of this list node that are {@linkplain LongNode 'long' nodes}.
+	 *
+	 * @return a stream of the elements of this list node that are 'long' nodes.
+	 */
+
+	public Stream<LongNode> longStream()
+	{
+		return longNodes().stream();
+	}
+
+	//------------------------------------------------------------------
+
+	/**
 	 * Returns the underlying values of the elements of this list node as an array of {@code long}s.
 	 *
 	 * @return an array of the underlying {@code long} values of the elements of this list node.
@@ -651,7 +745,6 @@ public class ListNode
 	 */
 
 	public long[] getLongArray()
-		throws NodeTypeException
 	{
 		long[] outValues = new long[elements.size()];
 		for (int i = 0; i < outValues.length; i++)
@@ -680,7 +773,6 @@ public class ListNode
 	 */
 
 	public List<Long> getLongList()
-		throws NodeTypeException
 	{
 		List<Long> outValues = new ArrayList<>();
 		for (AbstractNode element : elements)
@@ -708,7 +800,6 @@ public class ListNode
 	 */
 
 	public long[] getIntOrLongArray()
-		throws NodeTypeException
 	{
 		long[] outValues = new long[elements.size()];
 		for (int i = 0; i < outValues.length; i++)
@@ -740,7 +831,6 @@ public class ListNode
 	 */
 
 	public List<Long> getIntOrLongList()
-		throws NodeTypeException
 	{
 		List<Long> outValues = new ArrayList<>();
 		for (AbstractNode element : elements)
@@ -759,6 +849,38 @@ public class ListNode
 	//------------------------------------------------------------------
 
 	/**
+	 * Returns a list of the elements of this list node that are {@linkplain DoubleNode 'double' nodes}.
+	 *
+	 * @return a list of the elements of this list node that are 'double' nodes.
+	 */
+
+	public List<DoubleNode> doubleNodes()
+	{
+		List<DoubleNode> nodes = new ArrayList<>();
+		for (AbstractNode element : elements)
+		{
+			if (element instanceof DoubleNode)
+				nodes.add((DoubleNode)element);
+		}
+		return nodes;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns a stream of the elements of this list node that are {@linkplain DoubleNode 'double' nodes}.
+	 *
+	 * @return a stream of the elements of this list node that are 'double' nodes.
+	 */
+
+	public Stream<DoubleNode> doubleStream()
+	{
+		return doubleNodes().stream();
+	}
+
+	//------------------------------------------------------------------
+
+	/**
 	 * Returns the underlying values of the elements of this list node as an array of {@code double}s.
 	 *
 	 * @return an array of the underlying {@code double} values of the elements of this list node.
@@ -767,7 +889,6 @@ public class ListNode
 	 */
 
 	public double[] getDoubleArray()
-		throws NodeTypeException
 	{
 		double[] outValues = new double[elements.size()];
 		for (int i = 0; i < outValues.length; i++)
@@ -796,7 +917,6 @@ public class ListNode
 	 */
 
 	public List<Double> getDoubleList()
-		throws NodeTypeException
 	{
 		List<Double> outValues = new ArrayList<>();
 		for (AbstractNode element : elements)
@@ -814,6 +934,38 @@ public class ListNode
 	//------------------------------------------------------------------
 
 	/**
+	 * Returns a list of the elements of this list node that are {@linkplain StringNode string nodes}.
+	 *
+	 * @return a list of the elements of this list node that are string nodes.
+	 */
+
+	public List<StringNode> stringNodes()
+	{
+		List<StringNode> nodes = new ArrayList<>();
+		for (AbstractNode element : elements)
+		{
+			if (element instanceof StringNode)
+				nodes.add((StringNode)element);
+		}
+		return nodes;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns a stream of the elements of this list node that are {@linkplain StringNode string nodes}.
+	 *
+	 * @return a stream of the elements of this list node that are string nodes.
+	 */
+
+	public Stream<StringNode> stringStream()
+	{
+		return stringNodes().stream();
+	}
+
+	//------------------------------------------------------------------
+
+	/**
 	 * Returns the underlying values of the elements of this list node as an array of strings.
 	 *
 	 * @return an array of the underlying string values of the elements of this list node.
@@ -822,7 +974,6 @@ public class ListNode
 	 */
 
 	public String[] getStringArray()
-		throws NodeTypeException
 	{
 		String[] outValues = new String[elements.size()];
 		for (int i = 0; i < outValues.length; i++)
@@ -851,7 +1002,6 @@ public class ListNode
 	 */
 
 	public List<String> getStringList()
-		throws NodeTypeException
 	{
 		List<String> outValues = new ArrayList<>();
 		for (AbstractNode element : elements)
@@ -864,6 +1014,70 @@ public class ListNode
 			outValues.add(((StringNode)element).getValue());
 		}
 		return outValues;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns a list of the elements of this list node that are {@linkplain ListNode list nodes}.
+	 *
+	 * @return a list of the elements of this list node that are list nodes.
+	 */
+
+	public List<ListNode> listNodes()
+	{
+		List<ListNode> nodes = new ArrayList<>();
+		for (AbstractNode element : elements)
+		{
+			if (element instanceof ListNode)
+				nodes.add((ListNode)element);
+		}
+		return nodes;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns a stream of the elements of this list node that are {@linkplain ListNode list nodes}.
+	 *
+	 * @return a stream of the elements of this list node that are list nodes.
+	 */
+
+	public Stream<ListNode> listStream()
+	{
+		return listNodes().stream();
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns a list of the elements of this list node that are {@linkplain MapNode map nodes}.
+	 *
+	 * @return a list of the elements of this list node that are map nodes.
+	 */
+
+	public List<MapNode> mapNodes()
+	{
+		List<MapNode> nodes = new ArrayList<>();
+		for (AbstractNode element : elements)
+		{
+			if (element instanceof MapNode)
+				nodes.add((MapNode)element);
+		}
+		return nodes;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns a stream of the elements of this list node that are {@linkplain MapNode map nodes}.
+	 *
+	 * @return a stream of the elements of this list node that are map nodes.
+	 */
+
+	public Stream<MapNode> mapStream()
+	{
+		return mapNodes().stream();
 	}
 
 	//------------------------------------------------------------------
