@@ -360,7 +360,7 @@ public class MapNode
 
 		public int getIndex(MapNode mapNode)
 		{
-			int index = indices.containsKey(mapNode) ? indices.get(mapNode) : 0;
+			int index = indices.getOrDefault(mapNode, 0);
 			indices.put(mapNode, index + 1);
 			return index;
 		}
@@ -1548,7 +1548,7 @@ public class MapNode
 											  String   key,
 											  E        defaultValue)
 	{
-		return getEnumValue(cls, key, value -> value.name(), defaultValue);
+		return getEnumValue(cls, key, Enum::name, defaultValue);
 	}
 
 	//------------------------------------------------------------------
