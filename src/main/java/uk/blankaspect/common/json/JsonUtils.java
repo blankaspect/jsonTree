@@ -25,8 +25,13 @@ import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 
 import java.nio.file.Files;
+import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+
+import java.nio.file.attribute.FileAttribute;
+import java.nio.file.attribute.PosixFileAttributes;
+import java.nio.file.attribute.PosixFilePermissions;
 
 import uk.blankaspect.common.basictree.AbstractNode;
 
@@ -47,8 +52,8 @@ public class JsonUtils
 //  Constants
 ////////////////////////////////////////////////////////////////////////
 
-	/** The string that is prefixed to the name of a temporary file. */
-	private static final	String	TEMPORARY_FILENAME_PREFIX	= "_$_";
+	/** The filename extension of a temporary file. */
+	public static final	String	TEMPORARY_FILENAME_EXTENSION	= ".$tmp";
 
 ////////////////////////////////////////////////////////////////////////
 //  Constructors
@@ -73,7 +78,7 @@ public class JsonUtils
 	 *
 	 * @param  node
 	 *           the node of interest.
-	 * @return {@code true} if <i>node</i> represents a JSON value; {@code false} otherwise.
+	 * @return {@code true} if {@code node} represents a JSON value; {@code false} otherwise.
 	 */
 
 	public static boolean isJsonValue(AbstractNode node)
@@ -89,7 +94,7 @@ public class JsonUtils
 	 *
 	 * @param  node
 	 *           the node of interest.
-	 * @return {@code true} if <i>node</i> represents a JSON null, Boolean, number or string; {@code false} otherwise.
+	 * @return {@code true} if {@code node} represents a JSON null, Boolean, number or string; {@code false} otherwise.
 	 */
 
 	public static boolean isSimpleJsonValue(AbstractNode node)
@@ -105,7 +110,7 @@ public class JsonUtils
 	 *
 	 * @param  node
 	 *           the node of interest.
-	 * @return {@code true} if <i>node</i> represents a JSON array or object; {@code false} otherwise.
+	 * @return {@code true} if {@code node} represents a JSON array or object; {@code false} otherwise.
 	 */
 
 	public static boolean isJsonContainer(AbstractNode node)
@@ -122,8 +127,8 @@ public class JsonUtils
 	 * @param  file
 	 *           the file that will be searched.
 	 * @param  target
-	 *           the sequence of characters that will be searched for in <i>file</i>.
-	 * @return {@code true} if <i>file</i> contains <i>target</i>.
+	 *           the sequence of characters that will be searched for in {@code file}.
+	 * @return {@code true} if {@code file} contains {@code target}.
 	 * @throws IOException
 	 *           if an error occurred when reading the file.
 	 */
@@ -138,30 +143,10 @@ public class JsonUtils
 		if (target == null)
 			throw new IllegalArgumentException("Null target");
 
-		// Open character stream on file and search for target in stream
-		BufferedReader reader = null;
-		try
+		// Search for target in character stream and return the result
+		try (BufferedReader reader = Files.newBufferedReader(file))
 		{
-			// Open character stream on file
-			reader = Files.newBufferedReader(file);
-
-			// Search for target in character stream and return the result
 			return containsText(reader, target);
-		}
-		finally
-		{
-			// Close stream
-			if (reader != null)
-			{
-				try
-				{
-					reader.close();
-				}
-				catch (IOException e)
-				{
-					// ignore
-				}
-			}
 		}
 	}
 
@@ -173,8 +158,8 @@ public class JsonUtils
 	 * @param  inputStream
 	 *           the character stream that will be searched.
 	 * @param  target
-	 *           the sequence of characters that will be searched for in <i>inputStream</i>.
-	 * @return {@code true} if <i>target</i> is found in <i>inputStream</i>.
+	 *           the sequence of characters that will be searched for in {@code inputSteam}.
+	 * @return {@code true} if {@code target} is found in {@code inputStream}.
 	 * @throws IOException
 	 *           if an error occurred when reading from the input stream.
 	 */
@@ -295,7 +280,7 @@ public class JsonUtils
 	 *
 	 * @param  file
 	 *           the file whose content will be parsed as JSON text.
-	 * @return the JSON value that results from parsing the content of <i>file</i>, if the file contains valid JSON
+	 * @return the JSON value that results from parsing the content of {@code file}, if the file contains valid JSON
 	 *         text.
 	 * @throws IOException
 	 *           if an error occurred when reading the file.
@@ -306,29 +291,9 @@ public class JsonUtils
 	public static AbstractNode readFile(Path file)
 		throws IOException, JsonParser.ParseException
 	{
-		BufferedReader reader = null;
-		try
+		try (BufferedReader reader = Files.newBufferedReader(file))
 		{
-			// Open character stream on file
-			reader = Files.newBufferedReader(file);
-
-			// Parse character stream as JSON text and return the resulting JSON value
 			return new JsonParser().parse(reader);
-		}
-		finally
-		{
-			// Close stream
-			if (reader != null)
-			{
-				try
-				{
-					reader.close();
-				}
-				catch (IOException e)
-				{
-					// ignore
-				}
-			}
 		}
 	}
 
@@ -340,7 +305,7 @@ public class JsonUtils
 	 *
 	 * @param  file
 	 *           the file that will be read.
-	 * @return the text content of <i>file</i>.
+	 * @return the text content of {@code file}.
 	 * @throws IOException
 	 *           if an error occurred when reading the file.
 	 */
@@ -361,9 +326,9 @@ public class JsonUtils
 	 * the specified file, and the new file is then renamed to the specified file.
 	 *
 	 * @param  file
-	 *           the file to which the JSON text of <i>value</i> will be written.
+	 *           the file to which the JSON text of {@code value} will be written.
 	 * @param  value
-	 *           the JSON value whose JSON text will be written to <i>file</i>.
+	 *           the JSON value whose JSON text will be written to {@code file}.
 	 * @throws IOException
 	 *           if an error occurred when writing the file.
 	 */
@@ -383,11 +348,11 @@ public class JsonUtils
 	 * new file is then renamed to the specified file.
 	 *
 	 * @param  file
-	 *           the file to which the JSON text of <i>value</i> will be written.
+	 *           the file to which the JSON text of {@code value} will be written.
 	 * @param  value
-	 *           the JSON value whose JSON text will be written to <i>file</i>.
+	 *           the JSON value whose JSON text will be written to {@code file}.
 	 * @param  generator
-	 *           the object that will generate the JSON text for <i>value</i>.
+	 *           the object that will generate the JSON text for {@code value}.
 	 * @throws IOException
 	 *           if an error occurred when writing the file.
 	 */
@@ -408,11 +373,11 @@ public class JsonUtils
 	 * new file in the parent directory of the specified file, and the new file is then renamed to the specified file.
 	 *
 	 * @param  file
-	 *           the file to which <i>text</i> will be written.
+	 *           the file to which {@code text} will be written.
 	 * @param  text
-	 *           the text that will be written to <i>file</i>.
+	 *           the text that will be written to {@code file}.
 	 * @throws IOException
-	 *           if an error occurred when writing the file.
+	 *           if an error occurred when reading permissions of an existing file or when writing the file.
 	 */
 
 	public static void writeText(Path   file,
@@ -422,13 +387,29 @@ public class JsonUtils
 		Path tempFile = null;
 		try
 		{
+			// Read file permissions of an existing file
+			FileAttribute<?>[] attrs = {};
+			if (Files.exists(file))
+			{
+				try
+				{
+					PosixFileAttributes posixAttrs = Files.readAttributes(file, PosixFileAttributes.class);
+					attrs = new FileAttribute<?>[] { PosixFilePermissions.asFileAttribute(posixAttrs.permissions()) };
+				}
+				catch (UnsupportedOperationException e)
+				{
+					// ignore
+				}
+			}
+
 			// Create the parent directories of the output file
 			Path parent = file.toAbsolutePath().getParent();
 			if (parent != null)
 				Files.createDirectories(parent);
 
 			// Create a temporary file in the parent directory of the output file
-			tempFile = Files.createTempFile(parent, TEMPORARY_FILENAME_PREFIX, null);
+			tempFile = tempLocation(file);
+			Files.createFile(tempFile, attrs);
 
 			// Write the text to the temporary file
 			Files.write(tempFile, text.getBytes(StandardCharsets.UTF_8));
@@ -445,6 +426,67 @@ public class JsonUtils
 			if ((tempFile != null) && Files.exists(tempFile))
 				Files.delete(tempFile);
 		}
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns a temporary file-system location that has the same parent directory as the specified location.
+	 *
+	 * @param  location
+	 *           the file-system location for which a temporary location is sought.
+	 * @return a temporary file-system location that has the same parent directory as {@code location}.
+	 */
+
+	public static Path tempLocation(Path location)
+	{
+		// Get input name
+		String inName = location.getFileName().toString();
+
+		// Get parent of input location
+		Path parent = location.getParent();
+
+		// Find an output name that does not conflict with an existing name
+		Path outLocation = null;
+		int index = 0;
+		while (true)
+		{
+			String outName = inName + indexToTempSuffix(index++);
+			outLocation = (parent == null) ? Path.of(outName) : parent.resolve(outName);
+			if (!Files.exists(outLocation, LinkOption.NOFOLLOW_LINKS))
+				break;
+			++index;
+		}
+
+		// Return output location
+		return outLocation;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns a temporary-filename suffix for the specified index.
+	 *
+	 * @param  index
+	 *           the index for which a temporary-filename suffix is desired.
+	 * @return a temporary-filename suffix for {@code index}.
+	 */
+
+	private static String indexToTempSuffix(int index)
+	{
+		String prefix = "";
+		String str = Integer.toString(index);
+		switch (str.length())
+		{
+		case 1:
+			prefix = "00";
+			break;
+
+		case 2:
+			prefix = "0";
+			break;
+		}
+		return "." + prefix + str + TEMPORARY_FILENAME_EXTENSION;
 	}
 
 	//------------------------------------------------------------------
