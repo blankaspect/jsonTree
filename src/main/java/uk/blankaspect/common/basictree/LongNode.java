@@ -19,6 +19,7 @@ package uk.blankaspect.common.basictree;
 
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 //----------------------------------------------------------------------
@@ -60,7 +61,8 @@ public class LongNode
 	 *          the value of the 'long' node.
 	 */
 
-	public LongNode(long value)
+	public LongNode(
+		long	value)
 	{
 		// Call alternative constructor
 		this(null, value);
@@ -77,8 +79,9 @@ public class LongNode
 	 *          the value of the 'long' node.
 	 */
 
-	public LongNode(AbstractNode parent,
-					long         value)
+	public LongNode(
+		AbstractNode	parent,
+		long			value)
 	{
 		// Call superclass constructor
 		super(parent);
@@ -99,10 +102,11 @@ public class LongNode
 	 *
 	 * @param  values
 	 *           the values for which 'long' nodes will be created.
-	 * @return a list of 'long' nodes whose underlying values are <i>values</i>.
+	 * @return a list of 'long' nodes whose underlying values are {@code values}.
 	 */
 
-	public static List<LongNode> valuesToNodes(long... values)
+	public static List<LongNode> valuesToNodes(
+		long...	values)
 	{
 		List<LongNode> outValues = new ArrayList<>();
 		for (long value : values)
@@ -118,15 +122,58 @@ public class LongNode
 	 *
 	 * @param  values
 	 *           the values for which 'long' nodes will be created.
-	 * @return a list of 'long' nodes whose underlying values are <i>values</i>.
+	 * @return a list of 'long' nodes whose underlying values are {@code values}.
 	 */
 
-	public static List<LongNode> valuesToNodes(Iterable<Long> values)
+	public static List<LongNode> valuesToNodes(
+		Iterable<Long>	values)
 	{
 		List<LongNode> outValues = new ArrayList<>();
 		for (Long value : values)
 			outValues.add(new LongNode(value));
 		return outValues;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns an array whose elements are the values of the specified {@linkplain LongNode 'long' nodes}, with the
+	 * order of the elements preserved.
+	 *
+	 * @param  nodes
+	 *           the 'long' nodes whose values will be extracted into an array.
+	 * @return an array whose elements are the values of {@code nodes}.
+	 */
+
+	public static long[] nodesToArray(
+		Collection<? extends LongNode>	nodes)
+	{
+		int numNodes = nodes.size();
+		long[] values = new long[numNodes];
+		int index = 0;
+		for (LongNode node : nodes)
+			values[index++] = node.getValue();
+		return values;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns a list whose elements are the values of the specified {@linkplain LongNode 'long' nodes}, with the order
+	 * of the elements preserved.
+	 *
+	 * @param  nodes
+	 *           the 'long' nodes whose values will be extracted into a list.
+	 * @return a list whose elements are the values of {@code nodes}.
+	 */
+
+	public static List<Long> nodesToList(
+		Iterable<? extends LongNode>	nodes)
+	{
+		List<Long> values = new ArrayList<>();
+		for (LongNode node : nodes)
+			values.add(node.getValue());
+		return values;
 	}
 
 	//------------------------------------------------------------------
@@ -168,14 +215,15 @@ public class LongNode
 	 *
 	 * @param  obj
 	 *           the object with which this 'long' node will be compared.
-	 * @return {@code true} if <i>obj</i> is an instance of {@code LongNode} <i>and</i> it has the same value as this
+	 * @return {@code true} if {@code obj} is an instance of {@code LongNode} <i>and</i> it has the same value as this
 	 *         'long' node; {@code false} otherwise.
 	 */
 
 	@Override
-	public boolean equals(Object obj)
+	public boolean equals(
+		Object	obj)
 	{
-		return (obj == this) || ((obj instanceof LongNode) && (value == ((LongNode)obj).value));
+		return (obj == this) || ((obj instanceof LongNode other) && (value == other.value));
 	}
 
 	//------------------------------------------------------------------

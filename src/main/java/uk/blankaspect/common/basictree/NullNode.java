@@ -59,7 +59,8 @@ public class NullNode
 	 *          the parent of the null node.
 	 */
 
-	public NullNode(AbstractNode parent)
+	public NullNode(
+		AbstractNode	parent)
 	{
 		// Call superclass constructor
 		super(parent);
@@ -103,11 +104,12 @@ public class NullNode
 	 *
 	 * @param  obj
 	 *           the object with which this null node will be compared.
-	 * @return {@code true} if <i>obj</i> is an instance of {@code NullNode}; {@code false} otherwise.
+	 * @return {@code true} if {@code obj} is an instance of {@code NullNode}; {@code false} otherwise.
 	 */
 
 	@Override
-	public boolean equals(Object obj)
+	public boolean equals(
+		Object	obj)
 	{
 		return (obj instanceof NullNode);
 	}

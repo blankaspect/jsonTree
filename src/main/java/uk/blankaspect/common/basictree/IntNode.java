@@ -19,6 +19,7 @@ package uk.blankaspect.common.basictree;
 
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 //----------------------------------------------------------------------
@@ -60,7 +61,8 @@ public class IntNode
 	 *          the value of the 'int' node.
 	 */
 
-	public IntNode(int value)
+	public IntNode(
+		int	value)
 	{
 		// Call alternative constructor
 		this(null, value);
@@ -77,8 +79,9 @@ public class IntNode
 	 *          the value of the 'int' node.
 	 */
 
-	public IntNode(AbstractNode parent,
-				   int          value)
+	public IntNode(
+		AbstractNode	parent,
+		int				value)
 	{
 		// Call superclass constructor
 		super(parent);
@@ -99,10 +102,11 @@ public class IntNode
 	 *
 	 * @param  values
 	 *           the values for which 'int' nodes will be created.
-	 * @return a list of 'int' nodes whose underlying values are <i>values</i>.
+	 * @return a list of 'int' nodes whose underlying values are {@code values}.
 	 */
 
-	public static List<IntNode> valuesToNodes(int... values)
+	public static List<IntNode> valuesToNodes(
+		int...	values)
 	{
 		List<IntNode> outValues = new ArrayList<>();
 		for (int value : values)
@@ -118,15 +122,58 @@ public class IntNode
 	 *
 	 * @param  values
 	 *           the values for which 'int' nodes will be created.
-	 * @return a list of 'int' nodes whose underlying values are <i>values</i>.
+	 * @return a list of 'int' nodes whose underlying values are {@code values}.
 	 */
 
-	public static List<IntNode> valuesToNodes(Iterable<Integer> values)
+	public static List<IntNode> valuesToNodes(
+		Iterable<Integer>	values)
 	{
 		List<IntNode> outValues = new ArrayList<>();
 		for (Integer value : values)
 			outValues.add(new IntNode(value));
 		return outValues;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns an array whose elements are the values of the specified {@linkplain IntNode 'int' nodes}, with the order
+	 * of the elements preserved.
+	 *
+	 * @param  nodes
+	 *           the 'int' nodes whose values will be extracted into an array.
+	 * @return an array whose elements are the values of {@code nodes}.
+	 */
+
+	public static int[] nodesToArray(
+		Collection<? extends IntNode>	nodes)
+	{
+		int numNodes = nodes.size();
+		int[] values = new int[numNodes];
+		int index = 0;
+		for (IntNode node : nodes)
+			values[index++] = node.getValue();
+		return values;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns a list whose elements are the values of the specified {@linkplain IntNode 'int' nodes}, with the order of
+	 * the elements preserved.
+	 *
+	 * @param  nodes
+	 *           the 'int' nodes whose values will be extracted into a list.
+	 * @return a list whose elements are the values of {@code nodes}.
+	 */
+
+	public static List<Integer> nodesToList(
+		Iterable<? extends IntNode>	nodes)
+	{
+		List<Integer> values = new ArrayList<>();
+		for (IntNode node : nodes)
+			values.add(node.getValue());
+		return values;
 	}
 
 	//------------------------------------------------------------------
@@ -168,14 +215,15 @@ public class IntNode
 	 *
 	 * @param  obj
 	 *           the object with which this 'int' node will be compared.
-	 * @return {@code true} if <i>obj</i> is an instance of {@code IntNode} <i>and</i> it has the same value as this
+	 * @return {@code true} if {@code obj} is an instance of {@code IntNode} <i>and</i> it has the same value as this
 	 *         'int' node; {@code false} otherwise.
 	 */
 
 	@Override
-	public boolean equals(Object obj)
+	public boolean equals(
+		Object	obj)
 	{
-		return (obj == this) || ((obj instanceof IntNode) && (value == ((IntNode)obj).value));
+		return (obj == this) || ((obj instanceof IntNode other) && (value == other.value));
 	}
 
 	//------------------------------------------------------------------

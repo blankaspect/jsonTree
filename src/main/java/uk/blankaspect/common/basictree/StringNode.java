@@ -19,6 +19,7 @@ package uk.blankaspect.common.basictree;
 
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 //----------------------------------------------------------------------
@@ -103,10 +104,11 @@ public class StringNode
 	 * @param  value
 	 *           the value of the string node.
 	 * @throws IllegalArgumentException
-	 *           if <i>value</i> is {@code null}.
+	 *           if {@code value} is {@code null}.
 	 */
 
-	public StringNode(String value)
+	public StringNode(
+		String	value)
 	{
 		// Call alternative constructor
 		this(null, value);
@@ -122,11 +124,12 @@ public class StringNode
 	 * @param  value
 	 *           the value of the string node.
 	 * @throws IllegalArgumentException
-	 *           if <i>value</i> is {@code null}.
+	 *           if {@code value} is {@code null}.
 	 */
 
-	public StringNode(AbstractNode parent,
-					  String       value)
+	public StringNode(
+		AbstractNode	parent,
+		String			value)
 	{
 		// Call superclass constructor
 		super(parent);
@@ -151,10 +154,11 @@ public class StringNode
 	 *
 	 * @param  ch
 	 *           the character whose string representation of its Unicode value is required.
-	 * @return the representation of the Unicode value of <i>ch</i> as a string of four hexadecimal-digit characters.
+	 * @return the representation of the Unicode value of {@code ch} as a string of four hexadecimal-digit characters.
 	 */
 
-	public static String charToUnicodeHex(char ch)
+	public static String charToUnicodeHex(
+		char	ch)
 	{
 		int code = ch;
 		char[] digits = new char[4];
@@ -174,10 +178,11 @@ public class StringNode
 	 *
 	 * @param  ch
 	 *           the character whose Unicode escape sequence is required.
-	 * @return the Unicode escape sequence of <i>ch</i>.
+	 * @return the Unicode escape sequence of {@code ch}.
 	 */
 
-	public static String unicodeEscape(char ch)
+	public static String unicodeEscape(
+		char	ch)
 	{
 		return ESCAPE_PREFIX + UNICODE_ESCAPE_CHAR + charToUnicodeHex(ch);
 	}
@@ -265,11 +270,12 @@ public class StringNode
 	 *
 	 * @param  seq
 	 *           the character sequence that will be escaped.
-	 * @return a string in which each character in <i>seq</i> that must be escaped or is greater than U+007E is
+	 * @return a string in which each character in {@code seq} that must be escaped or is greater than U+007E is
 	 *         replaced by an escape sequence.
 	 */
 
-	public static String escape(CharSequence seq)
+	public static String escape(
+		CharSequence	seq)
 	{
 		// Initialise buffer for output string
 		int inLength = seq.length();
@@ -321,10 +327,11 @@ public class StringNode
 	 *
 	 * @param  seq
 	 *           the character sequence that will be escaped and quoted.
-	 * @return a string consisting of <i>seq</i> escaped and enclosed in quotation marks.
+	 * @return a string consisting of {@code seq} escaped and enclosed in quotation marks.
 	 */
 
-	public static String escapeAndQuote(CharSequence seq)
+	public static String escapeAndQuote(
+		CharSequence	seq)
 	{
 		return START_CHAR + escape(seq) + END_CHAR;
 	}
@@ -337,10 +344,11 @@ public class StringNode
 	 *
 	 * @param  values
 	 *           the values for which string nodes will be created.
-	 * @return a list of string nodes whose underlying values are <i>values</i>.
+	 * @return a list of string nodes whose underlying values are {@code values}.
 	 */
 
-	public static List<StringNode> valuesToNodes(String... values)
+	public static List<StringNode> valuesToNodes(
+		String...	values)
 	{
 		List<StringNode> outValues = new ArrayList<>();
 		for (String value : values)
@@ -356,15 +364,58 @@ public class StringNode
 	 *
 	 * @param  values
 	 *           the values for which string nodes will be created.
-	 * @return a list of string nodes whose underlying values are <i>values</i>.
+	 * @return a list of string nodes whose underlying values are {@code values}.
 	 */
 
-	public static List<StringNode> valuesToNodes(Iterable<String> values)
+	public static List<StringNode> valuesToNodes(
+		Iterable<String>	values)
 	{
 		List<StringNode> outValues = new ArrayList<>();
 		for (String value : values)
 			outValues.add(new StringNode(value));
 		return outValues;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns an array whose elements are the values of the specified {@linkplain StringNode string nodes}, with the
+	 * order of the elements preserved.
+	 *
+	 * @param  nodes
+	 *           the string nodes whose values will be extracted into an array.
+	 * @return an array whose elements are the values of {@code nodes}.
+	 */
+
+	public static String[] nodesToArray(
+		Collection<? extends StringNode>	nodes)
+	{
+		int numNodes = nodes.size();
+		String[] values = new String[numNodes];
+		int index = 0;
+		for (StringNode node : nodes)
+			values[index++] = node.getValue();
+		return values;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns a list whose elements are the values of the specified {@linkplain StringNode string nodes}, with the
+	 * order of the elements preserved.
+	 *
+	 * @param  nodes
+	 *           the string nodes whose values will be extracted into a list.
+	 * @return a list whose elements are the values of {@code nodes}.
+	 */
+
+	public static List<String> nodesToList(
+		Iterable<? extends StringNode>	nodes)
+	{
+		List<String> values = new ArrayList<>();
+		for (StringNode node : nodes)
+			values.add(node.getValue());
+		return values;
 	}
 
 	//------------------------------------------------------------------
@@ -406,14 +457,15 @@ public class StringNode
 	 *
 	 * @param  obj
 	 *           the object with which this string node will be compared.
-	 * @return {@code true} if <i>obj</i> is an instance of {@code StringNode} <i>and</i> it has the same value as this
+	 * @return {@code true} if {@code obj} is an instance of {@code StringNode} <i>and</i> it has the same value as this
 	 *         string node; {@code false} otherwise.
 	 */
 
 	@Override
-	public boolean equals(Object obj)
+	public boolean equals(
+		Object	obj)
 	{
-		return (obj == this) || ((obj instanceof StringNode) && (value.equals(((StringNode)obj).value)));
+		return (obj == this) || ((obj instanceof StringNode other) && value.equals(other.value));
 	}
 
 	//------------------------------------------------------------------

@@ -19,6 +19,7 @@ package uk.blankaspect.common.basictree;
 
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 //----------------------------------------------------------------------
@@ -60,7 +61,8 @@ public class DoubleNode
 	 *          the value of the 'double' node.
 	 */
 
-	public DoubleNode(double value)
+	public DoubleNode(
+		double	value)
 	{
 		// Call alternative constructor
 		this(null, value);
@@ -77,8 +79,9 @@ public class DoubleNode
 	 *          the value of the 'double' node.
 	 */
 
-	public DoubleNode(AbstractNode parent,
-					  double       value)
+	public DoubleNode(
+		AbstractNode	parent,
+		double			value)
 	{
 		// Call superclass constructor
 		super(parent);
@@ -99,10 +102,11 @@ public class DoubleNode
 	 *
 	 * @param  values
 	 *           the values for which 'double' nodes will be created.
-	 * @return a list of 'double' nodes whose underlying values are <i>values</i>.
+	 * @return a list of 'double' nodes whose underlying values are {@code values}.
 	 */
 
-	public static List<DoubleNode> valuesToNodes(double... values)
+	public static List<DoubleNode> valuesToNodes(
+		double...	values)
 	{
 		List<DoubleNode> outValues = new ArrayList<>();
 		for (double value : values)
@@ -118,15 +122,58 @@ public class DoubleNode
 	 *
 	 * @param  values
 	 *           the values for which 'double' nodes will be created.
-	 * @return a list of 'double' nodes whose underlying values are <i>values</i>.
+	 * @return a list of 'double' nodes whose underlying values are {@code values}.
 	 */
 
-	public static List<DoubleNode> valuesToNodes(Iterable<Double> values)
+	public static List<DoubleNode> valuesToNodes(
+		Iterable<Double>	values)
 	{
 		List<DoubleNode> outValues = new ArrayList<>();
 		for (Double value : values)
 			outValues.add(new DoubleNode(value));
 		return outValues;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns an array whose elements are the values of the specified {@linkplain DoubleNode 'double' nodes}, with the
+	 * order of the elements preserved.
+	 *
+	 * @param  nodes
+	 *           the 'double' nodes whose values will be extracted into an array.
+	 * @return an array whose elements are the values of {@code nodes}.
+	 */
+
+	public static double[] nodesToArray(
+		Collection<? extends DoubleNode>	nodes)
+	{
+		int numNodes = nodes.size();
+		double[] values = new double[numNodes];
+		int index = 0;
+		for (DoubleNode node : nodes)
+			values[index++] = node.getValue();
+		return values;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns a list whose elements are the values of the specified {@linkplain DoubleNode 'double' nodes}, with the
+	 * order of the elements preserved.
+	 *
+	 * @param  nodes
+	 *           the 'double' nodes whose values will be extracted into a list.
+	 * @return a list whose elements are the values of {@code nodes}.
+	 */
+
+	public static List<Double> nodesToList(
+		Iterable<? extends DoubleNode>	nodes)
+	{
+		List<Double> values = new ArrayList<>();
+		for (DoubleNode node : nodes)
+			values.add(node.getValue());
+		return values;
 	}
 
 	//------------------------------------------------------------------
@@ -168,14 +215,15 @@ public class DoubleNode
 	 *
 	 * @param  obj
 	 *           the object with which this 'double' node will be compared.
-	 * @return {@code true} if <i>obj</i> is an instance of {@code DoubleNode} <i>and</i> it has the same value as this
+	 * @return {@code true} if {@code obj} is an instance of {@code DoubleNode} <i>and</i> it has the same value as this
 	 *         'double' node; {@code false} otherwise.
 	 */
 
 	@Override
-	public boolean equals(Object obj)
+	public boolean equals(
+		Object	obj)
 	{
-		return (obj == this) || ((obj instanceof DoubleNode) && (value == ((DoubleNode)obj).value));
+		return (obj == this) || ((obj instanceof DoubleNode other) && (value == other.value));
 	}
 
 	//------------------------------------------------------------------

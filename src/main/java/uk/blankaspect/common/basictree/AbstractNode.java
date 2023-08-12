@@ -67,7 +67,8 @@ public abstract class AbstractNode
 	 *          the parent of the node.
 	 */
 
-	protected AbstractNode(AbstractNode parent)
+	protected AbstractNode(
+		AbstractNode	parent)
 	{
 		// Initialise instance variables
 		this.parent = parent;
@@ -189,7 +190,8 @@ public abstract class AbstractNode
 	 *          parent.
 	 */
 
-	public void setParent(AbstractNode parent)
+	public void setParent(
+		AbstractNode	parent)
 	{
 		this.parent = parent;
 	}
@@ -205,9 +207,9 @@ public abstract class AbstractNode
 
 	public int getListIndex()
 	{
-		if (parent instanceof ListNode)
+		if (parent instanceof ListNode listNode)
 		{
-			List<AbstractNode> elements = ((ListNode)parent).getElements();
+			List<AbstractNode> elements = listNode.getElements();
 			for (int i = 0; i < elements.size(); i++)
 			{
 				if (elements.get(i) == this)
@@ -229,12 +231,11 @@ public abstract class AbstractNode
 
 	public String getMapKey()
 	{
-		if (parent instanceof MapNode)
+		if (parent instanceof MapNode mapNode)
 		{
-			MapNode node = (MapNode)parent;
-			for (String name : node.getKeys())
+			for (String name : mapNode.getKeys())
 			{
-				if (node.get(name) == this)
+				if (mapNode.get(name) == this)
 					return name;
 			}
 		}

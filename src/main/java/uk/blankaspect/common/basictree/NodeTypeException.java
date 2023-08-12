@@ -44,7 +44,8 @@ public class NodeTypeException
 	 *          the node type that will be associated with this exception.
 	 */
 
-	public NodeTypeException(NodeType nodeType)
+	public NodeTypeException(
+		NodeType	nodeType)
 	{
 		// Call superclass constructor
 		super(nodeType.toString());

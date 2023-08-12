@@ -19,6 +19,7 @@ package uk.blankaspect.common.basictree;
 
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 //----------------------------------------------------------------------
@@ -66,7 +67,8 @@ public class BooleanNode
 	 *          the value of the Boolean node.
 	 */
 
-	public BooleanNode(boolean value)
+	public BooleanNode(
+		boolean	value)
 	{
 		// Call alternative constructor
 		this(null, value);
@@ -83,8 +85,9 @@ public class BooleanNode
 	 *          the value of the Boolean node.
 	 */
 
-	public BooleanNode(AbstractNode parent,
-					   boolean      value)
+	public BooleanNode(
+		AbstractNode	parent,
+		boolean			value)
 	{
 		// Call superclass constructor
 		super(parent);
@@ -105,10 +108,11 @@ public class BooleanNode
 	 *
 	 * @param  values
 	 *           the values for which Boolean nodes will be created.
-	 * @return a list of Boolean nodes whose underlying values are <i>values</i>.
+	 * @return a list of Boolean nodes whose underlying values are {@code values}.
 	 */
 
-	public static List<BooleanNode> valuesToNodes(boolean... values)
+	public static List<BooleanNode> valuesToNodes(
+		boolean...	values)
 	{
 		List<BooleanNode> outValues = new ArrayList<>();
 		for (boolean value : values)
@@ -124,15 +128,58 @@ public class BooleanNode
 	 *
 	 * @param  values
 	 *           the values for which Boolean nodes will be created.
-	 * @return a list of Boolean nodes whose underlying values are <i>values</i>.
+	 * @return a list of Boolean nodes whose underlying values are {@code values}.
 	 */
 
-	public static List<BooleanNode> valuesToNodes(Iterable<Boolean> values)
+	public static List<BooleanNode> valuesToNodes(
+		Iterable<Boolean>	values)
 	{
 		List<BooleanNode> outValues = new ArrayList<>();
 		for (Boolean value : values)
 			outValues.add(new BooleanNode(value));
 		return outValues;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns an array whose elements are the values of the specified {@linkplain BooleanNode Boolean nodes}, with the
+	 * order of the elements preserved.
+	 *
+	 * @param  nodes
+	 *           the Boolean nodes whose values will be extracted into an array.
+	 * @return an array whose elements are the values of {@code nodes}.
+	 */
+
+	public static boolean[] nodesToArray(
+		Collection<? extends BooleanNode>	nodes)
+	{
+		int numNodes = nodes.size();
+		boolean[] values = new boolean[numNodes];
+		int index = 0;
+		for (BooleanNode node : nodes)
+			values[index++] = node.getValue();
+		return values;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns a list whose elements are the values of the specified {@linkplain BooleanNode Boolean nodes}, with the
+	 * order of the elements preserved.
+	 *
+	 * @param  nodes
+	 *           the Boolean nodes whose values will be extracted into a list.
+	 * @return a list whose elements are the values of {@code nodes}.
+	 */
+
+	public static List<Boolean> nodesToList(
+		Iterable<? extends BooleanNode>	nodes)
+	{
+		List<Boolean> values = new ArrayList<>();
+		for (BooleanNode node : nodes)
+			values.add(node.getValue());
+		return values;
 	}
 
 	//------------------------------------------------------------------
@@ -174,14 +221,15 @@ public class BooleanNode
 	 *
 	 * @param  obj
 	 *           the object with which this Boolean node will be compared.
-	 * @return {@code true} if <i>obj</i> is an instance of {@code BooleanNode} <i>and</i> it has the same value as this
-	 *         Boolean node ; {@code false} otherwise.
+	 * @return {@code true} if {@code obj} is an instance of {@code BooleanNode} <i>and</i> it has the same value as
+	 *         this Boolean node ; {@code false} otherwise.
 	 */
 
 	@Override
-	public boolean equals(Object obj)
+	public boolean equals(
+		Object	obj)
 	{
-		return (obj == this) || ((obj instanceof BooleanNode) && (value == ((BooleanNode)obj).value));
+		return (obj == this) || ((obj instanceof BooleanNode other) && (value == other.value));
 	}
 
 	//------------------------------------------------------------------

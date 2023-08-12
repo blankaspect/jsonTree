@@ -156,185 +156,6 @@ public class JsonParser
 	}
 
 ////////////////////////////////////////////////////////////////////////
-//  Member classes : non-inner classes
-////////////////////////////////////////////////////////////////////////
-
-
-	// CLASS: PARSE EXCEPTION
-
-
-	/**
-	 * This class implements an exception that is thrown if an error occurs when parsing JSON text.
-	 */
-
-	public static class ParseException
-		extends Exception
-	{
-
-	////////////////////////////////////////////////////////////////////
-	//  Instance variables
-	////////////////////////////////////////////////////////////////////
-
-		/** The zero-based index of the line of the input text at which the exception occurred. */
-		private	int	lineIndex;
-
-		/** The zero-based index of the column of the input text at which the exception occurred. */
-		private	int	columnIndex;
-
-	////////////////////////////////////////////////////////////////////
-	//  Constructors
-	////////////////////////////////////////////////////////////////////
-
-		/**
-		 * Creates a new instance of an exception with the specified message, line index, column index and optional
-		 * replacements for placeholders in the message.
-		 *
-		 * @param message
-		 *          the message of the exception.
-		 * @param lineIndex
-		 *          the zero-based index of the line at which the exception occurred.
-		 * @param columnIndex
-		 *          the zero-based index of the column at which the exception occurred.
-		 * @param replacements
-		 *          the text that will replace placeholders in <i>message</i>.
-		 */
-
-		private ParseException(String    message,
-							   int       lineIndex,
-							   int       columnIndex,
-							   Object... replacements)
-		{
-			// Call alternative constructor
-			this(message, null, lineIndex, columnIndex, replacements);
-		}
-
-		//--------------------------------------------------------------
-
-		/**
-		 * Creates a new instance of an exception with the specified message, cause, line index, column index and
-		 * optional replacements for placeholders in the message.
-		 *
-		 * @param message
-		 *          the message of the exception.
-		 * @param cause
-		 *          the underlying cause of the exception, which may be {@code null}.
-		 * @param lineIndex
-		 *          the zero-based index of the line at which the exception occurred.
-		 * @param columnIndex
-		 *          the zero-based index of the column at which the exception occurred.
-		 * @param replacements
-		 *          the text that will replace placeholders in <i>message</i>.
-		 */
-
-		private ParseException(String    message,
-							   Throwable cause,
-							   int       lineIndex,
-							   int       columnIndex,
-							   Object... replacements)
-		{
-			// Call superclass constructor
-			super("(" + (lineIndex + 1) + ", " + (columnIndex + 1) + "): " + String.format(message, replacements),
-				  cause);
-
-			// Initialise instance variables
-			this.lineIndex = lineIndex;
-			this.columnIndex = columnIndex;
-		}
-
-		//--------------------------------------------------------------
-
-	////////////////////////////////////////////////////////////////////
-	//  Instance methods
-	////////////////////////////////////////////////////////////////////
-
-		/**
-		 * Returns the zero-based index of the line of the input text at which the exception occurred.
-		 *
-		 * @return the zero-based index of the line of the input text at which the exception occurred.
-		 * @see    #getColumnIndex()
-		 */
-
-		public int getLineIndex()
-		{
-			return lineIndex;
-		}
-
-		//--------------------------------------------------------------
-
-		/**
-		 * Returns the zero-based index of the column of the input text at which the exception occurred.
-		 *
-		 * @return the zero-based index of the column of the input text at which the exception occurred.
-		 * @see    #getLineIndex()
-		 */
-
-		public int getColumnIndex()
-		{
-			return columnIndex;
-		}
-
-		//--------------------------------------------------------------
-
-	}
-
-	//==================================================================
-
-
-	// CLASS: JSON OBJECT PROPERTY NAME
-
-
-	/**
-	 * This class encapsulates the name of a property of a JSON object and its location in the input text.
-	 */
-
-	private static class PropertyName
-	{
-
-	////////////////////////////////////////////////////////////////////
-	//  Instance variables
-	////////////////////////////////////////////////////////////////////
-
-		/** The name of a property of a JSON object. */
-		private	String	name;
-
-		/** The index of the property name in the input text. */
-		private	int		index;
-
-		/** The index of the line containing the property name in the input text. */
-		private	int		lineIndex;
-
-	////////////////////////////////////////////////////////////////////
-	//  Constructors
-	////////////////////////////////////////////////////////////////////
-
-		/**
-		 * Creates a new instance of a property-name object.
-		 *
-		 * @param name
-		 *          the name of a property of a JSON object.
-		 * @param index
-		 *          the index of the property name in the input text.
-		 * @param lineIndex
-		 *          the index of the line containing the property name in the input text.
-		 */
-
-		private PropertyName(String name,
-							 int    index,
-							 int    lineIndex)
-		{
-			// Initialise instance variables
-			this.name = name;
-			this.index = index;
-			this.lineIndex = lineIndex;
-		}
-
-		//--------------------------------------------------------------
-
-	}
-
-	//==================================================================
-
-////////////////////////////////////////////////////////////////////////
 //  Instance variables
 ////////////////////////////////////////////////////////////////////////
 
@@ -395,10 +216,11 @@ public class JsonParser
 	 *
 	 * @param  ch
 	 *           the character that will be tested.
-	 * @return {@code true} if <i>ch</i> is whitespace.
+	 * @return {@code true} if {@code ch} is whitespace.
 	 */
 
-	private static boolean isWhitespace(char ch)
+	private static boolean isWhitespace(
+		char	ch)
 	{
 		return (WHITESPACE.indexOf(ch) >= 0);
 	}
@@ -411,10 +233,11 @@ public class JsonParser
 	 *
 	 * @param  ch
 	 *           the character that will be tested.
-	 * @return {@code true} if <i>ch</i> is whitespace or a structural character.
+	 * @return {@code true} if {@code ch} is whitespace or a structural character.
 	 */
 
-	private static boolean isValueTerminator(char ch)
+	private static boolean isValueTerminator(
+		char	ch)
 	{
 		return (VALUE_TERMINATORS.indexOf(ch) >= 0);
 	}
@@ -435,7 +258,8 @@ public class JsonParser
 	 *          be stored as a {@code double}.
 	 */
 
-	public void setStoreExcessiveIntegerAsFP(boolean storeExcessiveIntegerAsFP)
+	public void setStoreExcessiveIntegerAsFP(
+		boolean	storeExcessiveIntegerAsFP)
 	{
 		this.storeExcessiveIntegerAsFP = storeExcessiveIntegerAsFP;
 	}
@@ -448,12 +272,13 @@ public class JsonParser
 	 *
 	 * @param  text
 	 *           the text that will be parsed as JSON text.
-	 * @return the tree of JSON values that was created from parsing <i>text</i>.
+	 * @return the tree of JSON values that was created from parsing {@code text}.
 	 * @throws ParseException
 	 *           if an error occurred when parsing the input text.
 	 */
 
-	public AbstractNode parse(CharSequence text)
+	public AbstractNode parse(
+		CharSequence	text)
 		throws ParseException
 	{
 		// Validate argument
@@ -497,12 +322,13 @@ public class JsonParser
 	 *
 	 * @param  inputStream
 	 *           the byte stream from which the JSON text will be read.
-	 * @return the tree of JSON values that was created from parsing the text that was read from <i>inputStream</i>.
+	 * @return the tree of JSON values that was created from parsing the text that was read from {@code inputStream}.
 	 * @throws ParseException
 	 *           if an error occurred when parsing the input text.
 	 */
 
-	public AbstractNode parse(InputStream inputStream)
+	public AbstractNode parse(
+		InputStream	inputStream)
 		throws ParseException
 	{
 		return parse(inputStream, StandardCharsets.UTF_8);
@@ -518,14 +344,15 @@ public class JsonParser
 	 * @param  inputStream
 	 *           the byte stream from which the JSON text will be read.
 	 * @param  encoding
-	 *           the character encoding of <i>inputStream</i>; if {@code null}, the UTF-8 encoding will be used.
-	 * @return the tree of JSON values that was created from parsing the text that was read from <i>inputStream</i>.
+	 *           the character encoding of {@code inputStream}; if {@code null}, the UTF-8 encoding will be used.
+	 * @return the tree of JSON values that was created from parsing the text that was read from {@code inputStream}.
 	 * @throws ParseException
 	 *           if an error occurred when parsing the input text.
 	 */
 
-	public AbstractNode parse(InputStream inputStream,
-							  Charset     encoding)
+	public AbstractNode parse(
+		InputStream	inputStream,
+		Charset		encoding)
 		throws ParseException
 	{
 		// Validate argument
@@ -545,12 +372,13 @@ public class JsonParser
 	 *
 	 * @param  inputStream
 	 *           the character stream from which the JSON text will be read.
-	 * @return the tree of JSON values that was created from parsing the text that was read from <i>inputStream</i>.
+	 * @return the tree of JSON values that was created from parsing the text that was read from {@code inputStream}.
 	 * @throws ParseException
 	 *           if an error occurred when parsing the input text.
 	 */
 
-	public AbstractNode parse(Reader inputStream)
+	public AbstractNode parse(
+		Reader	inputStream)
 		throws ParseException
 	{
 		// Validate argument
@@ -1177,7 +1005,8 @@ public class JsonParser
 	 *          the next character from the input stream.
 	 */
 
-	private void newLine(char ch)
+	private void newLine(
+		char	ch)
 	{
 		if (ch == '\n')
 		{
@@ -1198,7 +1027,8 @@ public class JsonParser
 	 * @throws ParseException
 	 */
 
-	private void throwNumberException(char ch)
+	private void throwNumberException(
+		char	ch)
 		throws ParseException
 	{
 		// Get string representation of index of character
@@ -1460,7 +1290,8 @@ public class JsonParser
 	 *           if an error occurred when parsing the JSON string.
 	 */
 
-	private boolean parseString(char ch)
+	private boolean parseString(
+		char	ch)
 		throws ParseException
 	{
 		// Test for end of string
@@ -1545,6 +1376,188 @@ public class JsonParser
 	}
 
 	//------------------------------------------------------------------
+
+////////////////////////////////////////////////////////////////////////
+//  Member classes : non-inner classes
+////////////////////////////////////////////////////////////////////////
+
+
+	// CLASS: PARSE EXCEPTION
+
+
+	/**
+	 * This class implements an exception that is thrown if an error occurs when parsing JSON text.
+	 */
+
+	public static class ParseException
+		extends Exception
+	{
+
+	////////////////////////////////////////////////////////////////////
+	//  Instance variables
+	////////////////////////////////////////////////////////////////////
+
+		/** The zero-based index of the line of the input text at which the exception occurred. */
+		private	int	lineIndex;
+
+		/** The zero-based index of the column of the input text at which the exception occurred. */
+		private	int	columnIndex;
+
+	////////////////////////////////////////////////////////////////////
+	//  Constructors
+	////////////////////////////////////////////////////////////////////
+
+		/**
+		 * Creates a new instance of an exception with the specified message, line index, column index and optional
+		 * replacements for placeholders in the message.
+		 *
+		 * @param message
+		 *          the message of the exception.
+		 * @param lineIndex
+		 *          the zero-based index of the line at which the exception occurred.
+		 * @param columnIndex
+		 *          the zero-based index of the column at which the exception occurred.
+		 * @param replacements
+		 *          the objects whose string representations will replace placeholders in {@code message}.
+		 */
+
+		private ParseException(
+			String		message,
+			int			lineIndex,
+			int			columnIndex,
+			Object...	replacements)
+		{
+			// Call alternative constructor
+			this(message, null, lineIndex, columnIndex, replacements);
+		}
+
+		//--------------------------------------------------------------
+
+		/**
+		 * Creates a new instance of an exception with the specified message, cause, line index, column index and
+		 * optional replacements for placeholders in the message.
+		 *
+		 * @param message
+		 *          the message of the exception.
+		 * @param cause
+		 *          the underlying cause of the exception, which may be {@code null}.
+		 * @param lineIndex
+		 *          the zero-based index of the line at which the exception occurred.
+		 * @param columnIndex
+		 *          the zero-based index of the column at which the exception occurred.
+		 * @param replacements
+		 *          the objects whose string representations will replace placeholders in {@code message}.
+		 */
+
+		private ParseException(
+			String		message,
+			Throwable	cause,
+			int			lineIndex,
+			int			columnIndex,
+			Object...	replacements)
+		{
+			// Call superclass constructor
+			super("(" + (lineIndex + 1) + ", " + (columnIndex + 1) + "): " + String.format(message, replacements),
+				  cause);
+
+			// Initialise instance variables
+			this.lineIndex = lineIndex;
+			this.columnIndex = columnIndex;
+		}
+
+		//--------------------------------------------------------------
+
+	////////////////////////////////////////////////////////////////////
+	//  Instance methods
+	////////////////////////////////////////////////////////////////////
+
+		/**
+		 * Returns the zero-based index of the line of the input text at which the exception occurred.
+		 *
+		 * @return the zero-based index of the line of the input text at which the exception occurred.
+		 * @see    #getColumnIndex()
+		 */
+
+		public int getLineIndex()
+		{
+			return lineIndex;
+		}
+
+		//--------------------------------------------------------------
+
+		/**
+		 * Returns the zero-based index of the column of the input text at which the exception occurred.
+		 *
+		 * @return the zero-based index of the column of the input text at which the exception occurred.
+		 * @see    #getLineIndex()
+		 */
+
+		public int getColumnIndex()
+		{
+			return columnIndex;
+		}
+
+		//--------------------------------------------------------------
+
+	}
+
+	//==================================================================
+
+
+	// CLASS: JSON OBJECT PROPERTY NAME
+
+
+	/**
+	 * This class encapsulates the name of a property of a JSON object and its location in the input text.
+	 */
+
+	private static class PropertyName
+	{
+
+	////////////////////////////////////////////////////////////////////
+	//  Instance variables
+	////////////////////////////////////////////////////////////////////
+
+		/** The name of a property of a JSON object. */
+		private	String	name;
+
+		/** The index of the property name in the input text. */
+		private	int		index;
+
+		/** The index of the line containing the property name in the input text. */
+		private	int		lineIndex;
+
+	////////////////////////////////////////////////////////////////////
+	//  Constructors
+	////////////////////////////////////////////////////////////////////
+
+		/**
+		 * Creates a new instance of a property-name object.
+		 *
+		 * @param name
+		 *          the name of a property of a JSON object.
+		 * @param index
+		 *          the index of the property name in the input text.
+		 * @param lineIndex
+		 *          the index of the line containing the property name in the input text.
+		 */
+
+		private PropertyName(
+			String	name,
+			int		index,
+			int		lineIndex)
+		{
+			// Initialise instance variables
+			this.name = name;
+			this.index = index;
+			this.lineIndex = lineIndex;
+		}
+
+		//--------------------------------------------------------------
+
+	}
+
+	//==================================================================
 
 }
 

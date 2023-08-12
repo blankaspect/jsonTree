@@ -19,6 +19,7 @@ package uk.blankaspect.common.tree;
 
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Deque;
 import java.util.Iterator;
@@ -28,8 +29,6 @@ import java.util.List;
 import java.util.function.BiPredicate;
 import java.util.function.Function;
 import java.util.function.Predicate;
-
-import java.util.stream.Collectors;
 
 //----------------------------------------------------------------------
 
@@ -68,8 +67,8 @@ public class TreeUtils
 	 * @param  <T>
 	 *           the type of the nodes of the tree.
 	 * @param  node
-	 *           the node whose root ancestor is required.
-	 * @return the root node of the tree to which <i>node</i> belongs.
+	 *           the node whose root ancestor is desired.
+	 * @return the root node of the tree to which {@code node} belongs.
 	 */
 
 	public static <T extends ITreeNode<T>> T getRoot(
@@ -92,8 +91,8 @@ public class TreeUtils
 	 * @param  <T>
 	 *           the type of the nodes of the tree.
 	 * @param  node
-	 *           the node whose siblings are required.
-	 * @return a list of the siblings of <i>node</i>.
+	 *           the node whose siblings are desired.
+	 * @return a list of the siblings of {@code node}.
 	 */
 
 	public static <T extends ITreeNode<T>> List<T> getSiblings(
@@ -104,7 +103,7 @@ public class TreeUtils
 								: parent.getChildren().stream()
 														.filter(child -> (child != node))
 														.map(child -> child)
-														.collect(Collectors.toList());
+														.toList();
 	}
 
 	//------------------------------------------------------------------
@@ -115,10 +114,10 @@ public class TreeUtils
 	 * @param  <T>
 	 *           the type of the nodes of the tree.
 	 * @param  node
-	 *           the node that is a potential ancestor of <i>target</i>.
+	 *           the node that is a potential ancestor of {@code target}.
 	 * @param  target
-	 *           the node that is a potential descendant of <i>node</i>.
-	 * @return {@code true} if <i>node</i> is an ancestor of <i>target</i>.
+	 *           the node that is a potential descendant of {@code node}.
+	 * @return {@code true} if {@code node} is an ancestor of {@code target}.
 	 */
 
 	public static <T extends ITreeNode<T>> boolean isAncestor(
@@ -137,18 +136,18 @@ public class TreeUtils
 	 * @param  <T>
 	 *           the type of the nodes of the tree.
 	 * @param  node
-	 *           the node that is a potential ancestor of <i>target</i> or (if <i>testForIdentity</i> is {@code true})
-	 *           is potentially identical to <i>target</i>.
+	 *           the node that is a potential ancestor of {@code target} or (if {@code testForIdentity} is {@code true})
+	 *           is potentially identical to {@code target}.
 	 * @param  target
-	 *           the node that is a potential descendant of <i>node</i> or (if <i>testForIdentity</i> is {@code true})
-	 *           is potentially identical to <i>node</i>.
+	 *           the node that is a potential descendant of {@code node} or (if {@code testForIdentity} is {@code true})
+	 *           is potentially identical to {@code node}.
 	 * @param  testForIdentity
-	 *           if {@code true}, <i>node</i> and <i>target</i> will be tested for identity as well as for an
+	 *           if {@code true}, {@code node} and {@code target} will be tested for identity as well as for an
 	 *           ancestor&ndash;descendant relationship.
 	 * @return {@code true} if
 	 * 		   <ul>
-	 *           <li><i>node</i> is the ancestor of <i>target</i>, or</li>
-	 *           <li><i>testForIdentity</i> is {@code true} and <i>node</i> is identical to <i>target</i>.</li>
+	 *           <li>{@code node} is the ancestor of {@code target}, or</li>
+	 *           <li>{@code testForIdentity} is {@code true} and {@code node} is identical to {@code target}.</li>
 	 * 		   </ul>
 	 */
 
@@ -176,8 +175,8 @@ public class TreeUtils
 	 * @param  <T>
 	 *           the type of the nodes of the tree.
 	 * @param  node
-	 *           the node whose depth is required.
-	 * @return the depth of <i>node</i>.
+	 *           the node whose depth is desired.
+	 * @return the depth of {@code node}.
 	 * @see    #getDepth(ITreeNode, ITreeNode)
 	 */
 
@@ -204,10 +203,10 @@ public class TreeUtils
 	 * @param  <T>
 	 *           the type of the nodes of the tree.
 	 * @param  root
-	 *           the root of the tree node whose depth is required.
+	 *           the root of the tree node whose depth is desired.
 	 * @param  node
-	 *           the node whose depth below <i>root</i> is required.
-	 * @return the depth of <i>node</i> below <i>root</i>, or -1 if <i>root</i> is not an ancestor of <i>node</i>.
+	 *           the node whose depth below {@code root} is desired.
+	 * @return the depth of {@code node} below {@code root}, or -1 if {@code root} is not an ancestor of {@code node}.
 	 * @see    #getDepth(ITreeNode)
 	 */
 
@@ -248,8 +247,8 @@ public class TreeUtils
 	 * @param  <T>
 	 *           the type of the nodes of the tree.
 	 * @param  node
-	 *           the node whose path is required.
-	 * @return a list of nodes that denotes the path to <i>node</i> from the root of the tree to which it belongs.
+	 *           the node whose path is desired.
+	 * @return a list of nodes that denotes the path to {@code node} from the root of the tree to which it belongs.
 	 * @see    #getPath(ITreeNode, ITreeNode)
 	 */
 
@@ -283,11 +282,11 @@ public class TreeUtils
 	 * @param  <T>
 	 *           the type of the nodes of the tree.
 	 * @param  root
-	 *           the node at which the path will start, unless it is not an ancestor of <i>node</i>.
+	 *           the node at which the path will start, unless it is not an ancestor of {@code node}.
 	 * @param  node
-	 *           the node whose path is required.
-	 * @return a list of nodes that denotes the path from <i>root</i> to <i>node</i>, or, if <i>root</i> is not an
-	 *         ancestor of <i>node</i>, the path to <i>node</i> from the root of the tree to which it belongs.
+	 *           the node whose path is desired.
+	 * @return a list of nodes that denotes the path from {@code root} to {@code node}, or, if {@code root} is not an
+	 *         ancestor of {@code node}, the path to {@code node} from the root of the tree to which it belongs.
 	 * @see    #getPath(ITreeNode)
 	 */
 
@@ -321,10 +320,10 @@ public class TreeUtils
 	 * @param  <T>
 	 *           the type of the nodes of the tree.
 	 * @param  node
-	 *           the node whose indices are required.
+	 *           the node whose indices are desired.
 	 * @param  baseIndex
 	 *           the base index that is added to each valid index in the list of indices.
-	 * @return a list of nodes that denotes the path to <i>node</i> from the root of the tree to which it belongs.
+	 * @return a list of nodes that denotes the path to {@code node} from the root of the tree to which it belongs.
 	 * @see    #getPath(ITreeNode)
 	 */
 
@@ -363,22 +362,22 @@ public class TreeUtils
 	 * If the specified root node is not an ancestor of the target node, the list of indices will start at
 	 * </p>
 	 * <ul>
-	 *   <li>the root of the tree to which the target node belongs, if <i>includeRoot</i> is {@code true}, or</li>
+	 *   <li>the root of the tree to which the target node belongs, if {@code includeRoot} is {@code true}, or</li>
 	 *   <li>the ancestor of the target node that is a child of the root of the tree to which the target node belongs,
-	 *       if <i>includeRoot</i> is {@code false}.</li>
+	 *       if {@code includeRoot} is {@code false}.</li>
 	 * </ul>
 	 *
 	 * @param  <T>
 	 *           the type of the nodes of the tree.
 	 * @param  root
-	 *           the node at which the indices will start, unless it is not an ancestor of <i>node</i>.
+	 *           the node at which the indices will start, unless it is not an ancestor of {@code node}.
 	 * @param  node
-	 *           the node whose indices are required.
+	 *           the node whose indices are desired.
 	 * @param  includeRoot
-	 *           the index of <i>root</i> will be included in the list of indices.
+	 *           the index of {@code root} will be included in the list of indices.
 	 * @param  baseIndex
 	 *           the base index that is added to each valid index in the list of indices.
-	 * @return a list of nodes that denotes the path from <i>root</i> to <i>node</i>.
+	 * @return a list of nodes that denotes the path from {@code root} to {@code node}.
 	 * @see    #getPath(ITreeNode)
 	 */
 
@@ -421,11 +420,11 @@ public class TreeUtils
 	 * @param  root
 	 *           the node at the root of a tree of {@code ITreeNode}s at which the search will start.
 	 * @param  path
-	 *           a path descriptor whose elements are tested sequentially against <i>root</i> and its descendants with
-	 *           <i>matcher</i>.
+	 *           a path descriptor whose elements are tested sequentially against {@code root} and its descendants with
+	 *           {@code matcher}.
 	 * @param  matcher
-	 *           the matcher that tests a node against an element of <i>path</i>.
-	 * @return the node that matches <i>path</i>, or {@code null} if no matching node is found.
+	 *           the matcher that tests a node against an element of {@code path}.
+	 * @return the node that matches {@code path}, or {@code null} if no matching node is found.
 	 */
 
 	public static <T extends ITreeNode<T>, U> T findNode(
@@ -461,16 +460,18 @@ public class TreeUtils
 	 * @param  <T>
 	 *           the type of the nodes of the tree.
 	 * @param  root
-	 *           the node at the root of a tree of {@code ITreeNode}s, each of which will have <i>action</i> applied to
+	 *           the node at the root of a tree of {@code ITreeNode}s, each of which will have {@code action} applied to
 	 *           it.
 	 * @param  preorder
 	 *           if {@code true}, each node will be visited <i>before</i> its descendants; otherwise, each node will be
 	 *           visited <i>after</i> its descendants.
 	 * @param  includeRoot
-	 *           if {@code true}, <i>root</i> will have <i>action</i> applied to it.
+	 *           if {@code true}, {@code root} will have {@code action} applied to it.
 	 * @param  action
-	 *           the action that will be applied to each node of the tree that is visited.
-	 * @return {@code true} if the traversal of the tree was completed.
+	 *           the action that will be applied to each node of the tree that is visited.  If the action returns {@code
+	 *           false}, the traversal of the tree will be terminated.
+	 * @return {@code false} if the traversal of the tree was terminated by {@code action}, possibly before all nodes
+	 *         were visited; {@code true} otherwise.
 	 */
 
 	public static <T extends ITreeNode<T>> boolean visitDepthFirst(
@@ -479,20 +480,88 @@ public class TreeUtils
 		boolean					includeRoot,
 		Function<T, Boolean>	action)
 	{
-		// Visit root (preorder)
-		if (includeRoot && preorder && !action.apply(root))
-			return false;
+		// Initialise stack
+		Deque<T> stack = new ArrayDeque<>();
 
-		// Visit descendants
-		for (T child : root.getChildren())
+		// Push root onto stack
+		stack.addFirst(root);
+
+		// Case: preorder
+		if (preorder)
 		{
-			if (!visitDepthFirst(child, preorder, true, action))
-				return false;
+			// While there are nodes on stack, visit them
+			while (!stack.isEmpty())
+			{
+				// Pop node from stack
+				T node = stack.removeFirst();
+
+				// Visit node
+				if (((node != root) || includeRoot) && !action.apply(node))
+					return false;
+
+				// Push children onto stack
+				List<T> children = node.getChildren();
+				for (int i = children.size() - 1; i >= 0; i--)
+					stack.addFirst(children.get(i));
+			}
 		}
 
-		// Visit root (postorder)
-		if (includeRoot && !preorder && !action.apply(root))
-			return false;
+		// Case: postorder
+		else
+		{
+			// Initialise list of pending nodes
+			List<T> pendingNodes = new ArrayList<>();
+
+			// While there are nodes on stack, visit them
+			while (!stack.isEmpty())
+			{
+				// Pop node from stack
+				T node = stack.removeFirst();
+
+				// Assume visit is not pending
+				boolean pending = false;
+
+				// If node is not excluded, visit it if visit is pending
+				if ((node != root) || includeRoot)
+				{
+					// Test whether visit is pending
+					for (int i = pendingNodes.size() - 1; i >= 0; i--)
+					{
+						if (pendingNodes.get(i) == node)
+						{
+							pending = true;
+							pendingNodes.remove(i);
+							break;
+						}
+					}
+
+					// If visit is pending, visit node ...
+					if (pending)
+					{
+						if (!action.apply(node))
+							return false;
+					}
+
+					// ... otherwise, push node back onto stack
+					else
+					{
+						// Add node to pending nodes
+						pendingNodes.add(node);
+
+						// Push node onto stack
+						stack.addFirst(node);
+					}
+				}
+
+				// If visit was not pending, push children onto stack
+				if (!pending)
+				{
+					List<T> children = node.getChildren();
+					for (int i = children.size() - 1; i >= 0; i--)
+						stack.addFirst(children.get(i));
+				}
+			}
+		}
 
 		// Indicate traversal completed
 		return true;
@@ -507,13 +576,15 @@ public class TreeUtils
 	 * @param  <T>
 	 *           the type of the nodes of the tree.
 	 * @param  root
-	 *           the node at the root of a tree of {@code ITreeNode}s, each of which will have <i>action</i> applied to
+	 *           the node at the root of a tree of {@code ITreeNode}s, each of which will have {@code action} applied to
 	 *           it.
 	 * @param  includeRoot
-	 *           if {@code true}, <i>root</i> will have <i>action</i> applied to it.
+	 *           if {@code true}, {@code root} will have {@code action} applied to it.
 	 * @param  action
-	 *           the action that will be applied to each node of the tree that is visited.
-	 * @return {@code true} if the traversal of the tree was completed.
+	 *           the action that will be applied to each node of the tree that is visited.  If the action returns {@code
+	 *           false}, the traversal of the tree will be terminated.
+	 * @return {@code false} if the traversal of the tree was terminated by {@code action}, possibly before all nodes
+	 *         were visited; {@code true} otherwise.
 	 */
 
 	public static <T extends ITreeNode<T>> boolean visitBreadthFirst(
@@ -521,27 +592,11 @@ public class TreeUtils
 		boolean					includeRoot,
 		Function<T, Boolean>	action)
 	{
-		@SuppressWarnings("unchecked")
-		final	T	ROOT_PLACEHOLDER	= (T)new ITreeNode<T>()
-		{
-			@Override
-			public T getParent()
-			{
-				return null;
-			}
-
-			@Override
-			public List<T> getChildren()
-			{
-				return null;
-			}
-		};
-
 		// Initialise queue
 		Deque<T> queue = new ArrayDeque<>(32);
 
-		// Add root or root placholder to queue
-		queue.addLast(includeRoot ? root : ROOT_PLACEHOLDER);
+		// Add root to queue
+		queue.addLast(root);
 
 		// While there are nodes to visit ...
 		while (!queue.isEmpty())
@@ -549,12 +604,8 @@ public class TreeUtils
 			// Get next node from queue
 			T node = queue.removeFirst();
 
-			// If node is root placholder, replace it with root ...
-			if (node == ROOT_PLACEHOLDER)
-				node = root;
-
-			// ... otherwise, visit node
-			else if (!action.apply(node))
+			// Visit node
+			if (((node != root) || includeRoot) && !action.apply(node))
 				return false;
 
 			// Add children of node to queue
@@ -577,8 +628,10 @@ public class TreeUtils
 	 * @param  startNode
 	 *           the node from which the ascent will start.
 	 * @param  action
-	 *           the action that will be applied to each node of the tree that is visited.
-	 * @return {@code true} if the ascent of the tree was completed.
+	 *           the action that will be applied to each node of the tree that is visited.  If the action returns {@code
+	 *           false}, the ascent of the tree will be terminated.
+	 * @return {@code false} if the ascent of the tree was terminated by {@code action}, possibly before all nodes were
+	 *         visited; {@code true} otherwise.
 	 */
 
 	public static <T extends ITreeNode<T>> boolean visitAscending(
@@ -599,13 +652,15 @@ public class TreeUtils
 	 * @param  startNode
 	 *           the node from which the ascent will start.
 	 * @param  endNode
-	 *           the node at which the ascent will end.  <i>endNode</i> is visited if <i>includeEnd</i> is {@code
-	 *           true}.  If <i>endNode</i> is {@code null}, <i>startNode</i> and all its ancestors will be visited.
+	 *           the node at which the ascent will end.  {@code endNode} is visited if {@code includeEnd} is {@code
+	 *           true}.  If {@code endNode} is {@code null}, {@code startNode} and all its ancestors will be visited.
 	 * @param  includeEnd
-	 *           if {@code true}, <i>endNode</i> will have <i>action</i> applied to it.
+	 *           if {@code true}, {@code endNode} will have {@code action} applied to it.
 	 * @param  action
-	 *           the action that will be applied to each node of the tree that is visited.
-	 * @return {@code true} if the ascent of the tree was completed.
+	 *           the action that will be applied to each node of the tree that is visited.  If the action returns {@code
+	 *           false}, the ascent of the tree will be terminated.
+	 * @return {@code false} if the ascent of the tree was terminated by {@code action}, possibly before all nodes were
+	 *         visited; {@code true} otherwise.
 	 */
 
 	public static <T extends ITreeNode<T>> boolean visitAscending(
@@ -647,8 +702,8 @@ public class TreeUtils
 	 * @param  startNode
 	 *           the node from which the ascent will start.
 	 * @param  test
-	 *           the test that will be applied to <i>startNode</i> and its ancestors.
-	 * @return {@code true} if and only if <i>startNode</i> or one of its ancestors satisfies <i>test</i>.
+	 *           the test that will be applied to {@code startNode} and its ancestors.
+	 * @return {@code true} if and only if {@code startNode} or one of its ancestors satisfies {@code test}.
 	 */
 
 	public static <T extends ITreeNode<T>> boolean testAscending(
@@ -674,10 +729,10 @@ public class TreeUtils
 	 *           if {@code true}, each node will be visited <i>before</i> its descendants; otherwise, each node will be
 	 *           visited <i>after</i> its descendants.
 	 * @param  includeRoot
-	 *           if {@code true}, <i>root</i> will be included in the search.
+	 *           if {@code true}, {@code root} will be included in the search.
 	 * @param  test
 	 *           the test that will be applied to each node of the tree that is visited until the test succeeds.
-	 * @return the first node that returns {@code true} when <i>test</i> is applied to it, or {@code null} if no node
+	 * @return the first node that returns {@code true} when {@code test} is applied to it, or {@code null} if no node
 	 *         satisfies the test.
 	 */
 
@@ -690,24 +745,94 @@ public class TreeUtils
 		// Initialise result
 		T result = null;
 
-		// Test root (preorder)
-		if (includeRoot && preorder && test.test(root))
-			result = root;
+		// Initialise stack
+		Deque<T> stack = new ArrayDeque<>();
 
-		// Test descendants
-		else
+		// Push root onto stack
+		stack.addFirst(root);
+
+		// Case: preorder
+		if (preorder)
 		{
-			for (T child : root.getChildren())
+			// While there are nodes on stack, visit them
+			while (!stack.isEmpty())
 			{
-				result = searchDepthFirst(child, preorder, true, test);
-				if (result != null)
+				// Pop node from stack
+				T node = stack.removeFirst();
+
+				// Test node
+				if (((node != root) || includeRoot) && test.test(node))
+				{
+					result = node;
 					break;
+				}
+
+				// Push children onto stack
+				List<T> children = node.getChildren();
+				for (int i = children.size() - 1; i >= 0; i--)
+					stack.addFirst(children.get(i));
 			}
 		}
 
-		// Test root (postorder)
-		if ((result == null) && includeRoot && !preorder && test.test(root))
-			result = root;
+		// Case: postorder
+		else
+		{
+			// Initialise list of pending nodes
+			List<T> pendingNodes = new ArrayList<>();
+
+			// While there are nodes on stack, visit them
+			while (!stack.isEmpty())
+			{
+				// Pop node from stack
+				T node = stack.removeFirst();
+
+				// Assume visit is not pending
+				boolean pending = false;
+
+				// If node is not excluded, visit it if visit is pending
+				if ((node != root) || includeRoot)
+				{
+					// Test whether visit is pending
+					for (int i = pendingNodes.size() - 1; i >= 0; i--)
+					{
+						if (pendingNodes.get(i) == node)
+						{
+							pending = true;
+							pendingNodes.remove(i);
+							break;
+						}
+					}
+
+					// If visit is pending, test node ...
+					if (pending)
+					{
+						if (test.test(node))
+						{
+							result = node;
+							break;
+						}
+					}
+
+					// ... otherwise, push node back onto stack
+					else
+					{
+						// Add node to pending nodes
+						pendingNodes.add(node);
+
+						// Push node onto stack
+						stack.addFirst(node);
+					}
+				}
+
+				// If visit was not pending, push children onto stack
+				if (!pending)
+				{
+					List<T> children = node.getChildren();
+					for (int i = children.size() - 1; i >= 0; i--)
+						stack.addFirst(children.get(i));
+				}
+			}
+		}
 
 		// Return result
 		return result;
@@ -726,10 +851,10 @@ public class TreeUtils
 	 * @param  root
 	 *           the node at which the search will start.
 	 * @param  includeRoot
-	 *           if {@code true}, <i>root</i> will be included in the search.
+	 *           if {@code true}, {@code root} will be included in the search.
 	 * @param  test
 	 *           the test that will be applied to each node of the tree that is visited until the test succeeds.
-	 * @return the first node that returns {@code true} when <i>test</i> is applied to it, or {@code null} if no node
+	 * @return the first node that returns {@code true} when {@code test} is applied to it, or {@code null} if no node
 	 *         satisfies the test.
 	 */
 
@@ -738,30 +863,14 @@ public class TreeUtils
 		boolean			includeRoot,
 		Predicate<T>	test)
 	{
-		@SuppressWarnings("unchecked")
-		final	T	ROOT_PLACEHOLDER	= (T)new ITreeNode<T>()
-		{
-			@Override
-			public T getParent()
-			{
-				return null;
-			}
-
-			@Override
-			public List<T> getChildren()
-			{
-				return null;
-			}
-		};
+		// Initialise result
+		T result = null;
 
 		// Initialise queue
 		Deque<T> queue = new ArrayDeque<>(32);
 
-		// Add root or root placeholder to queue
-		queue.addLast(includeRoot ? root : ROOT_PLACEHOLDER);
-
-		// Initialise result
-		T result = null;
+		// Add root to queue
+		queue.addLast(root);
 
 		// While there are nodes to visit ...
 		while (!queue.isEmpty())
@@ -769,12 +878,8 @@ public class TreeUtils
 			// Get next node from queue
 			T node = queue.removeFirst();
 
-			// If node is root placeholder, replace it with root ...
-			if (node == ROOT_PLACEHOLDER)
-				node = root;
-
-			// ... otherwise, test node
-			else if (test.test(node))
+			// Test node
+			if (((node != root) || includeRoot) && test.test(node))
 			{
 				result = node;
 				break;
@@ -802,7 +907,7 @@ public class TreeUtils
 	 *           the node from which the search will start.
 	 * @param  test
 	 *           the test that will be applied to each node of the tree that is visited until the test succeeds.
-	 * @return the first node that returns {@code true} when <i>test</i> is applied to it, or {@code null} if no node
+	 * @return the first node that returns {@code true} when {@code test} is applied to it, or {@code null} if no node
 	 *         satisfies the test.
 	 */
 
@@ -826,14 +931,14 @@ public class TreeUtils
 	 * @param  startNode
 	 *           the node from which the search will start.
 	 * @param  endNode
-	 *           the node at which the search will end.  <i>endNode</i> is included in the search if <i>includeEnd</i>
-	 *           is {@code true}.  If <i>endNode</i> is {@code null}, <i>startNode</i> and all its ancestors will be
+	 *           the node at which the search will end.  {@code endNode} is included in the search if {@code includeEnd}
+	 *           is {@code true}.  If {@code endNode} is {@code null}, {@code startNode} and all its ancestors will be
 	 *           included in the search.
 	 * @param  includeEnd
-	 *           if {@code true}, <i>endNode</i> will have <i>test</i> applied to it.
+	 *           if {@code true}, {@code endNode} will have {@code test} applied to it.
 	 * @param  test
 	 *           the test that will be applied to each node of the tree that is visited until the test succeeds.
-	 * @return the first node that returns {@code true} when <i>test</i> is applied to it, or {@code null} if no node
+	 * @return the first node that returns {@code true} when {@code test} is applied to it, or {@code null} if no node
 	 *         satisfies the test.
 	 */
 
@@ -850,7 +955,7 @@ public class TreeUtils
 		T node = startNode;
 		while (node != null)
 		{
-			// Apply test to the node
+			// Test node
 			if (((node != endNode) || includeEnd) && test.test(node))
 			{
 				result = node;
@@ -880,10 +985,10 @@ public class TreeUtils
 	 *           the node at the root of the tree.
 	 * @param  indentIncrement
 	 *           the number of spaces by which the indent of a line of text will be incremented for each level of the
-	 *           tree below <i>root</i>.
+	 *           tree below {@code root}.
 	 * @param  converter
 	 *           the function that will convert each node to its string representation.
-	 * @return a string representation of the tree whose root is <i>root</i>.
+	 * @return a string representation of the tree whose root is {@code root}.
 	 */
 
 	public static <T extends ITreeNode<T>> String treeToString(

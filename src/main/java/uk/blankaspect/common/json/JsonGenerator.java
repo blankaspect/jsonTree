@@ -93,7 +93,7 @@ public class JsonGenerator
 	}
 
 	/** The default mode of a generator. */
-	private static final	Mode	DEFAULT_MODE				= Mode.NORMAL;
+	private static final	Mode	DEFAULT_MODE	= Mode.NORMAL;
 
 	/** The default number of spaces by which indentation will be increased from one level to the next. */
 	private static final	int		DEFAULT_INDENT_INCREMENT	= 2;
@@ -151,7 +151,8 @@ public class JsonGenerator
 	 *          the JSON text.
 	 */
 
-	public JsonGenerator(Mode mode)
+	public JsonGenerator(
+		Mode	mode)
 	{
 		// Call alternative constructor
 		this(mode, false, DEFAULT_INDENT_INCREMENT, DEFAULT_MAX_LINE_LENGTH);
@@ -172,8 +173,9 @@ public class JsonGenerator
 	 *          non-whitespace text that precedes it.
 	 */
 
-	public JsonGenerator(Mode    mode,
-						 boolean openingBracketOnSameLine)
+	public JsonGenerator(
+		Mode	mode,
+		boolean	openingBracketOnSameLine)
 	{
 		// Call alternative constructor
 		this(mode, openingBracketOnSameLine, DEFAULT_INDENT_INCREMENT, DEFAULT_MAX_LINE_LENGTH);
@@ -199,10 +201,11 @@ public class JsonGenerator
 	 *          Mode#DENSE DENSE} or {@link Mode#COMPACT COMPACT}).
 	 */
 
-	public JsonGenerator(Mode    mode,
-						 boolean openingBracketOnSameLine,
-						 int     indentIncrement,
-						 int     maxLineLength)
+	public JsonGenerator(
+		Mode	mode,
+		boolean	openingBracketOnSameLine,
+		int		indentIncrement,
+		int		maxLineLength)
 	{
 		// Initialise instance variables
 		this.mode = mode;
@@ -235,7 +238,8 @@ public class JsonGenerator
 	 *           if any node in the tree whose root is <i>value</i> does not represent a JSON value.
 	 */
 
-	public String generate(AbstractNode value)
+	public String generate(
+		AbstractNode	value)
 	{
 		StringBuilder buffer = new StringBuilder(256);
 		appendValue(value, 0, buffer);
@@ -259,8 +263,9 @@ public class JsonGenerator
 	 * @return {@code true} if this generator should write the JSON text for {@ode value} on a single line.
 	 */
 
-	private boolean isValueOnSingleLine(AbstractNode value,
-										int          indent)
+	private boolean isValueOnSingleLine(
+		AbstractNode	value,
+		int				indent)
 	{
 		boolean singleLine = true;
 		if (isMultilineMode())
@@ -317,9 +322,10 @@ public class JsonGenerator
 	 *           if <i>value</i> does not represent a JSON value.
 	 */
 
-	private void appendValue(AbstractNode  value,
-							 int           indent,
-							 StringBuilder buffer)
+	private void appendValue(
+		AbstractNode	value,
+		int				indent,
+		StringBuilder	buffer)
 	{
 		// Update array of spaces for indent; append indent
 		if (isMultilineMode())
@@ -369,9 +375,10 @@ public class JsonGenerator
 	 *          the buffer to which the JSON text will be appended.
 	 */
 
-	private void appendArray(ListNode      array,
-							 int           indent,
-							 StringBuilder buffer)
+	private void appendArray(
+		ListNode		array,
+		int				indent,
+		StringBuilder	buffer)
 	{
 		// Get number of elements
 		int numElements = array.getNumElements();
@@ -537,9 +544,10 @@ public class JsonGenerator
 	 *          the buffer to which the JSON text will be appended.
 	 */
 
-	private void appendObject(MapNode       object,
-							  int           indent,
-							  StringBuilder buffer)
+	private void appendObject(
+		MapNode			object,
+		int				indent,
+		StringBuilder	buffer)
 	{
 		// If required, remove LF and indent before opening brace
 		if (openingBracketOnSameLine)
@@ -652,7 +660,8 @@ public class JsonGenerator
 	 *          the buffer from which a line feed and indent will be removed.
 	 */
 
-	private void removeLineFeedAndIndent(StringBuilder buffer)
+	private void removeLineFeedAndIndent(
+		StringBuilder	buffer)
 	{
 		int index = buffer.length();
 		while (--index >= 0)

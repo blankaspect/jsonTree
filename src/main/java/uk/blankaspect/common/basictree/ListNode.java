@@ -98,7 +98,8 @@ public class ListNode
 	 *          the parent of the list node.
 	 */
 
-	public ListNode(AbstractNode parent)
+	public ListNode(
+		AbstractNode	parent)
 	{
 		// Call superclass constructor
 		super(parent);
@@ -116,7 +117,8 @@ public class ListNode
 	 *          the initial elements of the list node.
 	 */
 
-	public ListNode(Iterable<? extends AbstractNode> elements)
+	public ListNode(
+		Iterable<? extends AbstractNode>	elements)
 	{
 		// Call alternative constructor
 		this(null, elements);
@@ -134,8 +136,9 @@ public class ListNode
 	 *          the initial elements of the list node.
 	 */
 
-	public ListNode(AbstractNode    parent,
-					AbstractNode... elements)
+	public ListNode(
+		AbstractNode	parent,
+		AbstractNode...	elements)
 	{
 		// Call alternative constructor
 		this(parent, Arrays.asList(elements));
@@ -153,8 +156,9 @@ public class ListNode
 	 *          the initial elements of the list node.
 	 */
 
-	public ListNode(AbstractNode                     parent,
-					Iterable<? extends AbstractNode> elements)
+	public ListNode(
+		AbstractNode						parent,
+		Iterable<? extends AbstractNode>	elements)
 	{
 		// Call alternative constructor
 		this(parent);
@@ -233,23 +237,19 @@ public class ListNode
 	 *
 	 * @param  obj
 	 *           the object with which this list node will be compared.
-	 * @return {@code true} if <i>obj</i> is an instance of {@code ListNode} <i>and</i> this list node contains the same
-	 *         number of elements as the other list node <i>and</i> each element in this list node is equal to the
+	 * @return {@code true} if {@code obj} is an instance of {@code ListNode} <i>and</i> this list node contains the
+	 *         same number of elements as the other list node <i>and</i> each element in this list node is equal to the
 	 *         element at the same index in the other list node; {@code false} otherwise.
 	 */
 
 	@Override
-	public boolean equals(Object obj)
+	public boolean equals(
+		Object	obj)
 	{
 		if (this == obj)
 			return true;
 
-		if (obj instanceof ListNode)
-		{
-			ListNode other = (ListNode)obj;
-			return (elements.size() == other.elements.size()) && elements.equals(other.elements);
-		}
-		return false;
+		return (obj instanceof ListNode other) && (elements.size() == other.elements.size()) && elements.equals(other.elements);
 	}
 
 	//------------------------------------------------------------------
@@ -354,12 +354,13 @@ public class ListNode
 	 *
 	 * @param  index
 	 *           the index of the required element.
-	 * @return the element of this list node at <i>index</i>.
+	 * @return the element of this list node at {@code index}.
 	 * @throws IndexOutOfBoundsException
-	 *           if (<i>index</i> &lt; 0) or (<i>index</i> &gt;= {@link #getNumElements()}).
+	 *           if ({@code index} &lt; 0) or ({@code index} &gt;= {@link #getNumElements()}).
 	 */
 
-	public AbstractNode get(int index)
+	public AbstractNode get(
+		int	index)
 	{
 		return elements.get(index);
 	}
@@ -371,14 +372,15 @@ public class ListNode
 	 *
 	 * @param  index
 	 *           the index of the required element.
-	 * @return the element of this list node at <i>index</i>, cast to a {@link NullNode}.
+	 * @return the element of this list node at {@code index}, cast to a {@link NullNode}.
 	 * @throws IndexOutOfBoundsException
-	 *           if (<i>index</i> &lt; 0) or (<i>index</i> &gt;= {@link #getNumElements()}).
+	 *           if ({@code index} &lt; 0) or ({@code index} &gt;= {@link #getNumElements()}).
 	 * @throws ClassCastException
-	 *           if the element at <i>index</i> is not an instance of {@link NullNode}.
+	 *           if the element at {@code index} is not an instance of {@link NullNode}.
 	 */
 
-	public NullNode getNull(int index)
+	public NullNode getNull(
+		int	index)
 	{
 		return (NullNode)elements.get(index);
 	}
@@ -390,14 +392,15 @@ public class ListNode
 	 *
 	 * @param  index
 	 *           the index of the required element.
-	 * @return the element of this list node at <i>index</i>, cast to a {@link BooleanNode}.
+	 * @return the element of this list node at {@code index}, cast to a {@link BooleanNode}.
 	 * @throws IndexOutOfBoundsException
-	 *           if (<i>index</i> &lt; 0) or (<i>index</i> &gt;= {@link #getNumElements()}).
+	 *           if ({@code index} &lt; 0) or ({@code index} &gt;= {@link #getNumElements()}).
 	 * @throws ClassCastException
-	 *           if the element at <i>index</i> is not an instance of {@link BooleanNode}.
+	 *           if the element at {@code index} is not an instance of {@link BooleanNode}.
 	 */
 
-	public BooleanNode getBoolean(int index)
+	public BooleanNode getBoolean(
+		int	index)
 	{
 		return (BooleanNode)elements.get(index);
 	}
@@ -409,14 +412,15 @@ public class ListNode
 	 *
 	 * @param  index
 	 *           the index of the required element.
-	 * @return the element of this list node at <i>index</i>, cast to a {@link IntNode}.
+	 * @return the element of this list node at {@code index}, cast to a {@link IntNode}.
 	 * @throws IndexOutOfBoundsException
-	 *           if (<i>index</i> &lt; 0) or (<i>index</i> &gt;= {@link #getNumElements()}).
+	 *           if ({@code index} &lt; 0) or ({@code index} &gt;= {@link #getNumElements()}).
 	 * @throws ClassCastException
-	 *           if the element at <i>index</i> is not an instance of {@link IntNode}.
+	 *           if the element at {@code index} is not an instance of {@link IntNode}.
 	 */
 
-	public IntNode getInt(int index)
+	public IntNode getInt(
+		int	index)
 	{
 		return (IntNode)elements.get(index);
 	}
@@ -428,11 +432,11 @@ public class ListNode
 	 *
 	 * @param  index
 	 *           the index of the required element.
-	 * @return the element of this list node at <i>index</i>, cast to a {@link LongNode}.
+	 * @return the element of this list node at {@code index}, cast to a {@link LongNode}.
 	 * @throws IndexOutOfBoundsException
-	 *           if (<i>index</i> &lt; 0) or (<i>index</i> &gt;= {@link #getNumElements()}).
+	 *           if ({@code index} &lt; 0) or ({@code index} &gt;= {@link #getNumElements()}).
 	 * @throws ClassCastException
-	 *           if the element at <i>index</i> is not an instance of {@link LongNode}.
+	 *           if the element at {@code index} is not an instance of {@link LongNode}.
 	 */
 
 	public LongNode getLong(int index)
@@ -447,14 +451,15 @@ public class ListNode
 	 *
 	 * @param  index
 	 *           the index of the required element.
-	 * @return the element of this list node at <i>index</i>, cast to a {@link DoubleNode}.
+	 * @return the element of this list node at {@code index}, cast to a {@link DoubleNode}.
 	 * @throws IndexOutOfBoundsException
-	 *           if (<i>index</i> &lt; 0) or (<i>index</i> &gt;= {@link #getNumElements()}).
+	 *           if ({@code index} &lt; 0) or ({@code index} &gt;= {@link #getNumElements()}).
 	 * @throws ClassCastException
-	 *           if the element at <i>index</i> is not an instance of {@link DoubleNode}.
+	 *           if the element at {@code index} is not an instance of {@link DoubleNode}.
 	 */
 
-	public DoubleNode getDouble(int index)
+	public DoubleNode getDouble(
+		int	index)
 	{
 		return (DoubleNode)elements.get(index);
 	}
@@ -466,14 +471,15 @@ public class ListNode
 	 *
 	 * @param  index
 	 *           the index of the required element.
-	 * @return the element of this list node at <i>index</i>, cast to a {@link StringNode}.
+	 * @return the element of this list node at {@code index}, cast to a {@link StringNode}.
 	 * @throws IndexOutOfBoundsException
-	 *           if (<i>index</i> &lt; 0) or (<i>index</i> &gt;= {@link #getNumElements()}).
+	 *           if ({@code index} &lt; 0) or ({@code index} &gt;= {@link #getNumElements()}).
 	 * @throws ClassCastException
-	 *           if the element at <i>index</i> is not an instance of {@link StringNode}.
+	 *           if the element at {@code index} is not an instance of {@link StringNode}.
 	 */
 
-	public StringNode getString(int index)
+	public StringNode getString(
+		int	index)
 	{
 		return (StringNode)elements.get(index);
 	}
@@ -485,14 +491,15 @@ public class ListNode
 	 *
 	 * @param  index
 	 *           the index of the required element.
-	 * @return the element of this list node at <i>index</i>, cast to a {@link ListNode}.
+	 * @return the element of this list node at {@code index}, cast to a {@link ListNode}.
 	 * @throws IndexOutOfBoundsException
-	 *           if (<i>index</i> &lt; 0) or (<i>index</i> &gt;= {@link #getNumElements()}).
+	 *           if ({@code index} &lt; 0) or ({@code index} &gt;= {@link #getNumElements()}).
 	 * @throws ClassCastException
-	 *           if the element at <i>index</i> is not an instance of {@link ListNode}.
+	 *           if the element at {@code index} is not an instance of {@link ListNode}.
 	 */
 
-	public ListNode getList(int index)
+	public ListNode getList(
+		int	index)
 	{
 		return (ListNode)elements.get(index);
 	}
@@ -504,14 +511,15 @@ public class ListNode
 	 *
 	 * @param  index
 	 *           the index of the required element.
-	 * @return the element of this list node at <i>index</i>, cast to a {@link MapNode}.
+	 * @return the element of this list node at {@code index}, cast to a {@link MapNode}.
 	 * @throws IndexOutOfBoundsException
-	 *           if (<i>index</i> &lt; 0) or (<i>index</i> &gt;= {@link #getNumElements()}).
+	 *           if ({@code index} &lt; 0) or ({@code index} &gt;= {@link #getNumElements()}).
 	 * @throws ClassCastException
-	 *           if the element at <i>index</i> is not an instance of {@link MapNode}.
+	 *           if the element at {@code index} is not an instance of {@link MapNode}.
 	 */
 
-	public MapNode getMap(int index)
+	public MapNode getMap(
+		int	index)
 	{
 		return (MapNode)elements.get(index);
 	}
@@ -545,8 +553,8 @@ public class ListNode
 		List<BooleanNode> nodes = new ArrayList<>();
 		for (AbstractNode element : elements)
 		{
-			if (element instanceof BooleanNode)
-				nodes.add((BooleanNode)element);
+			if (element instanceof BooleanNode booleanNode)
+				nodes.add(booleanNode);
 		}
 		return nodes;
 	}
@@ -583,11 +591,11 @@ public class ListNode
 			AbstractNode element = elements.get(i);
 
 			// Check for element of the required type
-			if (!(element instanceof BooleanNode))
+			if (!(element instanceof BooleanNode booleanNode))
 				throw new NodeTypeException(element.getType());
 
 			// Add value of element to array
-			outValues[i] = ((BooleanNode)element).getValue();
+			outValues[i] = booleanNode.getValue();
 		}
 		return outValues;
 	}
@@ -608,11 +616,11 @@ public class ListNode
 		for (AbstractNode element : elements)
 		{
 			// Check for element of the required type
-			if (!(element instanceof BooleanNode))
+			if (!(element instanceof BooleanNode booleanNode))
 				throw new NodeTypeException(element.getType());
 
 			// Add value of element to list
-			outValues.add(((BooleanNode)element).getValue());
+			outValues.add(booleanNode.getValue());
 		}
 		return outValues;
 	}
@@ -630,8 +638,8 @@ public class ListNode
 		List<IntNode> nodes = new ArrayList<>();
 		for (AbstractNode element : elements)
 		{
-			if (element instanceof IntNode)
-				nodes.add((IntNode)element);
+			if (element instanceof IntNode intNode)
+				nodes.add(intNode);
 		}
 		return nodes;
 	}
@@ -668,11 +676,11 @@ public class ListNode
 			AbstractNode element = elements.get(i);
 
 			// Check for element of the required type
-			if (!(element instanceof IntNode))
+			if (!(element instanceof IntNode intNode))
 				throw new NodeTypeException(element.getType());
 
 			// Add value of element to array
-			outValues[i] = ((IntNode)element).getValue();
+			outValues[i] = intNode.getValue();
 		}
 		return outValues;
 	}
@@ -693,11 +701,11 @@ public class ListNode
 		for (AbstractNode element : elements)
 		{
 			// Check for element of the required type
-			if (!(element instanceof IntNode))
+			if (!(element instanceof IntNode intNode))
 				throw new NodeTypeException(element.getType());
 
 			// Add value of element to list
-			outValues.add(((IntNode)element).getValue());
+			outValues.add(intNode.getValue());
 		}
 		return outValues;
 	}
@@ -715,8 +723,8 @@ public class ListNode
 		List<LongNode> nodes = new ArrayList<>();
 		for (AbstractNode element : elements)
 		{
-			if (element instanceof LongNode)
-				nodes.add((LongNode)element);
+			if (element instanceof LongNode longNode)
+				nodes.add(longNode);
 		}
 		return nodes;
 	}
@@ -753,11 +761,11 @@ public class ListNode
 			AbstractNode element = elements.get(i);
 
 			// Check for element of the required type
-			if (!(element instanceof LongNode))
+			if (!(element instanceof LongNode longNode))
 				throw new NodeTypeException(element.getType());
 
 			// Add value of element to array
-			outValues[i] = ((LongNode)element).getValue();
+			outValues[i] = longNode.getValue();
 		}
 		return outValues;
 	}
@@ -778,11 +786,11 @@ public class ListNode
 		for (AbstractNode element : elements)
 		{
 			// Check for element of the required type
-			if (!(element instanceof LongNode))
+			if (!(element instanceof LongNode longNode))
 				throw new NodeTypeException(element.getType());
 
 			// Add value of element to list
-			outValues.add(((LongNode)element).getValue());
+			outValues.add(longNode.getValue());
 		}
 		return outValues;
 	}
@@ -808,10 +816,10 @@ public class ListNode
 			AbstractNode element = elements.get(i);
 
 			// Add value of element to array
-			if (element instanceof IntNode)
-				outValues[i] = ((IntNode)element).getValue();
-			else if (element instanceof LongNode)
-				outValues[i] = ((LongNode)element).getValue();
+			if (element instanceof IntNode intNode)
+				outValues[i] = intNode.getValue();
+			else if (element instanceof LongNode longNode)
+				outValues[i] = longNode.getValue();
 			else
 				throw new NodeTypeException(element.getType());
 		}
@@ -836,10 +844,10 @@ public class ListNode
 		for (AbstractNode element : elements)
 		{
 			// Add value of element to list
-			if (element instanceof IntNode)
-				outValues.add((long)((IntNode)element).getValue());
-			else if (element instanceof LongNode)
-				outValues.add(((LongNode)element).getValue());
+			if (element instanceof IntNode intNode)
+				outValues.add((long)intNode.getValue());
+			else if (element instanceof LongNode longNode)
+				outValues.add(longNode.getValue());
 			else
 				throw new NodeTypeException(element.getType());
 		}
@@ -859,8 +867,8 @@ public class ListNode
 		List<DoubleNode> nodes = new ArrayList<>();
 		for (AbstractNode element : elements)
 		{
-			if (element instanceof DoubleNode)
-				nodes.add((DoubleNode)element);
+			if (element instanceof DoubleNode doubleNode)
+				nodes.add(doubleNode);
 		}
 		return nodes;
 	}
@@ -897,11 +905,11 @@ public class ListNode
 			AbstractNode element = elements.get(i);
 
 			// Check for element of the required type
-			if (!(element instanceof DoubleNode))
+			if (!(element instanceof DoubleNode doubleNode))
 				throw new NodeTypeException(element.getType());
 
 			// Add value of element to array
-			outValues[i] = ((DoubleNode)element).getValue();
+			outValues[i] = doubleNode.getValue();
 		}
 		return outValues;
 	}
@@ -922,11 +930,11 @@ public class ListNode
 		for (AbstractNode element : elements)
 		{
 			// Check for element of the required type
-			if (!(element instanceof DoubleNode))
+			if (!(element instanceof DoubleNode doubleNode))
 				throw new NodeTypeException(element.getType());
 
 			// Add value of element to list
-			outValues.add(((DoubleNode)element).getValue());
+			outValues.add(doubleNode.getValue());
 		}
 		return outValues;
 	}
@@ -944,8 +952,8 @@ public class ListNode
 		List<StringNode> nodes = new ArrayList<>();
 		for (AbstractNode element : elements)
 		{
-			if (element instanceof StringNode)
-				nodes.add((StringNode)element);
+			if (element instanceof StringNode stringNode)
+				nodes.add(stringNode);
 		}
 		return nodes;
 	}
@@ -982,11 +990,11 @@ public class ListNode
 			AbstractNode element = elements.get(i);
 
 			// Check for element of the required type
-			if (!(element instanceof StringNode))
+			if (!(element instanceof StringNode stringNode))
 				throw new NodeTypeException(element.getType());
 
 			// Add value of element to array
-			outValues[i] = ((StringNode)element).getValue();
+			outValues[i] = stringNode.getValue();
 		}
 		return outValues;
 	}
@@ -1007,11 +1015,11 @@ public class ListNode
 		for (AbstractNode element : elements)
 		{
 			// Check for element of the required type
-			if (!(element instanceof StringNode))
+			if (!(element instanceof StringNode stringNode))
 				throw new NodeTypeException(element.getType());
 
 			// Add value of element to list
-			outValues.add(((StringNode)element).getValue());
+			outValues.add(stringNode.getValue());
 		}
 		return outValues;
 	}
@@ -1029,8 +1037,8 @@ public class ListNode
 		List<ListNode> nodes = new ArrayList<>();
 		for (AbstractNode element : elements)
 		{
-			if (element instanceof ListNode)
-				nodes.add((ListNode)element);
+			if (element instanceof ListNode listNode)
+				nodes.add(listNode);
 		}
 		return nodes;
 	}
@@ -1061,8 +1069,8 @@ public class ListNode
 		List<MapNode> nodes = new ArrayList<>();
 		for (AbstractNode element : elements)
 		{
-			if (element instanceof MapNode)
-				nodes.add((MapNode)element);
+			if (element instanceof MapNode mapNode)
+				nodes.add(mapNode);
 		}
 		return nodes;
 	}
@@ -1088,11 +1096,12 @@ public class ListNode
 	 *
 	 * @param  node
 	 *           the node whose index is required.
-	 * @return the index of <i>node</i> in the list of the elements of this list node, or -1 if <i>node</i> is not an
+	 * @return the index of {@code node} in the list of the elements of this list node, or -1 if {@code node} is not an
 	 *         element of this list node.
 	 */
 
-	public int indexOf(AbstractNode node)
+	public int indexOf(
+		AbstractNode	node)
 	{
 		for (int i = 0; i < elements.size(); i++)
 		{
@@ -1122,7 +1131,8 @@ public class ListNode
 	 *          the nodes to which the elements of this list node will be set.
 	 */
 
-	public void setElements(AbstractNode... nodes)
+	public void setElements(
+		AbstractNode...	nodes)
 	{
 		elements.clear();
 		addElements(nodes);
@@ -1137,7 +1147,8 @@ public class ListNode
 	 *          the nodes to which the elements of this list node will be set.
 	 */
 
-	public void setElements(Iterable<? extends AbstractNode> nodes)
+	public void setElements(
+		Iterable<? extends AbstractNode>	nodes)
 	{
 		elements.clear();
 		addElements(nodes);
@@ -1151,10 +1162,11 @@ public class ListNode
 	 * @param  node
 	 *           the node that will be added to the end of the list of elements of this list node.
 	 * @throws IllegalArgumentException
-	 *           if <i>node</i> is {@code null}.
+	 *           if {@code node} is {@code null}.
 	 */
 
-	public void add(AbstractNode node)
+	public void add(
+		AbstractNode	node)
 	{
 		// Validate argument
 		if (node == null)
@@ -1177,7 +1189,8 @@ public class ListNode
 	 *          the nodes that will be added to the end of the list of elements of this list node.
 	 */
 
-	public void addElements(AbstractNode... nodes)
+	public void addElements(
+		AbstractNode...	nodes)
 	{
 		for (AbstractNode node : nodes)
 			add(node);
@@ -1193,7 +1206,8 @@ public class ListNode
 	 *          the nodes that will be added to the list of elements of this list node.
 	 */
 
-	public void addElements(Iterable<? extends AbstractNode> nodes)
+	public void addElements(
+		Iterable<? extends AbstractNode>	nodes)
 	{
 		for (AbstractNode node : nodes)
 			add(node);
@@ -1223,10 +1237,11 @@ public class ListNode
 	 *
 	 * @param  value
 	 *           the value of the Boolean node that will be created and added to the elements of this list node.
-	 * @return the Boolean node that was created from <i>value</i> and added to the elements of this list node.
+	 * @return the Boolean node that was created from {@code value} and added to the elements of this list node.
 	 */
 
-	public BooleanNode addBoolean(boolean value)
+	public BooleanNode addBoolean(
+		boolean	value)
 	{
 		BooleanNode node = new BooleanNode(value);
 		add(node);
@@ -1243,7 +1258,8 @@ public class ListNode
 	 *          the values for which Boolean nodes will be created and added to the elements of this list node.
 	 */
 
-	public void addBooleans(boolean... values)
+	public void addBooleans(
+		boolean...	values)
 	{
 		for (boolean value : values)
 			add(new BooleanNode(value));
@@ -1259,7 +1275,8 @@ public class ListNode
 	 *          the values for which Boolean nodes will be created and added to the elements of this list node.
 	 */
 
-	public void addBooleans(Iterable<Boolean> values)
+	public void addBooleans(
+		Iterable<Boolean>	values)
 	{
 		for (Boolean value : values)
 			add(new BooleanNode(value));
@@ -1273,10 +1290,11 @@ public class ListNode
 	 *
 	 * @param  value
 	 *           the value of the 'int' node that will be created and added to the elements of this list node.
-	 * @return the 'int' node that was created from <i>value</i> and added to the elements of this list node.
+	 * @return the 'int' node that was created from {@code value} and added to the elements of this list node.
 	 */
 
-	public IntNode addInt(int value)
+	public IntNode addInt(
+		int	value)
 	{
 		IntNode node = new IntNode(value);
 		add(node);
@@ -1293,7 +1311,8 @@ public class ListNode
 	 *          the values for which 'int' nodes will be created and added to the elements of this list node.
 	 */
 
-	public void addInts(int... values)
+	public void addInts(
+		int...	values)
 	{
 		for (int value : values)
 			add(new IntNode(value));
@@ -1309,7 +1328,8 @@ public class ListNode
 	 *          the values for which 'int' nodes will be created and added to the elements of this list node.
 	 */
 
-	public void addInts(Iterable<Integer> values)
+	public void addInts(
+		Iterable<Integer>	values)
 	{
 		for (Integer value : values)
 			add(new IntNode(value));
@@ -1323,10 +1343,11 @@ public class ListNode
 	 *
 	 * @param  value
 	 *           the value of the 'long' node that will be created and added to the elements of this list node.
-	 * @return the 'long' node that was created from <i>value</i> and added to the elements of this list node.
+	 * @return the 'long' node that was created from {@code value} and added to the elements of this list node.
 	 */
 
-	public LongNode addLong(long value)
+	public LongNode addLong(
+		long	value)
 	{
 		LongNode node = new LongNode(value);
 		add(node);
@@ -1343,7 +1364,8 @@ public class ListNode
 	 *          the values for which 'long' nodes will be created and added to the elements of this list node.
 	 */
 
-	public void addLongs(long... values)
+	public void addLongs(
+		long...	values)
 	{
 		for (long value : values)
 			add(new LongNode(value));
@@ -1359,7 +1381,8 @@ public class ListNode
 	 *          the values for which 'long' nodes will be created and added to the elements of this list node.
 	 */
 
-	public void addLongs(Iterable<Long> values)
+	public void addLongs(
+		Iterable<Long>	values)
 	{
 		for (Long value : values)
 			add(new LongNode(value));
@@ -1373,10 +1396,11 @@ public class ListNode
 	 *
 	 * @param  value
 	 *           the value of the 'double' node that will be created and added to the elements of this list node.
-	 * @return the 'double' node that was created from <i>value</i> and added to the elements of this list node.
+	 * @return the 'double' node that was created from {@code value} and added to the elements of this list node.
 	 */
 
-	public DoubleNode addDouble(double value)
+	public DoubleNode addDouble(
+		double	value)
 	{
 		DoubleNode node = new DoubleNode(value);
 		add(node);
@@ -1393,7 +1417,8 @@ public class ListNode
 	 *          the values for which 'double' nodes will be created and added to the elements of this list node.
 	 */
 
-	public void addDoubles(double... values)
+	public void addDoubles(
+		double...	values)
 	{
 		for (double value : values)
 			add(new DoubleNode(value));
@@ -1409,7 +1434,8 @@ public class ListNode
 	 *          the values for which 'double' nodes will be created and added to the elements of this list node.
 	 */
 
-	public void addDoubles(Iterable<Double> values)
+	public void addDoubles(
+		Iterable<Double>	values)
 	{
 		for (Double value : values)
 			add(new DoubleNode(value));
@@ -1423,10 +1449,11 @@ public class ListNode
 	 *
 	 * @param  value
 	 *           the value of the string node that will be created and added to the elements of this list node.
-	 * @return the string node that was created from <i>value</i> and added to the elements of this list node.
+	 * @return the string node that was created from {@code value} and added to the elements of this list node.
 	 */
 
-	public StringNode addString(String value)
+	public StringNode addString(
+		String	value)
 	{
 		StringNode node = new StringNode(value);
 		add(node);
@@ -1443,7 +1470,8 @@ public class ListNode
 	 *          the values for which string nodes will be created and added to the elements of this list node.
 	 */
 
-	public void addStrings(String... values)
+	public void addStrings(
+		String...	values)
 	{
 		for (String value : values)
 			add(new StringNode(value));
@@ -1459,7 +1487,8 @@ public class ListNode
 	 *          the values for which string nodes will be created and added to the elements of this list node.
 	 */
 
-	public void addStrings(Iterable<String> values)
+	public void addStrings(
+		Iterable<String>	values)
 	{
 		for (String value : values)
 			add(new StringNode(value));
@@ -1473,10 +1502,11 @@ public class ListNode
 	 *
 	 * @param  elements
 	 *           the elements of the list node that will be created and added to the elements of this list node.
-	 * @return the list node that was created from <i>elements</i> and added to the elements of this list node.
+	 * @return the list node that was created from {@code elements} and added to the elements of this list node.
 	 */
 
-	public ListNode addList(AbstractNode... elements)
+	public ListNode addList(
+		AbstractNode...	elements)
 	{
 		ListNode node = new ListNode(Arrays.asList(elements));
 		add(node);
@@ -1491,10 +1521,11 @@ public class ListNode
 	 *
 	 * @param  elements
 	 *           the elements of the list node that will be created and added to the elements of this list node.
-	 * @return the list node that was created from <i>elements</i> and added to the elements of this list node.
+	 * @return the list node that was created from {@code elements} and added to the elements of this list node.
 	 */
 
-	public ListNode addList(Iterable<? extends AbstractNode> elements)
+	public ListNode addList(
+		Iterable<? extends AbstractNode>	elements)
 	{
 		ListNode node = new ListNode(elements);
 		add(node);
@@ -1510,10 +1541,11 @@ public class ListNode
 	 * @param  pairs
 	 *           the key&ndash;value pairs of the map node that will be created and added to the elements of this list
 	 *           node.
-	 * @return the map node that was created from <i>pairs</i> and added to the elements of this list node.
+	 * @return the map node that was created from {@code pairs} and added to the elements of this list node.
 	 */
 
-	public MapNode addMap(Map<String, AbstractNode> pairs)
+	public MapNode addMap(
+		Map<String, AbstractNode>	pairs)
 	{
 		MapNode node = new MapNode(pairs);
 		add(node);

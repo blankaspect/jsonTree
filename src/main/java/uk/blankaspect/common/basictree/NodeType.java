@@ -76,15 +76,16 @@ public final class NodeType
 	 * @throws IllegalArgumentException
 	 *           if
 	 *           <ul>
-	 *             <li><i>parent</i> is {@code null} or</li>
-	 *             <li><i>nodeClass</i> is {@code null} or</li>
-	 *             <li>the node class of <i>parent</i> is not a superclass of <i>nodeClass</i> or</li>
-	 *             <li><i>parent</i> already has a child that is associated with <i>nodeClass</i>.</li>
+	 *             <li>{@code parent} is {@code null} or</li>
+	 *             <li>{@code nodeClass} is {@code null} or</li>
+	 *             <li>the node class of {@code parent} is not a superclass of {@code nodeClass} or</li>
+	 *             <li>{@code parent} already has a child that is associated with {@code nodeClass}.</li>
 	 *           </ul>
 	 */
 
-	public NodeType(NodeType                      parent,
-					Class<? extends AbstractNode> nodeClass)
+	public NodeType(
+		NodeType						parent,
+		Class<? extends AbstractNode>	nodeClass)
 	{
 		// Validate arguments
 		if (parent == null)
@@ -103,10 +104,11 @@ public final class NodeType
 	 * @param  nodeClass
 	 *           the class of node with which the node type will be associated.
 	 * @throws IllegalArgumentException
-	 *           if <i>nodeClass</i> is {@code null}.
+	 *           if {@code nodeClass} is {@code null}.
 	 */
 
-	private NodeType(Class<? extends AbstractNode> nodeClass)
+	private NodeType(
+		Class<? extends AbstractNode>	nodeClass)
 	{
 		// Perform initialisation
 		init(null, nodeClass);
@@ -187,10 +189,11 @@ public final class NodeType
 	 *
 	 * @param  nodeType
 	 *           the node type with which this node type will be compared.
-	 * @return {@code true} if this node type is identical to or a subtype of <i>nodeType</i>; {@code false} otherwise.
+	 * @return {@code true} if this node type is identical to or a subtype of {@code nodeType}; {@code false} otherwise.
 	 */
 
-	public boolean is(NodeType nodeType)
+	public boolean is(
+		NodeType	nodeType)
 	{
 		NodeType type = this;
 		while (type != null)
@@ -210,11 +213,12 @@ public final class NodeType
 	 *
 	 * @param  nodeTypes
 	 *           the node types with which this node type will be compared.
-	 * @return {@code true} if this node type is identical to or a subtype of any of <i>nodeTypes</i>; {@code false}
+	 * @return {@code true} if this node type is identical to or a subtype of any of {@code nodeTypes}; {@code false}
 	 *         otherwise.
 	 */
 
-	public boolean isAnyOf(NodeType... nodeTypes)
+	public boolean isAnyOf(
+		NodeType...	nodeTypes)
 	{
 		for (NodeType nodeType : nodeTypes)
 		{
@@ -232,11 +236,12 @@ public final class NodeType
 	 *
 	 * @param  nodeTypes
 	 *           the node types with which this node type will be compared.
-	 * @return {@code true} if this node type is identical to or a subtype of any of <i>nodeTypes</i>; {@code false}
+	 * @return {@code true} if this node type is identical to or a subtype of any of {@code nodeTypes}; {@code false}
 	 *         otherwise.
 	 */
 
-	public boolean isAnyOf(Iterable<NodeType> nodeTypes)
+	public boolean isAnyOf(
+		Iterable<NodeType>	nodeTypes)
 	{
 		for (NodeType nodeType : nodeTypes)
 		{
@@ -254,10 +259,11 @@ public final class NodeType
 	 * @param  nodeType
 	 *           the node type that will be added to the list of child types of this node type.
 	 * @throws IllegalArgumentException
-	 *           this node type already has a child that is associated with the node class of <i>nodeType</i>.
+	 *           this node type already has a child that is associated with the node class of {@code nodeType}.
 	 */
 
-	private void addChild(NodeType nodeType)
+	private void addChild(
+		NodeType	nodeType)
 	{
 		for (NodeType child : children)
 		{
@@ -280,17 +286,18 @@ public final class NodeType
 	 * @throws IllegalArgumentException
 	 *           if
 	 *           <ul>
-	 *             <li><i>parent</i> is {@code null} or</li>
-	 *             <li><i>nodeClass</i> is {@code null} or</li>
-	 *             <li><i>parent</i> is not {@code null} and the node class of <i>parent</i> is not a superclass of
-	 *                 <i>nodeClass</i> or</li>
-	 *             <li><i>parent</i> is not {@code null} and <i>parent</i> already has a child that is associated with
-	 *                 <i>nodeClass</i>.</li>
+	 *             <li>{@code parent} is {@code null} or</li>
+	 *             <li>{@code nodeClass} is {@code null} or</li>
+	 *             <li>{@code parent} is not {@code null} and the node class of {@code parent} is not a superclass of
+	 *                 {@code nodeClass} or</li>
+	 *             <li>{@code parent} is not {@code null} and {@code parent} already has a child that is associated with
+	 *                 {@code nodeClass}.</li>
 	 *           </ul>
 	 */
 
-	private void init(NodeType                      parent,
-					  Class<? extends AbstractNode> nodeClass)
+	private void init(
+		NodeType						parent,
+		Class<? extends AbstractNode>	nodeClass)
 	{
 		// Validate arguments
 		if (nodeClass == null)
