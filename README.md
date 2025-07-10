@@ -24,6 +24,8 @@ transformation of JSON text:<br/>
 
 The Java version of the source code is 17.
 
+----
+
 <div id="basictree">
 
 ### Basictree
@@ -285,7 +287,9 @@ create the input tree.
 The full set of options appears in the program's usage message, which can be displayed by
 running the program with the command-line argument `help` or `--help`.
 
-### License
+----
+
+### Licence
 
 You may use the contents of this repository under the terms of the
 [MIT license](https://mit-license.org/).
