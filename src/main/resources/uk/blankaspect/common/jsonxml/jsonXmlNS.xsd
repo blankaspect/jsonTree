@@ -1,0 +1,137 @@
+<!--
+========================================================================
+
+W3C XML Schema for JSON-XML : target namespace
+
+========================================================================
+-->
+
+<xsd:schema
+   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+   xmlns:jx="http://ns.blankaspect.uk/jsonXml-1"
+   targetNamespace="http://ns.blankaspect.uk/jsonXml-1"
+   elementFormDefault="qualified"
+   attributeFormDefault="qualified">
+
+
+  <!-- JSON null -->
+
+  <xsd:complexType name="JsonNull"/>
+
+  <xsd:complexType name="JsonNullNamed">
+    <xsd:complexContent>
+      <xsd:extension base="jx:JsonNull">
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:element name="null" type="jx:JsonNull"/>
+
+
+  <!-- JSON Boolean -->
+
+  <xsd:complexType name="JsonBoolean">
+    <xsd:attribute name="value" use="required">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="false"/>
+          <xsd:enumeration value="true"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+  </xsd:complexType>
+
+  <xsd:complexType name="JsonBooleanNamed">
+    <xsd:complexContent>
+      <xsd:extension base="jx:JsonBoolean">
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:element name="boolean" type="jx:JsonBoolean"/>
+
+
+  <!-- JSON number -->
+
+  <xsd:complexType name="JsonNumber">
+    <xsd:attribute name="value" type="xsd:double" use="required"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="JsonNumberNamed">
+    <xsd:complexContent>
+      <xsd:extension base="jx:JsonNumber">
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:element name="number" type="jx:JsonNumber"/>
+
+
+  <!-- JSON string -->
+
+  <xsd:complexType name="JsonString">
+    <xsd:attribute name="value" type="xsd:string" use="required"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="JsonStringNamed">
+    <xsd:complexContent>
+      <xsd:extension base="jx:JsonString">
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:element name="string" type="jx:JsonString"/>
+
+
+  <!-- JSON array -->
+
+  <xsd:complexType name="JsonArray">
+    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+      <xsd:element ref="jx:null"/>
+      <xsd:element ref="jx:boolean"/>
+      <xsd:element ref="jx:number"/>
+      <xsd:element ref="jx:string"/>
+      <xsd:element ref="jx:array"/>
+      <xsd:element ref="jx:object"/>
+    </xsd:choice>
+  </xsd:complexType>
+
+  <xsd:complexType name="JsonArrayNamed">
+    <xsd:complexContent>
+      <xsd:extension base="jx:JsonArray">
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:element name="array" type="jx:JsonArray"/>
+
+
+  <!-- JSON object -->
+
+  <xsd:complexType name="JsonObject">
+    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+      <xsd:element name="null"    type="jx:JsonNullNamed"/>
+      <xsd:element name="boolean" type="jx:JsonBooleanNamed"/>
+      <xsd:element name="number"  type="jx:JsonNumberNamed"/>
+      <xsd:element name="string"  type="jx:JsonStringNamed"/>
+      <xsd:element name="array"   type="jx:JsonArrayNamed"/>
+      <xsd:element name="object"  type="jx:JsonObjectNamed"/>
+    </xsd:choice>
+  </xsd:complexType>
+
+  <xsd:complexType name="JsonObjectNamed">
+    <xsd:complexContent>
+      <xsd:extension base="jx:JsonObject">
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:element name="object" type="jx:JsonObject"/>
+
+</xsd:schema>
