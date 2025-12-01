@@ -1,0 +1,91 @@
+Usage: ${appName} [subcommand] [options]
+
+Subcommands:
+  (The '--' prefix of a subcommand may be omitted.)
+  --help
+      Write help information to the standard output stream.
+  --run-tests
+      Run the tests.  This is the default subcommand.
+  --version
+      Write version information to the standard output stream.
+
+Options:
+  --allow-container-leaf
+      Allow a container node (a node that corresponds to a JSON array or
+      object) to be a leaf node.
+  --json-output=<pathname>
+      Write the generated JSON text to a file at the specified location.
+  --num-children=fixed,<value>
+  --num-children=uniform,<lower-bound>,<upper-bound>
+  --num-children=poisson,<lambda>
+  --num-children=ztp,<lambda>
+      The number of children of a node that correponds to a JSON array or
+      object.  The first argument denotes the kind of source of natural
+      numbers; subsequent arguments are specific to the kind of source:
+        fixed   : a fixed, specified value.
+        uniform : a pseudo-random value from a discrete uniform distribution
+                  over a range with the specified bounds.
+        poisson : a pseudo-random value from a Poisson distribution with the
+                  specified lambda parameter.
+        ztp     : a pseudo-random value from a zero-truncated Poisson
+                  distribution with the specified lambda parameter.
+      The default value is 'poisson,5'.
+  --printable-ascii-only
+      Escape characters where necessary so that JSON text contains only
+      printable characters from the US-ASCII character encoding.
+  --proportions=<null>:<boolean>:<int>:<long>:<double>:<string>:<list>:<map>
+      The proportions in which the different kinds of node will be generated.
+      The default proportions are 1:2:2:1:2:8:5:5.
+  --seed=<value>
+      The seed for the pseudo-random number generator.  Only the least
+      significant 48 bits of the seed are used.  If this option is omitted, a
+      'random' seed will be used.
+  --show-info={none|title|tree|results|all}
+      The kinds of information that will be written to the standard output
+      stream.  Multiple kinds may be specified, separated by ','.  The default
+      value is 'tree,results'.
+  --stack-trace
+      Include a stack trace when reporting an exception.
+  --string-length=fixed,<value>
+  --string-length=uniform,<lower-bound>,<upper-bound>
+  --string-length=poisson,<lambda>
+  --string-length=ztp,<lambda>
+      The length of the value of a node that correponds to a JSON string.  The
+      first argument denotes the kind of source of natural numbers; subsequent
+      arguments are specific to the kind of source:
+        fixed   : a fixed, specified value.
+        uniform : a pseudo-random value from a discrete uniform distribution
+                  over a range with the specified bounds.
+        poisson : a pseudo-random value from a Poisson distribution with the
+                  specified lambda parameter.
+        ztp     : a pseudo-random value from a zero-truncated Poisson
+                  distribution with the specified lambda parameter.
+      The default value is ztp,8.
+  --tree-height=<value>
+      The length of the longest path from the root of the JSON tree to a leaf
+      node.  The default value is 8.
+  --use-file
+      Use a temporary file for intermediate storage when generating and parsing
+      JSON text.
+  --validate-xml
+      Validate the generated tree of JSON-XML elements against the JSON-XML
+      schema.  This option has no effect if the '--xml' option is absent.
+  --xml
+      The tests will involve a tree of JSON-XML elements instead of a tree of
+      subclasses of 'AbstractNode'.
+  --xml-namespace-prefix=<prefix>
+      The prefix that is applied to the names of JSON-XML elements and
+      attributes.  This option is ignored if the '--xml' option is absent.
+  --xml-output=<pathname>
+      Write a textual representation of the generated JSON-XML to a file at the
+      specified location.  This option is ignored if the '--xml' option is
+      absent.
+
+If an option takes an argument, the name and argument of the option may be
+separated either by whitespace or by a single '='.
+
+If a command-line argument starts with '@', the remainder of the argument is
+taken to be the pathname of a text file containing command-line arguments that
+will replace the original argument.  Within the file, arguments should be
+separated by spaces, tabs or new lines, and arguments that contain spaces or
+tabs should be enclosed between double quotation marks.
