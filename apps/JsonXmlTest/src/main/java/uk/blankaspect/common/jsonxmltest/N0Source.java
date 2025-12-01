@@ -18,9 +18,9 @@ package uk.blankaspect.common.jsonxmltest;
 // IMPORTS
 
 
-import java.util.random.RandomGenerator;
+import java.util.Arrays;
 
-import java.util.stream.Stream;
+import java.util.random.RandomGenerator;
 
 //----------------------------------------------------------------------
 
@@ -182,10 +182,7 @@ public abstract class N0Source
 		public static Kind forKey(
 			String	key)
 		{
-			return Stream.of(values())
-					.filter(value -> value.key.equals(key))
-					.findFirst()
-					.orElse(null);
+			return Arrays.stream(values()).filter(value -> value.key.equals(key)).findFirst().orElse(null);
 		}
 
 		//--------------------------------------------------------------

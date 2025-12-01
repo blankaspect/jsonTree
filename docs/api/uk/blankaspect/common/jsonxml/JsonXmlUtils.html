@@ -258,7 +258,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.xml/org/w3c/dom/Element.html" title="class or interface in org.w3c.dom" class="external-link">Element</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#parent(org.w3c.dom.Element)" class="member-name-link">parent</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.xml/org/w3c/dom/Element.html" title="class or interface in org.w3c.dom" class="external-link">Element</a>&nbsp;element)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Returns the parent of the specified element, which is assumed to be an element.</div>
+<div class="block">Returns the parent element of the specified element.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#setName(org.w3c.dom.Element,java.lang.String)" class="member-name-link">setName</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.xml/org/w3c/dom/Element.html" title="class or interface in org.w3c.dom" class="external-link">Element</a>&nbsp;element,
@@ -489,7 +489,7 @@ loadScripts(document, 'script');</script>
 <h3>getNameIgnoreNS</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getNameIgnoreNS</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.xml/org/w3c/dom/Element.html" title="class or interface in org.w3c.dom" class="external-link">Element</a>&nbsp;element)</span></div>
 <div class="block">Returns the value of the <i>name</i> attribute of the specified XML element, ignoring any namespace prefix of the
- attribute.  The <i>name</i> attribute of the element corresponds to the name of a member of a JSON object.</div>
+ attribute.  The <i>name</i> attribute of a JSON-XML element corresponds to the name of a member of a JSON object.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>element</code> - the target element.</dd>
@@ -504,7 +504,7 @@ loadScripts(document, 'script');</script>
 <h3>getValueIgnoreNS</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getValueIgnoreNS</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.xml/org/w3c/dom/Element.html" title="class or interface in org.w3c.dom" class="external-link">Element</a>&nbsp;element)</span></div>
 <div class="block">Returns the value of the <i>value</i> attribute of the specified XML element, ignoring any namespace prefix of
- the attribute.  The <i>value</i> attribute of the element corresponds to a JSON value.</div>
+ the attribute.  The <i>value</i> attribute of a JSON-XML element corresponds to a JSON value.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>element</code> - the target element.</dd>
@@ -551,12 +551,13 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="parent(org.w3c.dom.Element)">
 <h3>parent</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.xml/org/w3c/dom/Element.html" title="class or interface in org.w3c.dom" class="external-link">Element</a></span>&nbsp;<span class="element-name">parent</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.xml/org/w3c/dom/Element.html" title="class or interface in org.w3c.dom" class="external-link">Element</a>&nbsp;element)</span></div>
-<div class="block">Returns the parent of the specified element, which is assumed to be an element.</div>
+<div class="block">Returns the parent element of the specified element.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>element</code> - the target element.</dd>
 <dt>Returns:</dt>
-<dd>the parent of <code>element</code>, or <code>null</code> if the element does not have a parent.</dd>
+<dd>the element that is the parent of <code>element</code>, or <code>null</code> if the element does not have a parent
+         or its parent node is not an <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.xml/org/w3c/dom/Element.html" title="class or interface in org.w3c.dom" class="external-link"><code>Element</code></a>.</dd>
 </dl>
 </section>
 </li>
@@ -565,7 +566,7 @@ loadScripts(document, 'script');</script>
 <h3>countChildren</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">countChildren</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.xml/org/w3c/dom/Element.html" title="class or interface in org.w3c.dom" class="external-link">Element</a>&nbsp;element)</span></div>
 <div class="block">Returns a count of the child <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.xml/org/w3c/dom/Node.html" title="class or interface in org.w3c.dom" class="external-link">nodes</a> of the specified XML element that are JSON-XML elements.
- Any child node that is not a JSON-XML elements is omitted from the count.</div>
+ Any child node that is not a JSON-XML element is omitted from the count.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>element</code> - the target element.</dd>
@@ -959,7 +960,8 @@ loadScripts(document, 'script');</script>
 <dt>Parameters:</dt>
 <dd><code>element</code> - the root of the tree of JSON-XML elements for which a textual representation will be generated.</dd>
 <dd><code>indent</code> - the number of spaces by which the element at the root of XML tree will be indented.</dd>
-<dd><code>indentIncrement</code> - the number of spaces by which each additional level of the XML tree will be indented.</dd>
+<dd><code>indentIncrement</code> - the number of spaces by which the indentation of each additional level of the XML tree below the root
+           will be increased.</dd>
 <dd><code>writer</code> - the character stream to which the text will be written.</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - if an error occurs when writing the text to the character stream.</dd>
@@ -978,7 +980,8 @@ loadScripts(document, 'script');</script>
 <dt>Parameters:</dt>
 <dd><code>element</code> - the root of the tree of JSON-XML elements for which a textual representation will be generated.</dd>
 <dd><code>indent</code> - the number of spaces by which the element at the root of XML tree will be indented.</dd>
-<dd><code>indentIncrement</code> - the number of spaces by which each additional level of the XML tree below the root will be indented.</dd>
+<dd><code>indentIncrement</code> - the number of spaces by which the indentation of each additional level of the XML tree below the root
+           will be increased.</dd>
 <dt>Returns:</dt>
 <dd>a textual representation of the tree of JSON-XML elements whose root is <code>element</code>.</dd>
 </dl>

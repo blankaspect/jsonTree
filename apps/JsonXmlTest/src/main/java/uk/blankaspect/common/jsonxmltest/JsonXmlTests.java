@@ -50,6 +50,8 @@ import uk.blankaspect.common.exception2.BaseException;
 import uk.blankaspect.common.exception2.FileException;
 import uk.blankaspect.common.exception2.UnexpectedRuntimeException;
 
+import uk.blankaspect.common.filesystem.PathUtils;
+
 import uk.blankaspect.common.json.JsonConstants;
 import uk.blankaspect.common.json.JsonParser;
 
@@ -277,6 +279,18 @@ public class JsonXmlTests
 		// Write JSON text to file
 		if (jsonFile != null)
 		{
+			// Create parent directory
+			Path directory = PathUtils.absParent(jsonFile);
+			try
+			{
+				Files.createDirectories(directory);
+			}
+			catch (Exception e)
+			{
+				throw new FileException(ErrorMsg.FAILED_TO_CREATE_DIRECTORY, e, directory);
+			}
+
+			// Write file
 			try
 			{
 				Files.writeString(jsonFile, jsonText);

@@ -113,6 +113,9 @@ abstract class TestsBase
 	/** Error messages. */
 	protected interface ErrorMsg
 	{
+		String	FAILED_TO_CREATE_DIRECTORY =
+				"Failed create the directory.";
+
 		String	FAILED_TO_GET_LOCATION_OF_TEMPORARY_DIRECTORY =
 				"Failed to get the location of the system's temporary directory.";
 

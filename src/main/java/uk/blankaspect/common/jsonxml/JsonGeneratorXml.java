@@ -26,7 +26,6 @@ import org.w3c.dom.Element;
 import uk.blankaspect.common.basictree.StringNode;
 
 import uk.blankaspect.common.json.JsonConstants;
-import uk.blankaspect.common.json.JsonGenerator;
 import uk.blankaspect.common.json.JsonText;
 import uk.blankaspect.common.json.NewLineBeforeLeftBracket;
 import uk.blankaspect.common.json.OutputMode;
@@ -148,24 +147,25 @@ public class JsonGeneratorXml
 	 *   <li>output mode,</li>
 	 *   <li><i>new line before left bracket</i> parameter,</li>
 	 *   <li>indent increment,</li>
-	 *   <li>maximum line length.</li>
+	 *   <li>maximum line length,</li>
+	 *   <li><i>printable ASCII only</i> flag.</li>
 	 * </ul>
 	 *
-	 * @param  value
+	 * @param  element
 	 *           the XML element for which JSON text will be generated.
-	 * @return the JSON text that was generated for {@code value}.
+	 * @return the JSON text that was generated for {@code element}.
 	 * @throws UnrecognisedElementException
-	 *           if any element in the tree whose root is {@code value} does not correspond to a JSON value.
+	 *           if any element in the tree whose root is {@code element} does not correspond to a JSON value.
 	 */
 
 	public JsonText generate(
-		Element	value)
+		Element	element)
 	{
 		// Initialise JSON text
 		JsonText text = new JsonText();
 
 		// Append JSON text for value
-		appendValue(value, 0, text);
+		appendValue(element, 0, text);
 
 		// Append new line in multi-line mode
 		if (isMultilineMode())
@@ -205,8 +205,8 @@ public class JsonGeneratorXml
 	private String nameAttribute(
 		Element	element)
 	{
-		String nameAttr = JsonXmlUtils.getName(elementFacade, element);
-		return (nameAttr == null) ? null : StringNode.escapeAndQuote(nameAttr, printableAsciiOnly);
+		String name = JsonXmlUtils.getName(elementFacade, element);
+		return (name == null) ? null : StringNode.escapeAndQuote(name, printableAsciiOnly);
 	}
 
 	//------------------------------------------------------------------
@@ -245,7 +245,7 @@ public class JsonGeneratorXml
 	 * and string).  For compound values (array and object), it applies a heuristic that takes into account the output
 	 * mode and the specified maximum length of a line of text.
 	 *
-	 * @param  value
+	 * @param  element
 	 *           the element of interest.
 	 * @param  maxLength
 	 *           the maximum length of a line of text.
@@ -253,7 +253,7 @@ public class JsonGeneratorXml
 	 */
 
 	private boolean isValueOnSingleLine(
-		Element	value,
+		Element	element,
 		int		maxLength)
 	{
 		// Always on a single line in single-line output mode
@@ -264,19 +264,19 @@ public class JsonGeneratorXml
 		boolean singleLine = true;
 
 		// Case: array
-		if (ElementKind.ARRAY.matches(value))
+		if (ElementKind.ARRAY.matches(element))
 		{
-			int numElements = JsonXmlUtils.countChildren(value);
-			if (((outputMode == OutputMode.EXPANDED) && (numElements > 0))
-					|| JsonXmlUtils.children(value).stream()
-							.anyMatch(element -> !isValueOnSingleLine(element, maxLength)))
+			int numChildren = JsonXmlUtils.countChildren(element);
+			if (((outputMode == OutputMode.EXPANDED) && (numChildren > 0))
+					|| JsonXmlUtils.children(element).stream()
+							.anyMatch(child -> !isValueOnSingleLine(child, maxLength)))
 				singleLine = false;
-			else if (numElements > 1)
+			else if (numChildren > 1)
 			{
 				int length = 0;
-				for (int i = 0; i < numElements; i++)
+				for (int i = 0; i < numChildren; i++)
 				{
-					length += elementToString(JsonXmlUtils.child(value, i)).length() + 2;
+					length += elementToString(JsonXmlUtils.child(element, i)).length() + 2;
 					if (length > maxLength)
 					{
 						singleLine = false;
@@ -287,17 +287,18 @@ public class JsonGeneratorXml
 		}
 
 		// Case: object
-		else if (ElementKind.OBJECT.matches(value))
+		else if (ElementKind.OBJECT.matches(element))
 		{
-			singleLine = switch (JsonXmlUtils.countChildren(value))
+			singleLine = switch (JsonXmlUtils.countChildren(element))
 			{
 				case 0 -> true;
 				case 1 ->
 				{
 					if (outputMode == OutputMode.EXPANDED)
 						yield false;
-					Element member = JsonXmlUtils.child(value, 0);
-					yield isValueOnSingleLine(member, maxLength - nameAttribute(member).length());
+					Element member = JsonXmlUtils.child(element, 0);
+					String name = nameAttribute(member);
+					yield isValueOnSingleLine(member, maxLength - ((name == null) ? 0 : name.length()));
 				}
 				default -> false;
 			};
@@ -313,7 +314,7 @@ public class JsonGeneratorXml
 	 * Generates the JSON text for the specified {@linkplain Element XML element} and appends it to the specified
 	 * text.
 	 *
-	 * @param  value
+	 * @param  element
 	 *           the XML element corresponding to a JSON value for which JSON text will be generated.
 	 * @param  indent
 	 *           the number of spaces by which a line of the JSON text is indented.
@@ -324,7 +325,7 @@ public class JsonGeneratorXml
 	 */
 
 	private void appendValue(
-		Element		value,
+		Element		element,
 		int			indent,
 		JsonText	text)
 	{
@@ -333,23 +334,23 @@ public class JsonGeneratorXml
 			text.appendSpaces(indent);
 
 		// Case: array
-		if (ElementKind.ARRAY.matches(value))
-			appendArray(value, indent, text);
+		if (ElementKind.ARRAY.matches(element))
+			appendArray(element, indent, text);
 
 		// Case: object
-		else if (ElementKind.OBJECT.matches(value))
-			appendObject(value, indent, text);
+		else if (ElementKind.OBJECT.matches(element))
+			appendObject(element, indent, text);
 
 		// Case: simple value
 		else
 		{
 			// Get token
-			JsonText.Token token = getToken(value);
+			JsonText.Token token = getToken(element);
 			if (token == null)
-				throw new UnrecognisedElementException(value);
+				throw new UnrecognisedElementException(element);
 
 			// Append JSON text of value
-			text.append(elementToString(value), token);
+			text.append(elementToString(element), token);
 		}
 	}
 
@@ -359,7 +360,7 @@ public class JsonGeneratorXml
 	 * Generates the JSON text for the specified {@linkplain Element XML element} and appends it to the specified
 	 * buffer.
 	 *
-	 * @param array
+	 * @param element
 	 *          the XML element corresponding to a JSON array for which JSON text will be generated.
 	 * @param indent
 	 *          the number of spaces by which a line of the JSON text is indented.
@@ -368,12 +369,12 @@ public class JsonGeneratorXml
 	 */
 
 	private void appendArray(
-		Element		array,
+		Element		element,
 		int			indent,
 		JsonText	text)
 	{
 		// Validate arguments
-		if (!ElementKind.ARRAY.matches(array))
+		if (!ElementKind.ARRAY.matches(element))
 			throw new IllegalArgumentException("Not an array");
 
 		// If required, remove line break and indent before opening bracket
@@ -383,13 +384,13 @@ public class JsonGeneratorXml
 		text.append(JsonConstants.ARRAY_START_CHAR, JsonText.Token.ARRAY_DELIMITER);
 
 		// Get number of array elements
-		int numElements = JsonXmlUtils.countChildren(array);
+		int numChildren = JsonXmlUtils.countChildren(element);
 
 		// Case: elements of array are on a single line
-		if (isValueOnSingleLine(array, computeMaxLineLength(array, text)))
+		if (isValueOnSingleLine(element, computeMaxLineLength(element, text)))
 		{
-			// Append elements
-			for (int i = 0; i < numElements; i++)
+			// Append elements of array
+			for (int i = 0; i < numChildren; i++)
 			{
 				// Append separator between elements
 				if (i > 0)
@@ -400,7 +401,7 @@ public class JsonGeneratorXml
 					text.appendSpace();
 
 				// Append element
-				appendValue(JsonXmlUtils.child(array, i), 0, text);
+				appendValue(JsonXmlUtils.child(element, i), 0, text);
 			}
 
 			// Append space before closing bracket
@@ -418,16 +419,16 @@ public class JsonGeneratorXml
 			int childIndent = indent + indentIncrement;
 
 			// Append elements
-			for (int i = 0; i < numElements; i++)
+			for (int i = 0; i < numChildren; i++)
 			{
 				// Get element
-				Element element = JsonXmlUtils.child(array, i);
+				Element child = JsonXmlUtils.child(element, i);
 
 				// Get length of current line
 				int lineLength = text.lastLineLength();
 
 				// Set 'more elements' flag
-				boolean moreElements = (i < numElements - 1);
+				boolean moreElements = (i < numChildren - 1);
 
 				// Calculate maximum length of single line of text
 				int maxLength = maxLineLength - ((lineLength == 0) ? childIndent : lineLength + 1) - 2;
@@ -435,10 +436,10 @@ public class JsonGeneratorXml
 					--maxLength;
 
 				// Case: element is on a single line
-				if (isValueOnSingleLine(element, maxLength))
+				if (isValueOnSingleLine(child, maxLength))
 				{
 					// Convert element to string
-					String elementStr = elementToString(element);
+					String elementStr = elementToString(child);
 
 					// If not start of line, wrap line if necessary
 					if (lineLength > 0)
@@ -463,7 +464,7 @@ public class JsonGeneratorXml
 						text.appendSpace();
 
 					// Append element
-					text.append(elementStr, getToken(element));
+					text.append(elementStr, getToken(child));
 
 					// Append separator between elements
 					if (moreElements)
@@ -482,7 +483,7 @@ public class JsonGeneratorXml
 						text.appendNewLine();
 
 					// Append indent and element
-					appendValue(element, childIndent, text);
+					appendValue(child, childIndent, text);
 
 					// Append separator between elements
 					if (moreElements)
@@ -511,21 +512,24 @@ public class JsonGeneratorXml
 	 * Generates the JSON text for the specified {@linkplain Element XML element} and appends it to the specified
 	 * text.
 	 *
-	 * @param object
-	 *          the XML element corresponding to a JSON object for which JSON text will be generated.
-	 * @param indent
-	 *          the number of spaces by which a line of the JSON text is indented.
-	 * @param text
-	 *          the JSON text to which the text that is generated by this method will be appended.
+	 * @param  element
+	 *           the XML element corresponding to a JSON object for which JSON text will be generated.
+	 * @param  indent
+	 *           the number of spaces by which a line of the JSON text is indented.
+	 * @param  text
+	 *           the JSON text to which the text that is generated by this method will be appended.
+	 * @throws NoNameAttributeException
+	 *           if a child of {@code element} (ie, a member of an &lt;object&gt; element) does not have a <i>name</i>
+	 *           attribute.
 	 */
 
 	private void appendObject(
-		Element		object,
+		Element		element,
 		int			indent,
 		JsonText	text)
 	{
 		// Validate arguments
-		if (!ElementKind.OBJECT.matches(object))
+		if (!ElementKind.OBJECT.matches(element))
 			throw new IllegalArgumentException("Not an object");
 
 		// If required, remove line break and indent before opening brace
@@ -535,10 +539,10 @@ public class JsonGeneratorXml
 		text.append(JsonConstants.OBJECT_START_CHAR, JsonText.Token.OBJECT_DELIMITER);
 
 		// Case: members of object are on a single line
-		if (isValueOnSingleLine(object, computeMaxLineLength(object, text)))
+		if (isValueOnSingleLine(element, computeMaxLineLength(element, text)))
 		{
 			// Append members of object
-			Iterator<Element> it = JsonXmlUtils.childIterator(object);
+			Iterator<Element> it = JsonXmlUtils.childIterator(element);
 			while (it.hasNext())
 			{
 				// Append space after separator
@@ -549,7 +553,10 @@ public class JsonGeneratorXml
 				Element member = it.next();
 
 				// Append name of member
-				text.append(nameAttribute(member), JsonText.Token.OBJECT_MEMBER_NAME);
+				String name = nameAttribute(member);
+				if (name == null)
+					throw new NoNameAttributeException(member);
+				text.append(name, JsonText.Token.OBJECT_MEMBER_NAME);
 
 				// Append separator between name and value
 				text.append(JsonConstants.OBJECT_NAME_VALUE_SEPARATOR_CHAR, JsonText.Token.OBJECT_NAME_VALUE_SEPARATOR);
@@ -581,7 +588,7 @@ public class JsonGeneratorXml
 			text.appendNewLine();
 
 			// Append members of object
-			Iterator<Element> it = JsonXmlUtils.childIterator(object);
+			Iterator<Element> it = JsonXmlUtils.childIterator(element);
 			while (it.hasNext())
 			{
 				// Append indent before name of member
@@ -591,7 +598,10 @@ public class JsonGeneratorXml
 				Element member = it.next();
 
 				// Append name of member
-				text.append(nameAttribute(member), JsonText.Token.OBJECT_MEMBER_NAME);
+				String name = nameAttribute(member);
+				if (name == null)
+					throw new NoNameAttributeException(member);
+				text.append(name, JsonText.Token.OBJECT_MEMBER_NAME);
 
 				// Append separator between name and value
 				text.append(JsonConstants.OBJECT_NAME_VALUE_SEPARATOR_CHAR, JsonText.Token.OBJECT_NAME_VALUE_SEPARATOR);
@@ -701,7 +711,7 @@ public class JsonGeneratorXml
 
 
 	/**
-	 * This class implements a builder for a {@linkplain JsonGenerator JSON generator}.
+	 * This class implements a builder for a {@linkplain JsonGeneratorXml JSON generator}.
 	 */
 
 	public static class Builder
@@ -923,15 +933,15 @@ public class JsonGeneratorXml
 	//==================================================================
 
 
-	// CLASS: 'UNRECOGNISED XML ELEMENT' EXCEPTION
+	// ABSTRACT CLASS: ELEMENT EXCEPTION
 
 
 	/**
-	 * This class implements an unchecked exception that is thrown in response to an unrecognised {@linkplain Element
-	 * XML element}.
+	 * This is the abstract base class of an unchecked exception that is associated with an {@linkplain Element XML
+	 * element}.
 	 */
 
-	public static class UnrecognisedElementException
+	public static abstract class ElementException
 		extends RuntimeException
 	{
 
@@ -947,13 +957,13 @@ public class JsonGeneratorXml
 	////////////////////////////////////////////////////////////////////
 
 		/**
-		 * Creates a new instance of an exception that is associated with the specified unrecognised XML element.
+		 * Creates a new instance of an exception that is associated with the specified XML element.
 		 *
 		 * @param element
 		 *          the XML element that will be associated with this exception.
 		 */
 
-		public UnrecognisedElementException(
+		protected ElementException(
 			Element	element)
 		{
 			// Initialise instance variables
@@ -991,6 +1001,80 @@ public class JsonGeneratorXml
 		public Element getElement()
 		{
 			return element;
+		}
+
+		//--------------------------------------------------------------
+
+	}
+
+	//==================================================================
+
+
+	// CLASS: 'UNRECOGNISED XML ELEMENT' EXCEPTION
+
+
+	/**
+	 * This class implements an unchecked exception that is thrown in response to an unrecognised {@linkplain Element
+	 * XML element}.
+	 */
+
+	public static class UnrecognisedElementException
+		extends ElementException
+	{
+
+	////////////////////////////////////////////////////////////////////
+	//  Constructors
+	////////////////////////////////////////////////////////////////////
+
+		/**
+		 * Creates a new instance of an exception that is associated with the specified XML element.
+		 *
+		 * @param element
+		 *          the XML element that will be associated with this exception.
+		 */
+
+		public UnrecognisedElementException(
+			Element	element)
+		{
+			// Call superclass constructor
+			super(element);
+		}
+
+		//--------------------------------------------------------------
+
+	}
+
+	//==================================================================
+
+
+	// CLASS: 'NO NAME ATTRIBUTE' EXCEPTION
+
+
+	/**
+	 * This class implements an unchecked exception that is thrown in response to an {@linkplain Element XML element}
+	 * that is a member of an &lt;object&gt; element but has no <i>name</i> attribute.
+	 */
+
+	public static class NoNameAttributeException
+		extends ElementException
+	{
+
+	////////////////////////////////////////////////////////////////////
+	//  Constructors
+	////////////////////////////////////////////////////////////////////
+
+		/**
+		 * Creates a new instance of an exception that is associated with the specified XML element.
+		 *
+		 * @param element
+		 *          the XML element that will be associated with this exception.
+		 */
+
+		public NoNameAttributeException(
+			Element	element)
+		{
+			// Call superclass constructor
+			super(element);
 		}
 
 		//--------------------------------------------------------------

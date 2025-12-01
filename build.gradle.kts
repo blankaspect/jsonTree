@@ -44,6 +44,7 @@ tasks.compileJava {
 tasks.jar {
     destinationDirectory.set(file(jarDir))
     archiveFileName.set(jarFilename)
+    setPreserveFileTimestamps(true)
 }
 
 //----------------------------------------------------------------------

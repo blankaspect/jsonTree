@@ -19,7 +19,7 @@ fun _path(vararg components : String): String =
 
 fun _appSystemProperties() =
         System.getProperties()
-                .filter { (key, _) -> (key is String) && key.startsWith("blankaspect.app.") }
+                .filter { (key, _) -> (key is String) && key.startsWith("blankaspect.") }
                 .mapKeys { it.key as String }
 
 //----------------------------------------------------------------------
@@ -54,6 +54,7 @@ tasks.compileJava {
 tasks.jar {
     destinationDirectory.set(file(jarDir))
     archiveFileName.set(jarFilename)
+    setPreserveFileTimestamps(true)
     manifest {
         attributes(
             "Application-Name" to projectName,

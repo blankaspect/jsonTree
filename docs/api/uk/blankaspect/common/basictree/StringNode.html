@@ -165,6 +165,16 @@ loadScripts(document, 'script');</script>
 <div class="block">The character that denotes a Unicode escape sequence when it follows the <a href="#ESCAPE_PREFIX">escape
                 prefix</a>.</div>
 </div>
+<div class="col-first even-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color"><code><a href="#UNICODE_ESCAPE_PREFIX" class="member-name-link">UNICODE_ESCAPE_PREFIX</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">The string with which a Unicode escape sequence begins.</div>
+</div>
+<div class="col-first odd-row-color"><code>static final int</code></div>
+<div class="col-second odd-row-color"><code><a href="#UNICODE_SEQUENCE_LENGTH" class="member-name-link">UNICODE_SEQUENCE_LENGTH</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">The number of hexadecimal digits in a Unicode escape sequence.</div>
+</div>
 </div>
 </section>
 </li>
@@ -400,6 +410,28 @@ loadScripts(document, 'script');</script>
 <dd>
 <ul class="tag-list">
 <li><a href="../../../../constant-values.html#uk.blankaspect.common.basictree.StringNode.UNICODE_ESCAPE_CHAR">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="UNICODE_ESCAPE_PREFIX">
+<h3>UNICODE_ESCAPE_PREFIX</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">UNICODE_ESCAPE_PREFIX</span></div>
+<div class="block">The string with which a Unicode escape sequence begins.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="UNICODE_SEQUENCE_LENGTH">
+<h3>UNICODE_SEQUENCE_LENGTH</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">UNICODE_SEQUENCE_LENGTH</span></div>
+<div class="block">The number of hexadecimal digits in a Unicode escape sequence.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list">
+<li><a href="../../../../constant-values.html#uk.blankaspect.common.basictree.StringNode.UNICODE_SEQUENCE_LENGTH">Constant Field Values</a></li>
 </ul>
 </dd>
 </dl>
@@ -672,9 +704,6 @@ loadScripts(document, 'script');</script>
  </p>
  <p>
  Characters in the input sequence that are not escaped appear in the output string unchanged.
- </p>
- <p>
- If the <code>printableAsciiOnly</code> flag is <code>true</code>,
  </p></div>
 <dl class="notes">
 <dt>Parameters:</dt>

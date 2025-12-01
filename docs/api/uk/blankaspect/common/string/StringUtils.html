@@ -146,66 +146,102 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#applyPrefix(java.lang.String,java.lang.String)" class="member-name-link">applyPrefix</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;prefix)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Returns a string that is derived from the specified string by applying the specified prefix in a way that depends
+ on whether or not the prefix ends with an underscore ('_', U+005F):
+ 
+   
+     If the prefix ends with an underscore, the returned string consists of the prefix followed by the input
+     string.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#containsIgnoreCase(java.lang.String,java.lang.Iterable)" class="member-name-link">containsIgnoreCase</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;target,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;strs)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Returns <code>true</code> if the specified collection of strings contains the specified target string, ignoring letter
+ case when comparing strings.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#escape(java.lang.CharSequence,java.lang.String)" class="member-name-link">escape</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;seq,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;metachars)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Returns a string that consists of the specified character sequence with each occurrence of any of the specified
+ set of metacharacters immediately preceded by a backslash ('\', U+005C).</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#extractLines(java.lang.CharSequence)" class="member-name-link">extractLines</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;text)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Splits the specified text at line separators and returns the resulting list of lines.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#firstCharsToLowerCase(java.lang.String)" class="member-name-link">firstCharsToLowerCase</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#firstCharsToUpperCase(java.lang.String)" class="member-name-link">firstCharsToUpperCase</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#firstCharToLowerCase(java.lang.String)" class="member-name-link">firstCharToLowerCase</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Returns a string that is derived from the specified string by converting its first character to lower case.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#firstCharToUpperCase(java.lang.String)" class="member-name-link">firstCharToUpperCase</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Returns a string that is derived from the specified string by converting its first character to upper case.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getMaxLength(java.lang.Iterable)" class="member-name-link">getMaxLength</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;? extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&gt;&nbsp;seqs)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getMaxLength(java.lang.CharSequence...)" class="member-name-link">getMaxLength</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>...&nbsp;seqs)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Returns the maximum length of the specified character sequences.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getMaxLength(java.lang.String...)" class="member-name-link">getMaxLength</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>...&nbsp;strs)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getMaxLength(java.lang.Iterable)" class="member-name-link">getMaxLength</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;? extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&gt;&nbsp;seqs)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Returns the maximum length of the specified character sequences.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getPrefixFirst(java.lang.String,char)" class="member-name-link">getPrefixFirst</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str,
  char&nbsp;ch)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Returns the substring of the specified string from the start of the string to (but not including) the first
+ occurrence of the specified character.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getPrefixLast(java.lang.String,char)" class="member-name-link">getPrefixLast</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str,
  char&nbsp;ch)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Returns the substring of the specified string from the start of the string to (but not including) the last
+ occurrence of the specified character.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getSuffixAfterFirst(java.lang.String,char)" class="member-name-link">getSuffixAfterFirst</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str,
  char&nbsp;ch)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Returns the substring of the specified string from (but not including) the first occurrence of the specified
+ character to the end of the string.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getSuffixAfterLast(java.lang.String,char)" class="member-name-link">getSuffixAfterLast</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str,
  char&nbsp;ch)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Returns the substring of the specified string from (but not including) the last occurrence of the specified
+ character to the end of the string.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getSuffixFirst(java.lang.String,char)" class="member-name-link">getSuffixFirst</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str,
  char&nbsp;ch)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Returns the substring of the specified string from (and including) the first occurrence of the specified
+ character to the end of the string.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getSuffixLast(java.lang.String,char)" class="member-name-link">getSuffixLast</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str,
  char&nbsp;ch)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Returns the substring of the specified string from (and including) the last occurrence of the specified character
+ to the end of the string.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#indexOfIgnoreCase(java.lang.String,java.util.List)" class="member-name-link">indexOfIgnoreCase</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;target,
- <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;strs)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#indexOfIgnoreCase(java.lang.String,java.lang.Iterable)" class="member-name-link">indexOfIgnoreCase</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;target,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;strs)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Returns the index of the first occurrence of the specified target string in the specified collection of strings,
+ ignoring letter case when comparing strings.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#isNullOrBlank(java.lang.String)" class="member-name-link">isNullOrBlank</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
@@ -217,105 +253,164 @@ loadScripts(document, 'script');</script>
 <div class="block">Returns <code>true</code> if the specified string is <code>null</code> or empty.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#join(char,boolean,java.lang.Iterable)" class="member-name-link">join</a><wbr>(char&nbsp;separator,
- boolean&nbsp;trailingSeparator,
- <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;? extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&gt;&nbsp;seqs)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#join(char,boolean,java.lang.CharSequence...)" class="member-name-link">join</a><wbr>(char&nbsp;separator,
+ boolean&nbsp;includeTrailingSeparator,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>...&nbsp;seqs)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Returns a string that consists of the specified character sequences in order, with the specified separator
+ between adjacent character sequences and an optional separator after the last character sequence.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#join(char,boolean,java.lang.String...)" class="member-name-link">join</a><wbr>(char&nbsp;separator,
- boolean&nbsp;trailingSeparator,
- <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>...&nbsp;strs)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#join(char,boolean,java.lang.Iterable)" class="member-name-link">join</a><wbr>(char&nbsp;separator,
+ boolean&nbsp;includeTrailingSeparator,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;? extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&gt;&nbsp;seqs)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Returns a string that consists of the specified character sequences in order, with the specified separator
+ between adjacent character sequences and an optional separator after the last character sequence.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#join(char,java.lang.Iterable)" class="member-name-link">join</a><wbr>(char&nbsp;separator,
- <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;? extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&gt;&nbsp;seqs)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#join(char,java.lang.CharSequence...)" class="member-name-link">join</a><wbr>(char&nbsp;separator,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>...&nbsp;seqs)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Returns a string that consists of the specified character sequences in order, with the specified separator
+ between adjacent character sequences.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#join(char,java.lang.String...)" class="member-name-link">join</a><wbr>(char&nbsp;separator,
- <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>...&nbsp;strs)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#join(char,java.lang.Iterable)" class="member-name-link">join</a><wbr>(char&nbsp;separator,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;? extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&gt;&nbsp;seqs)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Returns a string that consists of the specified character sequences in order, with the specified separator
+ between adjacent character sequences.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#join(java.lang.CharSequence,boolean,java.lang.Iterable)" class="member-name-link">join</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;separator,
- boolean&nbsp;trailingSeparator,
- <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;? extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&gt;&nbsp;seqs)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#join(java.lang.CharSequence,boolean,java.lang.CharSequence...)" class="member-name-link">join</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;separator,
+ boolean&nbsp;includeTrailingSeparator,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>...&nbsp;seqs)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Returns a string that consists of the specified character sequences in order, with the specified optional
+ separator between adjacent character sequences and an optional separator after the last character sequence.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#join(java.lang.CharSequence,boolean,java.lang.String...)" class="member-name-link">join</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;separator,
- boolean&nbsp;trailingSeparator,
- <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>...&nbsp;strs)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#join(java.lang.CharSequence,boolean,java.lang.Iterable)" class="member-name-link">join</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;separator,
+ boolean&nbsp;includeTrailingSeparator,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;? extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&gt;&nbsp;seqs)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Returns a string that consists of the specified character sequences in order, with the specified optional
+ separator between adjacent character sequences and an optional separator after the last character sequence.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#join(java.lang.CharSequence,java.lang.Iterable)" class="member-name-link">join</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;separator,
- <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;? extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&gt;&nbsp;seqs)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#join(java.lang.CharSequence,java.lang.CharSequence...)" class="member-name-link">join</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;separator,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>...&nbsp;seqs)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Returns a string that consists of the specified character sequences in order, with the specified optional
+ separator between adjacent character sequences.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#join(java.lang.CharSequence,java.lang.String...)" class="member-name-link">join</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;separator,
- <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>...&nbsp;strs)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#join(java.lang.CharSequence,java.lang.Iterable)" class="member-name-link">join</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;separator,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;? extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&gt;&nbsp;seqs)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Returns a string that consists of the specified character sequences in order, with the specified optional
+ separator between adjacent character sequences.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#padAfter(java.lang.CharSequence,int)" class="member-name-link">padAfter</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;seq,
  int&nbsp;length)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Returns the specified character sequence as a string that is padded with trailing spaces (U+0020), if necessary,
+ so that the string has the specified length.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#padAfter(java.lang.CharSequence,int,char)" class="member-name-link">padAfter</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;seq,
  int&nbsp;length,
  char&nbsp;ch)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Returns the specified character sequence as a string that is padded at the end with repetitions of the specified
+ character, if necessary, so that the string has the specified length.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#padBefore(java.lang.CharSequence,int)" class="member-name-link">padBefore</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;seq,
  int&nbsp;length)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Returns the specified character sequence as a string that is padded with leading spaces (U+0020), if necessary,
+ so that the string has the specified length.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#padBefore(java.lang.CharSequence,int,char)" class="member-name-link">padBefore</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;seq,
  int&nbsp;length,
  char&nbsp;ch)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Returns the specified character sequence as a string that is padded at the start with repetitions of the
+ specified character, if necessary, so that the string has the specified length.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#removePrefix(java.lang.String,java.lang.String)" class="member-name-link">removePrefix</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;prefix)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Removes the specified prefix (ie, leading substring) from the specified string, if the string starts with the
+ prefix, and returns the resulting string.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#removeSuffix(java.lang.String,java.lang.String)" class="member-name-link">removeSuffix</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;suffix)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Removes the specified suffix (ie, trailing substring) from the specified string, if the string ends with the
+ suffix, and returns the resulting string.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#split(java.lang.String,char)" class="member-name-link">split</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str,
  char&nbsp;separator)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Returns a list of the substrings of the specified string that result from splitting the input string at each
+ occurrence of the specified separator character and removing the separators.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#split(java.lang.String,char,boolean)" class="member-name-link">split</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str,
  char&nbsp;separator,
  boolean&nbsp;discardFinalEmptyElement)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Returns a list of the substrings of the specified string that result from splitting the input string at each
+ occurrence of the specified separator character and removing the separators.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#splitAt(java.lang.String,int,uk.blankaspect.common.string.StringUtils.SplitMode)" class="member-name-link">splitAt</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str,
  int&nbsp;index,
  <a href="StringUtils.SplitMode.html" title="enum class in uk.blankaspect.common.string">StringUtils.SplitMode</a>&nbsp;splitMode)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">
+ Returns the two substrings that result from splitting the specified string at the specified index.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#splitAtFirst(java.lang.String,char)" class="member-name-link">splitAtFirst</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str,
  char&nbsp;ch)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Returns the two substrings that result from splitting the specified string at the first occurrence of the
+ specified character, which is discarded.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#splitAtFirst(java.lang.String,char,uk.blankaspect.common.string.StringUtils.SplitMode)" class="member-name-link">splitAtFirst</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str,
  char&nbsp;ch,
  <a href="StringUtils.SplitMode.html" title="enum class in uk.blankaspect.common.string">StringUtils.SplitMode</a>&nbsp;splitMode)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">
+ Returns the two substrings that result from splitting the specified string at the first occurrence of the
+ specified character, which may optionally be</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#splitAtLast(java.lang.String,char)" class="member-name-link">splitAtLast</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str,
  char&nbsp;ch)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Returns the two substrings that result from splitting the specified string at the last occurrence of the
+ specified character, which is discarded.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#splitAtLast(java.lang.String,char,uk.blankaspect.common.string.StringUtils.SplitMode)" class="member-name-link">splitAtLast</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str,
  char&nbsp;ch,
  <a href="StringUtils.SplitMode.html" title="enum class in uk.blankaspect.common.string">StringUtils.SplitMode</a>&nbsp;splitMode)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#stripAfter(java.lang.CharSequence)" class="member-name-link">stripAfter</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;seq)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#stripBefore(java.lang.CharSequence)" class="member-name-link">stripBefore</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;seq)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">
+ Returns the two substrings that result from splitting the specified string at the last occurrence of the
+ specified character, which may optionally be</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#toCamelCase(java.lang.CharSequence)" class="member-name-link">toCamelCase</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;text)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
@@ -324,11 +419,19 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#wrap(java.lang.CharSequence,int)" class="member-name-link">wrap</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;seq,
  int&nbsp;maxLineLength)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Returns the string that results from splitting the specified character sequence into substrings at <i>word
+ breaks</i> that maximise the length of each substring (with the word break removed) while not exceeding the
+ specified maximum length, then joining adjacent substrings with a line feed (U+000A).</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#wrapLines(java.lang.CharSequence,int)" class="member-name-link">wrapLines</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;seq,
  int&nbsp;maxLineLength)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Returns the list of strings that results from splitting the specified character sequence into substrings at
+ <i>word breaks</i> that maximise the length of each substring (with the word break removed) while not exceeding
+ the specified maximum length.</div>
+</div>
 </div>
 </div>
 </div>
@@ -399,24 +502,26 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getMaxLength(java.lang.Iterable)">
 <h3>getMaxLength</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getMaxLength</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;? extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&gt;&nbsp;seqs)</span></div>
+<div class="block">Returns the maximum length of the specified character sequences.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>seqs</code> - the character sequences whose maximum length is desired.</dd>
+<dt>Returns:</dt>
+<dd>the maximum length of <code>seqs</code>.</dd>
+</dl>
 </section>
 </li>
 <li>
-<section class="detail" id="getMaxLength(java.lang.String...)">
+<section class="detail" id="getMaxLength(java.lang.CharSequence...)">
 <h3>getMaxLength</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getMaxLength</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>...&nbsp;strs)</span></div>
-</section>
-</li>
-<li>
-<section class="detail" id="stripBefore(java.lang.CharSequence)">
-<h3>stripBefore</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">stripBefore</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;seq)</span></div>
-</section>
-</li>
-<li>
-<section class="detail" id="stripAfter(java.lang.CharSequence)">
-<h3>stripAfter</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">stripAfter</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;seq)</span></div>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getMaxLength</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>...&nbsp;seqs)</span></div>
+<div class="block">Returns the maximum length of the specified character sequences.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>seqs</code> - the character sequences whose maximum length is desired.</dd>
+<dt>Returns:</dt>
+<dd>the maximum length of <code>seqs</code>.</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -424,6 +529,17 @@ loadScripts(document, 'script');</script>
 <h3>padBefore</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">padBefore</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;seq,
  int&nbsp;length)</span></div>
+<div class="block">Returns the specified character sequence as a string that is padded with leading spaces (U+0020), if necessary,
+ so that the string has the specified length.  If the length of the input sequence is greater than or equal to the
+ specified length, the input sequence is returned as a string with no additional padding.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>seq</code> - the input sequence of characters.</dd>
+<dd><code>length</code> - the desired length of the padded output string.</dd>
+<dt>Returns:</dt>
+<dd><code>seq</code> as a string, padded with leading spaces, if necessary, so that the length of the returned
+         string is <code>length</code>.</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -432,6 +548,19 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">padBefore</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;seq,
  int&nbsp;length,
  char&nbsp;ch)</span></div>
+<div class="block">Returns the specified character sequence as a string that is padded at the start with repetitions of the
+ specified character, if necessary, so that the string has the specified length.  If the length of the input
+ sequence is greater than or equal to the specified length, the input sequence is returned as a string with no
+ additional padding.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>seq</code> - the input sequence of characters.</dd>
+<dd><code>length</code> - the desired length of the padded output string.</dd>
+<dd><code>ch</code> - the character with which the string will be padded.</dd>
+<dt>Returns:</dt>
+<dd><code>seq</code> as a string, padded at the start with repetitions of <code>ch</code>, if necessary, so that the
+         length of the returned string is <code>length</code>.</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -439,6 +568,17 @@ loadScripts(document, 'script');</script>
 <h3>padAfter</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">padAfter</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;seq,
  int&nbsp;length)</span></div>
+<div class="block">Returns the specified character sequence as a string that is padded with trailing spaces (U+0020), if necessary,
+ so that the string has the specified length.  If the length of the input sequence is greater than or equal to the
+ specified length, the input sequence is returned as a string with no additional padding.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>seq</code> - the input sequence of characters.</dd>
+<dd><code>length</code> - the desired length of the padded output string.</dd>
+<dt>Returns:</dt>
+<dd><code>seq</code> as a string, padded with trailing spaces, if necessary, so that the length of the returned
+         string is <code>length</code>.</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -447,6 +587,19 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">padAfter</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;seq,
  int&nbsp;length,
  char&nbsp;ch)</span></div>
+<div class="block">Returns the specified character sequence as a string that is padded at the end with repetitions of the specified
+ character, if necessary, so that the string has the specified length.  If the length of the input sequence is
+ greater than or equal to the specified length, the input sequence is returned as a string with no additional
+ padding.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>seq</code> - the input sequence of characters.</dd>
+<dd><code>length</code> - the desired length of the padded output string.</dd>
+<dd><code>ch</code> - the character with which the string will be padded.</dd>
+<dt>Returns:</dt>
+<dd><code>seq</code> as a string, padded at the end with repetitions of <code>ch</code>, if necessary, so that the
+         length of the returned string is <code>length</code>.</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -454,6 +607,16 @@ loadScripts(document, 'script');</script>
 <h3>split</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name">split</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str,
  char&nbsp;separator)</span></div>
+<div class="block">Returns a list of the substrings of the specified string that result from splitting the input string at each
+ occurrence of the specified separator character and removing the separators.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>str</code> - the string that is to be split.</dd>
+<dd><code>separator</code> - the separator character.</dd>
+<dt>Returns:</dt>
+<dd>a list of the substrings of <code>str</code> that result from splitting the input string at each occurrence of
+         <code>separator</code>.</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -462,6 +625,19 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name">split</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str,
  char&nbsp;separator,
  boolean&nbsp;discardFinalEmptyElement)</span></div>
+<div class="block">Returns a list of the substrings of the specified string that result from splitting the input string at each
+ occurrence of the specified separator character and removing the separators.  The last element of the list of
+ substrings may optionally be discarded if it is the empty string.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>str</code> - the string that is to be split.</dd>
+<dd><code>separator</code> - the separator character.</dd>
+<dd><code>discardFinalEmptyElement</code> - if <code>true</code>, the last element of the list of substrings will be discarded if it is the empty
+           string.</dd>
+<dt>Returns:</dt>
+<dd>a list of the substrings of <code>str</code> that result from splitting the input string at each occurrence of
+         <code>separator</code> and optionally discarding the last element if it is empty.</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -470,6 +646,31 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]</span>&nbsp;<span class="element-name">splitAt</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str,
  int&nbsp;index,
  <a href="StringUtils.SplitMode.html" title="enum class in uk.blankaspect.common.string">StringUtils.SplitMode</a>&nbsp;splitMode)</span></div>
+<div class="block"><p style="margin-bottom: 0.25em;">
+ Returns the two substrings that result from splitting the specified string at the specified index.  The character
+ at the specified index in the input string may optionally be
+ </p>
+ <ul style="margin-top: 0.25em; margin-bottom: 0.25em;">
+   <li>included in the first substring (the <i>prefix</i>),</li>
+   <li>included in the second substring (the <i>suffix</i>) or</li>
+   <li>discarded,</li>
+ </ul>
+ <p style="margin-top: 0.25em;">
+ according to the specified <i>split mode</i>.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>str</code> - the string that is to be split.</dd>
+<dd><code>index</code> - the index of the character at which <code>str</code> is to be split.  If it is less than 0, the result is as
+           described below.</dd>
+<dd><code>splitMode</code> - the way in which the character of <code>str</code> at <code>index</code> will be treated.</dd>
+<dt>Returns:</dt>
+<dd>an array containing the two substrings that result from splitting <code>str</code> at <code>index</code>, taking
+         into account <code>splitMode</code>.  If <code>index</code> is less than 0, the two returned values will be
+         <ul>
+           <li><code>str</code> and <code>null</code>, if <code>splitMode</code> is <code>NONE</code>, or</li>
+           <li><code>str</code> and the empty string, if <code>splitMode</code> is <code>PREFIX</code> or <code>SUFFIX</code>.</li>
+         </ul></dd>
+</dl>
 </section>
 </li>
 <li>
@@ -477,6 +678,17 @@ loadScripts(document, 'script');</script>
 <h3>splitAtFirst</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]</span>&nbsp;<span class="element-name">splitAtFirst</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str,
  char&nbsp;ch)</span></div>
+<div class="block">Returns the two substrings that result from splitting the specified string at the first occurrence of the
+ specified character, which is discarded.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>str</code> - the string that is to be split.</dd>
+<dd><code>ch</code> - the character at which <code>str</code> is to be split.</dd>
+<dt>Returns:</dt>
+<dd>an array containing the two substrings that result from splitting <code>str</code> at the first occurrence of
+         <code>ch</code>.  If <code>str</code> does not contain <code>ch</code>, the two returned values will be <code>str</code> and
+         <code>null</code>.</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -485,6 +697,31 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]</span>&nbsp;<span class="element-name">splitAtFirst</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str,
  char&nbsp;ch,
  <a href="StringUtils.SplitMode.html" title="enum class in uk.blankaspect.common.string">StringUtils.SplitMode</a>&nbsp;splitMode)</span></div>
+<div class="block"><p style="margin-bottom: 0.25em;">
+ Returns the two substrings that result from splitting the specified string at the first occurrence of the
+ specified character, which may optionally be
+ </p>
+ <ul style="margin-top: 0.25em; margin-bottom: 0.25em;">
+   <li>included in the first substring (the <i>prefix</i>),</li>
+   <li>included in the second substring (the <i>suffix</i>) or</li>
+   <li>discarded,</li>
+ </ul>
+ <p style="margin-top: 0.25em;">
+ according to the specified <i>split mode</i>.
+ </p></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>str</code> - the string that is to be split.</dd>
+<dd><code>ch</code> - the character at which <code>str</code> is to be split.</dd>
+<dd><code>splitMode</code> - the way in which the first occurrence of <code>ch</code> will be treated.</dd>
+<dt>Returns:</dt>
+<dd>an array containing the two substrings that result from splitting <code>str</code> at the first occurrence of
+         <code>ch</code>.  If <code>str</code> does not contain <code>ch</code>, the two returned values will be
+         <ul>
+           <li><code>str</code> and <code>null</code>, if <code>splitMode</code> is <code>NONE</code>, or</li>
+           <li><code>str</code> and the empty string, if <code>splitMode</code> is <code>PREFIX</code> or <code>SUFFIX</code>.</li>
+         </ul></dd>
+</dl>
 </section>
 </li>
 <li>
@@ -492,6 +729,17 @@ loadScripts(document, 'script');</script>
 <h3>splitAtLast</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]</span>&nbsp;<span class="element-name">splitAtLast</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str,
  char&nbsp;ch)</span></div>
+<div class="block">Returns the two substrings that result from splitting the specified string at the last occurrence of the
+ specified character, which is discarded.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>str</code> - the string that is to be split.</dd>
+<dd><code>ch</code> - the character at which <code>str</code> is to be split.</dd>
+<dt>Returns:</dt>
+<dd>an array containing the two substrings that result from splitting <code>str</code> at the last occurrence of
+         <code>ch</code>.  If <code>str</code> does not contain <code>ch</code>, the two returned values will be <code>str</code> and
+         <code>null</code>.</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -500,6 +748,31 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]</span>&nbsp;<span class="element-name">splitAtLast</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str,
  char&nbsp;ch,
  <a href="StringUtils.SplitMode.html" title="enum class in uk.blankaspect.common.string">StringUtils.SplitMode</a>&nbsp;splitMode)</span></div>
+<div class="block"><p style="margin-bottom: 0.25em;">
+ Returns the two substrings that result from splitting the specified string at the last occurrence of the
+ specified character, which may optionally be
+ </p>
+ <ul style="margin-top: 0.25em; margin-bottom: 0.25em;">
+   <li>included in the first substring (the <i>prefix</i>),</li>
+   <li>included in the second substring (the <i>suffix</i>) or</li>
+   <li>discarded,</li>
+ </ul>
+ <p style="margin-top: 0.25em;">
+ according to the specified <i>split mode</i>.
+ </p></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>str</code> - the string that is to be split.</dd>
+<dd><code>ch</code> - the character at which <code>str</code> is to be split.</dd>
+<dd><code>splitMode</code> - the way in which the last occurrence of <code>ch</code> will be treated.</dd>
+<dt>Returns:</dt>
+<dd>an array containing the two substrings that result from splitting <code>str</code> at the last occurrence of
+         <code>ch</code>.  If <code>str</code> does not contain <code>ch</code>, the two returned values will be
+         <ul>
+           <li><code>str</code> and <code>null</code>, if <code>splitMode</code> is <code>NONE</code>, or</li>
+           <li><code>str</code> and the empty string, if <code>splitMode</code> is <code>PREFIX</code> or <code>SUFFIX</code>.</li>
+         </ul></dd>
+</dl>
 </section>
 </li>
 <li>
@@ -507,6 +780,16 @@ loadScripts(document, 'script');</script>
 <h3>getPrefixFirst</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getPrefixFirst</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str,
  char&nbsp;ch)</span></div>
+<div class="block">Returns the substring of the specified string from the start of the string to (but not including) the first
+ occurrence of the specified character.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>str</code> - the string from which a leading substring is to be extracted.</dd>
+<dd><code>ch</code> - the character whose first occurrence denotes the exclusive end of the prefix.</dd>
+<dt>Returns:</dt>
+<dd>the substring of <code>str</code> from the start of the string to (but not including) the first occurrence of
+         <code>ch</code>.  If <code>str</code> does not contain <code>ch</code>, <code>str</code> is returned.</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -514,6 +797,16 @@ loadScripts(document, 'script');</script>
 <h3>getPrefixLast</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getPrefixLast</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str,
  char&nbsp;ch)</span></div>
+<div class="block">Returns the substring of the specified string from the start of the string to (but not including) the last
+ occurrence of the specified character.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>str</code> - the string from which a leading substring is to be extracted.</dd>
+<dd><code>ch</code> - the character whose last occurrence denotes the exclusive end of the prefix.</dd>
+<dt>Returns:</dt>
+<dd>the substring of <code>str</code> from the start of the string to (but not including) the last occurrence of
+         <code>ch</code>.  If <code>str</code> does not contain <code>ch</code>, <code>str</code> is returned.</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -521,6 +814,16 @@ loadScripts(document, 'script');</script>
 <h3>getSuffixFirst</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getSuffixFirst</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str,
  char&nbsp;ch)</span></div>
+<div class="block">Returns the substring of the specified string from (and including) the first occurrence of the specified
+ character to the end of the string.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>str</code> - the string from which a trailing substring is to be extracted.</dd>
+<dd><code>ch</code> - the character whose first occurrence denotes the inclusive start of the suffix.</dd>
+<dt>Returns:</dt>
+<dd>the substring of <code>str</code> from (and including) the first occurrence of <code>ch</code> to the end of the
+         string.  If <code>str</code> does not contain <code>ch</code>, <code>str</code> is returned.</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -528,6 +831,16 @@ loadScripts(document, 'script');</script>
 <h3>getSuffixAfterFirst</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getSuffixAfterFirst</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str,
  char&nbsp;ch)</span></div>
+<div class="block">Returns the substring of the specified string from (but not including) the first occurrence of the specified
+ character to the end of the string.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>str</code> - the string from which a trailing substring is to be extracted.</dd>
+<dd><code>ch</code> - the character whose first occurrence denotes the exclusive start of the suffix.</dd>
+<dt>Returns:</dt>
+<dd>the substring of <code>str</code> from (but not including) the first occurrence of <code>ch</code> to the end of
+         the string.  If <code>str</code> does not contain <code>ch</code>, <code>str</code> is returned.</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -535,6 +848,16 @@ loadScripts(document, 'script');</script>
 <h3>getSuffixLast</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getSuffixLast</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str,
  char&nbsp;ch)</span></div>
+<div class="block">Returns the substring of the specified string from (and including) the last occurrence of the specified character
+ to the end of the string.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>str</code> - the string from which a trailing substring is to be extracted.</dd>
+<dd><code>ch</code> - the character whose last occurrence denotes the inclusive start of the suffix.</dd>
+<dt>Returns:</dt>
+<dd>the substring of <code>str</code> from (and including) the last occurrence of <code>ch</code> to the end of the
+         string.  If <code>str</code> does not contain <code>ch</code>, <code>str</code> is returned.</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -542,6 +865,16 @@ loadScripts(document, 'script');</script>
 <h3>getSuffixAfterLast</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getSuffixAfterLast</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str,
  char&nbsp;ch)</span></div>
+<div class="block">Returns the substring of the specified string from (but not including) the last occurrence of the specified
+ character to the end of the string.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>str</code> - the string from which a trailing substring is to be extracted.</dd>
+<dd><code>ch</code> - the character whose last occurrence denotes the exclusive start of the suffix.</dd>
+<dt>Returns:</dt>
+<dd>the substring of <code>str</code> from (but not including) the last occurrence of <code>ch</code> to the end of
+         the string.  If <code>str</code> does not contain <code>ch</code>, <code>str</code> is returned.</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -549,6 +882,15 @@ loadScripts(document, 'script');</script>
 <h3>removePrefix</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">removePrefix</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;prefix)</span></div>
+<div class="block">Removes the specified prefix (ie, leading substring) from the specified string, if the string starts with the
+ prefix, and returns the resulting string.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>str</code> - the string from which to remove <code>prefix</code>.</dd>
+<dd><code>prefix</code> - the leading substring that is to be removed from <code>str</code>.</dd>
+<dt>Returns:</dt>
+<dd><code>str</code> without <code>prefix</code>, if <code>str</code> starts with <code>prefix</code>; otherwise, <code>str</code>.</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -556,13 +898,31 @@ loadScripts(document, 'script');</script>
 <h3>removeSuffix</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">removeSuffix</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;suffix)</span></div>
+<div class="block">Removes the specified suffix (ie, trailing substring) from the specified string, if the string ends with the
+ suffix, and returns the resulting string.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>str</code> - the string from which to remove <code>suffix</code>.</dd>
+<dd><code>suffix</code> - the trailing substring that is to be removed from <code>str</code>.</dd>
+<dt>Returns:</dt>
+<dd><code>str</code> without <code>suffix</code>, if <code>str</code> ends with <code>suffix</code>; otherwise, <code>str</code>.</dd>
+</dl>
 </section>
 </li>
 <li>
-<section class="detail" id="join(char,java.lang.String...)">
+<section class="detail" id="join(char,java.lang.CharSequence...)">
 <h3>join</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">join</span><wbr><span class="parameters">(char&nbsp;separator,
- <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>...&nbsp;strs)</span></div>
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>...&nbsp;seqs)</span></div>
+<div class="block">Returns a string that consists of the specified character sequences in order, with the specified separator
+ between adjacent character sequences.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>separator</code> - the character that will separate adjacent elements of <code>seqs</code> in the output string.</dd>
+<dd><code>seqs</code> - the character sequences to be joined together.</dd>
+<dt>Returns:</dt>
+<dd>a string that consists of the elements of <code>seqs</code>, with <code>separator</code> between adjacent elements.</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -570,13 +930,32 @@ loadScripts(document, 'script');</script>
 <h3>join</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">join</span><wbr><span class="parameters">(char&nbsp;separator,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;? extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&gt;&nbsp;seqs)</span></div>
+<div class="block">Returns a string that consists of the specified character sequences in order, with the specified separator
+ between adjacent character sequences.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>separator</code> - the character that will separate adjacent elements of <code>seqs</code> in the output string.</dd>
+<dd><code>seqs</code> - the character sequences to be joined together.</dd>
+<dt>Returns:</dt>
+<dd>a string that consists of the elements of <code>seqs</code>, with <code>separator</code> between adjacent elements.</dd>
+</dl>
 </section>
 </li>
 <li>
-<section class="detail" id="join(java.lang.CharSequence,java.lang.String...)">
+<section class="detail" id="join(java.lang.CharSequence,java.lang.CharSequence...)">
 <h3>join</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">join</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;separator,
- <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>...&nbsp;strs)</span></div>
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>...&nbsp;seqs)</span></div>
+<div class="block">Returns a string that consists of the specified character sequences in order, with the specified optional
+ separator between adjacent character sequences.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>separator</code> - the character sequence that will separate adjacent elements of <code>seqs</code> in the output string.  If
+           it is <code>null</code>, the elements of <code>seqs</code> will be concatenated without a separator.</dd>
+<dd><code>seqs</code> - the character sequences to be joined together.</dd>
+<dt>Returns:</dt>
+<dd>a string that consists of the elements of <code>seqs</code>, with <code>separator</code> between adjacent elements.</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -584,38 +963,94 @@ loadScripts(document, 'script');</script>
 <h3>join</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">join</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;separator,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;? extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&gt;&nbsp;seqs)</span></div>
+<div class="block">Returns a string that consists of the specified character sequences in order, with the specified optional
+ separator between adjacent character sequences.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>separator</code> - the character sequence that will separate adjacent elements of <code>seqs</code> in the output string.  If
+           it is <code>null</code>, the elements of <code>seqs</code> will be concatenated without a separator.</dd>
+<dd><code>seqs</code> - the character sequences to be joined together.</dd>
+<dt>Returns:</dt>
+<dd>a string that consists of the elements of <code>seqs</code>, with <code>separator</code> between adjacent elements.</dd>
+</dl>
 </section>
 </li>
 <li>
-<section class="detail" id="join(char,boolean,java.lang.String...)">
+<section class="detail" id="join(char,boolean,java.lang.CharSequence...)">
 <h3>join</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">join</span><wbr><span class="parameters">(char&nbsp;separator,
- boolean&nbsp;trailingSeparator,
- <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>...&nbsp;strs)</span></div>
+ boolean&nbsp;includeTrailingSeparator,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>...&nbsp;seqs)</span></div>
+<div class="block">Returns a string that consists of the specified character sequences in order, with the specified separator
+ between adjacent character sequences and an optional separator after the last character sequence.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>separator</code> - the character that will separate adjacent elements of <code>seqs</code> in the output string.</dd>
+<dd><code>includeTrailingSeparator</code> - if <code>true</code>, a <code>separator</code> will be appended to the last element of <code>seqs</code>.</dd>
+<dd><code>seqs</code> - the character sequences to be joined together.</dd>
+<dt>Returns:</dt>
+<dd>a string that consists of the elements of <code>seqs</code>, with <code>separator</code> between adjacent elements
+         and an optional <code>separator</code> after the last element.</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="join(char,boolean,java.lang.Iterable)">
 <h3>join</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">join</span><wbr><span class="parameters">(char&nbsp;separator,
- boolean&nbsp;trailingSeparator,
+ boolean&nbsp;includeTrailingSeparator,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;? extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&gt;&nbsp;seqs)</span></div>
+<div class="block">Returns a string that consists of the specified character sequences in order, with the specified separator
+ between adjacent character sequences and an optional separator after the last character sequence.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>separator</code> - the character that will separate adjacent elements of <code>seqs</code> in the output string.</dd>
+<dd><code>includeTrailingSeparator</code> - if <code>true</code>, a <code>separator</code> will be appended to the last element of <code>seqs</code>.</dd>
+<dd><code>seqs</code> - the character sequences to be joined together.</dd>
+<dt>Returns:</dt>
+<dd>a string that consists of the elements of <code>seqs</code>, with <code>separator</code> between adjacent elements
+         and an optional <code>separator</code> after the last element.</dd>
+</dl>
 </section>
 </li>
 <li>
-<section class="detail" id="join(java.lang.CharSequence,boolean,java.lang.String...)">
+<section class="detail" id="join(java.lang.CharSequence,boolean,java.lang.CharSequence...)">
 <h3>join</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">join</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;separator,
- boolean&nbsp;trailingSeparator,
- <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>...&nbsp;strs)</span></div>
+ boolean&nbsp;includeTrailingSeparator,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>...&nbsp;seqs)</span></div>
+<div class="block">Returns a string that consists of the specified character sequences in order, with the specified optional
+ separator between adjacent character sequences and an optional separator after the last character sequence.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>separator</code> - the character sequence that will separate adjacent elements of <code>seqs</code> in the output string.  If
+           it is <code>null</code>, the elements of <code>seqs</code> will be concatenated without a separator.</dd>
+<dd><code>includeTrailingSeparator</code> - if <code>true</code>, a <code>separator</code> will be appended to the last element of <code>seqs</code>.</dd>
+<dd><code>seqs</code> - the character sequences to be joined together.</dd>
+<dt>Returns:</dt>
+<dd>a string that consists of the elements of <code>seqs</code>, with <code>separator</code> between adjacent elements
+         and an optional <code>separator</code> after the last element.</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="join(java.lang.CharSequence,boolean,java.lang.Iterable)">
 <h3>join</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">join</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;separator,
- boolean&nbsp;trailingSeparator,
+ boolean&nbsp;includeTrailingSeparator,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;? extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&gt;&nbsp;seqs)</span></div>
+<div class="block">Returns a string that consists of the specified character sequences in order, with the specified optional
+ separator between adjacent character sequences and an optional separator after the last character sequence.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>separator</code> - the character sequence that will separate adjacent elements of <code>seqs</code> in the output string.  If
+           it is <code>null</code>, the elements of <code>seqs</code> will be concatenated without a separator.</dd>
+<dd><code>includeTrailingSeparator</code> - if <code>true</code>, a <code>separator</code> will be appended to the last element of <code>seqs</code>.</dd>
+<dd><code>seqs</code> - the character sequences to be joined together.</dd>
+<dt>Returns:</dt>
+<dd>a string that consists of the elements of <code>seqs</code>, with <code>separator</code> between adjacent elements
+         and an optional <code>separator</code> after the last element.</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -638,6 +1073,22 @@ loadScripts(document, 'script');</script>
 <h3>wrap</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">wrap</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;seq,
  int&nbsp;maxLineLength)</span></div>
+<div class="block">Returns the string that results from splitting the specified character sequence into substrings at <i>word
+ breaks</i> that maximise the length of each substring (with the word break removed) while not exceeding the
+ specified maximum length, then joining adjacent substrings with a line feed (U+000A).  A word break is a sequence
+ of one or more space characters (U+0020).
+ <p>
+ The length of a substring may exceed the specified limit if the substring does not contain a space character.
+ </p></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>seq</code> - the character sequence that is to be split into substrings at appropriate word breaks.</dd>
+<dd><code>maxLineLength</code> - the maximum length of a substring when splitting the input sequence.</dd>
+<dt>Returns:</dt>
+<dd>the string that results from splitting <code>seq</code> into substrings at word breaks that maximise the
+         length of each substring while not exceeding <code>maxLineLength</code>, then joining adjacent substrings with
+         a line feed (U+000A).</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -645,30 +1096,52 @@ loadScripts(document, 'script');</script>
 <h3>wrapLines</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name">wrapLines</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;seq,
  int&nbsp;maxLineLength)</span></div>
+<div class="block">Returns the list of strings that results from splitting the specified character sequence into substrings at
+ <i>word breaks</i> that maximise the length of each substring (with the word break removed) while not exceeding
+ the specified maximum length.  A word break is a sequence of one or more space characters (U+0020).
+ <p>
+ The length of a substring may exceed the specified limit if the substring does not contain a space character.
+ </p></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>seq</code> - the character sequence that is to be split into substrings at appropriate word breaks.</dd>
+<dd><code>maxLineLength</code> - the maximum length of a substring when splitting the input sequence.</dd>
+<dt>Returns:</dt>
+<dd>the list of strings that results from splitting <code>seq</code> into substrings at word breaks that maximise
+         the length of each substring while not exceeding <code>maxLineLength</code>.</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="firstCharToLowerCase(java.lang.String)">
 <h3>firstCharToLowerCase</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">firstCharToLowerCase</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str)</span></div>
-</section>
-</li>
-<li>
-<section class="detail" id="firstCharsToLowerCase(java.lang.String)">
-<h3>firstCharsToLowerCase</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">firstCharsToLowerCase</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str)</span></div>
+<div class="block">Returns a string that is derived from the specified string by converting its first character to lower case.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>str</code> - the string to be converted.</dd>
+<dt>Returns:</dt>
+<dd><code>str</code> with its first character converted to lower case.</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/NullPointerException.html" title="class or interface in java.lang" class="external-link">NullPointerException</a></code> - if <code>str</code> is <code>null</code>.</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IndexOutOfBoundsException.html" title="class or interface in java.lang" class="external-link">IndexOutOfBoundsException</a></code> - if <code>str</code> is empty.</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="firstCharToUpperCase(java.lang.String)">
 <h3>firstCharToUpperCase</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">firstCharToUpperCase</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str)</span></div>
-</section>
-</li>
-<li>
-<section class="detail" id="firstCharsToUpperCase(java.lang.String)">
-<h3>firstCharsToUpperCase</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">firstCharsToUpperCase</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str)</span></div>
+<div class="block">Returns a string that is derived from the specified string by converting its first character to upper case.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>str</code> - the string to be converted.</dd>
+<dt>Returns:</dt>
+<dd><code>str</code> with its first character converted to upper case.</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/NullPointerException.html" title="class or interface in java.lang" class="external-link">NullPointerException</a></code> - if <code>str</code> is <code>null</code>.</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IndexOutOfBoundsException.html" title="class or interface in java.lang" class="external-link">IndexOutOfBoundsException</a></code> - if <code>str</code> is empty.</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -684,14 +1157,16 @@ loadScripts(document, 'script');</script>
    <li>a <i>non-alphanumeric character</i> is a character that is neither a <i>digit</i> nor a <i>letter</i>.</li>
  </ul>
  <ol>
-   <li>Each letter that immediately follows a digit or a non-alphanumeric character is converted to upper
-       case except for a letter that follows a sequence of a latter and an apostrophe (U+0027).</li>
+   <li>
+     Each letter that immediately follows a digit or a non-alphanumeric character is converted to upper case
+     except for a letter that follows a sequence of a letter and an apostrophe (U+0027).
+   </li>
    <li>All other letters are converted to lower case.</li>
    <li>All non-alphanumeric characters are removed.</li>
  </ol></div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>text</code> - the text that will be converted.</dd>
+<dd><code>text</code> - the text that is to be converted.</dd>
 <dt>Returns:</dt>
 <dd>the camel-case string that results from the conversion of <code>text</code>.</dd>
 </dl>
@@ -702,6 +1177,25 @@ loadScripts(document, 'script');</script>
 <h3>applyPrefix</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">applyPrefix</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;prefix)</span></div>
+<div class="block">Returns a string that is derived from the specified string by applying the specified prefix in a way that depends
+ on whether or not the prefix ends with an underscore ('_', U+005F):
+ <ul>
+   <li>
+     If the prefix ends with an underscore, the returned string consists of the prefix followed by the input
+     string.
+   </li>
+   <li>
+     If the prefix does not end with an underscore, the returned string consists of the prefix followed by the
+     input string with its first character converted to upper case.
+   </li>
+ </ul></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>str</code> - the string to which <code>prefix</code> will be applied.</dd>
+<dd><code>prefix</code> - the prefix that will be applied to <code>str</code>.</dd>
+<dt>Returns:</dt>
+<dd>the result of applying <code>prefix</code> to <code>str</code> in the way described above.</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -709,6 +1203,23 @@ loadScripts(document, 'script');</script>
 <h3>escape</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">escape</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;seq,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;metachars)</span></div>
+<div class="block">Returns a string that consists of the specified character sequence with each occurrence of any of the specified
+ set of metacharacters immediately preceded by a backslash ('\', U+005C).
+ <dl>
+   <dt>Example:</dt>
+   <dd>
+     If the input sequence is <code>"${name}"</code> and the metacharacters are <code>"${}"</code>, the returned
+     value is <code>"\$\{name\}"</code>.
+   </dd>
+ </dl></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>seq</code> - the string to be processed.</dd>
+<dd><code>metachars</code> - a string containing the metacharacters that will be preceded by a backslash in the output string.</dd>
+<dt>Returns:</dt>
+<dd>a string consisting of <code>seq</code> with each occurrence of any of <code>metachars</code> preceded by a
+         backslash.</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -716,13 +1227,32 @@ loadScripts(document, 'script');</script>
 <h3>containsIgnoreCase</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">containsIgnoreCase</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;target,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;strs)</span></div>
+<div class="block">Returns <code>true</code> if the specified collection of strings contains the specified target string, ignoring letter
+ case when comparing strings.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>target</code> - the target string.</dd>
+<dd><code>strs</code> - the strings that will be searched for <code>target</code>.</dd>
+<dt>Returns:</dt>
+<dd><code>true</code> if <code>strs</code> contains <code>target</code>, ignoring letter case.</dd>
+</dl>
 </section>
 </li>
 <li>
-<section class="detail" id="indexOfIgnoreCase(java.lang.String,java.util.List)">
+<section class="detail" id="indexOfIgnoreCase(java.lang.String,java.lang.Iterable)">
 <h3>indexOfIgnoreCase</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">indexOfIgnoreCase</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;target,
- <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;strs)</span></div>
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;strs)</span></div>
+<div class="block">Returns the index of the first occurrence of the specified target string in the specified collection of strings,
+ ignoring letter case when comparing strings.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>target</code> - the target string.</dd>
+<dd><code>strs</code> - the strings that will be searched for <code>target</code>.</dd>
+<dt>Returns:</dt>
+<dd>the index of the first occurrence of <code>target</code> in <code>strs</code>, or -1 if <code>strs</code> does not
+         contain <code>target</code>.</dd>
+</dl>
 </section>
 </li>
 </ul>

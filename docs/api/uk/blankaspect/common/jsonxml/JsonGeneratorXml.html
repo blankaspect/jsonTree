@@ -110,7 +110,19 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color"><code>static class&nbsp;</code></div>
 <div class="col-second even-row-color"><code><a href="JsonGeneratorXml.Builder.html" class="type-name-link" title="class in uk.blankaspect.common.jsonxml">JsonGeneratorXml.Builder</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">This class implements a builder for a <a href="../json/JsonGenerator.html" title="class in uk.blankaspect.common.json">JSON generator</a>.</div>
+<div class="block">This class implements a builder for a <a href="JsonGeneratorXml.html" title="class in uk.blankaspect.common.jsonxml">JSON generator</a>.</div>
+</div>
+<div class="col-first odd-row-color"><code>static class&nbsp;</code></div>
+<div class="col-second odd-row-color"><code><a href="JsonGeneratorXml.ElementException.html" class="type-name-link" title="class in uk.blankaspect.common.jsonxml">JsonGeneratorXml.ElementException</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">This is the abstract base class of an unchecked exception that is associated with an <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.xml/org/w3c/dom/Element.html" title="class or interface in org.w3c.dom" class="external-link">XML
+ element</a>.</div>
+</div>
+<div class="col-first even-row-color"><code>static class&nbsp;</code></div>
+<div class="col-second even-row-color"><code><a href="JsonGeneratorXml.NoNameAttributeException.html" class="type-name-link" title="class in uk.blankaspect.common.jsonxml">JsonGeneratorXml.NoNameAttributeException</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">This class implements an unchecked exception that is thrown in response to an <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.xml/org/w3c/dom/Element.html" title="class or interface in org.w3c.dom" class="external-link">XML element</a>
+ that is a member of an &lt;object&gt; element but has no <i>name</i> attribute.</div>
 </div>
 <div class="col-first odd-row-color"><code>static class&nbsp;</code></div>
 <div class="col-second odd-row-color"><code><a href="JsonGeneratorXml.UnrecognisedElementException.html" class="type-name-link" title="class in uk.blankaspect.common.jsonxml">JsonGeneratorXml.UnrecognisedElementException</a></code></div>
@@ -137,7 +149,7 @@ loadScripts(document, 'script');</script>
 <div class="block">Creates and returns a new instance of a builder for a JSON generator.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../json/JsonText.html" title="class in uk.blankaspect.common.json">JsonText</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#generate(org.w3c.dom.Element)" class="member-name-link">generate</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.xml/org/w3c/dom/Element.html" title="class or interface in org.w3c.dom" class="external-link">Element</a>&nbsp;value)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#generate(org.w3c.dom.Element)" class="member-name-link">generate</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.xml/org/w3c/dom/Element.html" title="class or interface in org.w3c.dom" class="external-link">Element</a>&nbsp;element)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Generates and returns JSON text for the specified <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.xml/org/w3c/dom/Element.html" title="class or interface in org.w3c.dom" class="external-link">XML element</a> in accordance with the
  properties of this generator:
@@ -145,7 +157,8 @@ loadScripts(document, 'script');</script>
    output mode,
    <i>new line before left bracket</i> parameter,
    indent increment,
-   maximum line length.
+   maximum line length,
+   <i>printable ASCII only</i> flag.
  </div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="../json/JsonText.Token.html" title="enum class in uk.blankaspect.common.json">JsonText.Token</a></code></div>
@@ -197,22 +210,23 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="generate(org.w3c.dom.Element)">
 <h3>generate</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../json/JsonText.html" title="class in uk.blankaspect.common.json">JsonText</a></span>&nbsp;<span class="element-name">generate</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.xml/org/w3c/dom/Element.html" title="class or interface in org.w3c.dom" class="external-link">Element</a>&nbsp;value)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../json/JsonText.html" title="class in uk.blankaspect.common.json">JsonText</a></span>&nbsp;<span class="element-name">generate</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.xml/org/w3c/dom/Element.html" title="class or interface in org.w3c.dom" class="external-link">Element</a>&nbsp;element)</span></div>
 <div class="block">Generates and returns JSON text for the specified <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.xml/org/w3c/dom/Element.html" title="class or interface in org.w3c.dom" class="external-link">XML element</a> in accordance with the
  properties of this generator:
  <ul>
    <li>output mode,</li>
    <li><i>new line before left bracket</i> parameter,</li>
    <li>indent increment,</li>
-   <li>maximum line length.</li>
+   <li>maximum line length,</li>
+   <li><i>printable ASCII only</i> flag.</li>
  </ul></div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>value</code> - the XML element for which JSON text will be generated.</dd>
+<dd><code>element</code> - the XML element for which JSON text will be generated.</dd>
 <dt>Returns:</dt>
-<dd>the JSON text that was generated for <code>value</code>.</dd>
+<dd>the JSON text that was generated for <code>element</code>.</dd>
 <dt>Throws:</dt>
-<dd><code><a href="JsonGeneratorXml.UnrecognisedElementException.html" title="class in uk.blankaspect.common.jsonxml">JsonGeneratorXml.UnrecognisedElementException</a></code> - if any element in the tree whose root is <code>value</code> does not correspond to a JSON value.</dd>
+<dd><code><a href="JsonGeneratorXml.UnrecognisedElementException.html" title="class in uk.blankaspect.common.jsonxml">JsonGeneratorXml.UnrecognisedElementException</a></code> - if any element in the tree whose root is <code>element</code> does not correspond to a JSON value.</dd>
 </dl>
 </section>
 </li>

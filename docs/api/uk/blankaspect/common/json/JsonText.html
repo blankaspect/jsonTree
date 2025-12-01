@@ -96,6 +96,10 @@ loadScripts(document, 'script');</script>
  <p>
  The JSON text consists of a sequence of <a href="JsonText.Line.html" title="class in uk.blankaspect.common.json">lines</a>.  A line consists of a sequence of <a href="JsonText.Span.html" title="class in uk.blankaspect.common.json">spans</a>; each span is associated with a <a href="JsonText.Token.html" title="enum class in uk.blankaspect.common.json">token</a>.  The lines and spans may be extracted from the
  buffer.
+ </p>
+ <p>
+ <code>JsonText</code> does not override <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link"><code>equals(Object)</code></a>.  To compare two instances of <code>
+ JsonText</code> for equality, compare the values that are returned by <a href="#toString()"><code>toString()</code></a>.
  </p></div>
 </section>
 <section class="summary">

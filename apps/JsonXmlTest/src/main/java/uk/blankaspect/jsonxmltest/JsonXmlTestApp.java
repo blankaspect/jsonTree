@@ -18,8 +18,11 @@ package uk.blankaspect.jsonxmltest;
 // IMPORTS
 
 
+import java.io.IOException;
+
 import java.nio.file.Path;
 
+import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
@@ -28,7 +31,6 @@ import java.util.Random;
 import java.util.Set;
 
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import uk.blankaspect.common.basictree.BooleanNode;
 import uk.blankaspect.common.basictree.DoubleNode;
@@ -90,6 +92,15 @@ public class JsonXmlTestApp
 	/** The name of the build-properties file. */
 	private static final	String	BUILD_PROPERTIES_FILENAME	= "build.properties";
 
+	/** The name of the usage-message file. */
+	private static final	String	USAGE_MESSAGE_FILENAME	= "usageMessage.txt";
+
+	/** The placeholder for the name of the application in the usage message. */
+	private static final	String	APP_NAME_PLACEHOLDER	= "${appName}";
+
+	/** The prefix of a line comment in a file of command-line arguments. */
+	private static final	String	COMMENT_PREFIX	= ";";
+
 	/** The prefix of a cause in the string representation of an exception. */
 	private static final	String	EXCEPTION_CAUSE_PREFIX	= "- ";
 
@@ -140,92 +151,17 @@ public class JsonXmlTestApp
 	private static final	N0Source	DEFAULT_STRING_LENGTH_SOURCE	= new N0Source.ZtPoisson(8);
 
 	/** A map from types of JSON values to their default proportions in a generated JSON tree. */
-	private static final	Map<NodeType, Double>	DEFAULT_NODE_TYPE_PROPORTIONS;
-
-	/** The usage message. */
-	private static final	String	USAGE_MESSAGE	=
-		"Usage: " + NAME_KEY + " [subcommand] [options]\n\n" +
-		"""
-		Subcommands:
-		  (The '--' prefix of a subcommand may be omitted.)
-		  --help
-		      Write help information to the standard output stream.
-		  --run-tests
-		     Run the tests.  This is the default subcommand.
-		  --version
-		      Write version information to the standard output stream.
-
-		Options:
-		  --allow-container-leaf
-		      Allow a container node (a node that corresponds to a JSON array or
-		      object) to be a leaf node.
-		  --json-output=<pathname>
-		      Write the generated JSON text to a file at the specified location.
-		  --num-children=fixed,<value>
-		  --num-children=uniform,<lower-bound>,<upper-bound>
-		  --num-children=poisson,<lambda>
-		  --num-children=ztp,<lambda>
-		      The number of children of a node that correponds to a JSON array or
-		      object.  The first argument denotes the kind of source of natural
-		      numbers; subsequent arguments are specific to the kind of source:
-		        fixed   : a fixed, specified value.
-		        uniform : a pseudo-random value from a discrete uniform distribution
-		                  over a range with the specified bounds.
-		        poisson : a pseudo-random value from a Poisson distribution with the
-		                  specified lambda parameter.
-		        ztp     : a pseudo-random value from a zero-truncated Poisson
-		                  distribution with the specified lambda parameter.
-		      The default value is 'poisson,5'.
-		  --printable-ascii-only
-		      Escape characters where necessary so that JSON text contains only
-		      printable characters from the US-ASCII character encoding.
-		  --proportions=<null>:<boolean>:<int>:<long>:<double>:<string>:<list>:<map>
-		      The proportions in which the different kinds of node will be generated.
-		      The default proportions are 1:2:2:1:2:8:5:5.
-		  --seed=<value>
-		      The seed for the pseudo-random number generator.  Only the least
-		      significant 48 bits of the seed are used.  If this option is omitted, a
-		      'random' seed will be used.
-		  --show-info={none|title|tree|results|all}
-		      The kinds of information that will be written to the standard output
-		      stream.  Multiple kinds may be specified, separated by ','.  The default
-		      value is 'tree,results'.
-		  --stack-trace
-		      Include a stack trace when reporting an exception.
-		  --string-length=fixed,<value>
-		  --string-length=uniform,<lower-bound>,<upper-bound>
-		  --string-length=poisson,<lambda>
-		  --string-length=ztp,<lambda>
-		      The length of the value of a node that correponds to a JSON string.  The
-		      first argument denotes the kind of source of natural numbers; subsequent
-		      arguments are specific to the kind of source:
-		        fixed   : a fixed, specified value.
-		        uniform : a pseudo-random value from a discrete uniform distribution
-		                  over a range with the specified bounds.
-		        poisson : a pseudo-random value from a Poisson distribution with the
-		                  specified lambda parameter.
-		        ztp     : a pseudo-random value from a zero-truncated Poisson
-		                  distribution with the specified lambda parameter.
-		      The default value is ztp,8.
-		  --tree-height=<value>
-		      The length of the longest path from the root of the JSON tree to a leaf
-		      node.  The default value is 8.
-		  --use-file
-		      Use a temporary file for intermediate storage when generating and parsing
-		      JSON text.
-		  --validate-xml
-		      Validate the generated tree of JSON-XML elements against the JSON-XML
-		      schema.  This option has no effect if the '--xml' option is absent.
-		  --xml
-		      The tests will involve a tree of JSON-XML elements instead of a tree of
-		      subclasses of 'AbstractNode'.
-		  --xml-namespace-prefix=<prefix>
-		      The prefix that is applied to the names of JSON-XML elements and
-		      attributes.  This option is ignored if the '--xml' option is absent.
-		  --xml-output=<pathname>
-		      Write a textual representation of the generated JSON-XML to a file at the
-		      specified location.  This option is ignored if the '--xml' option is
-		      absent.""";
+	private static final	Map<NodeType, Double>	DEFAULT_NODE_TYPE_PROPORTIONS	= Map.of
+	(
+		NullNode.TYPE,    0.02,
+		BooleanNode.TYPE, 0.08,
+		IntNode.TYPE,     0.08,
+		LongNode.TYPE,    0.04,
+		DoubleNode.TYPE,  0.06,
+		StringNode.TYPE,  0.32,
+		ListNode.TYPE,    0.20,
+		MapNode.TYPE,     0.20
+	);
 
 	/** Values that may be returned by the application when it terminates. */
 	private interface ExitCode
@@ -301,7 +237,7 @@ public class JsonXmlTestApp
 				"'%s' is not a valid kind of information.";
 
 		String	INCONSISTENT_INFO_KINDS =
-				"The arguments of the '" + Option.SHOW_INFO + "' option are inconsistent.";
+				"The arguments of the '%s' option are inconsistent.";
 
 		String	ILLEGAL_XML_NAMESPACE_PREFIX =
 				"'%s' is not a legal XML namespace prefix.";
@@ -319,24 +255,6 @@ public class JsonXmlTestApp
 
 	/** Flag: if {@code true}, the title of the application has been written to the standard output stream. */
 	private	boolean				titleShown;
-
-////////////////////////////////////////////////////////////////////////
-//  Static initialiser
-////////////////////////////////////////////////////////////////////////
-
-	static
-	{
-		// Initialise map of proportions of types of generated node
-		DEFAULT_NODE_TYPE_PROPORTIONS = new HashMap<>();
-		DEFAULT_NODE_TYPE_PROPORTIONS.put(NullNode.TYPE,    0.02);
-		DEFAULT_NODE_TYPE_PROPORTIONS.put(BooleanNode.TYPE, 0.08);
-		DEFAULT_NODE_TYPE_PROPORTIONS.put(IntNode.TYPE,     0.08);
-		DEFAULT_NODE_TYPE_PROPORTIONS.put(LongNode.TYPE,    0.04);
-		DEFAULT_NODE_TYPE_PROPORTIONS.put(DoubleNode.TYPE,  0.06);
-		DEFAULT_NODE_TYPE_PROPORTIONS.put(StringNode.TYPE,  0.32);
-		DEFAULT_NODE_TYPE_PROPORTIONS.put(ListNode.TYPE,    0.20);
-		DEFAULT_NODE_TYPE_PROPORTIONS.put(MapNode.TYPE,     0.20);
-	}
 
 ////////////////////////////////////////////////////////////////////////
 //  Constructors
@@ -558,7 +476,8 @@ public class JsonXmlTestApp
 			Map<NodeType, Double> nodeTypeProportions = null;
 
 			// Parse command-line arguments
-			for (CommandLine.Element<Option> element : new CommandLine<>(Option.class, true, USAGE_MESSAGE).parse(args))
+			for (CommandLine.Element<Option> element :
+					new CommandLine<>(Option.class, true, usageMessage()).parse(args, true, COMMENT_PREFIX))
 			{
 				// Get value of command-line element
 				String elementValue = element.getValue();
@@ -654,7 +573,7 @@ public class JsonXmlTestApp
 						{
 							if (InfoKind.ALL_KEY.equals(key))
 							{
-								Stream.of(InfoKind.values())
+								Arrays.stream(InfoKind.values())
 										.filter(value -> value != InfoKind.NONE)
 										.forEach(infoKinds::add);
 							}
@@ -667,7 +586,7 @@ public class JsonXmlTestApp
 							}
 						}
 						if (infoKinds.contains(InfoKind.NONE) && (infoKinds.size() > 1))
-							throw new ArgumentException(ErrorMsg.INCONSISTENT_INFO_KINDS, element);
+							throw new ArgumentException(ErrorMsg.INCONSISTENT_INFO_KINDS, element, Option.SHOW_INFO);
 						break;
 
 					case STACK_TRACE:
@@ -717,7 +636,7 @@ public class JsonXmlTestApp
 
 					case XML_NAMESPACE_PREFIX:
 					{
-						String prefix = PathnameUtils.parsePathname(elementValue);
+						String prefix = elementValue;
 						if (prefix.contains(":"))
 							throw new ArgumentException(ErrorMsg.ILLEGAL_XML_NAMESPACE_PREFIX, element, prefix);
 						if ((xmlNamespacePrefix != null) && !xmlNamespacePrefix.equals(prefix))
@@ -753,7 +672,7 @@ public class JsonXmlTestApp
 				case HELP:
 					showTitle();
 					System.out.println();
-					System.out.println(USAGE_MESSAGE);
+					System.out.print(usageMessage());
 					break;
 
 				case RUN_TESTS:
@@ -845,6 +764,26 @@ public class JsonXmlTestApp
 
 		// Return exit code
 		return exitCode;
+	}
+
+	//------------------------------------------------------------------
+
+	/**
+	 * Returns the usage message of this application.
+	 *
+	 * @return the usage message of this application.
+	 */
+
+	private String usageMessage()
+	{
+		try
+		{
+			return ResourceUtils.readText(getClass(), USAGE_MESSAGE_FILENAME).replace(APP_NAME_PLACEHOLDER, NAME_KEY);
+		}
+		catch (IOException e)
+		{
+			throw new UnexpectedRuntimeException(e);
+		}
 	}
 
 	//------------------------------------------------------------------
@@ -1278,10 +1217,7 @@ public class JsonXmlTestApp
 		private static InfoKind forKey(
 			String	key)
 		{
-			return Stream.of(values())
-					.filter(value -> value.key.equalsIgnoreCase(key))
-					.findFirst()
-					.orElse(null);
+			return Arrays.stream(values()).filter(value -> value.key.equalsIgnoreCase(key)).findFirst().orElse(null);
 		}
 
 		//--------------------------------------------------------------

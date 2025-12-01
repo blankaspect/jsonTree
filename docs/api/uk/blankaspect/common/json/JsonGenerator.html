@@ -131,15 +131,16 @@ loadScripts(document, 'script');</script>
 <div class="block">Creates and returns a new instance of a builder for a JSON generator.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="JsonText.html" title="class in uk.blankaspect.common.json">JsonText</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#generate(uk.blankaspect.common.basictree.AbstractNode)" class="member-name-link">generate</a><wbr>(<a href="../basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;value)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#generate(uk.blankaspect.common.basictree.AbstractNode)" class="member-name-link">generate</a><wbr>(<a href="../basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;node)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Generates and returns JSON text for the specified <a href="../basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">value</a> in accordance with the
+<div class="block">Generates and returns JSON text for the specified <a href="../basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a> in accordance with the
  properties of this generator:
  
    output mode,
    <i>new line before left bracket</i> parameter,
    indent increment,
-   maximum line length.
+   maximum line length,
+   <i>printable ASCII only</i> flag.
  </div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="JsonText.Token.html" title="enum class in uk.blankaspect.common.json">JsonText.Token</a></code></div>
@@ -191,22 +192,23 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="generate(uk.blankaspect.common.basictree.AbstractNode)">
 <h3>generate</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="JsonText.html" title="class in uk.blankaspect.common.json">JsonText</a></span>&nbsp;<span class="element-name">generate</span><wbr><span class="parameters">(<a href="../basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;value)</span></div>
-<div class="block">Generates and returns JSON text for the specified <a href="../basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">value</a> in accordance with the
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="JsonText.html" title="class in uk.blankaspect.common.json">JsonText</a></span>&nbsp;<span class="element-name">generate</span><wbr><span class="parameters">(<a href="../basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&nbsp;node)</span></div>
+<div class="block">Generates and returns JSON text for the specified <a href="../basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a> in accordance with the
  properties of this generator:
  <ul>
    <li>output mode,</li>
    <li><i>new line before left bracket</i> parameter,</li>
    <li>indent increment,</li>
-   <li>maximum line length.</li>
+   <li>maximum line length,</li>
+   <li><i>printable ASCII only</i> flag.</li>
  </ul></div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>value</code> - the value for which JSON text will be generated.</dd>
+<dd><code>node</code> - the value for which JSON text will be generated.</dd>
 <dt>Returns:</dt>
-<dd>the JSON text that was generated for <code>value</code>.</dd>
+<dd>the JSON text that was generated for <code>node</code>.</dd>
 <dt>Throws:</dt>
-<dd><code><a href="../basictree/NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></code> - if any node in the tree whose root is <code>value</code> does not correspond to a JSON value.</dd>
+<dd><code><a href="../basictree/NodeTypeException.html" title="class in uk.blankaspect.common.basictree">NodeTypeException</a></code> - if any node in the tree whose root is <code>node</code> does not correspond to a JSON value.</dd>
 </dl>
 </section>
 </li>
