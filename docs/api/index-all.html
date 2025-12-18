@@ -715,6 +715,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">JSON text is written on a single line with no space between tokens.</div>
 </dd>
+<dt><a href="uk/blankaspect/common/string/StringUtils.SplitMode.html#DISCARD" class="member-name-link">DISCARD</a> - Enum constant in enum class uk.blankaspect.common.string.<a href="uk/blankaspect/common/string/StringUtils.SplitMode.html" title="enum class in uk.blankaspect.common.string">StringUtils.SplitMode</a></dt>
+<dd>
+<div class="block">The separator is discarded after splitting.</div>
+</dd>
 <dt><a href="uk/blankaspect/common/basictree/DoubleNode.html" class="type-name-link" title="class in uk.blankaspect.common.basictree">DoubleNode</a> - Class in <a href="uk/blankaspect/common/basictree/package-summary.html">uk.blankaspect.common.basictree</a></dt>
 <dd>
 <div class="block">This class implements a <a href="uk/blankaspect/common/basictree/AbstractNode.html" title="class in uk.blankaspect.common.basictree">node</a> that contains a double-precision floating-point number.</div>
@@ -2408,10 +2412,6 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Creates a new instance of an exception that is associated with the specified XML element.</div>
 </dd>
-<dt><a href="uk/blankaspect/common/string/StringUtils.SplitMode.html#NONE" class="member-name-link">NONE</a> - Enum constant in enum class uk.blankaspect.common.string.<a href="uk/blankaspect/common/string/StringUtils.SplitMode.html" title="enum class in uk.blankaspect.common.string">StringUtils.SplitMode</a></dt>
-<dd>
-<div class="block">The separator is discarded after splitting.</div>
-</dd>
 <dt><a href="uk/blankaspect/common/json/OutputMode.html#NORMAL" class="member-name-link">NORMAL</a> - Enum constant in enum class uk.blankaspect.common.json.<a href="uk/blankaspect/common/json/OutputMode.html" title="enum class in uk.blankaspect.common.json">OutputMode</a></dt>
 <dd>
 <div class="block">JSON text may be written on multiple lines with a space between some tokens.</div>
@@ -3114,6 +3114,14 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Generates a textual representation of the tree of JSON-XML elements whose root is the specified XML element and
  returns the text.</div>
+</dd>
+<dt><a href="uk/blankaspect/common/tree/TreeUtils.html#treeToString(T,int,boolean,java.util.function.Function)" class="member-name-link">treeToString(T, int, boolean, Function&lt;T, String&gt;)</a> - Static method in class uk.blankaspect.common.tree.<a href="uk/blankaspect/common/tree/TreeUtils.html" title="class in uk.blankaspect.common.tree">TreeUtils</a></dt>
+<dd>
+<div class="block">Returns a string representation of the tree of <a href="uk/blankaspect/common/tree/ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s whose root is the specified node.</div>
+</dd>
+<dt><a href="uk/blankaspect/common/treetraversal/TreeTraversal.html#treeToString(T,int,boolean,java.util.function.Function,java.util.function.Function,java.util.function.Function)" class="member-name-link">treeToString(T, int, boolean, Function&lt;T, T&gt;, Function&lt;T, List&lt;T&gt;&gt;, Function&lt;T, String&gt;)</a> - Static method in class uk.blankaspect.common.treetraversal.<a href="uk/blankaspect/common/treetraversal/TreeTraversal.html" title="class in uk.blankaspect.common.treetraversal">TreeTraversal</a></dt>
+<dd>
+<div class="block">Returns a string representation of the tree whose root is the specified node.</div>
 </dd>
 <dt><a href="uk/blankaspect/common/tree/TreeUtils.html#treeToString(T,int,java.util.function.Function)" class="member-name-link">treeToString(T, int, Function&lt;T, String&gt;)</a> - Static method in class uk.blankaspect.common.tree.<a href="uk/blankaspect/common/tree/TreeUtils.html" title="class in uk.blankaspect.common.tree">TreeUtils</a></dt>
 <dd>

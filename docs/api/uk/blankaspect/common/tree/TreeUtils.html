@@ -225,42 +225,50 @@ U&gt;<br>T</code></div>
  specified test.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static &lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#treeToString(T,int,java.util.function.Function)" class="member-name-link">treeToString</a><wbr>(T&nbsp;root,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#treeToString(T,int,boolean,java.util.function.Function)" class="member-name-link">treeToString</a><wbr>(T&nbsp;root,
  int&nbsp;indentIncrement,
+ boolean&nbsp;includeRoot,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Function.html" title="class or interface in java.util.function" class="external-link">Function</a>&lt;T,<wbr><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;converter)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Returns a string representation of the tree of <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s whose root is the specified node.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static &lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#visitAscending(T,java.util.function.Function)" class="member-name-link">visitAscending</a><wbr>(T&nbsp;startNode,
- <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Function.html" title="class or interface in java.util.function" class="external-link">Function</a>&lt;T,<wbr><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&gt;&nbsp;action)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static &lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#treeToString(T,int,java.util.function.Function)" class="member-name-link">treeToString</a><wbr>(T&nbsp;root,
+ int&nbsp;indentIncrement,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Function.html" title="class or interface in java.util.function" class="external-link">Function</a>&lt;T,<wbr><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;converter)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Returns a string representation of the tree of <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s whose root is the specified node.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static &lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#visitAscending(T,java.util.function.Function)" class="member-name-link">visitAscending</a><wbr>(T&nbsp;startNode,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Function.html" title="class or interface in java.util.function" class="external-link">Function</a>&lt;T,<wbr><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&gt;&nbsp;action)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Ascends a tree of <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s from the specified node to the root node, applying the specified action to
  each node that is visited, including the root.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static &lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#visitAscending(T,T,boolean,java.util.function.Function)" class="member-name-link">visitAscending</a><wbr>(T&nbsp;startNode,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static &lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#visitAscending(T,T,boolean,java.util.function.Function)" class="member-name-link">visitAscending</a><wbr>(T&nbsp;startNode,
  T&nbsp;endNode,
  boolean&nbsp;includeEnd,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Function.html" title="class or interface in java.util.function" class="external-link">Function</a>&lt;T,<wbr><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&gt;&nbsp;action)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Ascends a tree of <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s from the specified node to the specified end node, applying the specified
  action to each node that is visited.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static &lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#visitBreadthFirst(T,boolean,java.util.function.Function)" class="member-name-link">visitBreadthFirst</a><wbr>(T&nbsp;root,
- boolean&nbsp;includeRoot,
- <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Function.html" title="class or interface in java.util.function" class="external-link">Function</a>&lt;T,<wbr><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&gt;&nbsp;action)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Performs a breadth-first traversal of a tree of <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s, starting from the specified root node and
- applying the specified action to each node that is visited.</div>
-</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static &lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#visitDepthFirst(T,boolean,boolean,java.util.function.Function)" class="member-name-link">visitDepthFirst</a><wbr>(T&nbsp;root,
- boolean&nbsp;preorder,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#visitBreadthFirst(T,boolean,java.util.function.Function)" class="member-name-link">visitBreadthFirst</a><wbr>(T&nbsp;root,
  boolean&nbsp;includeRoot,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Function.html" title="class or interface in java.util.function" class="external-link">Function</a>&lt;T,<wbr><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&gt;&nbsp;action)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Performs a breadth-first traversal of a tree of <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s, starting from the specified root node and
+ applying the specified action to each node that is visited.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static &lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;<br>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#visitDepthFirst(T,boolean,boolean,java.util.function.Function)" class="member-name-link">visitDepthFirst</a><wbr>(T&nbsp;root,
+ boolean&nbsp;preorder,
+ boolean&nbsp;includeRoot,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Function.html" title="class or interface in java.util.function" class="external-link">Function</a>&lt;T,<wbr><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&gt;&nbsp;action)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Performs a depth-first traversal of a tree of <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s, starting from the specified root node and
  applying the specified action to each node that is visited.</div>
 </div>
@@ -772,6 +780,29 @@ U&gt;</span>&nbsp;<span class="return-type">T</span>&nbsp;<span class="element-n
 <dd><code>root</code> - the node at the root of the tree.</dd>
 <dd><code>indentIncrement</code> - the number of spaces by which the indent of a line of text will be incremented for each level of the
            tree below <code>root</code>.</dd>
+<dd><code>converter</code> - the function that will convert each node to its string representation.</dd>
+<dt>Returns:</dt>
+<dd>a string representation of the tree whose root is <code>root</code>.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="treeToString(T,int,boolean,java.util.function.Function)">
+<h3 id="treeToString(uk.blankaspect.common.tree.ITreeNode,int,boolean,java.util.function.Function)">treeToString</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="type-parameters">&lt;T extends <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree">ITreeNode</a>&lt;T&gt;&gt;</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">treeToString</span><wbr><span class="parameters">(T&nbsp;root,
+ int&nbsp;indentIncrement,
+ boolean&nbsp;includeRoot,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Function.html" title="class or interface in java.util.function" class="external-link">Function</a>&lt;T,<wbr><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;converter)</span></div>
+<div class="block">Returns a string representation of the tree of <a href="ITreeNode.html" title="interface in uk.blankaspect.common.tree"><code>ITreeNode</code></a>s whose root is the specified node.  The
+ inclusion of the root node in the string representation is optional.</div>
+<dl class="notes">
+<dt>Type Parameters:</dt>
+<dd><code>T</code> - the type of the nodes of the tree.</dd>
+<dt>Parameters:</dt>
+<dd><code>root</code> - the node at the root of the tree.</dd>
+<dd><code>indentIncrement</code> - the number of spaces by which the indent of a line of text will be incremented for each level of the
+           tree below <code>root</code>.</dd>
+<dd><code>includeRoot</code> - if <code>true</code>, <code>root</code> will be included in the string representation.</dd>
 <dd><code>converter</code> - the function that will convert each node to its string representation.</dd>
 <dt>Returns:</dt>
 <dd>a string representation of the tree whose root is <code>root</code>.</dd>
