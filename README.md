@@ -39,7 +39,7 @@ The subclasses of `AbstractNode` have the following correspondence with JSON val
 | `null`          | `NullNode`    |                                                 |
 | `false`, `true` | `BooleanNode` | `boolean`                                       |
 | number          | `IntNode`     | `int`                                           |
-| number          | `LongNode`,   | `long`                                          |
+| number          | `LongNode`    | `long`                                          |
 | number          | `DoubleNode`  | `double`                                        |
 | string          | `StringNode`  | `java.lang.String`                              |
 | array           | `ListNode`    | `java.util.ArrayList<AbstractNode>`             |
