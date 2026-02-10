@@ -86,8 +86,11 @@ public class JsonXmlValidator
 	/** Error messages. */
 	private interface ErrorMsg
 	{
-		String	FAILED_TO_CREATE_SCHEMA		= "Failed to create an XML schema.";
-		String	ERROR_VALIDATING_ELEMENT	= "An error occurred when validating the XML element against a schema.";
+		String	FAILED_TO_CREATE_SCHEMA =
+				"Failed to create an XML schema.";
+
+		String	ERROR_VALIDATING_ELEMENT =
+				"An error occurred when validating the XML element against a schema.";
 	}
 
 ////////////////////////////////////////////////////////////////////////

@@ -228,12 +228,23 @@ public class JsonTransformerDemo
 	/** Error messages. */
 	private interface ErrorMsg
 	{
-		String	NOT_A_DIRECTORY				= "The location does not denote a directory.";
-		String	FAILED_TO_CREATE_DIRECTORY	= "Failed to create the directory.";
-		String	ERROR_PARSING_JSON_TEXT		= "An error occurred when parsing the JSON text.";
-		String	ERROR_GENERATING_XML_TEXT	= "An error occurred when generating XML text.";
-		String	ERROR_TRANSFORMING_XML_TREE	= "An error occurred when transforming the tree of XML elements.";
-		String	ERROR_WRITING_FILE			= "An error occurred when writing the file.";
+		String	NOT_A_DIRECTORY =
+				"The location does not denote a directory.";
+
+		String	FAILED_TO_CREATE_DIRECTORY =
+				"Failed to create the directory.";
+
+		String	ERROR_PARSING_JSON_TEXT =
+				"An error occurred when parsing the JSON text.";
+
+		String	ERROR_GENERATING_XML_TEXT =
+				"An error occurred when generating XML text.";
+
+		String	ERROR_TRANSFORMING_XML_TREE =
+				"An error occurred when transforming the tree of XML elements.";
+
+		String	ERROR_WRITING_FILE =
+				"An error occurred when writing the file.";
 	}
 
 ////////////////////////////////////////////////////////////////////////
