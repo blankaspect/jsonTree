@@ -291,5 +291,5 @@ running the program with the command-line argument `help` or `--help`.
 
 ### Licence
 
-You may use the contents of this repository under the terms of the
+You may use the contents of this repository under the terms and conditions of the
 [MIT license](https://mit-license.org/).
