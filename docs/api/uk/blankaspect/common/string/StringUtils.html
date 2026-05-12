@@ -1153,9 +1153,14 @@ separator between adjacent character sequences and an optional separator after t
 <h3>extractLines</h3>
 <div class="horizontal-scroll">
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name">extractLines</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;text)</span></div>
-<div class="block">Splits the specified text at line separators and returns the resulting list of lines.  The line separators that
-are recognised are CR+LF (U+000D, U+000A) and LF (U+000A).  The line separators are not included in the output
-list.</div>
+<div class="block">Splits the specified text at line separators and returns the resulting list of lines.  The following line
+separators are recognised:
+<ul>
+  <li>a line feed (U+000A),</li>
+  <li>a carriage return (U+000D) not followed by a line feed,</li>
+  <li>a carriage return followed by a line feed (U+000D, U+000A).</li>
+</ul>
+The line separators are not included in the output list.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>text</code> - the text that will be split into lines at line separators.</dd>
