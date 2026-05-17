@@ -155,6 +155,8 @@ loadScripts(document, 'script');</script>
 <li><a href="#addList(uk.blankaspect.common.basictree.AbstractNode...)" tabindex="0">addList(AbstractNode...)</a></li>
 <li><a href="#addList(java.lang.Iterable)" tabindex="0">addList(Iterable)</a></li>
 <li><a href="#addMap(java.util.Map)" tabindex="0">addMap(Map)</a></li>
+<li><a href="#addMap(uk.blankaspect.common.basictree.MapNode.Pair...)" tabindex="0">addMap(MapNode.Pair...)</a></li>
+<li><a href="#addMap(java.lang.Iterable)" tabindex="0">addMap(Iterable)</a></li>
 </ol>
 </li>
 </ol>
@@ -371,7 +373,19 @@ to the end of the list of elements of this list node, preserving the order of th
 to the end of the list of elements of this list node, preserving the order of the values.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="MapNode.html" title="class in uk.blankaspect.common.basictree">MapNode</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addMap(java.util.Map)" class="member-name-link">addMap</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>, <a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;&nbsp;pairs)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addMap(java.lang.Iterable)" class="member-name-link">addMap</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;? extends <a href="MapNode.Pair.html" title="class in uk.blankaspect.common.basictree">MapNode.Pair</a>&gt;&nbsp;pairs)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Creates a new instance of a <a href="MapNode.html" title="class in uk.blankaspect.common.basictree">map node</a> with the specified key&ndash;value pairs, adds it to
+the end of the list of elements of this list node and returns it.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="MapNode.html" title="class in uk.blankaspect.common.basictree">MapNode</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addMap(java.util.Map)" class="member-name-link">addMap</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>, <a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;&nbsp;pairs)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Creates a new instance of a <a href="MapNode.html" title="class in uk.blankaspect.common.basictree">map node</a> with the specified key&ndash;value pairs, adds it to
+the end of the list of elements of this list node and returns it.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="MapNode.html" title="class in uk.blankaspect.common.basictree">MapNode</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addMap(uk.blankaspect.common.basictree.MapNode.Pair...)" class="member-name-link">addMap</a><wbr>(<a href="MapNode.Pair.html" title="class in uk.blankaspect.common.basictree">MapNode.Pair</a>...&nbsp;pairs)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Creates a new instance of a <a href="MapNode.html" title="class in uk.blankaspect.common.basictree">map node</a> with the specified key&ndash;value pairs, adds it to
 the end of the list of elements of this list node and returns it.</div>
@@ -2049,6 +2063,40 @@ the list of elements of this list node and returns it.</div>
 <h3>addMap</h3>
 <div class="horizontal-scroll">
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="MapNode.html" title="class in uk.blankaspect.common.basictree">MapNode</a></span>&nbsp;<span class="element-name">addMap</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>, <a href="AbstractNode.html" title="class in uk.blankaspect.common.basictree">AbstractNode</a>&gt;&nbsp;pairs)</span></div>
+<div class="block">Creates a new instance of a <a href="MapNode.html" title="class in uk.blankaspect.common.basictree">map node</a> with the specified key&ndash;value pairs, adds it to
+the end of the list of elements of this list node and returns it.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>pairs</code> - the key&ndash;value pairs of the map node that will be created and added to the elements of this list
+          node.</dd>
+<dt>Returns:</dt>
+<dd>the map node that was created from <code>pairs</code> and added to the elements of this list node.</dd>
+</dl>
+</div>
+</section>
+</li>
+<li>
+<section class="detail" id="addMap(uk.blankaspect.common.basictree.MapNode.Pair...)">
+<h3>addMap</h3>
+<div class="horizontal-scroll">
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="MapNode.html" title="class in uk.blankaspect.common.basictree">MapNode</a></span>&nbsp;<span class="element-name">addMap</span><wbr><span class="parameters">(<a href="MapNode.Pair.html" title="class in uk.blankaspect.common.basictree">MapNode.Pair</a>...&nbsp;pairs)</span></div>
+<div class="block">Creates a new instance of a <a href="MapNode.html" title="class in uk.blankaspect.common.basictree">map node</a> with the specified key&ndash;value pairs, adds it to
+the end of the list of elements of this list node and returns it.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>pairs</code> - the key&ndash;value pairs of the map node that will be created and added to the elements of this list
+          node.</dd>
+<dt>Returns:</dt>
+<dd>the map node that was created from <code>pairs</code> and added to the elements of this list node.</dd>
+</dl>
+</div>
+</section>
+</li>
+<li>
+<section class="detail" id="addMap(java.lang.Iterable)">
+<h3>addMap</h3>
+<div class="horizontal-scroll">
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="MapNode.html" title="class in uk.blankaspect.common.basictree">MapNode</a></span>&nbsp;<span class="element-name">addMap</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;? extends <a href="MapNode.Pair.html" title="class in uk.blankaspect.common.basictree">MapNode.Pair</a>&gt;&nbsp;pairs)</span></div>
 <div class="block">Creates a new instance of a <a href="MapNode.html" title="class in uk.blankaspect.common.basictree">map node</a> with the specified key&ndash;value pairs, adds it to
 the end of the list of elements of this list node and returns it.</div>
 <dl class="notes">
